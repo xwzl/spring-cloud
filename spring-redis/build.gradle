@@ -1,0 +1,29 @@
+task resourceOut(type: Copy) {
+    copy {
+        from("src/main/java") {
+            include("**/*.xml")
+        }
+        into("${rootDir}/${project.name}/out/production/classes")
+    }
+}
+
+task resourceBuild(type: Copy) {
+    copy {
+        from("src/main/java") {
+            include("**/*.xml")
+        }
+        into("${rootDir}/${project.name}/build/classes/java/main/")
+    }
+}
+
+
+dependencies {
+    compile(
+            "com.alibaba:fastjson:${fastJsonVersion}",
+            "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "org.apache.commons:commons-lang3:${commonLangVerion}",
+            "org.springframework.boot:spring-boot-starter-jdbc",
+            "org.springframework.boot:spring-boot-starter-data-redis"
+    )
+}
+
