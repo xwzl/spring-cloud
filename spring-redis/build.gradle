@@ -22,7 +22,7 @@ dependencies {
             "com.alibaba:fastjson:${fastJsonVersion}",
             "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
             "org.apache.commons:commons-lang3:${commonLangVerion}",
-            "org.springframework.boot:spring-boot-starter-jdbc",
+//            "org.springframework.boot:spring-boot-starter-jdbc",
             "org.springframework.boot:spring-boot-starter-data-redis"
     )
 }
