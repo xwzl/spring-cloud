@@ -56,7 +56,7 @@ public class RedisConfig {
     }
 
     @Bean(name = "redisGenericTemplate")
-    @SuppressWarnings("all")
+    @SuppressWarnings({"rawtypes","unchecked"})
     public <T> RedisTemplate<String, T> redisGenericTemplate(RedisConnectionFactory rcf) {
 
         RedisTemplate<String, T> rt = new RedisTemplate<>();
@@ -75,7 +75,7 @@ public class RedisConfig {
     }
 
     @Bean
-    @SuppressWarnings("all")
+    @SuppressWarnings({"rawtypes","unchecked"})
     public RedisTemplate<Object, Object> redisTemplateKeyObject(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> rt = new RedisTemplate<>();
         rt.setConnectionFactory(redisConnectionFactory);

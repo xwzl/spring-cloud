@@ -16,6 +16,7 @@ import java.util.List;
 public class SalaryTableController {
     @Autowired
     DepartmentService departmentService;
+
     @RequestMapping("/deps")
     public List<Department> departments() {
         return departmentService.getAllDeps();

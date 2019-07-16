@@ -12,5 +12,6 @@ include 'spring-boot'
 //include 'dynamic-datasource'
 //include 'spring-demo'
 include 'spring-redis'
-//include 'spring-rabbit'
+include 'spring-rabbit'
+include 'spring-elastic'
 

@@ -20,14 +20,11 @@ task resourceBuild(type: Copy) {
 dependencies {
     compile(
             "com.alibaba:fastjson:${fastJsonVersion}",
-
-            "com.baomidou:mybatis-plus:${baomidouVersion}",
-            "com.baomidou:mybatis-plus-generator:${baomidouVersion}",
-            "com.baomidou:mybatis-plus-boot-starter:${baomidouVersion}",
-            
-            "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
             "org.apache.commons:commons-lang3:${commonLangVerion}",
-            "org.springframework.boot:spring-boot-starter-amqp"
+            "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBootVersion}",
+            "io.springfox:springfox-swagger2:${swaggerVersion}",
+            "com.github.onsoul:springfox-swagger-ui:${swaggerGitHubUi}",
     )
 }
 

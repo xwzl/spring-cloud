@@ -1,12 +1,13 @@
 version: '3'
 services:
-  node1:
+  node1: # 服务名称
     image: elasticsearch:6.4.3
-    container_name: node1
+    container_name: node1 # 容器名称
+    hostname: node1
     privileged: true
     environment:
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-#      - "discovery.zen.ping.unicast.hosts=192.168.26.22:9301,192.168.150.21:9302,192.168.150.21:9300"
+    #      - "discovery.zen.ping.unicast.hosts=172.16.159.20:9301,192.168.150.21:9302,192.168.150.21:9300"
     ulimits:
       memlock:
         soft: -1
@@ -15,8 +16,9 @@ services:
       - ./config/es1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ./data/node0:/usr/share/elasticsearch/data
       - ./logs/node0:/usr/share/elasticsearch/logs
+    restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
     ports:
-      - 9200:9200
+      - 9200:9200 # 暴露的端口信息和docker run -d -p 80:80一样
       - 9300:9300
   node2:
     image: elasticsearch:6.4.3
@@ -24,7 +26,7 @@ services:
     privileged: true
     environment:
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-#      - "discovery.zen.ping.unicast.hosts=192.168.26.22:9302,192.168.26.22:9301,192.168.26.22:9300"
+    #      - "discovery.zen.ping.unicast.hosts=172.16.159.20:9302,172.16.159.20:9301,172.16.159.20:9300"
     ulimits:
       memlock:
         soft: -1
@@ -42,7 +44,7 @@ services:
     privileged: true
     environment:
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-#      - "discovery.zen.ping.unicast.hosts=192.168.26.22:9301,192.168.26.22:9300,192.168.26.22:9302"
+    #      - "discovery.zen.ping.unicast.hosts=172.16.159.20:9301,172.16.159.20:9300,172.16.159.20:9302"
     ulimits:
       memlock:
         soft: -1
@@ -60,3 +62,27 @@ services:
     restart: always
     ports:
       - "9100:9100"
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:6.4.3
+#    container_name: kibana
+#    environment:
+#      ELASTICSEARCH_URL: http://172.16.159.20:9200
+#      SERVER_HOST: 172.16.159.20
+#    depends_on:
+#      - node1
+#    restart: always
+#    ports:
+#      - 5061:5061
+#  logstash:
+#    image: logstash:6.4.3
+#    container_name: logstash
+#    volumes:
+#      - ./config/conf.d:/etc/logstash/conf.d  #logstash 配文件位置
+#      - ./logs/log:/tmp
+#    restart: always
+#    depends_on:
+#        - node1  #后于elasticsearch启动
+#    ports:
+#      - "7001-7005:7001-7005"
+#      - "4560:4560"
+#      - "9600:9600"
