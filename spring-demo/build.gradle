@@ -27,7 +27,8 @@ dependencies {
             "com.alibaba:fastjson:${fastJsonVersion}",
             "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}",
-            "org.apache.commons:commons-lang3:${commonLangVerion}"
+            "org.apache.commons:commons-lang3:${commonLangVerion}",
+            "com.google.zxing:core:3.3.3"
     )
 }
 

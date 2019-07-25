@@ -1,14 +1,16 @@
 package com.spring.demo.controller;
 
 
-import com.spring.demo.model.Demo;
-import com.spring.demo.service.DemoService;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.spring.demo.untils.QrCodeUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 
 /**
  * <p>
@@ -23,20 +25,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/demo/demo")
 public class DemoController {
 
-    @Autowired
-    private DemoService demoService;
-    @PostMapping
-    public Demo addDemo(Demo demo) {
-        demoService.save(demo);
-        log.info(demo.toString());
-        return demo;
-    }
 
-    @GetMapping
-    public Demo getDemo(String id) {
-        return demoService.getById(id);
-    }
 
+    /**
+     * 二维码
+     * @param request
+     * @param response
+     */
+    @GetMapping("/qrcode")
+    public void qrcode(HttpServletRequest request, HttpServletResponse response,String content) {
+        StringBuffer url = request.getRequestURL();
+        // 域名
+        String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").toString();
+
+        // 再加上请求链接
+        String requestUrl = tempContextUrl + "/index";
+        try {
+            OutputStream os = response.getOutputStream();
+            QrCodeUtils.encode(StringUtils.isNotEmpty(content)?content:"https://www.baidu.com", "/static/images/logo.png", os, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
