@@ -25,8 +25,6 @@ import java.io.OutputStream;
 @RequestMapping("/demo/demo")
 public class DemoController {
 
-
-
     /**
      * 二维码
      * @param request
@@ -47,6 +45,5 @@ public class DemoController {
             e.printStackTrace();
         }
     }
-
 
 }
