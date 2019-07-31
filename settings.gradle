@@ -14,4 +14,5 @@ include 'spring-demo'
 include 'spring-redis'
 include 'spring-rabbit'
 include 'spring-elastic'
+include 'spring-guava'
 

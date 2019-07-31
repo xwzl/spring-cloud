@@ -1,9 +1,6 @@
 package com.spring.demo.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -43,9 +40,5 @@ public class Role implements Serializable {
     @TableField("nameZh")
     @ApiModelProperty(value = "角色名称")
     private String nameZh;
-
-    public static void main(String[] args){
-        System.out.println("Hello World !");
-    }
 
 }

@@ -1,0 +1,28 @@
+task resourceOut(type: Copy) {
+    copy {
+        from("src/main/java") {
+            include("**/*.xml")
+        }
+        into("${rootDir}/${project.name}/out/production/classes")
+    }
+}
+
+task resourceBuild(type: Copy) {
+    copy {
+        from("src/main/java") {
+            include("**/*.xml")
+        }
+        into("${rootDir}/${project.name}/build/classes/java/main/")
+    }
+}
+
+
+dependencies {
+    compile(
+            "com.alibaba:fastjson:${fastJsonVersion}",
+            "org.apache.commons:commons-lang3:${commonLangVerion}",
+            "com.google.guava:name:guava:28.0-jre"
+
+    )
+}
+

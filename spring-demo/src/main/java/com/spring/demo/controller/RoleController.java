@@ -56,16 +56,17 @@ public class RoleController {
     @GetMapping
     @ApiOperation(value = "用户注册", notes = "手机号、密码都是必输项，年龄随边填，但必须是数字")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "mobile", value = "手机号", required = true, paramType = "form"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "form"),
-            @ApiImplicitParam(name = "age", value = "年龄", required = true, paramType = "form", dataType = "Integer"),
-            @ApiImplicitParam(name = "role", value = "角色", required = true, paramType = "form", dataType = "Role")
+        @ApiImplicitParam(name = "mobile", value = "手机号", required = true, paramType = "form"),
+        @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "form"),
+        @ApiImplicitParam(name = "age", value = "年龄", required = true, paramType = "form", dataType = "Integer"),
+        @ApiImplicitParam(name = "role", value = "角色", required = true, paramType = "form", dataType = "Role")
     })
     @ApiResponses({
             @ApiResponse(code=400,message="请求参数没填好"),
             @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
     })
     public List<Role> getRoleList(String mobile, String password, String age,Role role) {
+
         return roleService.list();
     }
 
