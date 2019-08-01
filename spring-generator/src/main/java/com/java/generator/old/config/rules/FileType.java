@@ -28,5 +28,8 @@ public enum FileType {
     SERVICE,
     SERVICE_IMPL,
     CONTROLLER,
+    VO,
+    DTO,
+    DOS,
     OTHER
 }

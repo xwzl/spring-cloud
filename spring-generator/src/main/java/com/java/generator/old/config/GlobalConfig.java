@@ -94,6 +94,10 @@ public class GlobalConfig {
     private String serviceName;
     private String serviceImplName;
     private String controllerName;
+    private String voName;
+    private String dtoName;
+    private String doName;
+
     /**
      * 指定生成的主键的ID类型
      */

@@ -359,6 +359,21 @@ public class ConfigBuilder {
             } else {
                 tableInfo.setControllerName(entityName + ConstVal.CONTROLLER);
             }
+            if (StringUtils.isNotEmpty(globalConfig.getVoName())) {
+                tableInfo.setVoName(String.format(globalConfig.getVoName(), entityName));
+            } else {
+                tableInfo.setVoName(entityName + ConstVal.VOS);
+            }
+            if (StringUtils.isNotEmpty(globalConfig.getDoName())) {
+                tableInfo.setDoName(String.format(globalConfig.getDoName(), entityName));
+            } else {
+                tableInfo.setDoName(entityName + ConstVal.DOS);
+            }
+            if (StringUtils.isNotEmpty(globalConfig.getDtoName())) {
+                tableInfo.setDtoName(String.format(globalConfig.getDtoName(), entityName));
+            } else {
+                tableInfo.setDtoName(entityName + ConstVal.DTOS);
+            }
             // 检测导入包
             checkImportPackages(tableInfo);
         }

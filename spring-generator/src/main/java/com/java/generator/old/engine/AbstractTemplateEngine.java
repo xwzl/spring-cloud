@@ -130,6 +130,13 @@ public abstract class AbstractTemplateEngine {
                         writer(objectMap, templateFilePath(template.getController()), controllerFile);
                     }
                 }
+                // MpVO.java
+                if (null != tableInfo.getVoName() && null != pathInfo.get(ConstVal.VO_PATH)) {
+                    String voFile = String.format((pathInfo.get(ConstVal.VO_PATH) + File.separator + tableInfo.getVoName() + suffixJavaOrKt()), entityName);
+                    if (isCreate(FileType.VO, voFile)) {
+                        writer(objectMap, templateFilePath(template.getVos()), voFile);
+                    }
+                }
             }
         } catch (Exception e) {
             logger.error("无法创建文件，请检查配置信息！", e);
