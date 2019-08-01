@@ -15,4 +15,5 @@ include 'spring-redis'
 include 'spring-rabbit'
 include 'spring-elastic'
 include 'spring-guava'
+include 'spring-generator'
 

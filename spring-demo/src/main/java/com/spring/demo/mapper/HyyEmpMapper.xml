@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.demo.mapper.HyyEmpMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spring.demo.model.HyyEmp">
+        <id column="id" property="id" />
+        <result column="emp_work_id" property="empWorkId" />
+        <result column="emp_name" property="empName" />
+        <result column="emp_dep_name" property="empDepName" />
+        <result column="emp_post_name" property="empPostName" />
+        <result column="emp_level" property="empLevel" />
+        <result column="emp_workarea" property="empWorkarea" />
+        <result column="emp_skill" property="empSkill" />
+        <result column="emp_phone" property="empPhone" />
+        <result column="emp_idcardnum" property="empIdcardnum" />
+        <result column="emp_sex" property="empSex" />
+        <result column="emp_age" property="empAge" />
+        <result column="emp_nation" property="empNation" />
+        <result column="emp_in" property="empIn" />
+        <result column="emp_out" property="empOut" />
+        <result column="emp_allworkday" property="empAllworkday" />
+        <result column="emp_allmoney" property="empAllmoney" />
+        <result column="emp_remarks" property="empRemarks" />
+        <result column="emp_status" property="empStatus" />
+        <result column="emp_entry_time" property="empEntryTime" />
+        <result column="emp_separation_time" property="empSeparationTime" />
+        <result column="emp_work_status" property="empWorkStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, emp_work_id, emp_name, emp_dep_name, emp_post_name, emp_level, emp_workarea, emp_skill, emp_phone, emp_idcardnum, emp_sex, emp_age, emp_nation, emp_in, emp_out, emp_allworkday, emp_allmoney, emp_remarks, emp_status, emp_entry_time, emp_separation_time, emp_work_status
+    </sql>
+
+</mapper>

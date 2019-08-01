@@ -25,6 +25,9 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * @author xuweizhi
+ */
 public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<T> {
 
     protected Log log = LogFactory.getLog(getClass());

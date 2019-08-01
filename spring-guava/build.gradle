@@ -21,8 +21,7 @@ dependencies {
     compile(
             "com.alibaba:fastjson:${fastJsonVersion}",
             "org.apache.commons:commons-lang3:${commonLangVerion}",
-            "com.google.guava:name:guava:28.0-jre"
-
+            "com.google.guava:guava:28.0-jre"
     )
 }
 

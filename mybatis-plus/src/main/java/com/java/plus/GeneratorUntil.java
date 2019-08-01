@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.java.plus.config.PackageConfigPlus;
 import com.java.plus.old.MybatisHandy;
 
 import java.util.ArrayList;
@@ -54,7 +55,19 @@ public class GeneratorUntil {
         // 自定义配置
         setCustomerConfig(mpg, helper, projectPath, pc);
 
-        mpg.setTemplate(new TemplateConfig().setXml(null));
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+
+        // 配置自定义输出模板
+        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+         templateConfig.setEntity("templates/vo.java");
+        // templateConfig.setService();
+        // templateConfig.setController();
+
+        templateConfig.setXml(null);
+        mpg.setTemplate(templateConfig);
+
+        //mpg.setTemplate(new TemplateConfig().setXml(null));
 
         // 策略配置
         setStragegyConfig(mpg, helper, pc);
@@ -144,7 +157,8 @@ public class GeneratorUntil {
      * 配置包
      */
     private static PackageConfig setPackageConfig(AutoGenerator mpg, MybatisHandy helper) {
-        PackageConfig pc = new PackageConfig();
+        PackageConfigPlus pc = new PackageConfigPlus();
+        //PackageConfig pc = new PackageConfig();
 
         pc.setModuleName(scanner("模块名"));
 
