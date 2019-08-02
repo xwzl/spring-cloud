@@ -233,8 +233,8 @@ public class ConfigBuilder {
         packageInfo.put(ConstVal.SERVICE_IMPL, joinPackage(config.getParent(), config.getServiceImpl()));
         packageInfo.put(ConstVal.CONTROLLER, joinPackage(config.getParent(), config.getController()));
         packageInfo.put(ConstVal.VOS, joinPackage(config.getParent(), config.getVos()));
-        packageInfo.put(ConstVal.DTOS, joinPackage(config.getParent(), config.getDos()));
-        packageInfo.put(ConstVal.DOS, joinPackage(config.getParent(), config.getDtos()));
+        packageInfo.put(ConstVal.DTOS, joinPackage(config.getParent(), config.getDtos()));
+        packageInfo.put(ConstVal.DOS, joinPackage(config.getParent(), config.getDos()));
 
         // 自定义路径
         Map<String, String> configPathInfo = config.getPathInfo();

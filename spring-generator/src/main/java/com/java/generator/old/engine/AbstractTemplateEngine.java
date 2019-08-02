@@ -148,7 +148,7 @@ public abstract class AbstractTemplateEngine {
                 if (null != tableInfo.getDoName() && null != pathInfo.get(ConstVal.DO_PATH)) {
                     String dosFile = String.format((pathInfo.get(ConstVal.DO_PATH) + File.separator + tableInfo.getDoName() + suffixJavaOrKt()), entityName);
                     if (isCreate(FileType.DOS, dosFile)) {
-                        writer(objectMap, templateFilePath(template.getVos()), dosFile);
+                        writer(objectMap, templateFilePath(template.getDos()), dosFile);
                     }
                 }
             }
