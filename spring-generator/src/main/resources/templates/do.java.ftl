@@ -1,4 +1,4 @@
-package ${package.VO};
+package ${package.DO};
 
 <#if entityLombokModel>
 import lombok.Data;
@@ -14,16 +14,17 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class ${table.voName} implements Serializable {
+public class ${table.doName} implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
+<#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
-<#if field.comment!?length gt 0>
+    <#if field.comment!?length gt 0>
 
-    /**
-    * ${field.comment}
-    */
-</#if>
+        /**
+        * ${field.comment}
+        */
+    </#if>
     private ${field.propertyType} ${field.propertyName};
 </#list>
 }

@@ -137,6 +137,20 @@ public abstract class AbstractTemplateEngine {
                         writer(objectMap, templateFilePath(template.getVos()), voFile);
                     }
                 }
+                // MpDTO.java
+                if (null != tableInfo.getDtoName() && null != pathInfo.get(ConstVal.DTO_PATH)) {
+                    String dtoFile = String.format((pathInfo.get(ConstVal.DTO_PATH) + File.separator + tableInfo.getDtoName() + suffixJavaOrKt()), entityName);
+                    if (isCreate(FileType.DTO, dtoFile)) {
+                        writer(objectMap, templateFilePath(template.getDtos()), dtoFile);
+                    }
+                }
+                // MpDO.java
+                if (null != tableInfo.getDoName() && null != pathInfo.get(ConstVal.DO_PATH)) {
+                    String dosFile = String.format((pathInfo.get(ConstVal.DO_PATH) + File.separator + tableInfo.getDoName() + suffixJavaOrKt()), entityName);
+                    if (isCreate(FileType.DOS, dosFile)) {
+                        writer(objectMap, templateFilePath(template.getVos()), dosFile);
+                    }
+                }
             }
         } catch (Exception e) {
             logger.error("无法创建文件，请检查配置信息！", e);
