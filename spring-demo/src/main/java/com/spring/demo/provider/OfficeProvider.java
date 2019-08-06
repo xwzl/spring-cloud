@@ -1,5 +1,7 @@
 package com.spring.demo.provider;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 /**
@@ -9,29 +11,27 @@ import org.apache.ibatis.jdbc.SQL;
 public class OfficeProvider {
 
     /**
-     * 如果 mapper 有 @Param 参数注解不需要在此方法中额外添加参数
-     *
-     * @return
+     * 多个参数必须那啥 哈哈哈
      */
-    public String provider(/*final String brand, final String assetType*/) {
-        //SQL query = new SQL();
-        //query.SELECT("*");
-        //query.FROM("hyy_office_computer");
-        //query.WHERE("emp_level = #{empLevel}");
-        //query.AND();
-        //query.WHERE("emp_name = #{emp_name}");
-        //System.out.println(query.toString());
-        //return query.toString();
+    public String provider(@Param("assetType") final String assetType, @Param("brand") final String brand) {
+        /*SQL query = new SQL();
+        query.SELECT("*");
+        query.FROM("hyy_office_computer");
+        query.WHERE("emp_level = #{empLevel}");
+        query.AND();
+        query.WHERE("emp_name = #{emp_name}");
+        System.out.println(query.toString());
+        return query.toString();*/
 
         return new SQL() {{
             SELECT("*");
             FROM("hyy_office_computer");
-            //if (StringUtils.isNotEmpty(brand)) {
-                WHERE("brand = #{brand}");
-            //}
-            //if (StringUtils.isNotEmpty(assetType)) {
-                WHERE("asset_type = #{assetType}");
-            //}
+            if (StringUtils.isNotEmpty(brand)) {
+                WHERE("brand=#{brand}");
+            }
+            if (StringUtils.isNotEmpty(assetType)) {
+                WHERE("asset_type=#{assetType}");
+            }
         }}.toString();
     }
 
