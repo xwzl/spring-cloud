@@ -9,7 +9,6 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-freemarker:${springBootVersion}",
             "com.h2database:h2:1.4.199",
             "com.baomidou:mybatis-plus-boot-starter:${baomidouVersion}",
-//            "com.baomidou:mybatis-plus-generator:${baomidouVersion}",
             "com.baomidou:mybatis-plus:${baomidouVersion}",
             "org.apache.velocity:velocity-engine-scripting:2.1",
             "org.beetl:beetl-core:2.2.3"
