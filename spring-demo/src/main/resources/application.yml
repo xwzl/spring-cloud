@@ -3,6 +3,8 @@ spring:
   #    time-zone: GMT+8
   profiles:
     active: hikari
+server:
+  port: 10000
 logging:
   level:
     com.spring.demo.mapper: debug
