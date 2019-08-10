@@ -4,6 +4,7 @@ package com.spring.demo.controller;
 import com.spring.demo.model.HyyEmp;
 import com.spring.demo.service.HyyEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,4 +33,9 @@ public class HyyEmpController {
         return hyyEmpService.list();
     }
 
+
+    @DeleteMapping
+    public void delete() {
+        hyyEmpService.delete(new HyyEmp());
+    }
 }
