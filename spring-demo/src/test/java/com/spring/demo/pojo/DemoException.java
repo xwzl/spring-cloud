@@ -1,4 +1,4 @@
-package com.spring.demo;
+package com.spring.demo.pojo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;

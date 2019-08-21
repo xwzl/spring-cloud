@@ -19,13 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DemoApplicationTest {
 
-    @Autowired
-    private OfficeComputerMapper officeComputerMapper;
 
-    @Test
-    public void test() {
-        OfficeComputer officeComputer = officeComputerMapper.selectOne(new QueryWrapper<OfficeComputer>().lambda().eq(OfficeComputer::getAssetNumber, "主机编号：12001281"));
-        System.out.println(officeComputer);
-    }
 
 }

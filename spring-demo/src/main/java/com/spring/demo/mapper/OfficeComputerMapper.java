@@ -19,10 +19,13 @@ import java.util.List;
 public interface OfficeComputerMapper extends BaseMapper<OfficeComputer> {
 
     /**
-     * @param assetType
-     * @param brand
-     * @return
+     * provider 测试
+     *
+     * @param assetType 类型
+     * @param brand     品牌
+     * @return 返回数据
      */
     @SelectProvider(type = OfficeProvider.class, method = "provider")
-    public List<OfficeComputer> getList(@Param("assetType") String assetType, @Param("brand")String brand);
+    List<OfficeComputer> getList(@Param("assetType") String assetType, @Param("brand") String brand);
+
 }
