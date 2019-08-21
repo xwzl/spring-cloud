@@ -2,7 +2,7 @@ package com.spring.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.spring.demo.model.Role;
-import com.spring.demo.provider.RoleProvider;
+import com.spring.demo.service.provider.RoleProvider;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;

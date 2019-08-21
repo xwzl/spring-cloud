@@ -1,4 +1,4 @@
-package com.spring.demo.provider;
+package com.spring.demo.service.provider;
 
 import org.apache.ibatis.jdbc.SQL;
 

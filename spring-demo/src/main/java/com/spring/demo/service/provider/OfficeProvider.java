@@ -1,4 +1,4 @@
-package com.spring.demo.provider;
+package com.spring.demo.service.provider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
