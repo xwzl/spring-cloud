@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class ValidatedController {
 
     @GetMapping
-    public void testValidated(@Validated User user, BindingResult bindingResult) {
+    public void testValidated(@Validated User user, String fix, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             FieldError age = bindingResult.getFieldError("age");
             bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
 
             throw new RuntimeException(age.getDefaultMessage());
         }
-
+        log.info(user.toString());
+        System.out.println(fix);
     }
 
 }

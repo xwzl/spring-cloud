@@ -29,7 +29,7 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}",
             "org.apache.commons:commons-lang3:${commonLangVerion}",
             'com.google.zxing:core:3.3.3',
-            'com.alibaba:easyexcel:1.1.1'
+            'com.alibaba:easyexcel:1.1.1',
     )
 }
 

@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -21,7 +20,7 @@ public class User {
     @NotBlank(message = "密码不能为空")
     private String password;
 
-    @Size(min = 5, max = 10, message = "年龄必须在 5 到 10 岁之间")
+    //@Size(min = 5, max = 10, message = "年龄必须在 5 到 10 岁之间")
     private String age;
 
     private Date birthday;

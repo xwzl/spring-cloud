@@ -31,7 +31,7 @@ public class ExceptionController {
         this.exceptionProducer();
     }
 
-    void exceptionProducer() {
+    private void exceptionProducer() {
         if (Math.random() > 0.5) {
             throw new ServiceException(ServiceCodeEnum.VERIFICATION_CODE_ERROR);
         }
