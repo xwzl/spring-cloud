@@ -17,4 +17,5 @@ include 'spring-elastic'
 include 'spring-guava'
 include 'spring-generator'
 include 'spring-websocket'
+include 'spring-mongo'
 
