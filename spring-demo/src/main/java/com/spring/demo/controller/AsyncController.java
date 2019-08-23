@@ -59,6 +59,9 @@ public class AsyncController {
         return "task 任务总耗时: " + (end - start) + " ms";
     }
 
+    /**
+     * 可以执行任务拆解的方式 哈哈哈
+     */
     @GetMapping("test3")
     public Integer test3() throws Exception {
         long start = System.currentTimeMillis();
