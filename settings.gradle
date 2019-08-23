@@ -18,4 +18,6 @@ include 'spring-guava'
 include 'spring-generator'
 include 'spring-websocket'
 include 'spring-mongo'
+include 'spring-starter'
+include 'spring-starter-demo'
 

@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "sample.conditional.hello",
+      "type": "java.lang.String",
+      "description": "Description for sample.conditional.hello."
+    },
+    {
+      "name": "sample.conditional.byeBye",
+      "type": "java.lang.String",
+      "description": "Description for sample.conditional.byeBye."
+    },
+    {
+      "name": "six.spring.starter.apple.brand",
+      "type": "java.lang.String",
+      "description": "Description for six.spring.starter.apple.brand."
+    },
+    {
+      "name": "six.spring.starter.apple.price",
+      "type": "java.lang.String",
+      "description": "Description for six.spring.starter.apple.price."
+    },
+    {
+      "name": "six.spring.starter.apple.notes",
+      "type": "java.lang.String",
+      "description": "Description for six.spring.starter.apple.notes."
+    }
+  ]
+}

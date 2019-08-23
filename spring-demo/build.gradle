@@ -30,6 +30,7 @@ dependencies {
             "org.apache.commons:commons-lang3:${commonLangVerion}",
             'com.google.zxing:core:3.3.3',
             'com.alibaba:easyexcel:1.1.1',
+            'org.apache.httpcomponents:httpclient:4.5.9'
     )
 }
 
