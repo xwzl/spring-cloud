@@ -29,8 +29,6 @@ import java.util.Map;
 @RequestMapping("/demo/demo")
 public class DemoController {
 
-
-
     /**
      * 二维码
      *
@@ -54,7 +52,6 @@ public class DemoController {
             e.printStackTrace();
         }
     }
-
 
     @GetMapping
     public void printDate() {
