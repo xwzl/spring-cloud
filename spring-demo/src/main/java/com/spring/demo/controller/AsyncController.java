@@ -2,8 +2,9 @@ package com.spring.demo.controller;
 
 import com.spring.demo.config.async.AsyncService;
 import com.spring.demo.config.async.AsyncTask;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jetbrains.annotations.Contract;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +20,23 @@ import java.util.concurrent.Future;
 @RestController
 @RequestMapping("/async")
 @Slf4j
+@Api("异步调用接口测试")
 public class AsyncController {
 
-    @Autowired
-    private AsyncTask asyncTask;
+    private final AsyncTask asyncTask;
 
-    @Autowired
-    private AsyncService asyncService;
+    private final AsyncService asyncService;
 
-    @GetMapping("/test1")
+    @Contract(pure = true)
+    public AsyncController(AsyncTask asyncTask, AsyncService asyncService) {
+        this.asyncTask = asyncTask;
+        this.asyncService = asyncService;
+    }
+
+    /**
+     * 异步调用接口无返回值测试
+     */
+    @GetMapping("/noResponse")
     public void test1() throws InterruptedException {
         long start = System.currentTimeMillis();
         asyncTask.task1();
@@ -38,9 +47,10 @@ public class AsyncController {
     }
 
     /**
+     * 异步调用有返回值测试，默认使用 SpringWeb 容器自带的线程池来实现线程的调用
      * 如何知道什么时候执行完毕和执行的结果呢？采用Future来做
      */
-    @GetMapping("/test2")
+    @GetMapping("/responseWithSpringFrame")
     public String test2() throws InterruptedException {
         long start = System.currentTimeMillis();
         Future<String> task4 = asyncTask.task4();
@@ -61,8 +71,10 @@ public class AsyncController {
 
     /**
      * 可以执行任务拆解的方式 哈哈哈
+     * <p>
+     * 异步调用，使用自带的线程池来执行异步任务
      */
-    @GetMapping("test3")
+    @GetMapping("/responseWithCustomerThreadPool")
     public Integer test3() throws Exception {
         long start = System.currentTimeMillis();
         Future<Integer> future1 = asyncService.methodB();

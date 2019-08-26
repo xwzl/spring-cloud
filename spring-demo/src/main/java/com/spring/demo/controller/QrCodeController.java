@@ -26,17 +26,35 @@ import java.util.Map;
  */
 @RestController
 @Slf4j
-@RequestMapping("/demo/demo")
-public class DemoController {
+@RequestMapping("/qrCode")
+public class QrCodeController {
 
     /**
-     * 二维码
-     *
-     * @param request
-     * @param response
+     * 二维码带图片
      */
-    @GetMapping("/qrcode")
-    public void qrcode(HttpServletRequest request, HttpServletResponse response, String content) {
+    @GetMapping("/qrCodeNoPicture")
+    public void qrCodeNoPicture(HttpServletRequest request, HttpServletResponse response, String content) {
+
+
+        StringBuffer url = request.getRequestURL();
+        // 域名
+        String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").toString();
+
+        // 再加上请求链接
+        String requestUrl = tempContextUrl + "/index";
+        try {
+            OutputStream os = response.getOutputStream();
+            QrCodeUtils.encode(StringUtils.isNotEmpty(content) ? content : "https://www.baidu.com", os);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 二维码带图片
+     */
+    @GetMapping("/qrCode")
+    public void qrCode(HttpServletRequest request, HttpServletResponse response, String content) {
 
 
         StringBuffer url = request.getRequestURL();

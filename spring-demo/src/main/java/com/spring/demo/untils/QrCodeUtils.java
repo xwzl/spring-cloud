@@ -5,6 +5,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,13 +25,24 @@ import java.util.Random;
  * @date 2018/12/5
  */
 public class QrCodeUtils {
+
     private static final String CHARSET = "utf-8";
-    public static final String FORMAT = "JPG";
-    // 二维码尺寸
+
+    private static final String FORMAT = "JPG";
+
+    /**
+     * 二维码尺寸
+     */
     private static final int QRCODE_SIZE = 300;
-    // LOGO宽度
+
+    /**
+     * LOGO宽度
+     */
     private static final int LOGO_WIDTH = 60;
-    // LOGO高度
+
+    /**
+     * LOGO高度
+     */
     private static final int LOGO_HEIGHT = 60;
 
     /**
@@ -40,8 +52,8 @@ public class QrCodeUtils {
      * @param logoPath     logo地址
      * @param needCompress 是否压缩logo
      * @return 图片
-     * @throws Exception
      */
+    @NotNull
     public static BufferedImage createImage(String content, String logoPath, boolean needCompress) throws Exception {
         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
@@ -71,7 +83,6 @@ public class QrCodeUtils {
      * @param source       二维码图片
      * @param logoPath     LOGO图片地址
      * @param needCompress 是否压缩
-     * @throws IOException
      */
     private static void insertImage(BufferedImage source, String logoPath, boolean needCompress) throws IOException {
         InputStream inputStream = null;
@@ -80,7 +91,8 @@ public class QrCodeUtils {
             Image src = ImageIO.read(inputStream);
             int width = src.getWidth(null);
             int height = src.getHeight(null);
-            if (needCompress) { // 压缩LOGO
+            // 压缩LOGO
+            if (needCompress) {
                 if (width > LOGO_WIDTH) {
                     width = LOGO_WIDTH;
                 }
@@ -90,7 +102,8 @@ public class QrCodeUtils {
                 Image image = src.getScaledInstance(width, height, Image.SCALE_SMOOTH);
                 BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
                 Graphics g = tag.getGraphics();
-                g.drawImage(image, 0, 0, null); // 绘制缩小后的图
+                // 绘制缩小后的图
+                g.drawImage(image, 0, 0, null);
                 g.dispose();
                 src = image;
             }
@@ -121,11 +134,10 @@ public class QrCodeUtils {
      * @param logoPath     LOGO地址
      * @param destPath     存放目录
      * @param needCompress 是否压缩LOGO
-     * @throws Exception
      */
     public static String encode(String content, String logoPath, String destPath, boolean needCompress) throws Exception {
         BufferedImage image = QrCodeUtils.createImage(content, logoPath, needCompress);
-        mkdirs(destPath);
+        mkDirs(destPath);
         String fileName = new Random().nextInt(99999999) + "." + FORMAT.toLowerCase();
         ImageIO.write(image, FORMAT, new File(destPath + "/" + fileName));
         return fileName;
@@ -140,11 +152,10 @@ public class QrCodeUtils {
      * @param destPath     存放目录
      * @param fileName     二维码文件名
      * @param needCompress 是否压缩LOGO
-     * @throws Exception
      */
     public static String encode(String content, String logoPath, String destPath, String fileName, boolean needCompress) throws Exception {
         BufferedImage image = QrCodeUtils.createImage(content, logoPath, needCompress);
-        mkdirs(destPath);
+        mkDirs(destPath);
         fileName = fileName.substring(0, fileName.indexOf(".") > 0 ? fileName.indexOf(".") : fileName.length())
                 + "." + FORMAT.toLowerCase();
         ImageIO.write(image, FORMAT, new File(destPath + "/" + fileName));
@@ -157,7 +168,7 @@ public class QrCodeUtils {
      *
      * @param destPath 存放目录
      */
-    public static void mkdirs(String destPath) {
+    private static void mkDirs(String destPath) {
         File file = new File(destPath);
         if (!file.exists() && !file.isDirectory()) {
             file.mkdirs();
@@ -170,7 +181,6 @@ public class QrCodeUtils {
      * @param content  内容
      * @param logoPath LOGO地址
      * @param destPath 存储地址
-     * @throws Exception
      */
     public static String encode(String content, String logoPath, String destPath) throws Exception {
         return QrCodeUtils.encode(content, logoPath, destPath, false);
@@ -182,7 +192,6 @@ public class QrCodeUtils {
      * @param content      内容
      * @param destPath     存储地址
      * @param needCompress 是否压缩LOGO
-     * @throws Exception
      */
     public static String encode(String content, String destPath, boolean needCompress) throws Exception {
         return QrCodeUtils.encode(content, null, destPath, needCompress);
@@ -193,7 +202,6 @@ public class QrCodeUtils {
      *
      * @param content  内容
      * @param destPath 存储地址
-     * @throws Exception
      */
     public static String encode(String content, String destPath) throws Exception {
         return QrCodeUtils.encode(content, null, destPath, false);
@@ -206,7 +214,6 @@ public class QrCodeUtils {
      * @param logoPath     LOGO地址
      * @param output       输出流
      * @param needCompress 是否压缩LOGO
-     * @throws Exception
      */
     public static void encode(String content, String logoPath, OutputStream output, boolean needCompress)
             throws Exception {
@@ -219,7 +226,6 @@ public class QrCodeUtils {
      *
      * @param content 内容
      * @param output  输出流
-     * @throws Exception
      */
     public static void encode(String content, OutputStream output) throws Exception {
         QrCodeUtils.encode(content, null, output, false);

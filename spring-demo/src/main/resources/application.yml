@@ -8,6 +8,7 @@ server:
 logging:
   level:
     com.spring.demo.mapper: debug
+    io.swagger.models.parameters.AbstractSerializableParameter: error
 #  datasource:
 #    url: jdbc:mysql://192.192.192.61:6100/dftc?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
 #    username: root
