@@ -4,7 +4,9 @@ package com.spring.demo.controller;
 import com.spring.demo.mapper.ComputerMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
+import com.spring.demo.service.ComputerService;
 import com.spring.demo.service.EmpService;
+import com.spring.demo.untils.poi.ExcelHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,9 @@ public class EmpController {
     @Autowired
     private ComputerMapper computerMapper;
 
+    @Autowired
+    private ComputerService computerService;
+
     @GetMapping("list")
     public List<Computer> getList(String empName, String empLevel) {
         return computerMapper.getList(empLevel, empName);
@@ -46,6 +51,13 @@ public class EmpController {
     @DeleteMapping
     public void delete() {
         empService.delete(new Emp());
+    }
+
+    @GetMapping("/export")
+    public void export(HttpServletResponse httpResponse){
+        ExcelHelper excelHelper = new ExcelHelper("aaaaa", "aaaa", "aaaa", "yyyy-MM-dd", computerService, httpResponse);
+        excelHelper.setClassName("com.spring.demo.model.dos.Computer");
+        excelHelper.run();
     }
 
     /**

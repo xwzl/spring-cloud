@@ -1,7 +1,8 @@
 package com.spring.demo.untils.poi;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.spring.demo.service.BaseService;
 import lombok.Data;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
@@ -35,13 +36,13 @@ public class ExcelHelper {
      */
     private String pattern;
 
-    private IService iService;
+    private BaseService<T> iService;
 
     private HttpServletResponse response;
 
     private String className;
 
-    public ExcelHelper(String title, String sheetName, String excelName, IService iService, HttpServletResponse response, String className) {
+    public ExcelHelper(String title, String sheetName, String excelName, BaseService iService, HttpServletResponse response, String className) {
         this.title = title;
         this.sheetName = sheetName;
         this.excelName = excelName;
@@ -51,7 +52,7 @@ public class ExcelHelper {
         this.className = className;
     }
 
-    public ExcelHelper(String title, String sheetName, String excelName, String pattern, IService iService, HttpServletResponse response) {
+    public ExcelHelper(String title, String sheetName, String excelName, String pattern, BaseService iService, HttpServletResponse response) {
         this.title = title;
         this.sheetName = sheetName;
         this.excelName = excelName;
@@ -62,7 +63,7 @@ public class ExcelHelper {
 
     public void run() {
         try {
-            List officeComputers = iService.list();
+            List<T> officeComputers = iService.list();
 
             ExcelUtil excelUtil = new ExcelUtil(new XSSFWorkbook());
             List<List<String>> bodyDate = excelUtil.getBodyDate(officeComputers, className, pattern);
@@ -70,7 +71,7 @@ public class ExcelHelper {
 
             response.setContentType("application/binary;charset=UTF-8");
             String fileName = new String(excelName.getBytes(), "ISO8859-1");
-            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xls");
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
 
             excelUtil.getWorkbook().write(response.getOutputStream());
             response.getOutputStream().flush();
