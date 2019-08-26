@@ -25,7 +25,7 @@ public class OfficeProvider {
 
         return new SQL() {{
             SELECT("*");
-            FROM("hyy_office_computer");
+            FROM("computer");
             if (StringUtils.isNotEmpty(brand)) {
                 WHERE("brand=#{brand}");
             }

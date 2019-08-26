@@ -101,7 +101,7 @@ configure(allprojects) { project ->
     dependencies {
 
         compile(
-                "cn.hutool:hutool-all:${hutool}",
+//                "cn.hutool:hutool-all:${hutool}",
                 "junit:junit:${junitVersion}",
                 "com.google.code.gson:gson:${gsonVersion}",
                 "mysql:mysql-connector-java:${mysqlVersion}",

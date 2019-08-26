@@ -1,4 +1,4 @@
-package com.spring.demo.model;
+package com.spring.demo.model.dos;
 
 import com.spring.demo.annotation.MyValidated;
 import lombok.Data;

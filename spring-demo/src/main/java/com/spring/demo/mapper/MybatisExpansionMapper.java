@@ -1,6 +1,6 @@
 package com.spring.demo.mapper;
 
-import com.spring.demo.model.MybatisExpansion;
+import com.spring.demo.model.dos.MybatisExpansion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

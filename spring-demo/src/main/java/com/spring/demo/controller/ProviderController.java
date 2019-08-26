@@ -1,7 +1,7 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.mapper.RoleMapper;
-import com.spring.demo.model.Role;
+import com.spring.demo.model.dos.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

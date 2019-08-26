@@ -1,6 +1,6 @@
 package com.spring.demo.service;
 
-import com.spring.demo.model.HyyEmp;
+import com.spring.demo.model.dos.Emp;
 
 /**
  * <p>
@@ -10,6 +10,6 @@ import com.spring.demo.model.HyyEmp;
  * @author xuweizhi
  * @since 2019-08-01
  */
-public interface HyyEmpService extends BaseService<HyyEmp> {
+public interface EmpService extends BaseService<Emp> {
 
 }

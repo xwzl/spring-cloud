@@ -1,6 +1,6 @@
 package com.spring.demo.controller;
 
-import com.spring.demo.model.User;
+import com.spring.demo.model.dos.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * Spring 框架自带验证功能校验
+ *
  * @author xuweizhi
  * @since 2019-08-06
  */

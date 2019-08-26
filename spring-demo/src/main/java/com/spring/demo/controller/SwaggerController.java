@@ -1,8 +1,8 @@
 package com.spring.demo.controller;
 
 
-import com.spring.demo.model.HyyEmp;
-import com.spring.demo.model.Role;
+import com.spring.demo.model.dos.Emp;
+import com.spring.demo.model.dos.Role;
 import com.spring.demo.service.RoleService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 前端控制器
- * </p>
+ * swagger ui html 测试
  *
  * @author xuweizhi
  * @since 2019-07-25
@@ -76,9 +74,9 @@ public class SwaggerController {
     }
 
     @GetMapping("swagger")
-    public void swagger(Role role, HyyEmp hyyEmp) {
+    public void swagger(Role role, Emp emp) {
         log.info(role.toString());
-        log.info(hyyEmp.toString());
+        log.info(emp.toString());
     }
 
 }

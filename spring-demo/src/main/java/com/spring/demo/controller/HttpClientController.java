@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * httpClient 访问外部资源测试
  * @author xuweizhi
  * @date 2019/08/22 22:21
  */

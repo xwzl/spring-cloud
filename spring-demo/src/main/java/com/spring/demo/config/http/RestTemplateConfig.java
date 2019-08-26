@@ -1,6 +1,6 @@
 package com.spring.demo.config.http;
 
-import com.spring.demo.model.User;
+import com.spring.demo.model.dos.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

@@ -1,4 +1,4 @@
-package com.spring.demo.model;
+package com.spring.demo.model.dos;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("hyy_emp")
+@TableName("emp")
 @ApiModel("hyy")
-public class HyyEmp {
+public class Emp {
 
     private static final long serialVersionUID = 1L;
 

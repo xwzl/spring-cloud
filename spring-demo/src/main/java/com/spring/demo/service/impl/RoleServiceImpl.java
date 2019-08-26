@@ -1,9 +1,8 @@
 package com.spring.demo.service.impl;
 
-import com.spring.demo.model.Role;
+import com.spring.demo.model.dos.Role;
 import com.spring.demo.mapper.RoleMapper;
 import com.spring.demo.service.RoleService;
-import com.spring.demo.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

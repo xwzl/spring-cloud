@@ -3,6 +3,8 @@ package com.spring.demo.controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 不同的请求方式，带参数的形式不同
+ *
  * @author xuweizhi
  * @since 2019-08-09
  */

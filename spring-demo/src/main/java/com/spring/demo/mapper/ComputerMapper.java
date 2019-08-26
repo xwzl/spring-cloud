@@ -1,7 +1,7 @@
 package com.spring.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.spring.demo.model.OfficeComputer;
+import com.spring.demo.model.dos.Computer;
 import com.spring.demo.service.provider.OfficeProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019-08-05
  */
-public interface OfficeComputerMapper extends BaseMapper<OfficeComputer> {
+public interface ComputerMapper extends BaseMapper<Computer> {
 
     /**
      * provider 测试
@@ -26,6 +26,6 @@ public interface OfficeComputerMapper extends BaseMapper<OfficeComputer> {
      * @return 返回数据
      */
     @SelectProvider(type = OfficeProvider.class, method = "provider")
-    List<OfficeComputer> getList(@Param("assetType") String assetType, @Param("brand") String brand);
+    List<Computer> getList(@Param("assetType") String assetType, @Param("brand") String brand);
 
 }

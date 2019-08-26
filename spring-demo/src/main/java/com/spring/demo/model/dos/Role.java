@@ -1,4 +1,4 @@
-package com.spring.demo.model;
+package com.spring.demo.model.dos;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;

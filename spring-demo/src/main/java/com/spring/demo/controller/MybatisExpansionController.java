@@ -1,7 +1,7 @@
 package com.spring.demo.controller;
 
 
-import com.spring.demo.model.MybatisExpansion;
+import com.spring.demo.model.dos.MybatisExpansion;
 import com.spring.demo.service.MybatisExpansionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
  * mybatis plus 扩展测试
  * 前端控制器
- * </p>
  *
  * @author xuweizhi
  * @since 2019-08-07

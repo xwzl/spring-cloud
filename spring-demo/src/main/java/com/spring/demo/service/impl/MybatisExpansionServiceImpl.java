@@ -1,9 +1,8 @@
 package com.spring.demo.service.impl;
 
-import com.spring.demo.model.MybatisExpansion;
+import com.spring.demo.model.dos.MybatisExpansion;
 import com.spring.demo.mapper.MybatisExpansionMapper;
 import com.spring.demo.service.MybatisExpansionService;
-import com.spring.demo.service.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

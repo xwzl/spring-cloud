@@ -1,7 +1,6 @@
 package com.spring.demo.service;
 
-import com.spring.demo.model.MybatisExpansion;
-import com.spring.demo.service.BaseService;
+import com.spring.demo.model.dos.MybatisExpansion;
 
 /**
  * <p>
