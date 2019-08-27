@@ -1,6 +1,8 @@
 package com.spring.demo.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.spring.demo.mapper.ComputerMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
@@ -54,11 +56,22 @@ public class EmpController {
     }
 
     @GetMapping("/export")
-    public void export(HttpServletResponse httpResponse){
+    public void export(HttpServletResponse httpResponse) {
         ExcelHelper excelHelper = new ExcelHelper("aaaaa", "aaaa", "aaaa", "yyyy-MM-dd", computerService, httpResponse);
         excelHelper.setClassName("com.spring.demo.model.dos.Computer");
         excelHelper.run();
     }
+
+    @GetMapping("/list1")
+    public List<Computer> getList1(Computer computer) {
+        QueryWrapper<Computer> query = new QueryWrapper<>();
+        query.eq(StringUtils.isNotEmpty(computer.getAssetType()), "asset_type", computer.getAssetType())
+                .eq(StringUtils.isNotEmpty(computer.getBrand()), "brand", computer.getBrand())
+                .like(StringUtils.isNotEmpty(computer.getOwner()), "owner", computer.getOwner())
+                .like(StringUtils.isNotEmpty(computer.getContact()), "contact", computer.getContact());
+        return computerService.list(query);
+    }
+
 
     /**
      * 导入员工信息，模板见......

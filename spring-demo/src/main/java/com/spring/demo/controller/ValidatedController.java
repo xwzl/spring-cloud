@@ -1,5 +1,6 @@
 package com.spring.demo.controller;
 
+import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.dos.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
@@ -25,8 +26,7 @@ public class ValidatedController {
         if (bindingResult.hasErrors()) {
             FieldError age = bindingResult.getFieldError("age");
             bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-
-            throw new RuntimeException(age.getDefaultMessage());
+            throw new ServiceException(age.getDefaultMessage());
         }
         log.info(user.toString());
         System.out.println(fix);

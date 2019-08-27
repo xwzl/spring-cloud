@@ -23,6 +23,9 @@ dependencies {
             "com.baomidou:mybatis-plus-generator:${baomidouVersion}",
             "com.baomidou:mybatis-plus-boot-starter:${baomidouVersion}",
             "io.springfox:springfox-swagger2:${swaggerVersion}",
+            // localhost:10000/doc.html
+            "com.github.xiaoymin:swagger-bootstrap-ui:1.9.5",
+            // localhost:10000/swagger-ui.html
             "com.github.onsoul:springfox-swagger-ui:${swaggerGitHubUi}",
             "com.alibaba:fastjson:${fastJsonVersion}",
             "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
