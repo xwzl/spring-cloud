@@ -35,7 +35,7 @@ public class MongoController {
      * 新增文档
      */
     @GetMapping(value = "/insert")
-    public String insert() {
+    public void insert() {
 
         //insert方法并不提供级联类的保存，所以级联类需要先自己先保存
         Dog dog = new Dog(1000L);
@@ -54,7 +54,6 @@ public class MongoController {
         Cat entityTest = new Cat(100L, "test", new Date(), 10, entityTest1List);
         //新增数据的主键已经存在，则会抛DuplicateKeyException异常
         mongoTemplate.insert(entityTest);
-        return "redirect:/find";
     }
 
     /**
@@ -62,23 +61,22 @@ public class MongoController {
      * 保存与新增的主要区别在于，如果主键已经存在，新增抛出异常，保存修改数据
      */
     @GetMapping(value = "/save")
-    public String save() {
+    public void save() {
 
         //查询最后一条数据并更新
-        Sort sort = new Sort(Sort.Direction.DESC, "parameter3");
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
         Cat cat = mongoTemplate.findOne(Query.query(Criteria.where("")).with(sort), Cat.class);
         cat.setAge(3000);
 
         //保存数据的主键已经存在，则会对已经存在的数据修改
         mongoTemplate.save(cat);
-        return "redirect:/find";
     }
 
     /**
      * 删除文档
      */
     @GetMapping(value = "/delete")
-    public String delete() {
+    public void delete() {
 
         //查询第一条数据并删除
         Cat cat = mongoTemplate.findOne(Query.query(Criteria.where("")), Cat.class);
@@ -92,52 +90,50 @@ public class MongoController {
         //删除主数据
         mongoTemplate.remove(cat);
 
-        return "redirect:/find";
     }
 
     /**
      * 更新文档
      */
     @GetMapping(value = "/update")
-    public String update() {
+    public void update() {
         //将查询条件符合的全部文档更新
         Query query = new Query();
-        Update update = Update.update("parameter2_", "update");
+        Update update = Update.update("changeParam_", "update");
         mongoTemplate.updateMulti(query, update, Cat.class);
-        return "redirect:/find";
     }
 
     /**
      * 查询文档
      */
     @GetMapping(value = "/find")
-    public String find(Model model) {
+    public List<Cat> find(Model model) {
         //查询小于当前时间的数据，并按时间倒序排列
-        Sort sort = new Sort(Sort.Direction.DESC, "parameter3");
-        List<Cat> findTestList = mongoTemplate.find(Query.query(Criteria.where("parameter3").lt(new Date())).with(sort), Cat.class);
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        List<Cat> findTestList = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(sort), Cat.class);
         model.addAttribute("findTestList", findTestList);
 
         //使用findOne查询如果结果极为多条，则返回排序在最上面的一条
-        Cat findOneTest = mongoTemplate.findOne(Query.query(Criteria.where("parameter3").lt(new Date())).with(sort), Cat.class);
+        Cat findOneTest = mongoTemplate.findOne(Query.query(Criteria.where("createTime").lt(new Date())).with(sort), Cat.class);
         model.addAttribute("findOneTest", findOneTest);
 
         //模糊查询
-        List<Cat> findTestList1 = mongoTemplate.find(Query.query(Criteria.where("parameter3").lt(new Date()).and("parameter2").regex("es")), Cat.class);
+        List<Cat> findTestList1 = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date()).and("parameter2").regex("es")), Cat.class);
         model.addAttribute("findTestList1", findTestList1);
 
         //分页查询（每页3行第2页）
         Pageable pageable = new PageRequest(1, 3, sort);
-        List<Cat> findTestList2 = mongoTemplate.find(Query.query(Criteria.where("parameter3").lt(new Date())).with(pageable), Cat.class);
+        List<Cat> findTestList2 = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(pageable), Cat.class);
         //共多少条
-        long count = mongoTemplate.count(Query.query(Criteria.where("parameter3").lt(new Date())), Cat.class);
+        long count = mongoTemplate.count(Query.query(Criteria.where("createTime").lt(new Date())), Cat.class);
         //返回分页对象
         Page<Cat> page = new PageImpl<Cat>(findTestList2, pageable, count);
         model.addAttribute("page", page);
 
         //分页查询（通过起始行和数量也可以自己实现分页逻辑）
-        List<Cat> findTestList3 = mongoTemplate.find(Query.query(Criteria.where("parameter3").lt(new Date())).with(sort).skip(3).limit(3), Cat.class);
+        List<Cat> findTestList3 = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(sort).skip(3).limit(3), Cat.class);
         model.addAttribute("findTestList3", findTestList3);
 
-        return "/index";
+        return findTestList3;
     }
 }

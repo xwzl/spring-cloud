@@ -50,8 +50,8 @@ configure(allprojects) { project ->
     apply plugin: 'com.palantir.docker'
     apply plugin: 'io.spring.dependency-management'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
@@ -80,14 +80,14 @@ configure(allprojects) { project ->
              "-Xlint:-deprecation", "-Xlint:-unchecked"]
 
     compileJava {
-        sourceCompatibility = '1.8'  // can be switched to 8 for testing
-        targetCompatibility = '1.8'
+        sourceCompatibility = '11'  // can be switched to 8 for testing
+        targetCompatibility = '11'
         options.encoding = "UTF-8"
     }
 
     compileTestJava {
-        sourceCompatibility = '1.8'  // can be switched to 8 for testing
-        targetCompatibility = '1.8'
+        sourceCompatibility = '11'  // can be switched to 8 for testing
+        targetCompatibility = '11'
         options.encoding = "UTF-8"
         options.compilerArgs += "-parameters"
     }
