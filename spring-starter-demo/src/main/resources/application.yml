@@ -4,9 +4,9 @@ sample:
     hello: 张杰
     bye-bye: 哈哈
   # 没有放到自动配置中，因此也会报黄，而且启动报错，不建议 starter 包不放 @component 注解
-#  younger:
+  younger:
 #    username: 111
-#    age: 1
+    age: 1
 server:
   port: 10001
 customer:
@@ -16,3 +16,8 @@ customer:
       config: 1341
       max-live: 134
       index-url:  4134
+six:
+  spring:
+    starter:
+      apple:
+        brand: 10

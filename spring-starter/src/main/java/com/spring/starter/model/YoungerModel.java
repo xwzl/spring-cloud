@@ -1,7 +1,6 @@
 package com.spring.starter.model;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * younger 属性注入测试
@@ -9,14 +8,12 @@ import org.springframework.stereotype.Component;
  * @author xuweizhi
  * @since 2019-08-23
  */
-@Component
+@ConfigurationProperties(prefix = "sample.younger")
 public class YoungerModel {
 
-    @Value("${sample.younger.username}")
-    private String username;
+    private String username = "";
 
-    @Value("${sample.younger.age}")
-    private int age;
+    private int age = 1;
 
     public String getUsername() {
         return username;

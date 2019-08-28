@@ -72,6 +72,23 @@ public class EmpController {
         return computerService.list(query);
     }
 
+    /**
+     * 史上大 bug 集合
+     * <p>
+     * 期望 sql 结果： brand = ? and ( assert_number = ? or computer_source = ?)
+     * <p>
+     * sql 结果： brand = ? and assert_number = ? or computer_source = ?
+     *
+     * @param computer 最坑的一次 bug
+     */
+    @GetMapping("/list2")
+    public List<Computer> orSelectBug(Computer computer, String keyWord) {
+        QueryWrapper<Computer> query = new QueryWrapper<>();
+        query.eq(StringUtils.isNotEmpty(computer.getBrand()), "brand", computer.getBrand());
+        query.and(StringUtils.isNotEmpty(keyWord), i -> i.like("assert_number", keyWord).or().like("computer_source", keyWord));
+        return computerService.list(query);
+    }
+
 
     /**
      * 导入员工信息，模板见......

@@ -2,6 +2,7 @@ package com.spring.demo.controller;
 
 import com.spring.starter.config.DefineConfig;
 import com.spring.starter.model.ConditionalSample;
+import com.spring.starter.model.YoungerModel;
 import com.spring.starter.properties.ApplePhoneProperties;
 import com.spring.starter.properties.DemoBaseConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class DemoController {
     @Autowired
     private DefineConfig defineConfig;
 
+    @Autowired
+    private YoungerModel youngerModel;
+
     @GetMapping
     public ApplePhoneProperties demoBaseConfig() {
         return demoBaseConfig.getApple();
@@ -42,5 +46,10 @@ public class DemoController {
     @GetMapping("/defineConfig")
     public String defineConfig() {
         return defineConfig.getConfig();
+    }
+
+    @GetMapping("/youngerModel")
+    public YoungerModel youngerModel() {
+        return youngerModel;
     }
 }
