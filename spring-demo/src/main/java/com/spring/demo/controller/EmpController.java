@@ -85,7 +85,7 @@ public class EmpController {
     public List<Computer> orSelectBug(Computer computer, String keyWord) {
         QueryWrapper<Computer> query = new QueryWrapper<>();
         query.eq(StringUtils.isNotEmpty(computer.getBrand()), "brand", computer.getBrand());
-        query.and(StringUtils.isNotEmpty(keyWord), i -> i.like("assert_number", keyWord).or().like("computer_source", keyWord));
+        query.and(StringUtils.isNotEmpty(keyWord), i -> i.like("asset_number", keyWord).or().like("computer_source", keyWord));
         return computerService.list(query);
     }
 
