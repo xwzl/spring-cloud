@@ -1,4 +1,4 @@
-FROM java:11
+FROM java:8
 VOLUME /tmp
 ARG JAR_FILE
 ADD ${JAR_FILE} app.jar
