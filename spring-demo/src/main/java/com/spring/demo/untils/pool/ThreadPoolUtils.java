@@ -111,10 +111,10 @@ public class ThreadPoolUtils {
         };
     }
 
-    public static void main(String[] args) {
-        //test1();
-        test2();
-    }
+    //public static void main(String[] args) {
+    //    //test1();
+    //    test2();
+    //}
 
     /**
      * 测试线程池异常打印
