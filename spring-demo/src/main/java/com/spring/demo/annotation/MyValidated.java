@@ -1,6 +1,6 @@
 package com.spring.demo.annotation;
 
-import com.spring.demo.validated.MyConstraintValidator;
+import com.spring.demo.config.MyConstraintValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

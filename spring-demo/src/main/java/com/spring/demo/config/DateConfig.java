@@ -59,7 +59,6 @@ public class DateConfig {
     public Converter<String, LocalDate> localDateConverter() {
         //return new Converter<>() {
         return new Converter<String, LocalDate>() {
-
             @Override
             public LocalDate convert(String source) {
                 return LocalDate.parse(source, DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));

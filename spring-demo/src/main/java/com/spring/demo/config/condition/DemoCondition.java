@@ -1,4 +1,4 @@
-package com.spring.demo.condition;
+package com.spring.demo.config.condition;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -27,7 +27,7 @@ public class DemoCondition implements Condition {
             if (name.equals("bill")) {
                 return false;
             }
-            if(name.equals("bills")){
+            if (name.equals("bills")) {
                 return false;
             }
         }

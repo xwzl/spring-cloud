@@ -1,4 +1,4 @@
-package com.spring.demo.validated;
+package com.spring.demo.config;
 
 import com.spring.demo.annotation.MyValidated;
 import lombok.Data;
@@ -32,7 +32,7 @@ public class MyConstraintValidator implements ConstraintValidator<MyValidated, S
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-            if (value.equals(this.value)) {
+        if (value.equals(this.value)) {
             return false;
         }
         return true;

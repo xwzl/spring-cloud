@@ -1,6 +1,6 @@
-package com.spring.demo.config.bean;
+package com.spring.demo.config;
 
-import com.spring.demo.condition.DemoCondition;
+import com.spring.demo.config.condition.DemoCondition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;

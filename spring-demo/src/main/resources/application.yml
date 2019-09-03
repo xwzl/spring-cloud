@@ -3,6 +3,10 @@ spring:
   #    time-zone: GMT+8
   profiles:
     active: hikari
+  redis:
+    port: 6379
+    timeout: 1000ms #连接时间
+    host: 47.105.218.58
 server:
   port: 10000
 logging:

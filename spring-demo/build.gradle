@@ -28,8 +28,9 @@ dependencies {
             // localhost:10000/swagger-ui.html
             "com.github.onsoul:springfox-swagger-ui:${swaggerGitHubUi}",
             "com.alibaba:fastjson:${fastJsonVersion}",
-            "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
-            "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}",
+            "org.springframework.boot:spring-boot-starter-aop",
+            "org.springframework.boot:spring-boot-starter-jdbc",
+            "org.springframework.boot:spring-boot-starter-data-redis",
             "org.apache.commons:commons-lang3:${commonLangVerion}",
             'com.google.zxing:core:3.3.3',
             'com.alibaba:easyexcel:1.1.1',

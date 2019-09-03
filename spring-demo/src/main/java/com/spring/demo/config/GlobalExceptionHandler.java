@@ -1,4 +1,4 @@
-package com.spring.demo.config.handler;
+package com.spring.demo.config;
 
 import com.spring.demo.enums.HttpStatusEnum;
 import com.spring.demo.exception.ApiException;
@@ -6,7 +6,6 @@ import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.vos.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiResult<?> handlerException(@NotNull Throwable e) {
+    public ApiResult<?> handlerException( Throwable e) {
         log.error(ExceptionUtils.getStackTrace(e));
         return new ApiResult(HttpStatusEnum.INTERNAL_SERVER_ERROR.value(),
                 HttpStatusEnum.INTERNAL_SERVER_ERROR.getReasonPhrase());

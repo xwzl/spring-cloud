@@ -11,7 +11,7 @@
  Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 26/08/2019 17:32:12
+ Date: 03/09/2019 13:11:50
 */
 
 SET NAMES utf8mb4;
@@ -221,7 +221,7 @@ CREATE TABLE `mybatis_expansion`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'mybatis plus 扩展测试\r\n' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'mybatis plus 扩展测试\r\n' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mybatis_expansion
@@ -234,6 +234,56 @@ INSERT INTO `mybatis_expansion` VALUES (5, 'dada', 0, '2019-08-07 14:19:17', '20
 INSERT INTO `mybatis_expansion` VALUES (6, 'dada', 0, '2019-08-07 14:19:21', '2019-08-07 14:19:21');
 INSERT INTO `mybatis_expansion` VALUES (7, 'dada', 0, '2019-08-07 14:19:33', '2019-08-07 14:19:33');
 INSERT INTO `mybatis_expansion` VALUES (8, 'XXXXXX', 0, '2019-08-07 14:35:30', '2019-08-07 14:35:30');
+
+-- ----------------------------
+-- Table structure for people
+-- ----------------------------
+DROP TABLE IF EXISTS `people`;
+CREATE TABLE `people`  (
+  `u_id` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `apartment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `role` int(11) NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`u_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of people
+-- ----------------------------
+INSERT INTO `people` VALUES (2, '山东', '仁和春天', '2019-05-09 12:28:16', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (3, '山东', '仁和春天', '2019-05-09 12:28:20', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (4, '山东', '仁和春天', '2019-05-09 12:28:21', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (5, '山东', '仁和春天', '2019-05-09 12:28:21', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (6, '山东', '仁和春天', '2019-05-09 12:28:21', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (7, '山东', '仁和春天', '2019-05-09 12:29:33', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (8, '山东', '仁和春天', '2019-05-09 12:29:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (9, '山东', '仁和春天', '2019-05-09 12:29:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (10, '山东', '仁和春天', '2019-05-09 12:29:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (11, '山东', '仁和春天', '2019-05-09 12:29:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (12, '山东', '仁和春天', '2019-05-09 12:29:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (13, '山东', '仁和春天', '2019-05-09 12:29:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (14, '山东', '仁和春天', '2019-05-09 12:29:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (15, '山东', '仁和春天', '2019-05-09 12:29:36', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (16, '山东', '仁和春天', '2019-05-09 12:29:36', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (17, '山东', '仁和春天', '2019-05-09 12:29:36', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (18, '山东', '仁和春天', '2019-05-09 12:29:37', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (19, '山东', '仁和春天', '2019-05-09 12:35:25', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (20, '山东', '仁和春天', '2019-05-09 12:35:34', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (21, '山东', '仁和春天', '2019-05-09 12:35:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (22, '山东', '仁和春天', '2019-05-09 12:35:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (23, '山东', '仁和春天', '2019-05-09 12:35:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (24, '山东', '仁和春天', '2019-05-09 12:35:35', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (25, '山东', '仁和春天', '2019-05-09 12:41:56', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (26, '山东', '仁和春天', '2019-05-09 12:46:32', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (27, '山东', '仁和春天', '2019-05-09 12:57:47', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (28, '山东', '仁和春天', '2019-05-09 13:00:51', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (29, '山东', '仁和春天', '2019-05-09 13:09:38', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (30, '山东', '仁和春天', '2019-05-09 13:09:56', '158262751', '158262751', 2, '王柳');
+INSERT INTO `people` VALUES (31, '山东', '仁和春天', '2019-05-09 13:26:07', '158262751', '158262751', 2, '王柳');
 
 -- ----------------------------
 -- Table structure for persistent_logins
@@ -256,7 +306,7 @@ CREATE TABLE `role`  (
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nameZh` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role

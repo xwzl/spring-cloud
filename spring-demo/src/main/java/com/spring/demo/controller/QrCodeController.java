@@ -2,7 +2,7 @@ package com.spring.demo.controller;
 
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.demo.config.bean.BeanConfig;
+import com.spring.demo.config.BeanConfig;
 import com.spring.demo.untils.QrCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,9 +17,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * <p>
  * 前端控制器
- * </p>
  *
  * @author xuweizhi
  * @since 2019-06-28
