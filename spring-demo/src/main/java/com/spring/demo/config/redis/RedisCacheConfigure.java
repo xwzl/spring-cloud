@@ -102,7 +102,7 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
         // 设置value的序列化规则和 key的序列化规则
         rt.setValueSerializer(jackson2JsonRedisSerializer);
         rt.setKeySerializer(new StringRedisSerializer());
-        // 替换默认的序列化类，全局增加 key 前缀
+        // 替换默认的序列化类，全局增加 key 前缀,redis 中 key 加 ： 相当于创建一层目录
         //rt.setKeySerializer(prefixSerializer);
         rt.setHashKeySerializer(jackson2JsonRedisSerializer);
         rt.setHashValueSerializer(jackson2JsonRedisSerializer);

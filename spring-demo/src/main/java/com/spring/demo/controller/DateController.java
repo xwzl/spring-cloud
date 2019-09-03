@@ -49,13 +49,16 @@ public class DateController {
         log.info(Objects.requireNonNull(dateVO1).toString());
     }
 
+    /**
+     * redis 中 key 加 ： 相当于创建一层目录
+     */
     @GetMapping("/list")
     public ApiResult<List<Computer>> list() {
         List<Computer> list = (List<Computer>) opsForValue.get("fuck_you");
         if (list == null) {
             list = computerService.list();
             //opsForValue.set("fuck_you", list, 100, TimeUnit.SECONDS);
-            opsForValue.set("fuck_you", list);
+            opsForValue.set("fuck:you:god", list);
         }
         return new ApiResult<>(list);
     }

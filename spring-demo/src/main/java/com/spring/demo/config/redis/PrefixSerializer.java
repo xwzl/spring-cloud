@@ -49,7 +49,7 @@ public class PrefixSerializer implements RedisSerializer<String> {
     @Override
     public byte[] serialize(String string) {
         String keyPrefix = PrefixSerializer.KEY_PREFIX.get();
-        keyPrefix = "1111";
+        keyPrefix = "1111:";
         String key = keyPrefix + string;
         log.info("key:{},getBytes:{}", key, key.getBytes(charset));
         return (key == null ? null : key.getBytes(charset));
