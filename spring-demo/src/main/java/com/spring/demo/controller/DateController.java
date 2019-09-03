@@ -54,7 +54,8 @@ public class DateController {
         List<Computer> list = (List<Computer>) opsForValue.get("fuck_you");
         if (list == null) {
             list = computerService.list();
-            opsForValue.set("fuck_you", list, 100, TimeUnit.SECONDS);
+            //opsForValue.set("fuck_you", list, 100, TimeUnit.SECONDS);
+            opsForValue.set("fuck_you", list);
         }
         return new ApiResult<>(list);
     }

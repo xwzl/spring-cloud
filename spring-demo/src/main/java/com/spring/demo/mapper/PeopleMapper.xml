@@ -27,7 +27,7 @@
        ${}代表一个字符串，注入不安全
        #{} 相当于一个？，类型安全
     -->
-    <insert id="addUserByXml" parameterType="com.java.boot.base.model.People">
+    <insert id="addUserByXml" parameterType="com.spring.demo.model.dos.People">
            insert into people (u_id,address,role) values (null,#{address},#{role});
     </insert>
 
@@ -106,7 +106,7 @@
         WHERE u_id = #{uId}
     </select>
 
-    <insert id="insertUserOtherTag" parameterType="com.java.boot.base.model.People">
+    <insert id="insertUserOtherTag" parameterType="com.spring.demo.model.dos.People">
         insert into people
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="uId != 0">
@@ -148,7 +148,7 @@
           ...
         </trim>
     -->
-    <update id="updateUserOtherTag" parameterType="com.java.boot.base.model.People">
+    <update id="updateUserOtherTag" parameterType="com.spring.demo.model.dos.People">
         update people
         <set>
             <if test="createTime != null">

@@ -1,4 +1,4 @@
-package com.spring.demo.config;
+package com.spring.demo.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -33,10 +34,12 @@ import java.time.Duration;
 @EnableCaching
 public class RedisCacheConfigure extends CachingConfigurerSupport {
 
+    @Autowired
+    private PrefixSerializer prefixSerializer;
 
     /**
      * Spring Cache提供的@Cacheable注解不支持配置过期时间，还有缓存的自动刷新。
-     * 我们可以通过配置CacheManneg来配置默认的过期时间和针对每个缓存容器（value）单独配置过期时间，但是总是感觉不太灵活。
+     * 我们可以通过配置cacheManager来配置默认的过期时间和针对每个缓存容器（value）单独配置过期时间，但是总是感觉不太灵活。
      */
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
@@ -99,6 +102,8 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
         // 设置value的序列化规则和 key的序列化规则
         rt.setValueSerializer(jackson2JsonRedisSerializer);
         rt.setKeySerializer(new StringRedisSerializer());
+        // 替换默认的序列化类，全局增加 key 前缀
+        //rt.setKeySerializer(prefixSerializer);
         rt.setHashKeySerializer(jackson2JsonRedisSerializer);
         rt.setHashValueSerializer(jackson2JsonRedisSerializer);
         rt.setDefaultSerializer(jackson2JsonRedisSerializer);
@@ -259,7 +264,7 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
     //@Bean
     //public CacheManager cacheManager(RedisTemplate redisTemplate) {
     //    //全局redis缓存过期时间
-    //    RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMillis(10));
+    //    RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(200));
     //    RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(Objects.requireNonNull(redisTemplate.getConnectionFactory()));
     //    return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     //}
