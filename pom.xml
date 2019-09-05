@@ -63,6 +63,7 @@
         <common-lang.version>3.9</common-lang.version>
         <hutool.version>1.2.59</hutool.version>
         <junit.version>4.13-beta-3</junit.version>
+        <docker.image.prefix>spring-cloud</docker.image.prefix>
         <skipTests>true</skipTests>
     </properties>
 
@@ -142,6 +143,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
             </plugin>
         </plugins>
     </build>
