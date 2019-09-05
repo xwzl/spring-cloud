@@ -1,5 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.spring.starter.config.StarterAutoConfig,\
-com.spring.starter.properties.DemoBaseConfig,\
-com.spring.starter.config.DefineConfig
-
