@@ -28,4 +28,7 @@ public interface ComputerMapper extends BaseMapper<Computer> {
     @SelectProvider(type = OfficeProvider.class, method = "provider")
     List<Computer> getList(@Param("assetType") String assetType, @Param("brand") String brand);
 
+    @SelectProvider(type = OfficeProvider.class, method = "list1")
+    List<Computer> list1(@Param("Computer") Computer computer);
+
 }

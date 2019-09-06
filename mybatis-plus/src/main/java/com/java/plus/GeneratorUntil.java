@@ -100,18 +100,18 @@ public class GeneratorUntil {
             strategy.setSuperControllerClass("com.java.mybatis.controller.BaseController");
         }
 
-        if (StringUtils.isNotEmpty(helper.getBaseServiceSimpleName())) {
-            String servicePackageName = pc.getParent() + ".service." + helper.getBaseServiceSimpleName();
-            strategy.setSuperServiceClass(servicePackageName);
-        } else {
-            strategy.setSuperServiceClass(pc.getParent() + ".service.BaseService");
-        }
+        //if (StringUtils.isNotEmpty(helper.getBaseServiceSimpleName())) {
+        //    String servicePackageName = pc.getParent() + ".service." + helper.getBaseServiceSimpleName();
+        //    strategy.setSuperServiceClass(servicePackageName);
+        //} else {
+        //    strategy.setSuperServiceClass(pc.getParent() + ".service.BaseService");
+        //}
 
-        if (StringUtils.isNotEmpty(helper.getBaseServiceImplSimpleName())) {
-            String serviceImplPackageName = pc.getParent() + ".service.impl." + helper.getBaseServiceSimpleName();
-        } else {
-            strategy.setSuperServiceImplClass(pc.getParent() + ".service.impl.BaseServiceImpl");
-        }
+        //if (StringUtils.isNotEmpty(helper.getBaseServiceImplSimpleName())) {
+        //    String serviceImplPackageName = pc.getParent() + ".service.impl." + helper.getBaseServiceSimpleName();
+        //} else {
+        //    strategy.setSuperServiceImplClass(pc.getParent() + ".service.impl.BaseServiceImpl");
+        //}
 
         strategy.setRestControllerStyle(true);
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));

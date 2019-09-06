@@ -91,6 +91,10 @@ public class EmpController {
         return computerService.list(query);
     }
 
+    @GetMapping("/list3")
+    public List<Computer> getList3(Computer computer) {
+        return computerMapper.list1(computer);
+    }
 
     /**
      * 导入员工信息，模板见......

@@ -1,7 +1,7 @@
 package com.data.dynamic.service;
 
 import com.data.dynamic.model.Product;
-import com.data.dynamic.service.BaseService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.data.dynamic.service.BaseService;
  * </p>
  *
  * @author xuweizhi
- * @since 2019-06-04
+ * @since 2019-09-06
  */
-public interface ProductService extends BaseService<Product> {
+public interface ProductService extends IService<Product> {
 
 }

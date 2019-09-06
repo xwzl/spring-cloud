@@ -17,10 +17,10 @@ public class GeneratorHandy {
 
         //如果是子模块，必须设置
         handy.setChildModule(true);
-        handy.setChildModuleName("spring-demo");
-        handy.setBasePackageName("com.spring");
+        handy.setChildModuleName("dynamic-datasource");
+        handy.setBasePackageName("com.data");
         handy.setAuthor("xuweizhi");
-        handy.setUrl("47.105.218.58:3306/qq");
+        handy.setUrl("172.16.159.20:3306/qq");
         handy.setPassword("158262751");
         handy.setUsername("root");
 

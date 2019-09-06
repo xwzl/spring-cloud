@@ -1,5 +1,6 @@
 package com.spring.demo.service.provider;
 
+import com.spring.demo.model.dos.Computer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
@@ -31,6 +32,19 @@ public class OfficeProvider {
             }
             if (StringUtils.isNotEmpty(assetType)) {
                 WHERE("asset_type=#{assetType}");
+            }
+        }}.toString();
+    }
+
+    public String list1(@Param("Computer") Computer computer) {
+        return new SQL() {{
+            SELECT("*");
+            FROM("computer");
+            if (StringUtils.isNotEmpty(computer.getBrand())) {
+                WHERE("brand = #{computer.brand,javaType=String,jdbcType=VARCHAR}");
+            }
+            if (StringUtils.isNotEmpty(computer.getAssetType())) {
+                WHERE("asset_type = #{computer.assetType} ");
             }
         }}.toString();
     }

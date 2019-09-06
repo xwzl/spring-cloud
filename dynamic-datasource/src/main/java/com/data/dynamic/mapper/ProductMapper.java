@@ -1,7 +1,7 @@
 package com.data.dynamic.mapper;
 
-import com.data.dynamic.model.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.data.dynamic.model.Product;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author xuweizhi
- * @since 2019-06-04
+ * @since 2019-09-06
  */
 public interface ProductMapper extends BaseMapper<Product> {
 
