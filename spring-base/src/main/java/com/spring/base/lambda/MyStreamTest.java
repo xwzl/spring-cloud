@@ -1,6 +1,6 @@
-package com.spring.demo.config.java.lambda;
+package com.spring.base.lambda;
 
-import com.spring.demo.model.dos.Student;
+import com.spring.base.guava.Student;
 import org.junit.Before;
 import org.junit.Test;
 

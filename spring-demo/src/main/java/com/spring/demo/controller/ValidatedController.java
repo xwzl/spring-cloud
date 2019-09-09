@@ -8,7 +8,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Spring 框架自带验证功能校验
@@ -31,5 +34,17 @@ public class ValidatedController {
         log.info(user.toString());
         System.out.println(fix);
     }
+
+    /**
+     * single parameter check 无效果
+     */
+    @GetMapping("singleParamCheck")
+    public void single(@RequestParam(value = "id",required = false) @NotNull(message = "id 值不能为空") String id,BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
+        log.info(id);
+    }
+
 
 }

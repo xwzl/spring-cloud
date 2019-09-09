@@ -1,6 +1,6 @@
-package com.spring.demo.config.java.lambda;
+package com.spring.base.lambda;
 
-import com.spring.demo.config.java.lambda.model.Student;
+import com.spring.base.lambda.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

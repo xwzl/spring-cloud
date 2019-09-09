@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiResult<?> handlerException( Throwable e) {
+    public ApiResult<?> handlerException(Throwable e) {
         log.error(ExceptionUtils.getStackTrace(e));
         return new ApiResult(HttpStatusEnum.INTERNAL_SERVER_ERROR.value(),
                 HttpStatusEnum.INTERNAL_SERVER_ERROR.getReasonPhrase());
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ServiceException.class)
     public ApiResult<?> handleServiceException(ServiceException e) {
-        log.error("meet ServiceException: " + e.getCode() + " " + e.getMessage(),e);
+        log.error("meet ServiceException: " + e.getCode() + " " + e.getMessage(), e);
         return new ApiResult(e);
     }
 
@@ -56,6 +56,31 @@ public class GlobalExceptionHandler {
         log.error("meet ServiceException: " + e.getMessage());
         return new ApiResult<>(-1, e.getMessage());
     }
+
+    ///**
+    // * 方法参数校验
+    // */
+    //@ExceptionHandler(MethodArgumentNotValidException.class)
+    //public ApiResult<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    //    log.error(e.getMessage(), e);
+    //    return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
+    //}
+    //
+    ///**
+    // * ValidationException
+    // */
+    //@ExceptionHandler(ValidationException.class)
+    //public ApiResult<?> handleValidationException(ValidationException e) {
+    //    log.error(e.getMessage(), e);
+    //    return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getCause().getMessage());
+    //}
+    //
+    //
+    //@ExceptionHandler(NoHandlerFoundException.class)
+    //public ApiResult<?> handlerNoFoundException(Exception e) {
+    //    log.error(e.getMessage(), e);
+    //    return new ApiResult<>(404, "路径不存在，请检查路径是否正确");
+    //}
 
 }
 

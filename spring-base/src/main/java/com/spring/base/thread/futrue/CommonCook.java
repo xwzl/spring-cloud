@@ -1,4 +1,4 @@
-package com.spring.demo.config.java.futrue;
+package com.spring.base.thread.futrue;
 
 /**
  * 先上一个场景：假如你突然想做饭，但是没有厨具，也没有食材。网上购买厨具比较方便，食材去超市买更放心。

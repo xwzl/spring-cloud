@@ -1,4 +1,4 @@
-package com.spring.demo.config.java.futrue;
+package com.spring.base.thread.futrue;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

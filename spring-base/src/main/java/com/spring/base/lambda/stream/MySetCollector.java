@@ -1,4 +1,4 @@
-package com.spring.demo.config.java.lambda.stream;
+package com.spring.base.lambda.stream;
 
 
 import lombok.extern.slf4j.Slf4j;
