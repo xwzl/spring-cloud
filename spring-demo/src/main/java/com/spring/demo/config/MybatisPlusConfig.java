@@ -15,6 +15,17 @@ import java.util.Date;
 //@MapperScan("*")
 public class MybatisPlusConfig {
 
+    /**
+     * sql时长分析
+     *
+     * @return
+     */
+    //@Bean
+    //public PerformanceInterceptor performanceInterceptor() {
+    //    //可以加入@Profile() 在不同环境打印
+    //    return new PerformanceInterceptor();
+    //}
+
     @Bean
     public MetaObjectHandler metaObjectHandler() {
         return new MetaObjectHandler() {

@@ -1,88 +1,144 @@
 package com.spring.demo.controller;
 
-import com.spring.demo.untils.excel.ExcelUtil;
-import com.spring.demo.untils.excel.ExportInfo;
-import com.spring.demo.untils.excel.ImportInfo;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelReader;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.read.metadata.ReadSheet;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.spring.demo.listener.ComputerListener;
+import com.spring.demo.model.dos.Computer;
+import com.spring.demo.model.excel.ComputerModel;
+import com.spring.demo.model.excel.DemoModel;
+import com.spring.demo.model.excel.MultiLineHeadExcelModel;
+import com.spring.demo.model.vos.ApiResult;
+import com.spring.demo.service.ComputerService;
+import com.spring.demo.untils.ListCopy;
+import org.jetbrains.annotations.Contract;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static com.alibaba.excel.EasyExcelFactory.write;
+import static com.spring.demo.untils.ResponseUtils.excelResponse;
 
 
 /**
- * 这是阿里的 easyExcel
+ * https://github.com/HowieYuan/easyexcel-encapsulation
  *
  * @author xuweizhi
+ * @since 2019-09-10
  */
 @RestController
+@RequestMapping("/excel")
 public class ExcelController {
 
-    /**
-     * 读取 Excel（允许多个 sheet）
-     */
-    @RequestMapping(value = "readExcelWithSheets", method = RequestMethod.POST)
-    public Object readExcelWithSheets(MultipartFile excel) {
-        return ExcelUtil.readExcel(excel, new ImportInfo());
+    private final ComputerService computerService;
+
+    @Autowired
+    private ListCopy<ComputerModel, Computer> modelToComputer;
+
+    @Autowired
+    private ListCopy<Computer, ComputerModel> computerToModel;
+
+    @Contract(pure = true)
+    public ExcelController(ComputerService computerService) {
+        this.computerService = computerService;
     }
 
     /**
-     * 读取 Excel（指定某个 sheet）
+     * 文件下载
+     * <p>
+     * 1. 创建excel对应的实体对象 参照{@link ComputerModel}
+     * <p>
+     * 2. 设置返回的 参数
+     * <p>
+     * 3. 直接写，这里注意，finish的时候会自动关闭OutputStream,当然你外面再关闭流问题不大
      */
-    @RequestMapping(value = "readExcel", method = RequestMethod.POST)
-    public Object readExcel(MultipartFile excel, int sheetNo,
-                            @RequestParam(defaultValue = "1") int headLineNum) {
-        return ExcelUtil.readExcel(excel, new ImportInfo(), sheetNo, headLineNum);
+    @GetMapping("download")
+    public void download(HttpServletResponse response) throws IOException {
+        excelResponse(response, "办公电脑");
+        List<Computer> list = computerService.list();
+        List<ComputerModel> result = new ArrayList<>();
+        ComputerModel computerModel;
+        for (Computer computer : list) {
+            computerModel = new ComputerModel();
+            BeanUtils.copyProperties(computer, computerModel);
+            result.add(computerModel);
+        }
+        write(response.getOutputStream(), ComputerModel.class).sheet("模板").doWrite(result);
     }
 
     /**
-     * 导出 Excel（一个 sheet）
+     * 多个 sheet 表单下载
      */
-    @RequestMapping(value = "writeExcel", method = RequestMethod.GET)
-    public void writeExcel(HttpServletResponse response) throws IOException {
-        List<ExportInfo> list = getList();
-        String fileName = "一个 Excel 文件";
-        String sheetName = "第一个 sheet";
-
-        ExcelUtil.writeExcel(response, list, fileName, sheetName, new ExportInfo());
+    @GetMapping("download1")
+    public void download1(HttpServletResponse response) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        excelResponse(response, "多表格提交");
+        List<ComputerModel> list = computerToModel.copyList(computerService.list(), ComputerModel.class);
+        ExcelWriter excelWriter = write(response.getOutputStream(), ComputerModel.class).build();
+        for (int i = 0; i < list.size(); i += 10) {
+            WriteSheet writeSheet = EasyExcel.writerSheet(i / 10, "第" + (i / 10 + 1) + "页").build();
+            excelWriter.write(list.subList(i, Math.min(i + 10, list.size())), writeSheet);
+        }
+        excelWriter.finish();
     }
 
     /**
-     * 导出 Excel（多个 sheet）
+     * 多表头下载
      */
-    @RequestMapping(value = "writeExcelWithSheets", method = RequestMethod.GET)
-    public void writeExcelWithSheets(HttpServletResponse response) throws IOException {
-        List<ExportInfo> list = getList();
-        String fileName = "一个 Excel 文件";
-        String sheetName1 = "第一个 sheet";
-        String sheetName2 = "第二个 sheet";
-        String sheetName3 = "第三个 sheet";
-
-        ExcelUtil.writeExcelWithSheets(response, list, fileName, sheetName1, new ExportInfo())
-                .write(list, sheetName2, new ExportInfo())
-                .write(list, sheetName3, new ExportInfo())
-                .finish();
+    @GetMapping("download2")
+    public void download2(HttpServletResponse response) throws IOException {
+        excelResponse(response, "多表头测试");
+        write(response.getOutputStream(), MultiLineHeadExcelModel.class).sheet("第一页").doWrite(new ArrayList());
     }
 
-    private List<ExportInfo> getList() {
-        List<ExportInfo> list = new ArrayList<>();
-        ExportInfo model1 = new ExportInfo();
-        model1.setName("howie");
-        model1.setAge("19");
-        model1.setAddress("123456789");
-        model1.setEmail("123456789@gmail.com");
-        list.add(model1);
-        ExportInfo model2 = new ExportInfo();
-        model2.setName("harry");
-        model2.setAge("20");
-        model2.setAddress("198752233");
-        model2.setEmail("198752233@gmail.com");
-        list.add(model2);
-        return list;
+    /**
+     * 自定义下载
+     */
+    @GetMapping("download3")
+    public void download3(HttpServletResponse response) throws IOException {
+        excelResponse(response, "自定义");
+        List<DemoModel> data = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            data.add(new DemoModel(i, "111" + i, new Date(), 0.56));
+        }
+        write(response.getOutputStream(), DemoModel.class).sheet("第一页").doWrite(data);
     }
+
+    /**
+     * 文件上传
+     * <p>
+     * 1. 创建excel对应的实体对象 参照{@link ComputerModel}
+     * <p>
+     * 2. 由于默认异步读取excel，所以需要创建excel一行一行的回调监听器，参照{@link ComputerListener}
+     * <p>
+     * 3. 直接读即可
+     * EasyExcel.read(file.getInputStream(), ComputerModel.class, computerListener).sheet().doRead();
+     */
+    @PostMapping("upload")
+    public ApiResult<String> upload(@RequestParam(value = "file") MultipartFile file) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        ComputerListener listener = new ComputerListener();
+        // 获取 excel 解析对象
+        ExcelReader excelReader = EasyExcel.read(file.getInputStream(), ComputerModel.class, listener).build();
+        // 获取 sheet 数量
+        List<ReadSheet> sheetList = excelReader.excelExecutor().sheetList();
+        for (int i = 0; i < sheetList.size(); i++) {
+            // 读取每个 sheet 表数据
+            excelReader.read(EasyExcel.readSheet(i).build());
+        }
+        List<ComputerModel> data = listener.getData();
+
+        List<Computer> list = modelToComputer.copyList(data, Computer.class);
+        computerService.saveBatch(list);
+
+        return new ApiResult<>();
+    }
+
 }

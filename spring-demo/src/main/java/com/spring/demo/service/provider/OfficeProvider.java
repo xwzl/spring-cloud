@@ -15,15 +15,6 @@ public class OfficeProvider {
      * 多个参数必须那啥 哈哈哈
      */
     public String provider(@Param("assetType") final String assetType, @Param("brand") final String brand) {
-        /*SQL query = new SQL();
-        query.SELECT("*");
-        query.FROM("hyy_office_computer");
-        query.WHERE("emp_level = #{empLevel}");
-        query.AND();
-        query.WHERE("emp_name = #{emp_name}");
-        System.out.println(query.toString());
-        return query.toString();*/
-
         return new SQL() {{
             SELECT("*");
             FROM("computer");

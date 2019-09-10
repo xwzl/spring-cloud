@@ -104,28 +104,28 @@ public enum HttpStatusEnum {
         return this.reasonPhrase;
     }
 
-    public HttpStatusEnum.Series series() {
-        return HttpStatusEnum.Series.valueOf(this);
+    public Series series() {
+        return Series.valueOf(this);
     }
 
     public boolean is1xxInformational() {
-        return this.series() == HttpStatusEnum.Series.INFORMATIONAL;
+        return this.series() == Series.INFORMATIONAL;
     }
 
     public boolean is2xxSuccessful() {
-        return this.series() == HttpStatusEnum.Series.SUCCESSFUL;
+        return this.series() == Series.SUCCESSFUL;
     }
 
     public boolean is3xxRedirection() {
-        return this.series() == HttpStatusEnum.Series.REDIRECTION;
+        return this.series() == Series.REDIRECTION;
     }
 
     public boolean is4xxClientError() {
-        return this.series() == HttpStatusEnum.Series.CLIENT_ERROR;
+        return this.series() == Series.CLIENT_ERROR;
     }
 
     public boolean is5xxServerError() {
-        return this.series() == HttpStatusEnum.Series.SERVER_ERROR;
+        return this.series() == Series.SERVER_ERROR;
     }
 
     public boolean isError() {
@@ -150,12 +150,12 @@ public enum HttpStatusEnum {
             this.value = value;
         }
 
-        public static HttpStatusEnum.Series valueOf(HttpStatusEnum status) {
+        public static Series valueOf(HttpStatusEnum status) {
             return valueOf(status.value);
         }
 
-        public static HttpStatusEnum.Series valueOf(int statusCode) {
-            HttpStatusEnum.Series series = resolve(statusCode);
+        public static Series valueOf(int statusCode) {
+            Series series = resolve(statusCode);
             if (series == null) {
                 throw new IllegalArgumentException("No matching constant for [" + statusCode + "]");
             } else {
@@ -164,13 +164,13 @@ public enum HttpStatusEnum {
         }
 
         @Nullable
-        public static HttpStatusEnum.Series resolve(int statusCode) {
+        public static Series resolve(int statusCode) {
             int seriesCode = statusCode / 100;
-            HttpStatusEnum.Series[] var2 = values();
+            Series[] var2 = values();
             int var3 = var2.length;
 
             for (int var4 = 0; var4 < var3; ++var4) {
-                HttpStatusEnum.Series series = var2[var4];
+                Series series = var2[var4];
                 if (series.value == seriesCode) {
                     return series;
                 }
