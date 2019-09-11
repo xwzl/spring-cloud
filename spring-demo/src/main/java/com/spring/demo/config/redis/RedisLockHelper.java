@@ -113,10 +113,17 @@ public class RedisLockHelper {
      */
     private void doUnlock(final String lockKey, final String uuid) {
         String val = stringRedisTemplate.opsForValue().get(lockKey);
+
+        if (StringUtils.isEmpty(val)) {
+            return;
+        }
+
         final String[] values = val.split(Pattern.quote(DELIMITER));
+
         if (values.length <= 0) {
             return;
         }
+
         if (uuid.equals(values[1])) {
             stringRedisTemplate.delete(lockKey);
         }

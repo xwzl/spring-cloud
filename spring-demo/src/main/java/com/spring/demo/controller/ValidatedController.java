@@ -3,15 +3,15 @@ package com.spring.demo.controller;
 import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.dos.User;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Spring 框架自带验证功能校验
@@ -39,7 +39,7 @@ public class ValidatedController {
      * single parameter check 无效果
      */
     @GetMapping("singleParamCheck")
-    public void single(@RequestParam(value = "id",required = false) @NotNull(message = "id 值不能为空") String id,BindingResult bindingResult) {
+    public void single(@Length(min = 2, max = 10, message = "name 长度必须在 {min} - {max} 之间") @NotBlank(message = "id 值不能为空") String id, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
         }
