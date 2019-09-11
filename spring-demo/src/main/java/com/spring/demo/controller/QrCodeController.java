@@ -2,7 +2,7 @@ package com.spring.demo.controller;
 
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.demo.config.BeanConfig;
+import com.spring.demo.config.config.BeanConfig;
 import com.spring.demo.untils.QrCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

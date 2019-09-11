@@ -1,4 +1,4 @@
-package com.spring.demo.config.aop;
+package com.spring.demo.config.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -17,12 +17,12 @@ import java.util.Arrays;
 @Aspect
 @Component
 @Slf4j
-public class AopConfig {
+public class AopSampleConfig {
 
     /**
      * aop 切面 ， 切类或者方法
      */
-    @Pointcut(value = "@within(com.spring.demo.annotation.AopConfig) || @annotation(com.spring.demo.annotation.AopConfig)")
+    @Pointcut(value = "@within(com.spring.demo.annotation.AopSample) || @annotation(com.spring.demo.annotation.AopSample)")
     public void pointcut() {
     }
 

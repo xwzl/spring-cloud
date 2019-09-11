@@ -29,6 +29,31 @@
       "name": "http.staleConnectionCheckEnabled",
       "type": "java.lang.String",
       "description": "Description for http.staleConnectionCheckEnabled."
+    },
+    {
+      "name": "sync.pool.core-size",
+      "type": "java.lang.Integer",
+      "description": "Description for sync.pool.core-size."
+    },
+    {
+      "name": "sync.pool.max-size",
+      "type": "java.lang.String",
+      "description": "Description for sync.pool.max-size."
+    },
+    {
+      "name": "sync.pool.queue-capacity",
+      "type": "java.lang.String",
+      "description": "Description for sync.pool.queue-capacity."
+    },
+    {
+      "name": "sync.pool.alive-time",
+      "type": "java.lang.String",
+      "description": "Description for sync.pool.alive-time."
+    },
+    {
+      "name": "sync.pool.await-time",
+      "type": "java.lang.String",
+      "description": "Description for sync.pool.await-time."
     }
   ]
 }

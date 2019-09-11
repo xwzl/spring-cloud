@@ -3,18 +3,17 @@ package com.spring.demo.annotation;
 import java.lang.annotation.*;
 
 /**
+ * controller 时间统计
+ *
  * @author xuweizhi
- * @since  2019/03/13 9:27
+ * @date 2019/06/13 21:22
  */
-
 @Documented
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value= ElementType.FIELD)
-public @interface PoiHelper {
+@Inherited
+public @interface DateStatics {
 
     String value() default "";
 
-    int type() ;
-
 }
-

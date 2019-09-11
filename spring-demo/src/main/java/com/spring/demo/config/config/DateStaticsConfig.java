@@ -1,6 +1,6 @@
-package com.spring.demo.config.aop;
+package com.spring.demo.config.config;
 
-import com.spring.demo.annotation.DateHelper;
+import com.spring.demo.annotation.DateStatics;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,10 +18,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(-1)
 @Slf4j
-public class DateAspect {
+public class DateStaticsConfig {
 
     @Around("@annotation(helper)")
-    public Object around(ProceedingJoinPoint pjp, DateHelper helper) throws Throwable {
+    public Object around(ProceedingJoinPoint pjp, DateStatics helper) throws Throwable {
         long start = System.currentTimeMillis();
         String methodName = pjp.getSignature().getName();
         String className = pjp.getTarget().getClass().getSimpleName();

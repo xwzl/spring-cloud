@@ -1,4 +1,4 @@
-package com.spring.demo.config.http;
+package com.spring.demo.config.properties;
 
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.HttpClientConnectionManager;
@@ -14,9 +14,10 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author xuweizhi
+ * @since  2019-09-11
  */
 @Configuration
-public class HttpClient {
+public class HttpProperties {
 
     @Value("${http.maxTotal}")
     private Integer maxTotal;
@@ -38,8 +39,6 @@ public class HttpClient {
 
     /**
      * 首先实例化一个连接池管理器，设置最大连接数、并发连接数
-     *
-     * @return
      */
     @Bean(name = "httpClientConnectionManager")
     public PoolingHttpClientConnectionManager getHttpClientConnectionManager() {
@@ -54,9 +53,6 @@ public class HttpClient {
     /**
      * 实例化连接池，设置连接池管理器。
      * 这里需要以参数形式注入上面实例化的连接池管理器
-     *
-     * @param httpClientConnectionManager
-     * @return
      */
     @Bean(name = "httpClientBuilder")
     public HttpClientBuilder getHttpClientBuilder(@Qualifier("httpClientConnectionManager") PoolingHttpClientConnectionManager httpClientConnectionManager) {

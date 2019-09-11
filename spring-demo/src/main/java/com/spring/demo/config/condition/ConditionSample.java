@@ -1,5 +1,6 @@
 package com.spring.demo.config.condition;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
@@ -30,6 +31,7 @@ public class ConditionSample implements Condition {
     /**
      * 获得注解的是方法名还是类名。
      */
+    @NotNull
     private static String getClassOrMethodName(AnnotatedTypeMetadata metadata) {
         // 类
         if (metadata instanceof ClassMetadata) {
@@ -40,8 +42,6 @@ public class ConditionSample implements Condition {
         MethodMetadata methodMetadata = (MethodMetadata) metadata;
         return methodMetadata.getDeclaringClassName() + "#" + methodMetadata.getMethodName();
     }
-
-
 
     //ProfileCondition ，实现 Condition 接口，给 @Profile 使用的 Condition 实现类。
     //@Override

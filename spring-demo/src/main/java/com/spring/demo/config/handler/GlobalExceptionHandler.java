@@ -1,4 +1,4 @@
-package com.spring.demo.config;
+package com.spring.demo.config.handler;
 
 import com.spring.demo.enums.HttpStatusEnum;
 import com.spring.demo.exception.ApiException;

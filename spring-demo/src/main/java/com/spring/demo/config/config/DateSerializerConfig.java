@@ -1,4 +1,4 @@
-package com.spring.demo.config;
+package com.spring.demo.config.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
@@ -37,7 +37,7 @@ import java.util.Date;
  * @author xuweizhi
  */
 @Configuration
-public class DateConfig {
+public class DateSerializerConfig {
 
     /**
      * 默认日期时间格式

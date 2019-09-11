@@ -1,6 +1,6 @@
 package com.spring.demo.controller;
 
-import com.spring.demo.annotation.AopConfig;
+import com.spring.demo.annotation.AopSample;
 import com.spring.demo.enums.ServiceCodeEnum;
 import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.vos.ValidatedVO;
@@ -38,7 +38,7 @@ public class ExceptionController {
         }
     }
 
-    @AopConfig
+    @AopSample
     @PostMapping
     @ApiOperation("验证处理")
     public void validatedDemo(@Validated @RequestBody ValidatedVO validatedVO, BindingResult result) {

@@ -3,7 +3,7 @@ package com.spring.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.demo.annotation.AopConfig;
+import com.spring.demo.annotation.AopSample;
 import com.spring.demo.mapper.ComputerMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
@@ -26,7 +26,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019-08-01
  */
-@AopConfig
+@AopSample
 @RestController
 @RequestMapping("/emp")
 public class EmpController {

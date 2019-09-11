@@ -1,4 +1,4 @@
-package com.spring.demo.config.redis;
+package com.spring.demo.config.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.spring.demo.config.redis.CacheKeyGenerator;
+import com.spring.demo.config.redis.LockKeyGenerator;
+import com.spring.demo.config.redis.PrefixSerializer;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,11 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
 
     @Autowired
     private PrefixSerializer prefixSerializer;
+
+    @Bean
+    public CacheKeyGenerator cacheKeyGenerator() {
+        return new LockKeyGenerator();
+    }
 
     /**
      * Spring Cache提供的@Cacheable注解不支持配置过期时间，还有缓存的自动刷新。

@@ -41,3 +41,10 @@ http:
   socketTimeout: 10000
   #提交请求前测试连接是否可用
   staleConnectionCheckEnabled: true
+sync:
+  pool:
+    core-size: 10
+    await-time: 60
+    alive-time: 200
+    queue-capacity: 25
+    max-size: 20

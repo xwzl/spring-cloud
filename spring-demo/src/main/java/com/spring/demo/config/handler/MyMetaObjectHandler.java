@@ -1,8 +1,7 @@
-package com.spring.demo.config;
+package com.spring.demo.config.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
  * @author xuweizhi
  * @since 2019-08-07
  */
-@Component
 public class MyMetaObjectHandler implements MetaObjectHandler {
 
     /**
