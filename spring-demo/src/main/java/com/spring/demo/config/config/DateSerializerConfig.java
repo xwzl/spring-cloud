@@ -1,5 +1,6 @@
 package com.spring.demo.config.config;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -57,11 +58,10 @@ public class DateSerializerConfig {
      */
     @Bean
     public Converter<String, LocalDate> localDateConverter() {
-        //return new Converter<>() {
         return new Converter<String, LocalDate>() {
             @Override
             public LocalDate convert(String source) {
-                return LocalDate.parse(source, DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT));
+                return StringUtils.isNotEmpty(source) ? LocalDate.parse(source, DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT)) : null;
             }
         };
     }
@@ -71,11 +71,10 @@ public class DateSerializerConfig {
      */
     @Bean
     public Converter<String, LocalDateTime> localDateTimeConverter() {
-        //return new Converter<>() {
         return new Converter<String, LocalDateTime>() {
             @Override
             public LocalDateTime convert(String source) {
-                return LocalDateTime.parse(source, DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT));
+                return StringUtils.isNotEmpty(source) ? LocalDateTime.parse(source, DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT)) : null;
             }
         };
     }
@@ -85,11 +84,10 @@ public class DateSerializerConfig {
      */
     @Bean
     public Converter<String, LocalTime> localTimeConverter() {
-        //return new Converter<>() {
         return new Converter<String, LocalTime>() {
             @Override
             public LocalTime convert(String source) {
-                return LocalTime.parse(source, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT));
+                return StringUtils.isNotEmpty(source) ? LocalTime.parse(source, DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT)) : null;
             }
         };
     }
@@ -99,13 +97,12 @@ public class DateSerializerConfig {
      */
     @Bean
     public Converter<String, Date> dateConverter() {
-        //return new Converter<>() {
         return new Converter<String, Date>() {
             @Override
             public Date convert(String source) {
                 SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT);
                 try {
-                    return format.parse(source);
+                    return StringUtils.isNotEmpty(source) ? format.parse(source) : null;
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }

@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +36,7 @@ public class DateController {
     private ValueOperations<String, Object> opsForValue;
 
     @PostMapping("/mvc")
-    public void mvc(@Valid @RequestBody DateVO dateVO) {
+    public void mvc(@Valid DateVO dateVO) {
 
         dateVO.setValue("我们是一个好孩子!");
 
@@ -60,6 +61,14 @@ public class DateController {
             opsForValue.set("fuck:you:god", list);
         }
         return new ApiResult<>(list);
+    }
+
+    /**
+     * 巨坑，这个转换器要哪个啥？如果不传参数，必须保证 required 为 false
+     */
+    @GetMapping("/check")
+    public LocalDateTime check(@RequestParam(required = false) LocalDateTime localDateTime) {
+        return localDateTime;
     }
 
 }

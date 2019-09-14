@@ -7,6 +7,7 @@ import com.spring.demo.model.vos.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,15 +58,15 @@ public class GlobalExceptionHandler {
         return new ApiResult<>(-1, e.getMessage());
     }
 
-    ///**
-    // * 方法参数校验
-    // */
-    //@ExceptionHandler(MethodArgumentNotValidException.class)
-    //public ApiResult<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-    //    log.error(e.getMessage(), e);
-    //    return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
-    //}
-    //
+    /**
+     * 方法参数校验
+     */
+    @ExceptionHandler(BindException.class)
+    public ApiResult<?> handleMethodArgumentNotValidException(BindException e) {
+        log.error(e.getMessage(), e);
+        return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
+    }
+
     ///**
     // * ValidationException
     // */

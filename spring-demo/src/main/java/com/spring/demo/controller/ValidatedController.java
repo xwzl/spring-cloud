@@ -1,11 +1,16 @@
 package com.spring.demo.controller;
 
-import com.spring.demo.exception.ServiceException;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.spring.demo.annotation.DateTime;
 import com.spring.demo.model.dos.User;
+import com.spring.demo.model.vos.TakeValidatedVO;
+import com.spring.demo.view.Validated.BasketBallValidated;
+import com.spring.demo.view.Validated.GameValidated;
+import com.spring.demo.view.Visible.BasketBallView;
+import com.spring.demo.view.Visible.GameView;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +24,18 @@ import javax.validation.constraints.NotBlank;
  * @author xuweizhi
  * @since 2019-08-06
  */
+@Slf4j
 @RestController
 @RequestMapping("/validated")
-@Slf4j
 public class ValidatedController {
 
     @GetMapping
-    public void testValidated(@Validated User user, String fix, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            FieldError age = bindingResult.getFieldError("age");
-            bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-            throw new ServiceException(age.getDefaultMessage());
-        }
+    public void testValidated(@Validated User user, String fix) {
+        //if (bindingResult.hasErrors()) {
+        //    FieldError age = bindingResult.getFieldError("age");
+        //    bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+        //    throw new ServiceException(age.getDefaultMessage());
+        //}
         log.info(user.toString());
         System.out.println(fix);
     }
@@ -46,5 +51,35 @@ public class ValidatedController {
         log.info(id);
     }
 
+    /**
+     * 默认字段验证和返回值可见
+     */
+    @GetMapping("/default")
+    public TakeValidatedVO defaultMethod(@Validated TakeValidatedVO takeValidatedVO) {
+        return takeValidatedVO;
+    }
+
+    /**
+     * 游戏段验证和返回值可见，验证好像没有效果
+     */
+    @JsonView(GameView.class)
+    @GetMapping("/game")
+    public TakeValidatedVO game(@Validated(value = GameValidated.class) TakeValidatedVO takeValidatedVO, BindingResult bindingResult) {
+        return takeValidatedVO;
+    }
+
+    /**
+     * 篮球字段验证和返回值可见，验证好像没有效果
+     */
+    @JsonView(BasketBallView.class)
+    @GetMapping("/basketBall")
+    public TakeValidatedVO basketBall(@Validated(value = BasketBallValidated.class) TakeValidatedVO takeValidatedVO, BindingResult bindingResult) {
+        return takeValidatedVO;
+    }
+
+    @GetMapping("/test")
+    public String test(@DateTime(message = "您输入的格式错误，正确的格式为：{format}", format = "yyyy-MM-dd HH:mm") String date) {
+        return "success";
+    }
 
 }
