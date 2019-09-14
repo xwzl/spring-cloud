@@ -1,10 +1,14 @@
 package com.spring.demo.config.async;
 
+import com.spring.demo.model.dos.Computer;
+import com.spring.demo.service.ComputerService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 /**
@@ -16,6 +20,9 @@ import java.util.concurrent.Future;
 @Component
 @Slf4j
 public class AsyncTask {
+
+    @Autowired
+    private ComputerService computerService;
 
     @Async
     public void task1() throws InterruptedException {
@@ -66,5 +73,54 @@ public class AsyncTask {
         long end = System.currentTimeMillis();
         log.info("task3 任务耗时: " + (end - start) + " ms");
         return new AsyncResult<>("task3任务执行完毕");
+    }
+
+    @Async
+    public Future<List<Computer>> customer1() throws InterruptedException {
+        log.info("customer1");
+        Thread.sleep(1000);
+        log.info("customer11");
+        return new AsyncResult<>(null);
+    }
+
+    @Async
+    public Future<List<Computer>> customer2() throws InterruptedException {
+        log.info("customer2");
+        Thread.sleep(2000);
+        log.info("customer22");
+        return new AsyncResult<>(null);
+    }
+
+    @Async
+    public Future<List<Computer>> customer3() throws InterruptedException {
+        log.info("customer3");
+        Thread.sleep(3000);
+        log.info("customer33");
+        return new AsyncResult<>(null);
+    }
+
+    @Async
+    public Future<List<Computer>> customer11() throws InterruptedException {
+        log.info("customer1");
+        Thread.sleep(1000);
+        log.info("customer11");
+        return new AsyncResult<>(computerService.list());
+    }
+
+    @Async
+    public Future<List<Computer>> customer22() throws InterruptedException {
+        log.info("customer2");
+        Thread.sleep(2000);
+        log.info("customer22");
+        return new AsyncResult<>(computerService.list());
+
+    }
+
+    @Async
+    public Future<List<Computer>> customer33() throws InterruptedException {
+        log.info("customer3");
+        Thread.sleep(3000);
+        log.info("customer33");
+        return new AsyncResult<>(computerService.list());
     }
 }

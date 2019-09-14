@@ -22,4 +22,24 @@ public class NoRepeatCommitController {
     public String query(@CacheParam(name = "token") @RequestParam String token) {
         return "success - " + token;
     }
+
+    //public static void main(String[] args) throws NoSuchMethodException, InterruptedException {
+    //    Class<NoRepeatCommitController> clazz = NoRepeatCommitController.class;
+    //    Method query = clazz.getMethod("query", String.class);
+    //    Annotation[][] parameterAnnotations = query.getParameterAnnotations();
+    //    for (Annotation[] parameterAnnotation : parameterAnnotations) {
+    //        for (Annotation annotation : parameterAnnotation) {
+    //            if (annotation instanceof CacheParam) {
+    //                System.out.println(((CacheParam) annotation).name());
+    //            }
+    //        }
+    //    }
+    //    Parameter[] parameters = query.getParameters();
+    //    for (Parameter parameter : parameters) {
+    //        CacheParam cacheParam = parameter.getAnnotation(CacheParam.class);
+    //        if (cacheParam != null) {
+    //            System.out.println(cacheParam.name());
+    //        }
+    //    }
+    //}
 }
