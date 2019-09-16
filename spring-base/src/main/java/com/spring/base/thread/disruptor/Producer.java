@@ -29,12 +29,15 @@ class Producer {
      * 设为期望值，这个值最终会传递给消费者。
      */
     void pushData(@NotNull ByteBuffer bb) {
+        // 获取一个可用的序列
         long sequence = ringBuffer.next();
         try {
+            // 获取初始化的值
             PcData event = ringBuffer.get(sequence);
-
+            // 设置值
             event.set(bb.getLong(0));
         } finally {
+            // 向缓冲队列中获取值
             ringBuffer.publish(sequence);
         }
     }

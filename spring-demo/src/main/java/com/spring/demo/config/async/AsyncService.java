@@ -6,12 +6,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Future;
 
+/**
+ * @author xuweizhi
+ */
 @Service
 public class AsyncService {
 
     @Async("asyncExecutor")
-    public Future<Integer> methodB(){
-        try{
+    public Future<Integer> methodB() {
+        try {
             Thread.sleep(1000);
         } catch (Exception e) {
             e.printStackTrace();
@@ -20,8 +23,8 @@ public class AsyncService {
     }
 
     @Async("asyncExecutor")
-    public Future<Integer> methodC(){
-        try{
+    public Future<Integer> methodC() {
+        try {
             Thread.sleep(2000);
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,8 +33,8 @@ public class AsyncService {
     }
 
     @Async("asyncExecutor")
-    public Future<Integer> methodD(){
-        try{
+    public Future<Integer> methodD() {
+        try {
             Thread.sleep(3000);
         } catch (Exception e) {
             e.printStackTrace();

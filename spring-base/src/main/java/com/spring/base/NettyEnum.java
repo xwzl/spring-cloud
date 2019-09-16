@@ -3,7 +3,9 @@ package com.spring.base;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 /**
  * 枚举 switch 测试
@@ -34,7 +36,7 @@ public enum NettyEnum {
         this.message = message;
     }
 
-    @Nullable
+    @NotNull
     public static NettyEnum getValue(int code) {
         for (NettyEnum nettyEnum : NettyEnum.values()) {
             if (nettyEnum.getCode() == code) {
@@ -48,7 +50,7 @@ public enum NettyEnum {
 @Slf4j
 class SwitchDemo {
     public static void main(String[] args) {
-        switch (NettyEnum.getValue(1)) {
+        switch (Objects.requireNonNull(NettyEnum.getValue(1))) {
             case AIRPLANE:
                 log.info("飞机");
                 break;
