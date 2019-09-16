@@ -1,4 +1,4 @@
-package com.spring.base.lambda.model;
+package com.spring.base.jdk8.lambda.model;
 
 import org.jetbrains.annotations.Contract;
 

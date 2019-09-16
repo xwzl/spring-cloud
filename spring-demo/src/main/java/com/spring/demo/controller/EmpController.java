@@ -9,6 +9,7 @@ import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.service.EmpService;
+import com.spring.demo.untils.pool.ThreadPoolUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * <p>
@@ -88,5 +90,15 @@ public class EmpController {
         return computerMapper.list1(computer);
     }
 
-
+    /**
+     * 实际开发中线程池不用关闭
+     */
+    @GetMapping("/thread")
+    public String pool() {
+        ThreadPoolExecutor executor = ThreadPoolUtils.extensionThreadPool();
+        executor.execute(() -> {
+            System.out.println("如果不中断线程池，会有返回信息吗？");
+        });
+        return "如果不中断线程池，会有返回信息吗?";
+    }
 }

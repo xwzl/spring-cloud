@@ -1,4 +1,4 @@
-package com.spring.base.lambda.stream;
+package com.spring.base.jdk8.lambda.stream;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;

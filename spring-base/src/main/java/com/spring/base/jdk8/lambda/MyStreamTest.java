@@ -1,4 +1,4 @@
-package com.spring.base.lambda;
+package com.spring.base.jdk8.lambda;
 
 import com.spring.base.guava.Student;
 import org.junit.Before;
