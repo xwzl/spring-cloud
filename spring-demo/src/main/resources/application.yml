@@ -13,7 +13,7 @@ spring:
 #      max-request-size: 100MB
 
 server:
-  port: 11111
+  port: 10000
 logging:
   level:
     com.spring.demo.mapper: debug

@@ -57,4 +57,9 @@ public class HttpClientController {
         return "xxx";
     }
 
+    @GetMapping("/restTemplate")
+    public void restTemplate(){
+        restTemplate.getForObject("http://127.0.0.1:10000/rest/get/{noticeId}", String.class ,"111","2222");
+    }
+
 }
