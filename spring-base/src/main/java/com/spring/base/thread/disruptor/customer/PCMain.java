@@ -1,10 +1,14 @@
-package com.spring.base.thread.pc;
+package com.spring.base.thread.disruptor.customer;
+
+import com.spring.base.thread.pool.ThreadPoolUtils;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * @author xuweizhi
+ */
 public class PCMain {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -17,7 +21,7 @@ public class PCMain {
         Consumer consumer2 = new Consumer(queue);
         Consumer consumer3 = new Consumer(queue);
 
-        ExecutorService service = Executors.newCachedThreadPool();
+        ExecutorService service = ThreadPoolUtils.noQueue();
 
         service.execute(producer1);
         service.execute(producer2);

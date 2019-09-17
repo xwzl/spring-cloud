@@ -54,6 +54,11 @@
       "name": "sync.pool.await-time",
       "type": "java.lang.String",
       "description": "Description for sync.pool.await-time."
+    },
+    {
+      "name": "simple.corePoolSize",
+      "type": "java.lang.String",
+      "description": "Description for simple.corePoolSize."
     }
   ]
 }

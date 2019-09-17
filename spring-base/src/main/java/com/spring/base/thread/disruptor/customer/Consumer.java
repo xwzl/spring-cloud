@@ -1,4 +1,4 @@
-package com.spring.base.thread.pc;
+package com.spring.base.thread.disruptor.customer;
 
 import java.text.MessageFormat;
 import java.util.Random;

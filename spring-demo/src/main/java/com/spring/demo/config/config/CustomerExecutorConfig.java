@@ -26,7 +26,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableAsync
 @EnableConfigurationProperties(SyncProperties.class)
 @AutoConfigureAfter(SyncProperties.class)
-public class ExecutorConfig {
+public class CustomerExecutorConfig {
 
     /**
      * 异步调用线程池配置
