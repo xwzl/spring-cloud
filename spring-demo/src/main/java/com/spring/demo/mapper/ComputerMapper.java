@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.service.provider.OfficeProvider;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
@@ -31,4 +32,12 @@ public interface ComputerMapper extends BaseMapper<Computer> {
     @SelectProvider(type = OfficeProvider.class, method = "list1")
     List<Computer> list1(@Param("Computer") Computer computer);
 
+    /**
+     * sql 字符串拼接 '' ， 无法回去 '#{keyWord}%' 中 #{keyWord} 数据
+     *
+     * @param keyWord 关键字
+     * @return 数据集
+     */
+    @Select("select * from computer where brand like CONCAT(#{keyWord},'%')")
+    List<Computer> sequenceAppend(String keyWord);
 }

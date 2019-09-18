@@ -91,6 +91,14 @@ public class EmpController {
     }
 
     /**
+     * mysql 查询参数字符串拼接
+     */
+    @GetMapping("sequenceAppend")
+    public List<Computer> sequenceAppend(String keyWord){
+        return computerMapper.sequenceAppend(keyWord);
+    }
+
+    /**
      * 实际开发中线程池不用关闭
      */
     @GetMapping("/thread")

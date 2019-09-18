@@ -19,11 +19,10 @@ public class RestHttpTest extends DemoApplicationTest {
      */
     @Test
     public void getTest(){
-        String prefix = "http://127.0.0.1:10000/rest/get";
+        String prefix = "http://127.0.0.1:11111/rest/get";
         String forObject = restTemplate.getForObject(prefix, String.class);
         String hello_param = restTemplate.getForObject(prefix + "/param", String.class, "hello param");
-        String forObject1 = restTemplate.getForObject("http://127.0.0.1:10000/rest/get/entity/11111", String.class, "2222");
-        System.out.println("1111111");
+        String forObject1 = restTemplate.getForObject("http://127.0.0.1:11111/rest/get/entity/11111", String.class, "2222");
     }
 
 }
