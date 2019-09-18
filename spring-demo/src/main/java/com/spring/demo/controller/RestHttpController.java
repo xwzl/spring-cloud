@@ -1,10 +1,7 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.model.vos.DataVO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Rest 请求
@@ -34,10 +31,27 @@ public class RestHttpController {
     }
 
     /**
+     * 实体对象
+     */
+    @GetMapping("/get/pojo")
+    public DataVO pojo(Integer noticeId, String noticeTitle) {
+        return DataVO.builder().noticeId(noticeId).noticeTitle(noticeTitle).build();
+    }
+
+
+    /**
      * 返回参数实体
      */
     @GetMapping("/get/entity/{noticeId}")
     public DataVO pathEntity(@PathVariable("noticeId") Integer noticeId, String noticeTitle) {
         return DataVO.builder().noticeId(noticeId).noticeTitle(noticeTitle).build();
+    }
+
+    /**
+     * post 请求,rest 风格放入 body 中
+     */
+    @PostMapping("/post/entity")
+    public DataVO postEntity(@RequestBody DataVO dataVO) {
+        return dataVO;
     }
 }

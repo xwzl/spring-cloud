@@ -1,8 +1,6 @@
 package com.spring.demo.model.vos;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author 17847
@@ -10,6 +8,8 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataVO {
 
     private Integer noticeId;
