@@ -1,29 +1,29 @@
 package com.spring.base.structure;
 
-import lombok.Data;
 import org.jetbrains.annotations.Contract;
 
 /**
+ * 数组实现
+ *
  * @author xuweizhi
- * @since 2019/09/18 22:05
+ * @since 2019/09/18 22:47
  */
-@Data
-public abstract class ArrayStructure<T> implements Structure<T> {
+public class ArrayStructure<T> extends AbstractStructure<T> {
 
     /**
      * 真正的数据实体
      */
-    protected Object[] elementData;
+    private Object[] elementData;
 
     /**
      *
      */
-    protected int capacity;
+    private int capacity;
 
     /**
      * 数组元素个数
      */
-    protected int size;
+    private int size;
 
     @Contract(pure = true)
     public ArrayStructure() {
@@ -60,37 +60,26 @@ public abstract class ArrayStructure<T> implements Structure<T> {
         return true;
     }
 
-    /**
-     * 扩容
-     */
-    private void extensionArray() {
-        this.capacity = (int) (capacity * 1.5);
-        Object[] tempElement = new Object[capacity];
-        System.arraycopy(this.elementData, 0, tempElement, 0, size);
-        this.elementData = tempElement;
-    }
-
     @Override
     public void add(int index, T t) {
-        if (index > size || index == capacity) {
-            throw new RuntimeException(String.format("index %d : length %d", index, size));
-        }
-        for (int i = size; i >= index; i--) {
-            this.elementData[i] = this.elementData[i - 1];
-        }
-        this.size += 1;
-
-        this.elementData[index] = t;
+        crossing(index, t);
     }
 
     @Override
     public void set(int index, T t) {
+        crossing(index, t);
+    }
+
+    private void crossing(int index, T t) {
         if (index > size || index == capacity) {
             throw new RuntimeException(String.format("index %d : length %d", index, size));
         }
-        for (int i = size; i >= index; i--) {
-            this.elementData[i] = this.elementData[i - 1];
+        if (size + 1 - index >= 0) {
+            System.arraycopy(this.elementData, index - 1, this.elementData, index, size + 1 - index);
         }
+        //for (int i = size; i >= index; i--) {
+        //    this.elementData[i] = this.elementData[i - 1];
+        //}
         this.size += 1;
         this.elementData[index] = t;
     }
@@ -101,16 +90,36 @@ public abstract class ArrayStructure<T> implements Structure<T> {
             throw new RuntimeException(String.format("index %d : length %d", 0, size));
         }
         T remove = (T) this.elementData[index];
-        for (int i = index; i < size; i++) {
-            this.elementData[i] = this.elementData[i + 1];
-        }
-        this.elementData[size] = null;
+        System.arraycopy(this.elementData, index + 1, this.elementData, index, size - index);
+        //for (int i = index; i < size; i++) {
+        //    this.elementData[i] = this.elementData[i + 1];
+        //}
         this.size -= 1;
         return remove;
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
+
+    @Override
+    public boolean clear() {
+        this.size = 0;
+        this.capacity = 15;
+        this.elementData = new Object[capacity];
+        return true;
+    }
+
+    /**
+     * 扩容
+     */
+    private void extensionArray() {
+        this.capacity = (int) (capacity * 1.5);
+        Object[] tempElement = new Object[capacity];
+        System.arraycopy(this.elementData, 0, tempElement, 0, size);
+        this.elementData = tempElement;
+    }
+
+
 }

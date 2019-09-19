@@ -55,4 +55,10 @@ public interface Structure<T> {
      */
     int size();
 
+    /**
+     * 清除元素
+     *
+     * @return 清除标志
+     */
+    boolean clear();
 }
