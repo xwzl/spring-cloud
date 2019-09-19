@@ -111,6 +111,11 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
         return true;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     /**
      * 扩容
      */

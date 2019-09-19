@@ -93,8 +93,7 @@ public class LinkedStructure<T> extends AbstractStructure<T> {
             head = head.next;
             return data;
         }
-        Node next = tempNode.next.next;
-        tempNode.next = next;
+        tempNode.next = tempNode.next.next;
         return data;
     }
 

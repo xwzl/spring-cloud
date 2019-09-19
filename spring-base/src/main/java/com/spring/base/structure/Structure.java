@@ -48,6 +48,7 @@ public interface Structure<T> {
      */
     T remove(int index);
 
+
     /**
      * 集合长度
      *
@@ -61,4 +62,11 @@ public interface Structure<T> {
      * @return 清除标志
      */
     boolean clear();
+
+    /**
+     * 判断集合是否为空
+     *
+     * @return true
+     */
+    boolean isEmpty();
 }

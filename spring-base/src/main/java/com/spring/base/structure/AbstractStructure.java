@@ -44,4 +44,9 @@ public abstract class AbstractStructure<T> implements Structure<T>, Serializable
     public boolean clear() {
         return false;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }
