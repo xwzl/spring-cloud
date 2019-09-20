@@ -2,6 +2,8 @@ package com.spring.demo.model.vos;
 
 import lombok.*;
 
+import java.util.List;
+
 /**
  * @author 17847
  */
@@ -23,4 +25,6 @@ public class DataVO {
     private Long noticeUpdateTime;
 
     private String noticeContent;
+
+    private List<DataVO> data;
 }

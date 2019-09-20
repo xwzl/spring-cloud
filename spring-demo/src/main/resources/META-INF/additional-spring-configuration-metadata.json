@@ -59,6 +59,21 @@
       "name": "simple.corePoolSize",
       "type": "java.lang.String",
       "description": "Description for simple.corePoolSize."
+    },
+    {
+      "name": "baidu.picture.client.appId",
+      "type": "java.lang.String",
+      "description": "Description for baidu.picture.client.appId."
+    },
+    {
+      "name": "baidu.picture.client.appKey",
+      "type": "java.lang.String",
+      "description": "Description for baidu.picture.client.appKey."
+    },
+    {
+      "name": "baidu.picture.client.secretKey",
+      "type": "java.lang.String",
+      "description": "Description for baidu.picture.client.secretKey."
     }
   ]
 }

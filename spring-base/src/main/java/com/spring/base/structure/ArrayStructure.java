@@ -16,9 +16,19 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
     private Object[] elementData;
 
     /**
-     *
+     * 当前集合容量
      */
     private int capacity;
+
+    /**
+     * 初始化数值
+     */
+    private final static int INIT_CAPACITY = 15;
+
+    /**
+     * 初始化大小
+     */
+    private final static int INIT_SIZE = 0;
 
     /**
      * 数组元素个数
@@ -27,14 +37,17 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
 
     @Contract(pure = true)
     public ArrayStructure() {
-        elementData = new Object[15];
-        this.size = 0;
-        this.capacity = 15;
+        elementData = new Object[INIT_CAPACITY];
+        this.size = INIT_SIZE;
+        this.capacity = INIT_CAPACITY;
     }
 
+    /**
+     * 不考虑负值的情况
+     */
     public ArrayStructure(int capacity) {
         elementData = new Object[capacity];
-        this.size = 0;
+        this.size = INIT_SIZE;
         this.capacity = capacity;
     }
 
@@ -53,7 +66,7 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
                 extensionArray();
             }
             this.elementData[size] = t;
-            this.size += 1;
+            this.size++;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,8 +84,11 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
     }
 
     private void crossing(int index, T t) {
+        if (size == 0 || index < 0) {
+            throw new RuntimeException(String.format("Index %d out of bounds for length  %d", index, size));
+        }
         if (index > size || index == capacity) {
-            throw new RuntimeException(String.format("index %d : length %d", index, size));
+            throw new RuntimeException(String.format("Index %d out of bounds for length  %d", index, size));
         }
         if (size + 1 - index >= 0) {
             System.arraycopy(this.elementData, index - 1, this.elementData, index, size + 1 - index);
@@ -105,8 +121,8 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
 
     @Override
     public boolean clear() {
-        this.size = 0;
-        this.capacity = 15;
+        this.size = INIT_SIZE;
+        this.capacity = INIT_CAPACITY;
         this.elementData = new Object[capacity];
         return true;
     }
@@ -122,9 +138,8 @@ public class ArrayStructure<T> extends AbstractStructure<T> {
     private void extensionArray() {
         this.capacity = (int) (capacity * 1.5);
         Object[] tempElement = new Object[capacity];
-        System.arraycopy(this.elementData, 0, tempElement, 0, size);
+        System.arraycopy(this.elementData, INIT_SIZE, tempElement, INIT_SIZE, size);
         this.elementData = tempElement;
     }
-
 
 }

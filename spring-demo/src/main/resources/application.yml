@@ -48,3 +48,11 @@ sync:
     alive-time: 200
     queue-capacity: 25
     max-size: 20
+
+# 百度图片识别
+baidu:
+  picture:
+    client:
+      appId: 17289319
+      appKey: 
+      secretKey: b7SU0Q6pIGZfli22Yni4Nh9metjLLNm3
