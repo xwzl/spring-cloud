@@ -1,17 +1,21 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.annotation.AopSample;
-import com.spring.demo.enums.ServiceCodeEnum;
+import com.spring.demo.config.http.HttpApiService;
 import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.vos.ValidatedVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,21 +25,50 @@ import java.util.Optional;
  * @author xuweizhi
  * @since 2019-08-21
  */
+@Slf4j
 @RestController
 @RequestMapping("/exception")
-@Api("异常处理和验证测试")
-@Slf4j
+@Api(tags = "异常处理和验证测试")
 public class ExceptionController {
 
+    @Autowired
+    private HttpApiService httpApiService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
     @GetMapping
-    public void test1() {
-        this.exceptionProducer();
+    @ApiOperation("简单测试")
+    private void message() {
+        String str = null;
+        for (int i = 0; i < 2; i++) {
+            try {
+                str = httpApiService.doGet("http://www.baidu.com");
+            } catch (Throwable e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println(i + "; " + str);
+        }
     }
 
-    private void exceptionProducer() {
-        if (Math.random() > 0.5) {
-            throw new ServiceException(ServiceCodeEnum.VERIFICATION_CODE_ERROR);
-        }
+    @GetMapping("/exception")
+    @ApiOperation("调用本地服务")
+    public String test() throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("username", "username");
+        params.put("password", "username");
+        params.put("age", "7");
+        params.put("diy", "username");
+        params.put("fix", "username");
+        String s1 = httpApiService.doGet("http://localhost:10000/validated", params);
+        String s = httpApiService.doGet("http://localhost:10000/exception");
+        return "xxx";
+    }
+
+    @GetMapping("/restTemplate")
+    @ApiOperation("restTemplate 调用本地服务")
+    public void restTemplate() {
+        restTemplate.getForObject("http://127.0.0.1:10000/rest/get/{noticeId}", String.class, "111", "2222");
     }
 
     @AopSample
@@ -47,5 +80,6 @@ public class ExceptionController {
         });
         log.info(validatedVO.toString());
     }
+
 
 }

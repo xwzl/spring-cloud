@@ -15,7 +15,6 @@ import java.util.List;
 
 /**
  * 服务实现类
- * <p>
  * https://blog.csdn.net/solocoder/article/details/84141759
  *
  * @author xuweizhi
@@ -84,7 +83,8 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
      * {@link People#getCreateTime()} 解决 LocalDateTime 序列化出错问题
      */
     @Override
-    @Cacheable(key = "'people'+#id", condition = "#result != null", sync = true)
+    @Cacheable(key = "'people'+#id", condition = "#result != null")
+    //@Cacheable(key = "'people'+#id", condition = "#result != null", sync = true)
     //@Cacheable(value = "findById", keyGenerator = "keyGenerator",sync = true)
     public People findById(Integer id) {
         return peopleMapper.getUser(id);

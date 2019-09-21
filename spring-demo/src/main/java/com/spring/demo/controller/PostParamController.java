@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/post")
 public class PostParamController {
 
-
     /**
      * url ？ 后面的参数 @RequestParam
      */

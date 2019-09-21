@@ -6,6 +6,7 @@ import com.spring.demo.service.PeopleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +19,10 @@ import java.time.LocalDateTime;
  * @author xwz
  * @since 2019-04-22
  */
-@Api
 @RestController
 @RequestMapping("/user")
-public class UserController {
+@Api(tags = "redis 缓存测试，注解版本")
+public class RedisController {
 
     @Autowired
     private PeopleService peopleService;
@@ -33,30 +34,30 @@ public class UserController {
         return peopleService.insert(user);
     }
 
-    @ApiOperation(value = "update", notes = "更新")
     @GetMapping("/update")
+    @ApiOperation(value = "update", notes = "更新")
     public People update(String name, Integer id) {
         People byId = peopleService.getById(id);
         byId.setUsername(name);
         return peopleService.update(byId);
     }
 
-    @ApiOperation(value = "getUser", notes = "获取")
     @GetMapping("/getUser")
+    @ApiOperation(value = "getUser", notes = "获取")
     public People getUser(Integer id) {
         return peopleService.findById(id);
     }
 
-    @ApiOperation(value = "delete", notes = "hello接口")
     @GetMapping("/delete")
+    @ApiOperation(value = "delete", notes = "hello接口")
     public void delete(Integer id) {
         People user = new People();
         user.setUId(id);
         peopleService.delete(user);
     }
 
-    @ApiOperation(value = "getPlus", notes = "hello接口")
     @GetMapping("/getPlus")
+    @ApiOperation(value = "getPlus", notes = "hello接口")
     public People getPlus(Integer id) {
         return peopleService.getById(id);
     }

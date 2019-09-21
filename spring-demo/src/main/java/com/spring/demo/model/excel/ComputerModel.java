@@ -12,55 +12,55 @@ import lombok.ToString;
 @ToString
 public class ComputerModel{
 
-    @ExcelProperty(value = "编号", index = 0)
+    @ExcelProperty(value = "编号", index = 1)
     private String assetNumber;
 
-    @ExcelProperty(value = "类型", index = 1)
+    @ExcelProperty(value = "类型", index = 2)
     private String assetType;
 
-    @ExcelProperty(value = "品牌", index = 2)
+    @ExcelProperty(value = "品牌", index = 3)
     private String brand;
 
-    @ExcelProperty(value = "电脑来源", index = 3)
+    @ExcelProperty(value = "电脑来源", index = 4)
     private String computerSource;
 
-    @ExcelProperty(value = "贡献公司", index = 4)
+    @ExcelProperty(value = "贡献公司", index = 5)
     private String attributionCompany;
 
-    @ExcelProperty(value = "使用公司", index = 5)
+    @ExcelProperty(value = "使用公司", index = 6)
     private String useCompany;
 
-    @ExcelProperty(value = "使用部门", index = 6)
+    @ExcelProperty(value = "使用部门", index = 7)
     private String useDepartment;
 
-    @ExcelProperty(value = "使用者", index = 7)
+    @ExcelProperty(value = "使用者", index = 8)
     private String owner;
 
-    @ExcelProperty(value = "使用状态", index = 8)
+    @ExcelProperty(value = "使用状态", index = 9)
     private String useOfState;
 
-    @ExcelProperty(value = "机器配置", index = 9)
+    @ExcelProperty(value = "机器配置", index = 10)
     private String machineConfiguration;
 
-    @ExcelProperty(value = "机器地址", index = 10)
+    @ExcelProperty(value = "机器地址", index = 11)
     private String machineAddr;
 
-    @ExcelProperty(value = "机器状态", index = 11)
+    @ExcelProperty(value = "机器状态", index = 12)
     private String machineState;
 
-    @ExcelProperty(value = "质量", index = 12)
+    @ExcelProperty(value = "质量", index = 13)
     private Integer quantity;
 
-    @ExcelProperty(value = "单位", index = 13)
+    @ExcelProperty(value = "单位", index = 14)
     private String unit;
 
-    @ExcelProperty(value = "厂商", index = 14)
+    @ExcelProperty(value = "厂商", index = 15)
     private String tradeName;
 
-    @ExcelProperty(value = "联系人", index = 15)
+    @ExcelProperty(value = "联系人", index = 16)
     private String contact;
 
-    @ExcelProperty(value = "电话号码", index = 16)
+    @ExcelProperty(value = "电话号码", index = 17)
     private String iphoneNumber;
 
 }

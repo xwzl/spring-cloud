@@ -8,6 +8,8 @@ import com.spring.demo.view.Validated.BasketBallValidated;
 import com.spring.demo.view.Validated.GameValidated;
 import com.spring.demo.view.Visible.BasketBallView;
 import com.spring.demo.view.Visible.GameView;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
@@ -27,10 +29,13 @@ import javax.validation.constraints.NotBlank;
 @Slf4j
 @RestController
 @RequestMapping("/validated")
+@Api(tags = "数据校验")
 public class ValidatedController {
 
     @GetMapping
+    @ApiOperation("基本校验")
     public void testValidated(@Validated User user, String fix) {
+        // 全局处理异常已处理
         //if (bindingResult.hasErrors()) {
         //    FieldError age = bindingResult.getFieldError("age");
         //    bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
@@ -44,6 +49,7 @@ public class ValidatedController {
      * single parameter check 无效果
      */
     @GetMapping("singleParamCheck")
+    @ApiOperation("single parameter check 无效果")
     public void single(@Length(min = 2, max = 10, message = "name 长度必须在 {min} - {max} 之间") @NotBlank(message = "id 值不能为空") String id, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
@@ -55,6 +61,7 @@ public class ValidatedController {
      * 默认字段验证和返回值可见
      */
     @GetMapping("/default")
+    @ApiOperation("默认字段验证和返回值可见")
     public TakeValidatedVO defaultMethod(@Validated TakeValidatedVO takeValidatedVO) {
         return takeValidatedVO;
     }
@@ -64,6 +71,7 @@ public class ValidatedController {
      */
     @JsonView(GameView.class)
     @GetMapping("/game")
+    @ApiOperation("游戏段验证和返回值可见，验证好像没有效果")
     public TakeValidatedVO game(@Validated(value = GameValidated.class) TakeValidatedVO takeValidatedVO, BindingResult bindingResult) {
         return takeValidatedVO;
     }
@@ -73,11 +81,13 @@ public class ValidatedController {
      */
     @JsonView(BasketBallView.class)
     @GetMapping("/basketBall")
+    @ApiOperation("篮球字段验证和返回值可见，验证好像没有效果")
     public TakeValidatedVO basketBall(@Validated(value = BasketBallValidated.class) TakeValidatedVO takeValidatedVO, BindingResult bindingResult) {
         return takeValidatedVO;
     }
 
     @GetMapping("/test")
+    @ApiOperation("自定校验器")
     public String test(@DateTime(message = "您输入的格式错误，正确的格式为：{format}", format = "yyyy-MM-dd HH:mm") String date) {
         return "success";
     }

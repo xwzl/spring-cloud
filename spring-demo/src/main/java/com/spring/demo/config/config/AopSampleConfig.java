@@ -3,12 +3,14 @@ package com.spring.demo.config.config;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author xuweizhi
@@ -27,7 +29,7 @@ public class AopSampleConfig {
     }
 
     @Before("pointcut()")
-    public void before(JoinPoint joinPoint) {
+    public void before(@NotNull JoinPoint joinPoint) {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -70,7 +72,9 @@ public class AopSampleConfig {
 
     @AfterReturning(pointcut = "pointcut()", returning = "object")
     public void getAfterReturn(Object object) {
-        log.info("afterReturning={}", object.toString());
+        if (!Objects.isNull(object)) {
+            log.info("afterReturning={}", object.toString());
+        }
     }
 
 

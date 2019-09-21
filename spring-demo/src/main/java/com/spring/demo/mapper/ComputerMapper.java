@@ -6,6 +6,7 @@ import com.spring.demo.service.provider.OfficeProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019-08-05
  */
+@Repository
 public interface ComputerMapper extends BaseMapper<Computer> {
 
     /**
@@ -29,8 +31,14 @@ public interface ComputerMapper extends BaseMapper<Computer> {
     @SelectProvider(type = OfficeProvider.class, method = "provider")
     List<Computer> getList(@Param("assetType") String assetType, @Param("brand") String brand);
 
+    /**
+     * Provider 对象参数测试
+     *
+     * @param computer 入参
+     * @return 集合
+     */
     @SelectProvider(type = OfficeProvider.class, method = "list1")
-    List<Computer> list1(@Param("Computer") Computer computer);
+    List<Computer> paramProviderReference(@Param("Computer") Computer computer);
 
     /**
      * sql 字符串拼接 '' ， 无法回去 '#{keyWord}%' 中 #{keyWord} 数据

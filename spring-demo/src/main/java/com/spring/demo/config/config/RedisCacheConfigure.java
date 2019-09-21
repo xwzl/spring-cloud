@@ -14,12 +14,12 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.*;
@@ -34,7 +34,6 @@ import java.time.Duration;
  * @date 2019/04/23 15:24
  */
 @Configuration
-@EnableCaching
 public class RedisCacheConfigure extends CachingConfigurerSupport {
 
     @Autowired
@@ -52,16 +51,16 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         //Redis加锁的写入器
-        //RedisCacheWriter writer = RedisCacheWriter.lockingRedisCacheWriter(connectionFactory);
+        RedisCacheWriter writer = RedisCacheWriter.lockingRedisCacheWriter(connectionFactory);
         //启动Redis默认设置
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 //.entryTtl(this.timeToLive)
-                .entryTtl(Duration.ofSeconds(100))
+                .entryTtl(Duration.ofHours(1))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
                 .disableCachingNullValues();
 
-        return RedisCacheManager.builder(connectionFactory)
+        return RedisCacheManager.builder(writer)
                 .cacheDefaults(config)
                 .transactionAware()
                 .build();
