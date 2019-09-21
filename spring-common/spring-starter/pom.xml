@@ -16,6 +16,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>spring-model</artifactId>
+            <version>1.0.0</version>
+            <!-- 依赖模块必须显示指定，才能引用模块定义的类-->
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>

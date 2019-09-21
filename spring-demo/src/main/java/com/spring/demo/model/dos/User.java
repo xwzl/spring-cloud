@@ -2,6 +2,7 @@ package com.spring.demo.model.dos;
 
 import com.spring.demo.annotation.MyValidated;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @since 2019-08-06
  */
 @Data
+@Slf4j
 public class User {
 
     @NotNull(message = "用户名不能为空")

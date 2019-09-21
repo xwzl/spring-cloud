@@ -5,30 +5,22 @@
 
     <parent>
         <groupId>com.spring</groupId>
-        <artifactId>spring-cloud</artifactId>
+        <artifactId>spring-common</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>spring-common</artifactId>
+    <artifactId>spring-model</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>spring-starter</module>
-        <module>spring-model</module>
-    </modules>
-
-    <name>spring-common</name>
+    <name>spring-model</name>
+    <packaging>jar</packaging>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
