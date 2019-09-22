@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 /**
+ * Spring Conditional 条件注解测试
+ *
  * @author xuweizhi
  * @since 2019/09/21 14:23
  */
