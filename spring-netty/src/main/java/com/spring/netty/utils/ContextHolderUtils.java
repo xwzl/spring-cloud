@@ -1,6 +1,5 @@
 package com.spring.netty.utils;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -12,6 +11,7 @@ import java.util.Objects;
  * HttpServletRequest 工具类
  *
  * @author xuweizhi
+ * @since 2019-09-23
  */
 public class ContextHolderUtils {
 

@@ -1,9 +1,18 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.model.vos.DataVO;
+import com.spring.demo.untils.ContextHolderUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Rest 请求
@@ -15,6 +24,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rest")
 @Api(tags = "mock 测试接口模板")
 public class RestHttpController {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * 无参请求
@@ -61,5 +73,26 @@ public class RestHttpController {
     @ApiOperation("post 请求,rest 风格放入 body 中")
     public DataVO postEntity(@RequestBody DataVO dataVO) {
         return dataVO;
+    }
+
+    @GetMapping("/header")
+    @ApiOperation("获取 header 信息")
+    public String headerEntity() {
+        HttpServletRequest request = ContextHolderUtils.getRequest();
+        return request.getHeader("test");
+    }
+
+    @GetMapping("/rangLetter")
+    @ApiOperation("环信接口调用测试")
+    public void rangLetterTest() {
+        String url = "http://a1.easemob.com/easemob-demo/testapp/audio/IM_X364829524644331520C14";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw");
+        headers.add("Content-Type", "application/json");
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        ResponseEntity<Object> exchange = restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
+        Object body = exchange.getBody();
+        assert body != null;
+        System.out.println(body.toString());
     }
 }
