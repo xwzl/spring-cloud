@@ -18,7 +18,9 @@ public class LinkedStructure<T> extends AbstractStructure<T> {
     /**
      * 头结点
      */
-    Node head = null;
+    Node head = new Node(null);
+
+    int size;
 
     /**
      * 链表中的节点，data代表节点的值，next是指向下一个节点的引用
@@ -48,53 +50,69 @@ public class LinkedStructure<T> extends AbstractStructure<T> {
      */
     @Override
     public boolean add(T t) {
-
         // 新增的节点
         Node newNode = new Node(t);
-
         // 初始化头结点
-        if (head == null) {
-            head = newNode;
-            return true;
-        }
-
+        //if (head == null) {
+        //    head = newNode;
+        //    return true;
+        //}
         // 中间变量
         Node temp = head;
-
         // 返回最后一个节点
         while (temp.next != null) {
             // 当前节点指向下一个节点
             temp = temp.next;
         }
-
         temp.next = newNode;
+        this.size++;
         return true;
     }
 
     @Override
     public T remove(int index) {
         int temp = 0;
-        if (head == null) {
-            throw new RuntimeException(String.format("index %d : length %d", index, 0));
-        }
         Node tempNode = head;
-        while (tempNode.next != null) {
-            if (index == 0 || (temp + 1) == index) {
-                break;
-            }
+        if (tempNode.next == null) {
+            throw new RuntimeException(String.format("index %d : length %d", index, size));
+        }
+        while (tempNode.next != null && temp < index) {
             tempNode = tempNode.next;
             temp++;
         }
+        if (tempNode.next == null || index < 0) {
+            throw new RuntimeException(String.format("index %d : length %d", index, size));
+        }
         T data = tempNode.data;
-        if (tempNode.next == null) {
-            throw new RuntimeException(String.format("index %d : length %d", index, temp+1));
+        if (tempNode.next != null) {
+            tempNode.next = tempNode.next.next;
         }
-        if (index == 0) {
-            head = head.next;
-            return data;
-        }
-        tempNode.next = tempNode.next.next;
+        this.size--;
         return data;
+    }
+
+    @Override
+    public T get(int index) {
+        int j = 0;
+        Node temp = head;
+        while (temp.next != null && j < index) {
+            temp = temp.next;
+            j++;
+        }
+        if (temp.next == null || j > index) {
+            throw new RuntimeException(String.format("index %d : length %d", index, j));
+        }
+        return temp.next.data;
+    }
+
+    @Override
+    public int size() {
+        int length = 0;
+        while (head.next != null) {
+            length++;
+        }
+        size = length;
+        return size;
     }
 
     public static void main(String[] args) {
@@ -104,7 +122,11 @@ public class LinkedStructure<T> extends AbstractStructure<T> {
         linked.add(new Student("李四", 12));
         linked.add(new Student("王五", 12));
         linked.add(new Student("赵六", 12));
-        linked.remove(4);
+        linked.remove(0);
+        for (int i = 0; i < 3; i++) {
+            Student x = linked.get(i);
+            System.out.println(x);
+        }
         System.out.println(linked);
     }
 }

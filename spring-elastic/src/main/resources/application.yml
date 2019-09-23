@@ -2,6 +2,12 @@ spring:
   data:
     elasticsearch:
       cluster-name: myapp
-      cluster-nodes: 172.16.159.20:9300,172.16.159.20:9301,172.16.159.20:9302
+      cluster-nodes: 192.168.150.21:9300,192.168.150.21:9301,192.168.150.21:9302
       repositories:
         enabled: true
+  datasource:
+    url: jdbc:mysql://192.168.150.21:3306/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 158262751
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
