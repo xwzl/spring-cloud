@@ -1,5 +1,6 @@
 package com.spring.demo.controller;
 
+import com.google.gson.Gson;
 import com.spring.demo.model.vos.DataVO;
 import com.spring.demo.untils.ContextHolderUtils;
 import io.swagger.annotations.Api;
@@ -75,6 +76,13 @@ public class RestHttpController {
         return dataVO;
     }
 
+    @GetMapping("/get/test")
+    public void getTest() {
+        String url = "http://localhost:11111/rest/get";
+        Object forObject = restTemplate.getForObject(url, Object.class);
+        System.out.println(forObject.toString());
+    }
+
     @GetMapping("/header")
     @ApiOperation("获取 header 信息")
     public String headerEntity() {
@@ -82,17 +90,26 @@ public class RestHttpController {
         return request.getHeader("test");
     }
 
+    /**
+     * curl -X GET -i "http://a1.easemob.com/1106190731040398/tchealth/audio/213H05522QATBNFYAAX400C12186" -H 'Authorization: Bearer YWMtM_jast3DEemvrsmtQvOdFgAAAAAAAAAAAAAAAAAAAAFGU3WrG2ZOMqYyTTK4hrhlAgMAAAFtXJkzzQBPGgDPRrC5uffahOx9_ksLBwOACPZSwWgVLE-yX6rweUoJgg' -H 'Content-Type: application/json'
+     * <p>
+     * http://docs-im.easemob.com/im/server/ready/user 获取 token
+     * <p>
+     * http://docs-im.easemob.com/im/server/basics/recordfiledownload 接口调用
+     */
     @GetMapping("/rangLetter")
     @ApiOperation("环信接口调用测试")
     public void rangLetterTest() {
-        String url = "http://a1.easemob.com/easemob-demo/testapp/audio/IM_X364829524644331520C14";
+        String url = "http://a1.easemob.com/1106190731040398/tchealth/audio/213H05522QATBNFYAAX400C12186";
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw");
+        headers.add("Authorization", "Bearer YWMtM_jast3DEemvrsmtQvOdFgAAAAAAAAAAAAAAAAAAAAFGU3WrG2ZOMqYyTTK4hrhlAgMAAAFtXJkzzQBPGgDPRrC5uffahOx9_ksLBwOACPZSwWgVLE-yX6rweUoJgg");
         headers.add("Content-Type", "application/json");
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<Object> exchange = restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
         Object body = exchange.getBody();
         assert body != null;
-        System.out.println(body.toString());
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(body));
     }
+
 }
