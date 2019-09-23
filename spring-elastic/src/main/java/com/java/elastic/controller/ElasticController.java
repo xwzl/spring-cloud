@@ -89,7 +89,7 @@ public class ElasticController {
         // 构建查询条件
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 添加基本分词查询
-        queryBuilder.withQuery(QueryBuilders.matchQuery("title", "小米手机"));
+        queryBuilder.withQuery(QueryBuilders.matchQuery("title", "手机"));
         // 搜索，获取结果
         Page<Item> items = this.itemRepository.search(queryBuilder.build());
         // 总条数
@@ -107,7 +107,7 @@ public class ElasticController {
     @GetMapping("/final2")
     public void testTermQuery() {
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
-        builder.withQuery(QueryBuilders.termQuery("price", 998.0));
+        builder.withQuery(QueryBuilders.termQuery("price", 3299.00));
         // 查找
         Page<Item> page = this.itemRepository.search(builder.build());
 
@@ -141,7 +141,7 @@ public class ElasticController {
     @GetMapping("/final4")
     public void testFuzzyQuery() {
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
-        builder.withQuery(QueryBuilders.fuzzyQuery("title", "faceoooo"));
+        builder.withQuery(QueryBuilders.fuzzyQuery("title", "手机*"));
         Page<Item> page = this.itemRepository.search(builder.build());
         for (Item item : page) {
             System.out.println(item);
