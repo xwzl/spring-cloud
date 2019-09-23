@@ -2,6 +2,7 @@ package com.spring.demo.config.config;
 
 import com.spring.demo.config.properties.Document;
 import com.spring.demo.config.properties.DocumentMissingBean;
+import com.spring.demo.untils.PropertiesUtil;
 import com.spring.starter.properties.DocumentMissingClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -42,10 +43,11 @@ public class ConditionalConfig {
     @Bean
     @ConditionalOnBean(DocumentMissingBean.class)
     public Document conditionalOnBean() {
+        String prop = PropertiesUtil.PROP;
         return new Document() {
             @PostConstruct
             public void init() {
-                log.info("如果 Spring 上下文中包含 DocumentMissingProperties 的 bean，这个 bean 会被添加到 IoC 中");
+                log.info("如果 Spring 上下文中包含 DocumentMissingProperties 的 bean，这个 bean 会被添加到 IoC 中" + prop);
             }
         };
     }
