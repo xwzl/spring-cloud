@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * must 表示两个条件必须满足，should 表示两个条件之一满足就行
+ *
  * @author xuweizhi
  * @since 2019/07/16 15:55
  */
