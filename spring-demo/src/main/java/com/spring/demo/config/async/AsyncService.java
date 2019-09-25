@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 @Service
 public class AsyncService {
 
-    @Async("asyncExecutor")
+    @Async("simpleExecutor")
     public Future<Integer> methodB() {
         try {
             Thread.sleep(1000);

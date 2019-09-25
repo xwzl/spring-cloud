@@ -1,12 +1,16 @@
 package com.spring.demo.controller;
 
 
+import com.spring.demo.config.factory.RedSessionFactory;
 import com.spring.demo.model.dos.People;
 import com.spring.demo.model.vos.ApiResult;
 import com.spring.demo.service.PeopleService;
+import com.spring.demo.untils.RedissLockUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -34,6 +39,12 @@ public class RedisController {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private RedSessionFactory redSessionFactory;
+
+    @Resource
+    private RedissonClient redissonClient;
 
     @ApiOperation(value = "Master 插入值", notes = "hello接口")
     @GetMapping("/insertUser")
@@ -78,7 +89,7 @@ public class RedisController {
             log.info(Objects.requireNonNull(value.get(key)).toString());
         }
 
-        // 如果存在这个建，就需要改，不存在就不添加
+        // 如果存在这个建就修改，不存在就不添加
         value.setIfAbsent(key + 1, "测试");
         log.info(Objects.requireNonNull(value.get(key + 1)).toString());
 
@@ -98,7 +109,8 @@ public class RedisController {
      * <p>
      * setIfPresent:如果 key 对应的值存在，则设置值，并返回 true
      */
-    @GetMapping("/setNx")
+    @GetMapping("/setIfPresent")
+    @ApiOperation("如果存在这个建就修改，不存在就不添加")
     public ApiResult<String> setNx(String key) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         Boolean aBoolean1 = value.setIfPresent(key, key);
@@ -108,4 +120,34 @@ public class RedisController {
         Object andSet = value.getAndSet(key, key + "2");
         return new ApiResult<>((String) andSet);
     }
+
+    @GetMapping("/redSession")
+    public ApiResult<Long> redSession(String key, Long initValue) {
+        long l = redSessionFactory.incrementAndGet(key);
+        return new ApiResult<>(l);
+    }
+
+    @GetMapping("/redSessionLock")
+    @ApiOperation("分布式锁实现")
+    public ApiResult<String> redSessionLock(String key) {
+        RLock lock = RedissLockUtil.lock(key);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("执行代码");
+        lock.unlock();
+        return new ApiResult<>("");
+    }
+
+    @GetMapping("/redSessionLockParallel")
+    @ApiOperation("分布式锁实现并行请求")
+    public ApiResult<String> redSessionLock1(String key) {
+        RLock lock = RedissLockUtil.lock(key);
+        System.out.println("等待锁的释放");
+        lock.unlock();
+        return new ApiResult<>("");
+    }
+
 }

@@ -2,11 +2,19 @@ spring:
   #  jackson:
   #    time-zone: GMT+8
   profiles:
-    active: hikari
+    include: hikari,redissson,base
   redis:
     port: 6379
-    timeout: 1000ms #连接时间
+    timeout: 10000ms #连接时间
     host: 47.105.218.58
+#    database:
+#    password:
+#    ssl:
+#    cluster:
+#      nodes:
+#    sentinel:
+#      master:
+#      nodes:
 #  servlet:
 #    multipart:
 #      max-file-size: 100MB

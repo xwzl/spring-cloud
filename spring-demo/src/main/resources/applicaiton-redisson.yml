@@ -1,0 +1,8 @@
+# redisson lock
+redisson:
+  address: redis://47.105.218.58:6379
+  password:
+  #  master-name: mymaster
+  #  password: xxxx
+#  redisson:
+#    sentinel-addresses: 10.47.91.83:26379,10.47.91.83:26380,10.47.91.83:26381
