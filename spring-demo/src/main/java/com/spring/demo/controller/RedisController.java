@@ -72,14 +72,13 @@ public class RedisController {
 
     @GetMapping("/string")
     public ApiResult<Object> addString(String key) {
-
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         value.set(key, "键值对测试");
         if (value.get(key) != null) {
             log.info(Objects.requireNonNull(value.get(key)).toString());
         }
 
-        // 如果存在这个建，就添加吗？ 如果存在，则不覆盖
+        // 如果存在这个建，就需要改，不存在就不添加
         value.setIfAbsent(key + 1, "测试");
         log.info(Objects.requireNonNull(value.get(key + 1)).toString());
 
@@ -92,5 +91,21 @@ public class RedisController {
         value.increment(key);
         log.info(Objects.requireNonNull(value.get(key)).toString());
         return null;
+    }
+
+    /**
+     * setNx 如果存在这个建，就不设置值，并且返回 0
+     * <p>
+     * setIfPresent:如果 key 对应的值存在，则设置值，并返回 true
+     */
+    @GetMapping("/setNx")
+    public ApiResult<String> setNx(String key) {
+        ValueOperations<String, Object> value = redisTemplate.opsForValue();
+        Boolean aBoolean1 = value.setIfPresent(key, key);
+        log.info("" + aBoolean1);
+        Boolean aBoolean = value.setIfPresent(key, key + "1");
+        log.info("" + aBoolean);
+        Object andSet = value.getAndSet(key, key + "2");
+        return new ApiResult<>((String) andSet);
     }
 }
