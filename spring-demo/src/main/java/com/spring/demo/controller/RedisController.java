@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * redis 测试
@@ -145,4 +147,20 @@ public class RedisController {
         return new ApiResult<>("");
     }
 
+    @GetMapping("/stringAppend")
+    @ApiOperation("验证字符串追加")
+    public ApiResult<Object> stringAppend(String key, String value) {
+        ValueOperations<String, Object> valueOperate = redisTemplate.opsForValue();
+        valueOperate.append(key, value);
+        return new ApiResult<>(valueOperate.get(key));
+    }
+
+    @GetMapping("/hashPut")
+    @ApiOperation("hash 操作")
+    public ApiResult<Object> hashPut(String key, String hashKey, String value) {
+        HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
+        hash.put(key, hashKey, value);
+        hash.getOperations().expire(key, 1000, TimeUnit.SECONDS);
+        return new ApiResult<>(hash.entries(key));
+    }
 }
