@@ -10,8 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,17 +32,14 @@ import java.util.Objects;
 @Api(tags = "redis 缓存测试，注解版本")
 public class RedisController {
 
-    @Autowired
+    @Resource
     private PeopleService peopleService;
 
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
-    private RedSessionFactory redSessionFactory;
-
     @Resource
-    private RedissonClient redissonClient;
+    private RedSessionFactory redSessionFactory;
 
     @ApiOperation(value = "Master 插入值", notes = "hello接口")
     @GetMapping("/insertUser")

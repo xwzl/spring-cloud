@@ -1,7 +1,7 @@
 # redisson lock
-redisson:
-  address: redis://47.105.218.58:6379
-  password:
+#redisson:
+#  address: redis://47.105.218.58:6379
+#  password:
   #  master-name: mymaster
   #  password: xxxx
 #  redisson:
