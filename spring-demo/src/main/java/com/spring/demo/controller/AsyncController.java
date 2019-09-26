@@ -2,9 +2,7 @@ package com.spring.demo.controller;
 
 import com.spring.demo.config.async.AsyncService;
 import com.spring.demo.config.async.AsyncTask;
-import com.spring.demo.config.async.http.AsyncVo;
 import com.spring.demo.config.async.http.QueueListener;
-import com.spring.demo.config.async.http.RequestQueue;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.vos.ApiResult;
 import io.swagger.annotations.Api;
@@ -14,7 +12,6 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,13 +43,12 @@ public class AsyncController {
     /**
      * 缓冲队列
      */
-    private final RequestQueue queue;
+    //private final RequestQueue queue;
 
     @Contract(pure = true)
-    public AsyncController(AsyncTask asyncTask, AsyncService asyncService, RequestQueue queue) {
+    public AsyncController(AsyncTask asyncTask, AsyncService asyncService) {
         this.asyncTask = asyncTask;
         this.asyncService = asyncService;
-        this.queue = queue;
     }
 
     /**
@@ -164,7 +160,7 @@ public class AsyncController {
      * 这个是立即返回，但是数据交给哪个啥来处理呢？缓冲队列来处理，类似生产者-消费者的关系
      * {@link QueueListener} 启动任务队列，相当于监听任务队列
      */
-    @GetMapping("/order")
+  /*  @GetMapping("/order")
     public DeferredResult<Object> order(String number) throws InterruptedException {
         log.info("[ OrderController ] 接到下单请求");
         log.info("当前待处理订单数： " + queue.getOrderQueue().size());
@@ -178,5 +174,5 @@ public class AsyncController {
         queue.getOrderQueue().put(vo);
         log.info("[ OrderController ] 返回下单结果");
         return result;
-    }
+    }*/
 }

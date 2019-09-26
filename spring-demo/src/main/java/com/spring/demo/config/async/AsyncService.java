@@ -22,7 +22,7 @@ public class AsyncService {
         return new AsyncResult<>(1);
     }
 
-    @Async("asyncExecutor")
+    @Async("simpleExecutor")
     public Future<Integer> methodC() {
         try {
             Thread.sleep(2000);
@@ -32,7 +32,7 @@ public class AsyncService {
         return new AsyncResult<>(2);
     }
 
-    @Async("asyncExecutor")
+    @Async("simpleExecutor")
     public Future<Integer> methodD() {
         try {
             Thread.sleep(3000);

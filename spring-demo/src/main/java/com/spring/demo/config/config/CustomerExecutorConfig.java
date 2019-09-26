@@ -3,13 +3,8 @@ package com.spring.demo.config.config;
 import com.spring.demo.config.properties.SyncProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 这里有几点需要注意下：
@@ -31,25 +26,25 @@ public class CustomerExecutorConfig {
     /**
      * 异步调用线程池配置
      */
-    @Bean(name = "asyncExecutor")
-    public Executor asyncExecutor(SyncProperties syncProperties) {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(syncProperties.getCoreSize());
-        executor.setMaxPoolSize(syncProperties.getMaxSize());
-        executor.setQueueCapacity(syncProperties.getQueueCapacity());
-        executor.setKeepAliveSeconds(syncProperties.getAliveTime());
-        executor.setThreadNamePrefix("async-");
-        /*线程池对拒绝任务（无线程可用）的处理策略。这里采用了CallerRunsPolicy策略，当线程池没有处理能力的时候，该策略会直接
-        在 execute 方法的调用线程中运行被拒绝的任务；如果执行程序已关闭，则会丢弃该任务。还有一个是AbortPolicy策略：处理
-        程序遭到拒绝将抛出运行时RejectedExecutionException。
-        而在一些场景下，若需要在关闭线程池时等待当前调度任务完成后才开始关闭，可以通过简单的配置，进行优雅的停机策略配置。关键就
-        是通过setWaitForTasksToCompleteOnShutdown(true) 和setAwaitTerminationSeconds方法。*/
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        // 等待所有任务都完成再继续销毁其他的Bean
-        executor.setWaitForTasksToCompleteOnShutdown(true);
-        // 线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁，以确保应用最后能够被关闭，而不是阻塞住
-        executor.setAwaitTerminationSeconds(syncProperties.getAwaitTime());
-        executor.initialize();
-        return executor;
-    }
+    //@Bean(name = "asyncExecutor")
+    //public Executor asyncExecutor(SyncProperties syncProperties) {
+    //    ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+    //    executor.setCorePoolSize(syncProperties.getCoreSize());
+    //    executor.setMaxPoolSize(syncProperties.getMaxSize());
+    //    executor.setQueueCapacity(syncProperties.getQueueCapacity());
+    //    executor.setKeepAliveSeconds(syncProperties.getAliveTime());
+    //    executor.setThreadNamePrefix("async-");
+    //    /*线程池对拒绝任务（无线程可用）的处理策略。这里采用了CallerRunsPolicy策略，当线程池没有处理能力的时候，该策略会直接
+    //    在 execute 方法的调用线程中运行被拒绝的任务；如果执行程序已关闭，则会丢弃该任务。还有一个是AbortPolicy策略：处理
+    //    程序遭到拒绝将抛出运行时RejectedExecutionException。
+    //    而在一些场景下，若需要在关闭线程池时等待当前调度任务完成后才开始关闭，可以通过简单的配置，进行优雅的停机策略配置。关键就
+    //    是通过setWaitForTasksToCompleteOnShutdown(true) 和setAwaitTerminationSeconds方法。*/
+    //    executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+    //    // 等待所有任务都完成再继续销毁其他的Bean
+    //    executor.setWaitForTasksToCompleteOnShutdown(true);
+    //    // 线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁，以确保应用最后能够被关闭，而不是阻塞住
+    //    executor.setAwaitTerminationSeconds(syncProperties.getAwaitTime());
+    //    executor.initialize();
+    //    return executor;
+    //}
 }
