@@ -30,7 +30,7 @@ public class ConditionalDefaultConfig {
         DocumentMissingBean documentMissingBean = new DocumentMissingBean() {
             @PostConstruct
             public void init() {
-                log.info("如果应用中没有 conditionalOnMissingBean，则使用这个默认配置！");
+                log.info("If there is no conditionalOnMissingBean in the app, use this default configuration");
             }
         };
         documentMissingBean.setName("conditionalOnMissingBean");
@@ -46,7 +46,7 @@ public class ConditionalDefaultConfig {
         return new Document() {
             @PostConstruct
             public void init() {
-                log.info("@Conditional 注解失效");
+                log.info("@Conditional is invalid");
             }
         };
     }
@@ -60,7 +60,7 @@ public class ConditionalDefaultConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("如果引入了 spring-model 模块，com.spring.common.model.Apple 在上下文中，这个 bean 被创建");
+                log.info("If the spring-model module is introduced, com.spring.common.model.Apple is created in the context of this bean");
             }
         };
     }
@@ -74,7 +74,7 @@ public class ConditionalDefaultConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("如果引入了 spring-model 模块，Apple.class 在上下文中，这个 bean 被创建");
+                log.info("If the spring-model module is introduced, Apple.class is created in the context, this bean is created");
             }
         };
     }
@@ -89,7 +89,7 @@ public class ConditionalDefaultConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("上下文中包含com.spring.common.model.Apple,因此不会被初始化");
+                log.info("The context contains com.spring.common.model.Apple and will not be initialized");
             }
         };
     }
@@ -103,7 +103,7 @@ public class ConditionalDefaultConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("上下文中不包含 com.spring.model.Mix,因此被初始化");
+                log.info("com.spring.model.Mix is not included in the context, so it is initialized");
             }
         };
     }
@@ -117,7 +117,7 @@ public class ConditionalDefaultConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("sync.pool.core-size=10 所以被初始化");
+                log.info("Sync.pool.core-size=10 exists in the configuration, so it is initialized");
             }
         };
     }

@@ -34,7 +34,7 @@ public class QueueListener {
      */
     @PostConstruct
     public void init() {
-        log.info("订单监听队列已经启动！");
+        log.info("Asynchronous call order, the listen queue has started");
         orderTask.start();
     }
 
@@ -43,7 +43,7 @@ public class QueueListener {
      */
     @PreDestroy
     public void destroy() {
-        log.info("订单监听队列停止！");
+        log.info("订单监听队列停止");
         orderTask.setRunning(false);
     }
 

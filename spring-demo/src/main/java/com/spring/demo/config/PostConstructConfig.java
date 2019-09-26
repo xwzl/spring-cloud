@@ -35,7 +35,7 @@ public class PostConstructConfig {
      */
     @PostConstruct
     public void someMethod() {
-        log.info("时间：" + df.format(new Date()) + "执行@PostConstruct修饰的someMethod()方法...");
+        log.info("time：" + df.format(new Date()) + "SomeMethod() method that performs @PostConstruct decoration");
     }
 
     /**
@@ -44,7 +44,7 @@ public class PostConstructConfig {
      */
     @PreDestroy
     public void otherMethod() {
-        log.info("时间：" + df.format(new Date()) + "执行@PreDestroy修饰的otherMethod()方法...");
+        log.info("time：" + df.format(new Date()) + "Execute @PreDestroy's modified otherMethod() method");
     }
 
 }

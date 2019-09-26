@@ -28,7 +28,7 @@ public class ConditionalConfig {
         DocumentMissingBean documentMissingBean = new DocumentMissingBean() {
             @PostConstruct
             public void init() {
-                log.info("容器中有定义的 conditionalOnMissingBean，conditionalOnBeanDefault() 失效");
+                log.info("There is a defined conditionalOnMissingBean in the container, conditionalOnBeanDefault bean is invalid");
             }
         };
         documentMissingBean.setName("conditionalOnMissingBean");
@@ -47,7 +47,7 @@ public class ConditionalConfig {
         return new Document() {
             @PostConstruct
             public void init() {
-                log.info("如果 Spring 上下文中包含 DocumentMissingProperties 的 bean，这个 bean 会被添加到 IoC 中" + prop);
+                log.info("If the Spring context contains a bean for DocumentMissingProperties, the bean will be added to IoC" + prop);
             }
         };
     }
@@ -61,7 +61,7 @@ public class ConditionalConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("如果引入了 spring-model 模块，com.spring.common.model.Apple 在上下文中，这个 bean 被创建");
+                log.info("If the spring-model module is introduced, com.spring.common.model.Apple is created in the context of this bean.");
             }
         };
     }

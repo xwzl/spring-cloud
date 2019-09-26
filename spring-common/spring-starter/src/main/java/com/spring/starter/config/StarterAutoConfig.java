@@ -31,7 +31,7 @@ public class StarterAutoConfig {
     @Bean
     @ConditionalOnProperty(prefix = "sample.conditional", name = "hello", havingValue = "张杰", matchIfMissing = true)
     public ConditionalSample conditionalSample() {
-        log.info("sample.conditional.hello=张杰,spring-starter 配置的 bean 生效");
+        log.info("Sample.conditional.hello=Zhang Jie, the spring-starter configured bean takes effect");
         return new ConditionalSample();
     }
 
@@ -45,7 +45,7 @@ public class StarterAutoConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("当前上下文中包含这个类路径才会被初始化,这是在 spring-starter 定义的 bean,指定 value = Apple.class");
+                log.info("The classpath contained in the current context will be initialized. This is the bean defined in spring-starter, specifying value = Apple.class");
             }
         };
     }
@@ -56,7 +56,7 @@ public class StarterAutoConfig {
         return new DocumentMissingClass() {
             @PostConstruct
             public void init() {
-                log.info("当前上下文中包含这个类路径才会被初始化,这是在 spring-starter 定义的 bean ,指定 name = com.spring.common.model.Apple");
+                log.info("The classpath contained in the current context will be initialized. This is the bean defined in spring-starter , specifying name = com.spring.common.model.Apple");
             }
         };
     }

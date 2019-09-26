@@ -24,7 +24,7 @@ public class ApplicationRunnerAfter implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("Swagger github 文档地址: http://" + IpAddressUtils.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
+        log.info("Swagger github : http://" + IpAddressUtils.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
         log.info("Swagger github boot-strap: http://" + IpAddressUtils.getHostAddress() + ":" + ipConfiguration.getPort() + "/doc.html");
     }
 }
