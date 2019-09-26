@@ -136,7 +136,7 @@ public class RedisController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("执行代码");
+        log.info("执行代码");
         lock.unlock();
         return new ApiResult<>("");
     }
@@ -145,7 +145,7 @@ public class RedisController {
     @ApiOperation("分布式锁实现并行请求")
     public ApiResult<String> redSessionLock1(String key) {
         RLock lock = RedissLockUtil.lock(key);
-        System.out.println("等待锁的释放");
+        log.info("等待锁的释放");
         lock.unlock();
         return new ApiResult<>("");
     }

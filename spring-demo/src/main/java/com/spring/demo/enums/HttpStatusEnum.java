@@ -1,5 +1,6 @@
 package com.spring.demo.enums;
 
+import org.jetbrains.annotations.Contract;
 import org.springframework.lang.Nullable;
 
 public enum HttpStatusEnum {
@@ -80,8 +81,7 @@ public enum HttpStatusEnum {
             return status;
         }
     }
-
-    @Nullable
+    @Contract(pure = true)
     public static HttpStatusEnum resolve(int statusCode) {
         HttpStatusEnum[] var1 = values();
         int var2 = var1.length;

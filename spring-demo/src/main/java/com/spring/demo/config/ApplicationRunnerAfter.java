@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
  * @author xuweizhi
  * @date 2019/09/25 22:44
  */
+@Slf4j
 @Order(100)
 @Component
-@Slf4j
 public class ApplicationRunnerAfter implements ApplicationRunner {
 
     @Autowired
@@ -27,6 +27,4 @@ public class ApplicationRunnerAfter implements ApplicationRunner {
         log.info("Swagger github 文档地址: http://" + IpAddressUtils.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
         log.info("Swagger github boot-strap: http://" + IpAddressUtils.getHostAddress() + ":" + ipConfiguration.getPort() + "/doc.html");
     }
-
-
 }
