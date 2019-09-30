@@ -1,4 +1,4 @@
-package com.spring.base.jdk8;
+package com.spring.base.algorithm;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
