@@ -38,7 +38,7 @@ public interface ComputerMapper extends BaseMapper<Computer> {
      * @return 集合
      */
     @SelectProvider(type = OfficeProvider.class, method = "list1")
-    List<Computer> paramProviderReference(@Param("Computer") Computer computer);
+    List<Computer> paramProviderReference(@Param("computer") Computer computer);
 
     /**
      * sql 字符串拼接 '' ， 无法回去 '#{keyWord}%' 中 #{keyWord} 数据

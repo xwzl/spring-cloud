@@ -1,6 +1,7 @@
 package com.spring.demo.untils;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.spring.demo.model.picture.GeneralPicture;
 import com.spring.demo.model.picture.WordsResult;
@@ -14,7 +15,7 @@ import java.util.List;
  * 封装的 json 解析工具类，提供泛型参数
  *
  * @author xuweizhi
- * @since 2019
+ * @since 2019-09-25
  */
 public class JsonUtils {
 
@@ -23,7 +24,7 @@ public class JsonUtils {
     }
 
     @Contract(pure = true)
-    private static Gson getInstance() {
+    public static Gson getInstance() {
         return SinglePojo.gson;
     }
 
@@ -42,6 +43,18 @@ public class JsonUtils {
         //return  getInstance().fromJson(jsonData, new TypeToken<List<T>>() {
         //}.getType());
         return new Gson().fromJson(json, new ParameterizedTypeImpl(type));
+    }
+
+    /**
+     * 哈哈
+     *
+     * @param json
+     * @param type
+     * @param <T>
+     * @return
+     */
+    public <T> List<T> parseListByFastJson(String json, Class<T> type) {
+        return JSONObject.parseArray(json, type);
     }
 
 
