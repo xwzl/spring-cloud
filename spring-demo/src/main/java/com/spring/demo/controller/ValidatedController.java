@@ -2,6 +2,7 @@ package com.spring.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.spring.demo.annotation.DateTime;
+import com.spring.demo.config.config.RestTemplateConfig;
 import com.spring.demo.model.dos.User;
 import com.spring.demo.model.vos.ReturnViewVO;
 import com.spring.demo.model.vos.TakeValidatedVO;
@@ -108,6 +109,8 @@ public class ValidatedController {
 
     /**
      * 如果添加了@JsonView的返回类被重新封装，这个时候这个注解不生效。
+     * <p>
+     * 还有一个原因就是 RestTemplateConfig 配置 fastJson 的转换 {@link RestTemplateConfig#fastJsonHttpMessageConverter()} 注释掉就可以了
      *
      * @return 测试值
      */
