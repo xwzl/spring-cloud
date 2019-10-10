@@ -16,6 +16,7 @@
         <module>spring-base</module>
         <module>spring-boot</module>
         <module>spring-demo</module>
+        <module>spring-demo-plus</module>
         <module>spring-elastic</module>
         <module>spring-generator</module>
         <module>spring-mongo</module>
