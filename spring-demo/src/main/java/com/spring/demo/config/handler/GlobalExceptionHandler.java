@@ -16,7 +16,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ValidationException;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 全局异常处理
@@ -67,21 +72,44 @@ public class GlobalExceptionHandler {
         return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
-    ///**
-    // * ValidationException
-    // */
-    //@ExceptionHandler(ValidationException.class)
-    //public ApiResult<?> handleValidationException(ValidationException e) {
-    //    log.error(e.getMessage(), e);
-    //    return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getCause().getMessage());
-    //}
-    //
-    //
+    /**
+     * ValidationException
+     * <p>
+     * Collections.EMPTY_LIST返回的是一个空的List。为什么需要空的List呢？ 有时候我们在函数中需要返回一个List，但是这个List是空的，如果我们直接返回null的话，
+     * 调用者还需要进行null的判断，所以一般建议返回一个空的List。Collections.EMPTY_LIST返回的这个空的List是不能进行添加元素这类操作的。这时候你有可能会说，我
+     * 直接返回一个new ArrayList()呗，但是new ArrayList()在初始化时会占用一定的资源，所以在这种场景下，还是建议返回Collections.EMPTY_LIST。
+     * <p>
+     * Collections. emptyList()返回的也是一个空的List，它与Collections.EMPTY_LIST的唯一区别是，Collections. emptyList()支持泛型，所以在需要泛型的时候，
+     * 可以使用Collections. emptyList()。
+     * <p>
+     * Collections.EMPTY_MAP和Collections.EMPTY_SET同理。
+     */
+    @ExceptionHandler(ValidationException.class)
+    public ApiResult<?> handleValidationException(ValidationException e) {
+        log.error(e.getMessage(), e);
+        return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), appendException(new ArrayList<>(), e.getMessage()).toString());
+    }
+
     //@ExceptionHandler(NoHandlerFoundException.class)
     //public ApiResult<?> handlerNoFoundException(Exception e) {
     //    log.error(e.getMessage(), e);
     //    return new ApiResult<>(404, "路径不存在，请检查路径是否正确");
     //}
 
+    /**
+     * 解析报错异常
+     *
+     * @param result  返回 list
+     * @param message 异常信息
+     * @return 返回值
+     */
+    public List<String> appendException(List<String> result, String message) {
+        String[] splits = message.split(",");
+        for (String value : splits) {
+            String trim = value.substring(value.indexOf(".") + 1).trim();
+            result.add(trim);
+        }
+        return result;
+    }
 }
 

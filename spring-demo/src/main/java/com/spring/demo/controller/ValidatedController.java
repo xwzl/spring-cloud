@@ -37,13 +37,19 @@ public class ValidatedController {
 
     /**
      * Swagger-ui 传得值有点问题，参数为空的话，不会拼接到空参
+     * <p>
+     * 一般用来校验String类型不能为空 @NotBlank
+     * <p>
+     * 一般用来校验Integer类型不能为空 @NotNull
+     * <p>
+     * 一般用来校验List类型不能为空 @NotEmpty
      *
      * @param name 姓名
      * @param age  年龄
      */
     @ApiOperation("单个参数校验")
     @PostMapping("/test1")
-    public void test(@NotBlank(message = "d") String name, @NotNull(message = "不能为空") @Max(value = 3, message = "不能大于 3") int age) {
+    public void test(@NotBlank(message = "d") String name, @NotNull(message = "不能为空") @Max(value = 3, message = "不能大于 3") Integer age) {
 
     }
 

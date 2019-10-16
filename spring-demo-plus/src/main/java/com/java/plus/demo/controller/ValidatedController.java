@@ -40,7 +40,7 @@ public class ValidatedController {
      */
     @ApiOperation("单个参数校验")
     @PostMapping("/test1")
-    public void test(@NotBlank(message = "d") String name, @NotNull(message = "不能为空") @Max(value = 3, message = "不能大于 3") int age) {
+    public void test(@NotBlank(message = "d") String name, @NotNull(message = "不能为空") @Max(value = 3, message = "不能大于 3") Integer age) {
 
     }
 
