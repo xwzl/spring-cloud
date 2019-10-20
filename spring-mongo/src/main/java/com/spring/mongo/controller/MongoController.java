@@ -64,7 +64,7 @@ public class MongoController {
     public void save() {
 
         //查询最后一条数据并更新
-        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         Cat cat = mongoTemplate.findOne(Query.query(Criteria.where("")).with(sort), Cat.class);
         cat.setAge(3000);
 
@@ -109,7 +109,7 @@ public class MongoController {
     @GetMapping(value = "/find")
     public List<Cat> find(Model model) {
         //查询小于当前时间的数据，并按时间倒序排列
-        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         List<Cat> findTestList = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(sort), Cat.class);
         model.addAttribute("findTestList", findTestList);
 
@@ -122,7 +122,7 @@ public class MongoController {
         model.addAttribute("findTestList1", findTestList1);
 
         //分页查询（每页3行第2页）
-        Pageable pageable = new PageRequest(1, 3, sort);
+        Pageable pageable = PageRequest.of(1, 3, sort);
         List<Cat> findTestList2 = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(pageable), Cat.class);
         //共多少条
         long count = mongoTemplate.count(Query.query(Criteria.where("createTime").lt(new Date())), Cat.class);
