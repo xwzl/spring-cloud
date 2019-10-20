@@ -3,8 +3,6 @@ package com.spring.demo.untils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
-import com.spring.demo.model.picture.GeneralPicture;
-import com.spring.demo.model.picture.WordsResult;
 import org.jetbrains.annotations.Contract;
 
 import java.lang.reflect.ParameterizedType;
@@ -82,6 +80,5 @@ public class JsonUtils {
             return null;
         }
     }
-
 }
 
