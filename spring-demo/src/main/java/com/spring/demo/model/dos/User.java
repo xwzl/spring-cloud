@@ -26,6 +26,7 @@ public class User {
     private String password;
 
     //@Size(min = 5, max = 10, message = "年龄必须在 5 到 10 岁之间")
+    //@Range(max = 150, min = 1, message = "年龄范围应该在1-150内。")
     private String age;
 
     private Date birthday;

@@ -27,12 +27,13 @@ public class OfficeProvider {
         }}.toString();
     }
 
-    public String list1(@Param("Computer") Computer computer) {
+    public String list1(@Param("computer") Computer computer) {
         return new SQL() {{
             SELECT("*");
             FROM("computer");
+
             if (StringUtils.isNotEmpty(computer.getBrand())) {
-                WHERE("brand = #{computer.brand,javaType=String,jdbcType=VARCHAR}");
+                WHERE("brand = #{computer.brand}");
             }
             if (StringUtils.isNotEmpty(computer.getAssetType())) {
                 WHERE("asset_type = #{computer.assetType} ");

@@ -63,7 +63,7 @@ public class RestTemplateConfig {
         return restTemplate;
     }
 
-    @Bean
+    //@Bean 不用 fastJson 转换 SpringMVC 返回对象,JsonView 失效
     public HttpMessageConverter fastJsonHttpMessageConverter() {
         //MediaType
         List<MediaType> mediaTypes = new ArrayList<>();

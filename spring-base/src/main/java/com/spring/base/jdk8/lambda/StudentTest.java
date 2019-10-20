@@ -146,6 +146,14 @@ public class StudentTest {
         System.out.println(collect);
     }
 
+    /**
+     * 比较操作
+     */
+    @Test
+    public void compareLambda() {
+        students.stream().sorted(Comparator.comparing(Student::getAge).reversed()).forEach(System.out::println);
+    }
+
 }
 
 

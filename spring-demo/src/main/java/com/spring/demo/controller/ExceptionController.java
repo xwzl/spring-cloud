@@ -60,15 +60,15 @@ public class ExceptionController {
         params.put("age", "7");
         params.put("diy", "username");
         params.put("fix", "username");
-        String s1 = httpApiService.doGet("http://localhost:10000/validated", params);
-        String s = httpApiService.doGet("http://localhost:10000/exception");
+        String s1 = httpApiService.doGet("http://localhost:11111/validated", params);
+        String s = httpApiService.doGet("http://localhost:11111/exception");
         return "xxx";
     }
 
     @GetMapping("/restTemplate")
     @ApiOperation("restTemplate 调用本地服务")
     public void restTemplate() {
-        restTemplate.getForObject("http://127.0.0.1:10000/rest/get/{noticeId}", String.class, "111", "2222");
+        restTemplate.getForObject("http://127.0.0.1:11111/rest/get/{noticeId}", String.class, "111", "2222");
     }
 
     @AopSample
