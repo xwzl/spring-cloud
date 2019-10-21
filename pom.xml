@@ -64,7 +64,8 @@
         <java.version>1.8</java.version>
         <springboot.version>2.2.0.RELEASE</springboot.version>
         <!--版本有问题，无法安装 jar-->
-        <spring-cloud.version>Hoxton.M3</spring-cloud.version>
+<!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
@@ -77,7 +78,7 @@
         <gson.version>2.8.6</gson.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <mysql.version>8.0.15</mysql.version>
-        <druid.version>1.1.18</druid.version>
+        <druid.version>1.1.20</druid.version>
         <jackson.version>2.9.9</jackson.version>
         <jannotation.version>17.0.0</jannotation.version>
         <fastJson.version>1.2.60</fastJson.version>
@@ -106,6 +107,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

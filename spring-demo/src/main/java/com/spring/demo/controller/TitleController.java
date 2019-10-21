@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -37,7 +36,7 @@ public class TitleController {
 
     @GetMapping
     @ApiOperation("获取 c 语言网 VIP 课程")
-    public ApiResult<List<Title>> list(@Validated @NotNull(message = "title 不能为空") String title) {
+    public ApiResult<List<Title>> list(String title) {
         List<Title> list = titleService.list(new QueryWrapper<Title>()
                 .lambda().like(Title::getTitle, title));
         return new ApiResult<>(list);
