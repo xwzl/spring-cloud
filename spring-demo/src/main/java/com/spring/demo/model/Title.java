@@ -31,5 +31,4 @@ public class Title implements Serializable {
     @TableField("url")
     private String url;
 
-
 }

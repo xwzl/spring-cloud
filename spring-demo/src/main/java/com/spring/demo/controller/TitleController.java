@@ -9,11 +9,12 @@ import com.spring.demo.service.TitleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -42,7 +43,13 @@ public class TitleController {
         return new ApiResult<>(list);
     }
 
-    @PostMapping
+    @GetMapping("lists")
+    @ApiOperation("查询")
+    public ApiResult<List<Title>> lists(@RequestParam("ids") List<String> ids) {
+        return new ApiResult<>(titleService.listByIds(ids));
+    }
+
+    /*@PostMapping
     @ApiOperation("爬取 C 语言 VIP 课程")
     public void save(@Validated @NotEmpty(message = "不能为空") @RequestBody Integer i) {
         String urlBase = "http://c.biancheng.net/view/%d.html";
@@ -61,6 +68,5 @@ public class TitleController {
                 log.info(j + "失败");
             }
         }
-
-    }
+    }*/
 }

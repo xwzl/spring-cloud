@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.spring.demo.annotation.AopSample;
 import com.spring.demo.mapper.ComputerMapper;
+import com.spring.demo.mapper.EmpMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
 import com.spring.demo.model.vos.ApiResult;
@@ -20,6 +21,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -48,6 +50,9 @@ public class EmpController {
     private final RedisTemplate<String, Object> redisTemplate;
 
     private final ValueOperations<String, Object> opsForValue;
+
+    @Resource
+    private EmpMapper empMapper;
 
     @Contract(pure = true)
     public EmpController(EmpService empService, ComputerMapper computerMapper, ComputerService computerService, RedisTemplate<String, Object> redisTemplate, ValueOperations<String, Object> opsForValue) {
@@ -158,5 +163,16 @@ public class EmpController {
             System.out.println("如果不中断线程池，会有返回信息吗？");
         });
         return "如果不中断线程池，会有返回信息吗?";
+    }
+
+    /**
+     * 集合校验
+     *
+     * @param list 参数集合加注解
+     * @return 返回值
+     */
+    @GetMapping("/empList")
+    public List<Emp> empList(@RequestParam(value = "list", required = false) List<Integer> list) {
+        return empMapper.listByEmp(list);
     }
 }

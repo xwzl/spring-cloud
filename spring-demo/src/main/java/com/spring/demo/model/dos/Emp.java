@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -106,18 +105,6 @@ public class Emp {
     @TableField("emp_nation")
     private String empNation;
 
-    /**
-     * 员工入项时间
-     */
-    @TableField("emp_in")
-    private LocalDate empIn;
-
-
-    /**
-     * 员工离项时间
-     */
-    @TableField("emp_out")
-    private LocalDate empOut;
 
     /**
      * 员工预计投入工作日
@@ -143,17 +130,6 @@ public class Emp {
     @TableField("emp_status")
     private Integer empStatus;
 
-    /**
-     * 员工入职时间
-     */
-    @TableField("emp_entry_time")
-    private LocalDateTime empEntryTime;
-
-    /**
-     * 员工离职时间
-     */
-    @TableField("emp_separation_time")
-    private LocalDateTime empSeparationTime;
 
     /**
      * 员工就职状态
