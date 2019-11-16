@@ -16,7 +16,6 @@ public interface EmpMapper extends BaseMapper<Emp> {
 
     /**
      * 查询员工信息，注意事项
-     *
      * xml 中入参类型为 List , 返回参数类型为映射对象
      *
      * @param ids 员工

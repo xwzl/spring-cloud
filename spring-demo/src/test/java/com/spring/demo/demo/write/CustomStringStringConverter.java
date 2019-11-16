@@ -25,12 +25,9 @@ public class CustomStringStringConverter implements Converter<String> {
     /**
      * 这里是读的时候会调用 不用管
      *
-     * @param cellData
-     *            NotNull
-     * @param contentProperty
-     *            Nullable
-     * @param globalConfiguration
-     *            NotNull
+     * @param cellData            NotNull
+     * @param contentProperty     Nullable
+     * @param globalConfiguration NotNull
      * @return
      */
     @Override
@@ -42,12 +39,9 @@ public class CustomStringStringConverter implements Converter<String> {
     /**
      * 这里是写的时候会调用 不用管
      *
-     * @param value
-     *            NotNull
-     * @param contentProperty
-     *            Nullable
-     * @param globalConfiguration
-     *            NotNull
+     * @param value               NotNull
+     * @param contentProperty     Nullable
+     * @param globalConfiguration NotNull
      * @return
      */
     @Override

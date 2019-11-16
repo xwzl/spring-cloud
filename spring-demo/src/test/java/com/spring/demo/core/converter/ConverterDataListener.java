@@ -37,12 +37,12 @@ public class ConverterDataListener extends AnalysisEventListener<ConverterData> 
         }
         Assert.assertEquals(data.getBooleanData(), Boolean.TRUE);
         Assert.assertEquals(data.getBigDecimal().doubleValue(), BigDecimal.ONE.doubleValue(), 0.0);
-        Assert.assertEquals((long)data.getLongData(), 1L);
-        Assert.assertEquals((long)data.getIntegerData(), 1L);
-        Assert.assertEquals((long)data.getShortData(), 1L);
-        Assert.assertEquals((long)data.getByteData(), 1L);
+        Assert.assertEquals((long) data.getLongData(), 1L);
+        Assert.assertEquals((long) data.getIntegerData(), 1L);
+        Assert.assertEquals((long) data.getShortData(), 1L);
+        Assert.assertEquals((long) data.getByteData(), 1L);
         Assert.assertEquals(data.getDoubleData(), 1.0, 0.0);
-        Assert.assertEquals(data.getFloatData(), (float)1.0, 0.0);
+        Assert.assertEquals(data.getFloatData(), (float) 1.0, 0.0);
         Assert.assertEquals(data.getString(), "测试");
         Assert.assertEquals(data.getCellData().getStringValue(), "自定义");
         LOGGER.debug("First row:{}", JSON.toJSONString(list.get(0)));

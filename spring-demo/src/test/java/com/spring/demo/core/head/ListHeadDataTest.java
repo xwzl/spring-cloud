@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author xuweizhi
  */
 public class ListHeadDataTest {

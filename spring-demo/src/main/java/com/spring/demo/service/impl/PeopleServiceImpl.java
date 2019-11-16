@@ -32,7 +32,7 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
 
     @Override
     public List<People> getAll() {
-        return peopleMapper.getALl();
+        return peopleMapper.getPeoples();
     }
 
     /**

@@ -30,7 +30,7 @@ public class BeanConfig {
     }
 
     /**
-     *  这个注解的作用随时当前项目有其它 bean ,则使用这个 bean ，没有就不使用吗？
+     * 这个注解的作用随时当前项目有其它 bean ,则使用这个 bean ，没有就不使用吗？
      */
     @Bean
     @ConditionalOnBean

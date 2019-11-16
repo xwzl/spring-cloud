@@ -13,7 +13,7 @@ import org.springframework.core.type.MethodMetadata;
  * 主要用于 Bean 容器的注入，返回为 false 表示不注入
  *
  * @author xuweizhi
- * @since  2019/04/22 14:01
+ * @since 2019/04/22 14:01
  */
 public class ConditionSample implements Condition {
 

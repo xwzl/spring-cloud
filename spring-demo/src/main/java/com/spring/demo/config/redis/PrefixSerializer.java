@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -53,5 +54,11 @@ public class PrefixSerializer implements RedisSerializer<String> {
         String key = keyPrefix + string;
         log.info("key:{},getBytes:{}", key, key.getBytes(charset));
         return (key == null ? null : key.getBytes(charset));
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        KEY_PREFIX.remove();
+        log.info("刪除本地线程变量");
     }
 }

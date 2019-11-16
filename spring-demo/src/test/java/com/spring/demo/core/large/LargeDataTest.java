@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 
 /**
- *
  * @author xuweizhi
  */
 public class LargeDataTest {
@@ -19,7 +18,7 @@ public class LargeDataTest {
     public void read() {
         long start = System.currentTimeMillis();
         EasyExcel.read(TestFileUtil.getPath() + "large" + File.separator + "large07.xlsx", LargeData.class,
-            new LargeDataListener()).headRowNumber(2).sheet().doRead();
+                new LargeDataListener()).headRowNumber(2).sheet().doRead();
         LOGGER.info("Large data total time spent:{}", System.currentTimeMillis() - start);
     }
 }

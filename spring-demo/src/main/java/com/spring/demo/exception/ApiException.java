@@ -1,7 +1,7 @@
 package com.spring.demo.exception;
 
-import com.spring.demo.enums.HttpStatusEnum;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 /**
  * ApiException 异常
@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 public class ApiException extends RuntimeException {
 
-    private Integer code = HttpStatusEnum.OK.value();
+    private Integer code = HttpStatus.OK.value();
 
     public ApiException() {
         super();
@@ -45,12 +45,12 @@ public class ApiException extends RuntimeException {
         this.code = code;
     }
 
-    public ApiException(HttpStatusEnum hs) {
+    public ApiException(HttpStatus hs) {
         super(hs.getReasonPhrase());
         this.code = hs.value();
     }
 
-    public ApiException(HttpStatusEnum hs, Throwable e) {
+    public ApiException(HttpStatus hs, Throwable e) {
         super(hs.getReasonPhrase(), e);
         this.code = hs.value();
     }

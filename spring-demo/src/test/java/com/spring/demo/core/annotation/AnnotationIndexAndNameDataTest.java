@@ -38,7 +38,7 @@ public class AnnotationIndexAndNameDataTest {
     private void readAndWrite(File file) {
         EasyExcel.write(file, AnnotationIndexAndNameData.class).sheet().doWrite(data());
         EasyExcel.read(file, AnnotationIndexAndNameData.class, new AnnotationIndexAndNameDataListener()).sheet()
-            .doRead();
+                .doRead();
     }
 
     private List<AnnotationIndexAndNameData> data() {

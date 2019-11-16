@@ -16,6 +16,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +35,6 @@ public class RestTemplateConfig {
      *
      * @return RestTemplate
      */
-    /*@Bean
-    @ConditionalOnClass
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }*/
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
@@ -63,11 +59,14 @@ public class RestTemplateConfig {
         return restTemplate;
     }
 
-    //@Bean 不用 fastJson 转换 SpringMVC 返回对象,JsonView 失效
+    /**
+     * Bean 不用 fastJson 转换 SpringMVC 返回对象,JsonView 失效
+     */
     public HttpMessageConverter fastJsonHttpMessageConverter() {
         //MediaType
         List<MediaType> mediaTypes = new ArrayList<>();
-        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        //mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        mediaTypes.add(new MediaType("application", "json", StandardCharsets.UTF_8));
 
         //FastJsonConfig
         FastJsonConfig fastJsonConfig = new FastJsonConfig();

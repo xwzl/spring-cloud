@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author xuweizhi
- * @since  2019-09-11
+ * @since 2019-09-11
  */
 @Configuration
 public class HttpProperties {

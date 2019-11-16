@@ -13,7 +13,7 @@ import java.util.concurrent.Future;
 public class AsyncService {
 
     @Async("simpleExecutor")
-    public Future<Integer> methodB() {
+    public Future<Integer> methodFirst() {
         try {
             Thread.sleep(1000);
         } catch (Exception e) {
@@ -23,7 +23,7 @@ public class AsyncService {
     }
 
     @Async("simpleExecutor")
-    public Future<Integer> methodC() {
+    public Future<Integer> methodSecond() {
         try {
             Thread.sleep(2000);
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class AsyncService {
     }
 
     @Async("simpleExecutor")
-    public Future<Integer> methodD() {
+    public Future<Integer> methodThree() {
         try {
             Thread.sleep(3000);
         } catch (Exception e) {

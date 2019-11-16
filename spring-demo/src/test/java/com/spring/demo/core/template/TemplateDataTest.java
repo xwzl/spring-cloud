@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author xuweizhi
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -39,15 +38,15 @@ public class TemplateDataTest {
 
     private void readAndWrite07(File file) {
         EasyExcel.write(file, TemplateData.class)
-            .withTemplate(TestFileUtil.readFile("template" + File.separator + "template07.xlsx")).sheet()
-            .doWrite(data());
+                .withTemplate(TestFileUtil.readFile("template" + File.separator + "template07.xlsx")).sheet()
+                .doWrite(data());
         EasyExcel.read(file, TemplateData.class, new TemplateDataListener()).headRowNumber(3).sheet().doRead();
     }
 
     private void readAndWrite03(File file) {
         EasyExcel.write(file, TemplateData.class)
-            .withTemplate(TestFileUtil.readFile("template" + File.separator + "template03.xls")).sheet()
-            .doWrite(data());
+                .withTemplate(TestFileUtil.readFile("template" + File.separator + "template03.xls")).sheet()
+                .doWrite(data());
         EasyExcel.read(file, TemplateData.class, new TemplateDataListener()).headRowNumber(3).sheet().doRead();
     }
 

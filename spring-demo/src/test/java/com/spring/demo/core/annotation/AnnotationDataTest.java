@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author xuweizhi
  */
 public class AnnotationDataTest {
@@ -38,7 +37,7 @@ public class AnnotationDataTest {
     private void readAndWrite(File file) throws Exception {
         EasyExcel.write().file(file).head(AnnotationData.class).sheet().doWrite(data());
         EasyExcel.read().file(file).head(AnnotationData.class).registerReadListener(new AnnotationDataListener())
-            .sheet().doRead();
+                .sheet().doRead();
     }
 
     private List<AnnotationData> data() throws Exception {

@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class ComputerModel{
+public class ComputerModel {
 
     @ExcelProperty(value = "编号", index = 1)
     private String assetNumber;

@@ -1,6 +1,6 @@
 package com.spring.demo.config.config;
 
-import com.spring.demo.config.async.ThreadPoolConfiguration;
+import com.spring.demo.config.async.DefaultThreadPoolConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
 @Configuration
 @PropertySource(value = {"classpath:async.properties"})
 @ConfigurationProperties(prefix = "simple")
-public class SimpleExecutorConfig extends ThreadPoolConfiguration {
+public class SimpleExecutorConfig extends DefaultThreadPoolConfiguration {
 
     @Override
     @Bean("simpleExecutor")

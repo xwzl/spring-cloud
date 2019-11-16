@@ -105,11 +105,11 @@ public class ReadTest {
         String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 然后千万别忘记 finish
         EasyExcel.read(fileName, ConverterData.class, new ConverterDataListener())
-            // 这里注意 我们也可以registerConverter来指定自定义转换器， 但是这个转换变成全局了， 所有java为string,excel为string的都会用这个转换器。
-            // 如果就想单个字段使用请使用@ExcelProperty 指定converter
-            // .registerConverter(new CustomStringStringConverter())
-            // 读取sheet
-            .sheet().doRead();
+                // 这里注意 我们也可以registerConverter来指定自定义转换器， 但是这个转换变成全局了， 所有java为string,excel为string的都会用这个转换器。
+                // 如果就想单个字段使用请使用@ExcelProperty 指定converter
+                // .registerConverter(new CustomStringStringConverter())
+                // 读取sheet
+                .sheet().doRead();
     }
 
     /**
@@ -128,8 +128,8 @@ public class ReadTest {
         String fileName = TestFileUtil.getPath() + "demo" + File.separator + "demo.xlsx";
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 然后千万别忘记 finish
         EasyExcel.read(fileName, DemoData.class, new DemoDataListener()).sheet()
-            // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
-            .headRowNumber(1).doRead();
+                // 这里可以设置1，因为头就是一行。如果多行头，可以设置其他值。不传入也可以，因为默认会根据DemoData 来解析，他没有指定头，也就是默认1行
+                .headRowNumber(1).doRead();
     }
 
     /**
@@ -175,7 +175,7 @@ public class ReadTest {
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 同步读取会自动finish
         List<Object> list = EasyExcel.read(fileName).head(DemoData.class).sheet().doReadSync();
         for (Object obj : list) {
-            DemoData data = (DemoData)obj;
+            DemoData data = (DemoData) obj;
             LOGGER.info("读取到数据:{}", JSON.toJSONString(data));
         }
 
@@ -183,7 +183,7 @@ public class ReadTest {
         list = EasyExcel.read(fileName).sheet().doReadSync();
         for (Object obj : list) {
             // 返回每条数据的键值对 表示所在的列 和所在列的值
-            Map<Integer, String> data = (Map<Integer, String>)obj;
+            Map<Integer, String> data = (Map<Integer, String>) obj;
             LOGGER.info("读取到数据:{}", JSON.toJSONString(data));
         }
     }

@@ -12,7 +12,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @since 2019-09-17
  */
 @Data
-public abstract class ThreadPoolConfiguration {
+public abstract class DefaultThreadPoolConfiguration {
 
     /**
      * 核心线程数：线程池创建时候初始化的线程数

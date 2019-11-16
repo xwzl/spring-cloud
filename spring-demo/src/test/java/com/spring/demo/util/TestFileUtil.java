@@ -13,7 +13,7 @@ public class TestFileUtil {
         return TestFileUtil.class.getResource("/").getPath();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println(TestFileUtil.class.getResource("/").getPath());
     }
 

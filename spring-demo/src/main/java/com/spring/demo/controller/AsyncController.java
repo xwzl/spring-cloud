@@ -44,7 +44,6 @@ public class AsyncController {
      * 缓冲队列
      */
     //private final RequestQueue queue;
-
     @Contract(pure = true)
     public AsyncController(AsyncTask asyncTask, AsyncService asyncService) {
         this.asyncTask = asyncTask;
@@ -98,9 +97,9 @@ public class AsyncController {
     @GetMapping("/responseWithCustomerThreadPool")
     public Integer test3() throws Exception {
         long start = System.currentTimeMillis();
-        Future<Integer> future1 = asyncService.methodB();
-        Future<Integer> future2 = asyncService.methodC();
-        Future<Integer> future3 = asyncService.methodD();
+        Future<Integer> future1 = asyncService.methodFirst();
+        Future<Integer> future2 = asyncService.methodSecond();
+        Future<Integer> future3 = asyncService.methodThree();
         Integer x = future1.get();
         Integer y = future2.get();
         Integer z = future3.get();

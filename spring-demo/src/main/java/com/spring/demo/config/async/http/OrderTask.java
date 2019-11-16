@@ -7,7 +7,7 @@ package com.spring.demo.config.async.http;
  */
 //@Component
 //@Slf4j
-public class OrderTask /*extends Thread */{
+public class OrderTask /*extends Thread */ {
 
     //@Autowired
     //private RequestQueue queue;

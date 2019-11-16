@@ -24,10 +24,10 @@ public class DemoCondition implements Condition {
         BeanDefinitionRegistry registry = conditionContext.getRegistry();
         String[] names = registry.getBeanDefinitionNames();
         for (String name : names) {
-            if (name.equals("bill")) {
+            if ("bill".equals(name)) {
                 return false;
             }
-            if (name.equals("bills")) {
+            if ("bills".equals(name)) {
                 return false;
             }
         }

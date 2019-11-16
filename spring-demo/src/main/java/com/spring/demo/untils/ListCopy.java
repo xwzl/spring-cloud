@@ -16,7 +16,7 @@ public class ListCopy<S, T> {
     /**
      * 复制 list
      *
-     * @param source 源对象
+     * @param source      源对象
      * @param targetClass 目标独享
      */
     public <T> List<T> copyList(List<S> source, Class<T> targetClass) throws NoSuchMethodException, IllegalAccessException, InstantiationException {

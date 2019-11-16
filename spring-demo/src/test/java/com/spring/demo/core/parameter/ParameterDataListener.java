@@ -26,9 +26,9 @@ public class ParameterDataListener extends AnalysisEventListener<ParameterData> 
     public void doAfterAllAnalysed(AnalysisContext context) {
         Assert.assertEquals(list.size(), 10);
         Assert.assertEquals(list.get(0).getName(), "姓名0");
-        Assert.assertEquals((int)(context.readSheetHolder().getSheetNo()), 0);
+        Assert.assertEquals((int) (context.readSheetHolder().getSheetNo()), 0);
         Assert.assertEquals(
-            context.readSheetHolder().getExcelReadHeadProperty().getHeadMap().get(0).getHeadNameList().get(0), "姓名");
+                context.readSheetHolder().getExcelReadHeadProperty().getHeadMap().get(0).getHeadNameList().get(0), "姓名");
         LOGGER.debug("First row:{}", JSON.toJSONString(list.get(0)));
     }
 }

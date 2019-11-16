@@ -53,7 +53,7 @@ public interface PeopleMapper extends BaseMapper<People> {
      * @return 用户
      */
     @Select("select * from people")
-    List<People> getALl();
+    List<People> getPeoples();
 
     /**
      * 删除

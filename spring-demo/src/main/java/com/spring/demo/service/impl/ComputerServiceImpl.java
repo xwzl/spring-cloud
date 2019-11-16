@@ -6,9 +6,7 @@ import com.spring.demo.service.ComputerService;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>
- *  服务实现类
- * </p>
+ * 服务实现类
  *
  * @author xuweizhi
  * @since 2019-08-05

@@ -69,8 +69,8 @@ public class EmpController {
         dateVO.setValue("我们是一个好孩子!");
         redisTemplate.opsForValue().set("haha11", dateVO);
         log.info(dateVO.toString());
-        DateVO dateVO1 = (DateVO) redisTemplate.opsForValue().get("haha11");
-        log.info(Objects.requireNonNull(dateVO1).toString());
+        DateVO data = (DateVO) redisTemplate.opsForValue().get("haha11");
+        log.info(Objects.requireNonNull(data).toString());
     }
 
     /**

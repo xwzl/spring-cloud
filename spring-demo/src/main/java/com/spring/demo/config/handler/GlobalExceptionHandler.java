@@ -1,6 +1,5 @@
 package com.spring.demo.config.handler;
 
-import com.spring.demo.enums.HttpStatusEnum;
 import com.spring.demo.exception.ApiException;
 import com.spring.demo.exception.ServiceException;
 import com.spring.demo.model.vos.ApiResult;
@@ -17,10 +16,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ValidationException;
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,8 +35,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResult<?> handlerException(Throwable e) {
         log.error(ExceptionUtils.getStackTrace(e));
-        return new ApiResult(HttpStatusEnum.INTERNAL_SERVER_ERROR.value(),
-                HttpStatusEnum.INTERNAL_SERVER_ERROR.getReasonPhrase());
+        return new ApiResult(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
     @ExceptionHandler(ApiException.class)

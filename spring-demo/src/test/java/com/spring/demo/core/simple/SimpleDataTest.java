@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author xuweizhi
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -56,7 +55,7 @@ public class SimpleDataTest {
     @Test
     public void t05SheetNameRead07() {
         EasyExcel.read(TestFileUtil.readFile("simple" + File.separator + "simple07.xlsx"), SimpleData.class,
-            new SimpleDataSheetNameListener()).sheet("simple").doRead();
+                new SimpleDataSheetNameListener()).sheet("simple").doRead();
     }
 
     private void synchronousRead(File file) {
@@ -64,7 +63,7 @@ public class SimpleDataTest {
         List<Object> list = EasyExcel.read(file).head(SimpleData.class).sheet().doReadSync();
         Assert.assertEquals(list.size(), 10);
         Assert.assertTrue(list.get(0) instanceof SimpleData);
-        Assert.assertEquals(((SimpleData)list.get(0)).getName(), "姓名0");
+        Assert.assertEquals(((SimpleData) list.get(0)).getName(), "姓名0");
     }
 
     private List<SimpleData> data() {

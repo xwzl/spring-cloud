@@ -9,11 +9,11 @@ import org.junit.Test;
 public class SwitchDemoTest {
 
     @Test
-    public void testEnum(){
+    public void testEnum() {
 
         SeasonEnum byCode = SeasonEnum.getByMessage("春天");
 
-        switch (byCode){
+        switch (byCode) {
             case SPRING:
                 System.out.println("spring");
                 break;
