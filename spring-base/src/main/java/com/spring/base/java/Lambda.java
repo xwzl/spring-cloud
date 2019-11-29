@@ -11,7 +11,7 @@ interface Print<T> {
  * <li>查看反编译文件：javap -p lambda.class</li>
  * <li>查看详细反比的文件：javap -p -c lambda.class</li>
  * </ul>
- *
+ * <p>
  * http://note.youdao.com/noteshare?id=14b16550e419d81618ce09b512a3b8b8&sub=187F7DEC9064485A89F7DF06252AEE72
  */
 public class Lambda {

@@ -22,7 +22,7 @@ import java.util.Random;
  * 二维码生成工具类
  *
  * @author user
- * @date 2018/12/5
+ * @since 2019/12/5
  */
 public class QrCodeUtils {
 

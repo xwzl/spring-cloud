@@ -190,7 +190,7 @@ public abstract class AbstractTemplateEngine {
     public void open() {
         String outDir = getConfigBuilder().getGlobalConfig().getOutputDir();
         if (getConfigBuilder().getGlobalConfig().isOpen()
-            && StringUtils.isNotEmpty(outDir)) {
+                && StringUtils.isNotEmpty(outDir)) {
             try {
                 String osName = System.getProperty("os.name");
                 if (osName != null) {

@@ -50,7 +50,7 @@ public class RabbitMqController {
      * 生产者 1 ,按照匹配规则"topic.demo" 匹配队列 queue1,"topic.#" 匹配队列 queue2 ，两者皆能接收消息
      */
     @GetMapping("demo1")
-    void demo1(){
+    void demo1() {
         amqpTemplate.convertAndSend("topicExchange", "topic.demo", "这是第一个demo！");
     }
 
@@ -58,7 +58,7 @@ public class RabbitMqController {
      * 生产者 2，按照匹配规则只有 queue2 能够消费信息
      */
     @GetMapping("demo2")
-    void demo2(){
+    void demo2() {
         amqpTemplate.convertAndSend("topicExchange", "topic.test", "这是第一个demo！");
     }
 

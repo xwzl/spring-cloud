@@ -2,7 +2,7 @@ package com.spring.base.guava;
 
 /**
  * @author xuweizhi
- * @date 2018/11/26 16:16
+ * @since 2019/11/26 16:16
  */
 public class Student {
 

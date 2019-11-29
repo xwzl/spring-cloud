@@ -19,6 +19,7 @@ import java.util.List;
 public class ConfigController {
     @Autowired
     MenuService menuService;
+
     @RequestMapping("/sysmenu")
     public List<Menu> sysmenu() {
         return menuService.getMenusByHrId();

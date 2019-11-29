@@ -18,7 +18,7 @@ import java.util.Optional;
 
 /**
  * @author xuweizhi
- * @since  2019/04/25 16:42
+ * @since 2019/04/25 16:42
  */
 @Api
 @RestController
@@ -75,7 +75,7 @@ public class ElasticController {
     }
 
     @GetMapping("saveArticleIndex")
-    public void saveArticleIndex(){
+    public void saveArticleIndex() {
         Author author = new Author();
         author.setId(1L);
         author.setName("slp");
@@ -99,13 +99,13 @@ public class ElasticController {
     }
 
     @GetMapping("testSearch")
-    public void testSearch(){
+    public void testSearch() {
         //搜索关键字
-        String queryString="spring";
-        QueryStringQueryBuilder builder=new QueryStringQueryBuilder(queryString);
+        String queryString = "spring";
+        QueryStringQueryBuilder builder = new QueryStringQueryBuilder(queryString);
         Iterable<Article> searchResult = articleSearchRepository.search(builder);
         Iterator<Article> iterator = searchResult.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next().getAbstracts());
         }
     }

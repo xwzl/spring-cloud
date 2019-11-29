@@ -52,7 +52,6 @@ public class RedisUtil {
 
     /**
      * 非切片客户端链接 同步获取非切片Jedis实例
-     *
      */
     @SuppressWarnings("deprecation")
     public synchronized Jedis getJedis() {

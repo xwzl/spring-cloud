@@ -30,7 +30,6 @@ public class RedisService {
     public static final long NOT_EXPIRE = -1;
 
 
-
     private final RedisTemplate<String, Object> redisTemplate;
 
     @Contract(pure = true)
@@ -39,15 +38,12 @@ public class RedisService {
     }
 
 
-
-
     public boolean existsKey(String key) {
         return redisTemplate.hasKey(key);
     }
 
     /**
      * 重名名key，如果newKey已经存在，则newKey的原值被覆盖
-     *
      */
     public void renameKey(String oldKey, String newKey) {
         redisTemplate.rename(oldKey, newKey);
@@ -55,7 +51,6 @@ public class RedisService {
 
     /**
      * newKey不存在时才重命名
-     *
      */
     public boolean renameKeyNotExist(String oldKey, String newKey) {
         return redisTemplate.renameIfAbsent(oldKey, newKey);
@@ -80,7 +75,6 @@ public class RedisService {
 
     /**
      * 删除Key的集合
-     *
      */
     public void deleteKey(Collection<String> keys) {
         Set<String> kSet = keys.stream().map(k -> k).collect(Collectors.toSet());
@@ -89,7 +83,6 @@ public class RedisService {
 
     /**
      * 设置key的生命周期
-     *
      */
     public void expireKey(String key, long time, TimeUnit timeUnit) {
         redisTemplate.expire(key, time, timeUnit);

@@ -4,7 +4,7 @@ import com.java.boot.SpringBootsTest;
 
 /**
  * @author xuweizhi
- * @date 2018/11/14 13:04
+ * @since 2019/11/14 13:04
  */
 public class ListRedisTest extends SpringBootsTest {
 

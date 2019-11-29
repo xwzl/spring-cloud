@@ -28,19 +28,19 @@ public class SysMsgService {
         int result = sysMsgMapper.sendMsg(msg);
         List<Hr> allHr = hrService.getAllHr();
         int result2 = sysMsgMapper.addMsg2AllHr(allHr, msg.getId());
-        return result2==allHr.size();
+        return result2 == allHr.size();
     }
 
     public List<SysMsg> getSysMsgByPage(Integer page, Integer size) {
         int start = (page - 1) * size;
-        return sysMsgMapper.getSysMsg(start,size, HrUtils.getCurrentHr().getId());
+        return sysMsgMapper.getSysMsg(start, size, HrUtils.getCurrentHr().getId());
     }
 
     public boolean markRead(Long flag) {
         if (flag != -1) {
-            return sysMsgMapper.markRead(flag,HrUtils.getCurrentHr().getId())==1;
+            return sysMsgMapper.markRead(flag, HrUtils.getCurrentHr().getId()) == 1;
         }
-        sysMsgMapper.markRead(flag,HrUtils.getCurrentHr().getId());
+        sysMsgMapper.markRead(flag, HrUtils.getCurrentHr().getId());
         return true;
     }
 }

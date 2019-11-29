@@ -23,9 +23,9 @@ public class BinarySearch {
         }
         int middle = (end + start) / 2;
         if (list.get(middle) > value) {
-            search(list, start, middle-1, value);
+            search(list, start, middle - 1, value);
         } else if (list.get(middle) < value) {
-            search(list, middle+1, end, value);
+            search(list, middle + 1, end, value);
         } else {
             System.out.println("找到值" + value);
         }

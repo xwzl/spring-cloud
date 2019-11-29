@@ -13,6 +13,7 @@ public class PersonnelController {
     public String hello() {
         return "hello";
     }
+
     @RequestMapping("/emp/hello")
     public String helloEmp() {
         return "hello emp";

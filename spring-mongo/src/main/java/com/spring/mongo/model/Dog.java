@@ -11,7 +11,7 @@ import java.io.Serializable;
  * 注释此类将被映射到数据库的一个集合（collection为集合名称）
  *
  * @author xuweizhi
- * @since  2019-8-28
+ * @since 2019-8-28
  */
 @Document(collection = "ex_dog")
 public class Dog implements Serializable {

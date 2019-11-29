@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 @Component
 public class AuthenticationAccessDeniedHandler implements AccessDeniedHandler {
 
-   @Override
+    @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse resp,
                        AccessDeniedException e) throws IOException {
         resp.setStatus(HttpServletResponse.SC_FORBIDDEN);

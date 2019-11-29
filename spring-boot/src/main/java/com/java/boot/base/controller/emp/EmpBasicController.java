@@ -101,10 +101,10 @@ public class EmpBasicController {
             Long departmentId, String beginDateScope) {
         Map<String, Object> map = new HashMap<>();
         List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords,politicId, nationId, posId, jobLevelId, engageForm,
+                keywords, politicId, nationId, posId, jobLevelId, engageForm,
                 departmentId, beginDateScope);
         Long count = empService.getCountByKeywords(keywords, politicId, nationId,
-                posId,jobLevelId, engageForm, departmentId, beginDateScope);
+                posId, jobLevelId, engageForm, departmentId, beginDateScope);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;

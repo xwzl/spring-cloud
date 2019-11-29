@@ -16,6 +16,7 @@ import java.util.List;
 public class DepartmentService {
     @Autowired
     DepartmentMapper departmentMapper;
+
     public int addDep(Department department) {
         department.setEnabled(true);
         departmentMapper.addDep(department);

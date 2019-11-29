@@ -12,8 +12,19 @@
     <artifactId>spring-elastic</artifactId>
     <version>1.0.0</version>
     <name>spring-elastic</name>
+    <properties>
+        <!-- 版本类型异常问题: long totalHits = response.getHits().getTotalHits(); -->
+        <elasticsearch.version>6.8.0</elasticsearch.version>
+        <spring-data-elasticsearch.version>3.2.0.RC1</spring-data-elasticsearch.version>
+        <x-pack-transport.version>5.6.1</x-pack-transport.version>
+    </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>spring-model</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -25,18 +36,26 @@
             <version>1.9.5</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastJson.version}</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>${spring-data-elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>x-pack-transport</artifactId>
+            <version>5.6.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${common-lang.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
     </dependencies>
     <build>

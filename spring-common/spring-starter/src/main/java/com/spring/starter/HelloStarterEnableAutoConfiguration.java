@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * HelloService 类路径出现在项目上才那个啥
  *
  * @author pengfei.li
- * @date 2018/11/1
+ * @since 2019/11/1
  */
 @Configuration
 @ConditionalOnClass(HelloService.class)

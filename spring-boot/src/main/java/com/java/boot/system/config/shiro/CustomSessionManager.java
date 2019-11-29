@@ -2,12 +2,13 @@ package com.java.boot.system.config.shiro;
 
 /**
  * 设置session失效时间
- *
+ * <p>
  * shiro session默认失效时间是30min，我们在自定义的sessionManager的构造函数中设置失效时间为其他值
+ *
  * @author xuweizhi
  * @since 2019/04/29 16:13
  */
-public class CustomSessionManager /*extends DefaultWebSessionManager */{
+public class CustomSessionManager /*extends DefaultWebSessionManager */ {
 
    /* private static final Logger logger = LoggerFactory.getLogger(CustomSessionManager.class);
 

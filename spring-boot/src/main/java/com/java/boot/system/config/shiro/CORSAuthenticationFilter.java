@@ -12,7 +12,7 @@ package com.java.boot.system.config.shiro;
  * @author xuweizhi
  * @since 2019/04/29 16:13
  */
-public class CORSAuthenticationFilter /*extends FormAuthenticationFilter */{
+public class CORSAuthenticationFilter /*extends FormAuthenticationFilter */ {
 
     //private static final Logger logger = LoggerFactory.getLogger(CORSAuthenticationFilter.class);
     //

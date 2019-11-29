@@ -16,6 +16,7 @@ import java.util.List;
 public class SalaryService {
     @Autowired
     SalaryMapper salaryMapper;
+
     public int addSalary(Salary salary) {
         return salaryMapper.addSalary(salary);
     }
@@ -35,6 +36,6 @@ public class SalaryService {
 
     public int updateEmpSalary(Integer sid, Long eid) {
         salaryMapper.deleteSalaryByEid(eid);
-        return salaryMapper.addSidAndEid(sid,eid);
+        return salaryMapper.addSidAndEid(sid, eid);
     }
 }

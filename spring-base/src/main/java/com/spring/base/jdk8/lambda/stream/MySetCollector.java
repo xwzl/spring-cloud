@@ -17,7 +17,7 @@ import java.util.stream.Collector;
  * R -> Set<T> 返回的结果容器类型
  *
  * @author xuweizhi
- * @date 2018/11/30 10:40
+ * @since 2019/11/30 10:40
  */
 @Slf4j
 public class MySetCollector<T> implements Collector<T, Set<T>, Set<T>> {

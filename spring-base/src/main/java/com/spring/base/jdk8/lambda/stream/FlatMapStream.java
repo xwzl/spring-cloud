@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 /**
  * @author xuweizhi
- * @date 2018/11/28 9:14
+ * @since 2019/11/28 9:14
  */
 public class FlatMapStream {
 

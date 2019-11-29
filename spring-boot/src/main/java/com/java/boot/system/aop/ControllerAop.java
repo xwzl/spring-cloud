@@ -2,7 +2,7 @@ package com.java.boot.system.aop;
 
 /**
  * @author xuweizhi
- * @since  2018/11/13 16:38
+ * @since 2018/11/13 16:38
  */
 //@Aspect
 //@Component

@@ -36,7 +36,7 @@ public class SqliteTypeConvert implements ITypeConvert {
             return DbColumnType.BOOLEAN;
         } else if (t.contains("int")) {
             return DbColumnType.INTEGER;
-        } else if (t.contains("text") || t.contains("char") || t.contains("enum") ) {
+        } else if (t.contains("text") || t.contains("char") || t.contains("enum")) {
             return DbColumnType.STRING;
         } else if (t.contains("decimal") || t.contains("numeric")) {
             return DbColumnType.BIG_DECIMAL;

@@ -21,7 +21,7 @@ public class Item {
     @Id
     private Long id;
 
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    @Field(type = FieldType.Keyword)
     private String title;
 
     @Field(type = FieldType.Keyword)

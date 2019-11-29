@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class ResultVO<T> extends BaseResultVO {
 

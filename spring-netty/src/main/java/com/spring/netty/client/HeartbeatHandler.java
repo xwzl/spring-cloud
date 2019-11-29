@@ -53,7 +53,7 @@ public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.error("捕获的异常：{}",cause.getMessage());
+        log.error("捕获的异常：{}", cause.getMessage());
         ctx.channel().close();
     }
 }

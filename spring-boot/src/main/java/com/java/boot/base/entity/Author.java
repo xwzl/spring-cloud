@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 /**
  * @author xuweizhi
- * @since  2019-5-8 20:12
+ * @since 2019-5-8 20:12
  */
-public class Author  implements Serializable {
+public class Author implements Serializable {
 
     private static final long serialVersionUID = 7062191789697170927L;
 

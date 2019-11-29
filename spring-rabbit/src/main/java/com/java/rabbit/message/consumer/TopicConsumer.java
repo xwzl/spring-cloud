@@ -13,16 +13,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TopicConsumer {
 
-    @RabbitListener(queues =  "queue1")
+    @RabbitListener(queues = "queue1")
     @RabbitHandler
-    public void queue1(String msg){
-        log.info("queue1"+msg);
+    public void queue1(String msg) {
+        log.info("queue1" + msg);
     }
 
-    @RabbitListener(queues =  "queue2")
+    @RabbitListener(queues = "queue2")
     @RabbitHandler
-    public void queue2(String msg){
-        log.info("queue2"+msg);
+    public void queue2(String msg) {
+        log.info("queue2" + msg);
     }
 
 }

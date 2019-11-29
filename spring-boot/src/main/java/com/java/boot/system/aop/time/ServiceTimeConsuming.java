@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author xuweizhi
- * @date 2018/11/15 8:59
+ * @since 2019/11/15 8:59
  */
 @Component
 @Aspect
@@ -30,14 +30,14 @@ public class ServiceTimeConsuming {
     @Before("@annotation(ss)")
     public void before(JoinPoint joinPoint, ServiceStatistics ss) throws NoSuchMethodException {
         threadLocal.set(System.currentTimeMillis());
-         //UrlControllerAop.otherLogPrint(joinPoint);
+        //UrlControllerAop.otherLogPrint(joinPoint);
     }
 
     @AfterReturning("@annotation(ss)")
-    public void afterReturning(JoinPoint joinPoint,ServiceStatistics ss) {
+    public void afterReturning(JoinPoint joinPoint, ServiceStatistics ss) {
         String className = joinPoint.getTarget().getClass().getInterfaces()[0].getSimpleName();
-        String methodName =  joinPoint.getSignature().getName() + "  耗时" + ((System.currentTimeMillis() - threadLocal.get())) + "ms";
-        log.info("{} 执行方法 {}", className,methodName);
+        String methodName = joinPoint.getSignature().getName() + "  耗时" + ((System.currentTimeMillis() - threadLocal.get())) + "ms";
+        log.info("{} 执行方法 {}", className, methodName);
         threadLocal.remove();
     }
 

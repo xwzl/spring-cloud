@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * https://www.jianshu.com/p/68a75c093023
  *
  * @author xuweizhi
- * @since  2019/04/22 14:39
+ * @since 2019/04/22 14:39
  */
 @Configuration
 public class AssertConfigure {

@@ -13,6 +13,6 @@ public class MessageBaseTest {
                 .setCmd(MessageBase.Message.CommandType.NORMAL)
                 .setRequestId(UUID.randomUUID().toString())
                 .setContent("我们").build();
-        System.out.println("message: "+message.getContent());
+        System.out.println("message: " + message.getContent());
     }
 }

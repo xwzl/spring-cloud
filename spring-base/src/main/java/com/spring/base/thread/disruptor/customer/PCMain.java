@@ -11,7 +11,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class PCMain {
 
-	public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
         BlockingQueue<PcData> queue = new LinkedBlockingQueue<PcData>(10);
         Producer producer1 = new Producer(queue);

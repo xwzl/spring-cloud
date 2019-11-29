@@ -2,7 +2,7 @@ package com.java.boot.base.model;
 
 /**
  * @author xuweizhi
- * @since  2019/04/22 14:38
+ * @since 2019/04/22 14:38
  */
 public class Goods {
 

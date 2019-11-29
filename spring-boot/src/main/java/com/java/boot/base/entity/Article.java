@@ -7,16 +7,16 @@ import java.io.Serializable;
 
 /**
  * Document注解里面的几个属性，类比mysql的话是这样：
- *    index –> DB
- *    type –> Table
- *    Document –> row
- *
+ * index –> DB
+ * type –> Table
+ * Document –> row
+ * <p>
  * Id注解加上后，在Elasticsearch里相应于该列就是主键了，在查询时就可以直接用主键查询，后面再看。
  * 其实和mysql非常类似，基本就是一个数据库。
  *
  * @author xuweizhi
  */
-@Document(indexName = "project",type = "article",indexStoreType = "fs",shards = 5,replicas = 1,refreshInterval = "-1")
+@Document(indexName = "project", type = "article", indexStoreType = "fs", shards = 5, replicas = 1, refreshInterval = "-1")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = -1430273295535121790L;

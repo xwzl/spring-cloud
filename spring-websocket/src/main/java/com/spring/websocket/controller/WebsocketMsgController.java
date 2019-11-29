@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  * @author hzb
- * @date 2018/09/30
+ * @since 2019/09/30
  */
 @Controller
 @EnableScheduling
@@ -31,6 +31,7 @@ public class WebsocketMsgController {
 
     /**
      * index.html将message发送给后端，后端再将消息重组后发送到/topicTest/web-to-server-to-web
+     *
      * @param message
      * @return
      * @throws Exception
@@ -39,11 +40,12 @@ public class WebsocketMsgController {
     @SendTo("/topicTest/web-to-server-to-web")
     public String send(String message) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return "服务器将原消息返回: "+df.format(new Date())+" :" + message;
+        return "服务器将原消息返回: " + df.format(new Date()) + " :" + message;
     }
 
     /**
      * 最基本的服务器端主动推送消息给前端
+     *
      * @return
      * @throws Exception
      */
@@ -57,6 +59,7 @@ public class WebsocketMsgController {
 
     /**
      * 以下面这种方式发送消息，前端订阅消息的方式为： stompClient.subscribe('/userTest/hzb/info'
+     *
      * @return
      * @throws Exception
      */
@@ -66,7 +69,7 @@ public class WebsocketMsgController {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //这里虽然没有指定发送前缀为/userTest，但是在WebsocketConfig.java中设置了config.setUserDestinationPrefix("/userTest")，
         //否则默认为/user
-        messagingTemplate.convertAndSendToUser("hzb","/info", df.format(new Date()));
+        messagingTemplate.convertAndSendToUser("hzb", "/info", df.format(new Date()));
         return "serverTimeToUser";
     }
 }

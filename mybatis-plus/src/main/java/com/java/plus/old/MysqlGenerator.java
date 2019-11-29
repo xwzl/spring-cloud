@@ -42,7 +42,7 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        setDataSourece(dsc, "192.168.86.21:3306/wtf","root","158262751");
+        setDataSourece(dsc, "192.168.86.21:3306/wtf", "root", "158262751");
         mpg.setDataSource(dsc);
 
         // 包配置

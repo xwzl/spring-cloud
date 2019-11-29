@@ -133,7 +133,7 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
     }
 
     @Bean(name = "redisGenericTemplate")
-    @SuppressWarnings({"unchecked","rawtypes"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public <T> RedisTemplate<String, T> redisGenericTemplate(RedisConnectionFactory rcf) {
 
         RedisTemplate<String, T> redisTemplate = new RedisTemplate<>();
@@ -151,9 +151,11 @@ public class RedisCacheConfigure extends CachingConfigurerSupport {
         return redisTemplate;
     }
 
-    /**配置其他类型的redisTemplate***/
+    /**
+     * 配置其他类型的redisTemplate
+     ***/
     @Bean
-    @SuppressWarnings({"unchecked","rawtypes"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public RedisTemplate<Object, Object> redisTemplateKeyObject(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);

@@ -56,7 +56,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<Object>(resultVO, status);
     }*/
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {

@@ -2,6 +2,7 @@ package com.java.elastic.controller;
 
 import com.java.elastic.entity.Item;
 import com.java.elastic.repository.ItemRepository;
+import io.swagger.annotations.Api;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
@@ -29,6 +30,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019/07/16 15:55
  */
+@Api
 @RestController
 @RequestMapping("/elastic")
 public class ElasticController {
@@ -152,10 +154,10 @@ public class ElasticController {
     }
 
     /**
-     *分页查询
+     * 分页查询
      */
     @GetMapping("/final5")
-    public void searchByPage(){
+    public void searchByPage() {
         // 构建查询条件
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 添加基本分词查询
@@ -163,7 +165,7 @@ public class ElasticController {
         // 分页：
         int page = 0;
         int size = 2;
-        queryBuilder.withPageable(PageRequest.of(page,size));
+        queryBuilder.withPageable(PageRequest.of(page, size));
 
         // 搜索，获取结果
         Page<Item> items = this.itemRepository.search(queryBuilder.build());
@@ -186,7 +188,7 @@ public class ElasticController {
      * 排序查询
      */
     @GetMapping("/final6")
-    public void searchAndSort(){
+    public void searchAndSort() {
         // 构建查询条件
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 添加基本分词查询
@@ -210,7 +212,7 @@ public class ElasticController {
      * 按照品牌brand进行分组
      */
     @GetMapping("/final7")
-    public void testAgg(){
+    public void testAgg() {
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 不查询任何结果
         queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{""}, null));
@@ -239,7 +241,7 @@ public class ElasticController {
      * 嵌套聚合，求平均值
      */
     @GetMapping("/final8")
-    public void testSubAgg(){
+    public void testSubAgg() {
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
         // 不查询任何结果
         queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{""}, null));

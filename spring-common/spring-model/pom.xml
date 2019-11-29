@@ -14,6 +14,26 @@
     <name>spring-model</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagge.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger-ui-boot.version}</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

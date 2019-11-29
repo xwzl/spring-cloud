@@ -40,7 +40,7 @@ public class DB2TypeConvert implements ITypeConvert {
         } else if (t.contains("int")) {
             return DbColumnType.INTEGER;
         } else if (t.contains("date") || t.contains("time")
-            || t.contains("year") || t.contains("timestamp")) {
+                || t.contains("year") || t.contains("timestamp")) {
             return DbColumnType.DATE;
         } else if (t.contains("text")) {
             return DbColumnType.STRING;

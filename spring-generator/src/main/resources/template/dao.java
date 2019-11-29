@@ -13,10 +13,16 @@ import ${superMapperClassPackage};
  * @author ${author}
  * @since ${date}
  */
-#if(${kotlin})
-interface ${table.mapperName} : ${superMapperClass}<${entity}>
-#else
-public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+        #if(${kotlin})
 
-}
-#end
+interface $ {
+    table.mapperName
+} :${superMapperClass}<${entity}>
+        #else
+
+public interface $ {
+    table.mapperName
+} extends ${superMapperClass}<${entity}>{
+
+        }
+        #end

@@ -80,8 +80,8 @@ public enum NamingStrategy {
             // 判断是否有匹配的前缀，然后截取前缀
             // 删除前缀
             return Arrays.stream(prefix).filter(pf -> name.toLowerCase()
-                .matches(StringPool.HAT + pf.toLowerCase() + ".*"))
-                .findFirst().map(pf -> name.substring(pf.length())).orElse(name);
+                    .matches(StringPool.HAT + pf.toLowerCase() + ".*"))
+                    .findFirst().map(pf -> name.substring(pf.length())).orElse(name);
         }
         return name;
     }

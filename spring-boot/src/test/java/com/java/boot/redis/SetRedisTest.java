@@ -2,7 +2,7 @@ package com.java.boot.redis;
 
 /**
  * @author xuweizhi
- * @date 2018/11/14 13:04
+ * @since 2019/11/14 13:04
  */
 //@Service
 public class SetRedisTest {

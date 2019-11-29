@@ -49,6 +49,7 @@ public class Department {
     public void setChildren(List<Department> children) {
         this.children = children;
     }
+
     @JsonIgnore
     public Integer getResult() {
         return result;

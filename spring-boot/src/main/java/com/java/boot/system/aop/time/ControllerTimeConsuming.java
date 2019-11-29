@@ -42,7 +42,7 @@ public class ControllerTimeConsuming {
 
     @AfterReturning("@annotation(cs)")
     public void afterReturning(JoinPoint joinPoint, ControllerStatistics cs) {
-        log.info(joinPoint.getTarget().getClass().getSimpleName()+" 执行方法 "+joinPoint.getSignature().getName()+ " 耗时 {}", ((System.currentTimeMillis() - threadLocal.get())) + "ms");
+        log.info(joinPoint.getTarget().getClass().getSimpleName() + " 执行方法 " + joinPoint.getSignature().getName() + " 耗时 {}", ((System.currentTimeMillis() - threadLocal.get())) + "ms");
         threadLocal.remove();
     }
 

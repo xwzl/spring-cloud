@@ -23,7 +23,7 @@ public class CountDownLatchDemo implements Runnable {
         try {
             //模拟检查任务
             Thread.sleep(new Random().nextInt(10) * 1000);
-            System.out.println("check complete"+ Thread.currentThread().getName());
+            System.out.println("check complete" + Thread.currentThread().getName());
             // 这里进行加一
             end.countDown();
         } catch (InterruptedException e) {

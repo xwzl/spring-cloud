@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * 的引用，会报错。
  *
  * @author xuweizhi
- * @since  2019/04/22 14:07
+ * @since 2019/04/22 14:07
  */
 @Configuration
 @Conditional(ConditionSample.class)

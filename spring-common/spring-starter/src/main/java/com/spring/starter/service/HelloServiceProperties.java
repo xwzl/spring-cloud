@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author pengfei.li
- * @date 2018/11/1
+ * @since 2019/11/1
  */
 @ConfigurationProperties("hello.service")
 public class HelloServiceProperties {

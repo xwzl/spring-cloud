@@ -37,12 +37,13 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  *     <li>store：是否存储，布尔类型，默认是false</li>
  *     <li>analyzer：分词器名称，这里的ik_max_word即使用ik分词器</li>
  * </ul>
+ *
  * @author xuweizhi
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "item",type = "docs", shards = 1, replicas = 0)
+@Document(indexName = "item", type = "docs", shards = 1, replicas = 0)
 public class Item {
 
     /**

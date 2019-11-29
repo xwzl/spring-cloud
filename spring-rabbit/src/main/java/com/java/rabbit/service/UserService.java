@@ -5,7 +5,7 @@ import com.java.rabbit.service.BaseService;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author xuweizhi

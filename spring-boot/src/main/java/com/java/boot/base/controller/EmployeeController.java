@@ -13,8 +13,9 @@ public class EmployeeController {
     public String basic() {
         return "basic";
     }
+
     @RequestMapping("/")
-    public String  hello() {
+    public String hello() {
         return "Hello";
     }
 }

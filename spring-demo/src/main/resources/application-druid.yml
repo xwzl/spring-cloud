@@ -1,9 +1,9 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://47.105.218.58:3306/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    url: jdbc:mysql://47.105.218.58:7777/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
     username: root
-    password: 158262751
+    password: root
     # 不清楚要放在这个地方
     filters: stat,wall,log4j2
     #连接池配置(通常来说，只需要修改initialSize、minIdle、maxActive

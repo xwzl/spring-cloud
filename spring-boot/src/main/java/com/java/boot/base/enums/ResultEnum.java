@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Contract;
 
 /**
  * @author xuweizhi
- * @since  2019/04/24 14:36
+ * @since 2019/04/24 14:36
  */
 public enum ResultEnum {
 

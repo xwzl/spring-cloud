@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 /**
  * @author xuweizhi
- * @date 2018/11/30 14:38
+ * @since 2019/11/30 14:38
  */
 public class CollectorResourceRead {
 

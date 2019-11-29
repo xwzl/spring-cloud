@@ -66,6 +66,7 @@ public class HrService implements UserDetailsService {
     public List<Hr> getAllHrExceptAdmin() {
         return hrMapper.getAllHr(HrUtils.getCurrentHr().getId());
     }
+
     public List<Hr> getAllHr() {
         return hrMapper.getAllHr(null);
     }

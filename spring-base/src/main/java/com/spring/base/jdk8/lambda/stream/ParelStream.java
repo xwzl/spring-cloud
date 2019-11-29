@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author XuWeiZhi
- * @date 2018-11-28 00:02 星期三 Java8
+ * @since 2019-11-28 00:02 星期三 Java8
  **/
 public class ParelStream {
 

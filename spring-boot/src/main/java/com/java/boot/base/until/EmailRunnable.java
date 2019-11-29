@@ -24,6 +24,7 @@ public class EmailRunnable implements Runnable {
         this.javaMailSender = javaMailSender;
         this.templateEngine = templateEngine;
     }
+
     @Override
     public void run() {
         try {

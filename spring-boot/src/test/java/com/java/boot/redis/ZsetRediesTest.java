@@ -5,9 +5,9 @@ import com.java.boot.SpringBootsTest;
 
 /**
  * @author xuweizhi
- * @date 2018/11/14 13:49
+ * @since 2019/11/14 13:49
  */
-public class ZsetRediesTest  extends SpringBootsTest {
+public class ZsetRediesTest extends SpringBootsTest {
 
     //@Autowired
     //private RedisTemplate<String, Object> redisTemplate;
@@ -89,12 +89,12 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//	/*
-	//		value:d score:-1.0
-	//		value:a score:1.0
-	//		value:c score:2.0
-	//		value:b score:3.0
-	//	 */
+    //	/*
+    //		value:d score:-1.0
+    //		value:a score:1.0
+    //		value:c score:2.0
+    //		value:b score:3.0
+    //	 */
     //    }
     //}
     //
@@ -128,10 +128,10 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//	/*
-	//		value:a score:1.0
-	//		value:c score:2.0
-	//	 */
+    //	/*
+    //		value:a score:1.0
+    //		value:c score:2.0
+    //	 */
     //    }
     //    //从开始到结束的范围内获取一组元组，其中分数在分类集中的最小值和最大值之间。
     //    Set<ZSetOperations.TypedTuple<Object>> rangeByScoreWithScores2 = opsForZSet.rangeByScoreWithScores("fan8", 1, 2, 1, 2);
@@ -139,9 +139,9 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator2.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator2.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//	/*
-	//		value:c score:2.0
-	//	 */
+    //	/*
+    //		value:c score:2.0
+    //	 */
     //    }
     //}
     //
@@ -161,12 +161,12 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:b score:3.0
-	//			value:c score:2.0
-	//			value:a score:1.0
-	//			value:d score:-1.0
-	//		 */
+    //		/*
+    //			value:b score:3.0
+    //			value:c score:2.0
+    //			value:a score:1.0
+    //			value:d score:-1.0
+    //		 */
     //    }
     //    //从高到低的排序集中获取分数在最小和最大值之间的元素。
     //    Set<Object> reverseRangeByScore = opsForZSet.reverseRangeByScore("fan9", -1, 2);
@@ -180,11 +180,11 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator2.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator2.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:c score:2.0
-	//			value:a score:1.0
-	//			value:d score:-1.0
-	//		 */
+    //		/*
+    //			value:c score:2.0
+    //			value:a score:1.0
+    //			value:d score:-1.0
+    //		 */
     //    }
     //    //从开始到结束的范围内获取一组元组，其中分数在最小和最大之间，从排序集排序高 - >低。
     //    Set<ZSetOperations.TypedTuple<Object>> reverseRangeByScoreWithScores2 = opsForZSet.reverseRangeByScoreWithScores("fan9", -1, 2, 1, 3);
@@ -192,10 +192,10 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator3.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator3.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:a score:1.0
-	//			value:d score:-1.0
-	//		 */
+    //		/*
+    //			value:a score:1.0
+    //			value:d score:-1.0
+    //		 */
     //    }
     //
     //}
@@ -288,14 +288,14 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:f score:-1.0
-	//			value:a score:1.0
-	//			value:d score:2.0
-	//			value:e score:2.0
-	//			value:b score:3.0
-	//			value:c score:3.0	可以看出，score相加了
-	//		 */
+    //		/*
+    //			value:f score:-1.0
+    //			value:a score:1.0
+    //			value:d score:2.0
+    //			value:e score:2.0
+    //			value:b score:3.0
+    //			value:c score:3.0	可以看出，score相加了
+    //		 */
     //    }
     //    opsForZSet.add("fan17", "e", 5);
     //    opsForZSet.add("fan17", "f", -7);
@@ -310,16 +310,16 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator2.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator2.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:h score:-11.0
-	//			value:c score:-8.0
-	//			value:f score:-8.0
-	//			value:a score:1.0
-	//			value:d score:2.0
-	//			value:b score:3.0
-	//			value:e score:7.0
-	//			value:g score:31.0
-	//		 */
+    //		/*
+    //			value:h score:-11.0
+    //			value:c score:-8.0
+    //			value:f score:-8.0
+    //			value:a score:1.0
+    //			value:d score:2.0
+    //			value:b score:3.0
+    //			value:e score:7.0
+    //			value:g score:31.0
+    //		 */
     //    }
     //}
     //
@@ -353,10 +353,10 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:d score:2.0
-	//			value:c score:3.0
-	//		 */
+    //		/*
+    //			value:d score:2.0
+    //			value:c score:3.0
+    //		 */
     //    }
     //    //计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中
     //    Long intersectAndStore2 = opsForZSet.intersectAndStore("fan19", Arrays.asList("fan20", "fan21"), "fan23");
@@ -366,9 +366,9 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (iterator2.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> next = iterator2.next();
     //        System.out.println("value:" + next.getValue() + " score:" + next.getScore());
-	//		/*
-	//			value:c score:12.0
-	//		 */
+    //		/*
+    //			value:c score:12.0
+    //		 */
     //    }
     //}
     //
@@ -384,12 +384,12 @@ public class ZsetRediesTest  extends SpringBootsTest {
     //    while (scan.hasNext()) {
     //        ZSetOperations.TypedTuple<Object> item = scan.next();
     //        System.out.println(item.getValue() + ":" + item.getScore());
-	//		/*
-	//			d:-1.0
-	//			a:1.0
-	//			c:2.0
-	//			b:3.0
-	//		 */
+    //		/*
+    //			d:-1.0
+    //			a:1.0
+    //			c:2.0
+    //			b:3.0
+    //		 */
     //    }
     //}
     //

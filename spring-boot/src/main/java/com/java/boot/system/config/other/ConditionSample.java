@@ -12,7 +12,7 @@ import org.springframework.core.type.MethodMetadata;
  * 主要用于 Bean 容器的注入，返回为 false 表示不注入
  *
  * @author xuweizhi
- * @since  2019/04/22 14:01
+ * @since 2019/04/22 14:01
  */
 public class ConditionSample implements Condition {
 
@@ -40,7 +40,6 @@ public class ConditionSample implements Condition {
         MethodMetadata methodMetadata = (MethodMetadata) metadata;
         return methodMetadata.getDeclaringClassName() + "#" + methodMetadata.getMethodName();
     }
-
 
 
     //ProfileCondition ，实现 Condition 接口，给 @Profile 使用的 Condition 实现类。

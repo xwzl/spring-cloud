@@ -32,7 +32,7 @@ public interface ItemRepository extends ElasticsearchRepository<Item, Long> {
      *
      * @param price1 从 price1
      * @param price2 到 price2
-     * @return       检索条目
+     * @return 检索条目
      */
     List<Item> findByPriceBetween(double price1, double price2);
 

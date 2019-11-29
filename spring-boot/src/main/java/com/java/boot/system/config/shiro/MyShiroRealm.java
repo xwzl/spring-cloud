@@ -3,7 +3,7 @@ package com.java.boot.system.config.shiro;
 /**
  * 自定义权限匹配和账号密码匹配
  */
-public class MyShiroRealm /*extends AuthorizingRealm */{
+public class MyShiroRealm /*extends AuthorizingRealm */ {
     /* *//**
      * 描述：userService对象
      *//*

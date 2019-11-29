@@ -30,7 +30,7 @@ public class DynamicDataSourceAnnotationInterceptor implements MethodInterceptor
     public Object invoke(MethodInvocation invocation) throws Throwable {
         try {
             String datasource = determineDatasource(invocation);
-            if (! DynamicDataSourceContextHolder.containsDataSource(datasource)) {
+            if (!DynamicDataSourceContextHolder.containsDataSource(datasource)) {
                 logger.info("数据源[{}]不存在，使用默认数据源 >", datasource);
             }
             DynamicDataSourceContextHolder.setDataSourceRouterKey(datasource);

@@ -89,7 +89,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService<
      * 批量插入
      *
      * @param entityList ignore
-     * @param batchSize ignore
+     * @param batchSize  ignore
      * @return ignore
      */
     @Transactional(rollbackFor = Exception.class)

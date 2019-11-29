@@ -28,7 +28,7 @@ public class StringReverse {
         return sb.toString();
     }
 
-    public static void main(String[] args){
-        System.out.println(new StringReverse("Hello Java !").reverse() );
+    public static void main(String[] args) {
+        System.out.println(new StringReverse("Hello Java !").reverse());
     }
 }

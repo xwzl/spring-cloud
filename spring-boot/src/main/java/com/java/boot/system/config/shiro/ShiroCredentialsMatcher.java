@@ -9,7 +9,7 @@ public class ShiroCredentialsMatcher /*extends SimpleCredentialsMatcher*/ {
     // * @param info : 数据库中的信息
     // * @return boolean
     // * @author https://blog.csdn.net/chen_2890
-    // * @date 2018/12/9 20:49
+    // *@since 2019/12/9 20:49
     // **/
     //@Override
     //public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {

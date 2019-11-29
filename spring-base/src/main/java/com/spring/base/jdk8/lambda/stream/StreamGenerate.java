@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 /**
  * @author xuweizhi
- * @date 2018/11/27 14:59
+ * @since 2019/11/27 14:59
  */
 public class StreamGenerate {
 
@@ -19,7 +19,7 @@ public class StreamGenerate {
         //generateMethod();
         //acquireMin();
         //statisticsMethod();
-        Stream<String> stringStream = Stream.of("Hello", "hello", "May", "may", "Marry","hello","Marry");
+        Stream<String> stringStream = Stream.of("Hello", "hello", "May", "may", "Marry", "hello", "Marry");
         stringStream.distinct().collect(Collectors.toList()).forEach(System.out::println);
     }
 
