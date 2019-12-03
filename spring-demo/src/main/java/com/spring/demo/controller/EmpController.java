@@ -10,6 +10,7 @@ import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
 import com.spring.demo.model.vos.ApiResult;
 import com.spring.demo.model.vos.DateVO;
+import com.spring.demo.model.vos.EmpVO;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.service.EmpService;
 import com.spring.demo.untils.pool.ThreadPoolUtils;
@@ -160,7 +161,7 @@ public class EmpController {
     public String pool() {
         ThreadPoolExecutor executor = ThreadPoolUtils.extensionThreadPool();
         executor.execute(() -> {
-            System.out.println("如果不中断线程池，会有返回信息吗？");
+            log.info("如果不中断线程池，会有返回信息吗？");
         });
         return "如果不中断线程池，会有返回信息吗?";
     }
@@ -174,5 +175,23 @@ public class EmpController {
     @GetMapping("/empList")
     public List<Emp> empList(@RequestParam(value = "list", required = false) List<Integer> list) {
         return empMapper.listByEmp(list);
+    }
+
+    /**
+     * 三表查询 一
+     */
+    @ApiOperation("三表查询一")
+    @GetMapping("/threeTableSelect")
+    public List<EmpVO> listOne(String company, Integer age) {
+        return empMapper.listOne(company, age);
+    }
+
+    /**
+     * 三表查询二
+     */
+    @ApiOperation("三表查询一")
+    @GetMapping("/threeTableSelectTwo")
+    public List<EmpVO> listTwo(String company, Integer age) {
+        return empMapper.listTwo(company, age);
     }
 }

@@ -5,15 +5,13 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.spring.demo.model.dos.Emp">
         <id column="id" property="id"/>
-        <result column="emp_work_id" property="empWorkId"/>
+        <result column="emp_age" property="empAge"/>
         <result column="emp_name" property="empName"/>
-        <result column="emp_dep_name" property="empDepName"/>
-        <result column="emp_post_name" property="empPostName"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, emp_work_id, emp_name, emp_dep_name, emp_post_name, emp_level, emp_workarea, emp_skill, emp_phone, emp_idcardnum, emp_sex, emp_age, emp_nation, emp_in, emp_out, emp_allworkday, emp_allmoney, emp_remarks, emp_status, emp_entry_time, emp_separation_time, emp_work_status
+        id, emp_name, emp_age
     </sql>
 
     <!--resultType 如果返回类型是集合，类型是指泛型参数的类型-->
