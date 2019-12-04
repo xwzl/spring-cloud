@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.spring.demo.annotation.DateTime;
 import com.spring.demo.config.config.RestTemplateConfig;
 import com.spring.demo.model.dos.User;
+import com.spring.demo.model.vos.ApiResult;
 import com.spring.demo.model.vos.ReturnViewVO;
 import com.spring.demo.model.vos.TakeValidatedVO;
 import com.spring.demo.view.Validated.BasketBallValidated;
@@ -13,6 +14,7 @@ import com.spring.demo.view.Visible.GameView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.map.HashedMap;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Spring 框架自带验证功能校验
@@ -139,4 +143,52 @@ public class ValidatedController {
     public ReturnViewVO returnViewDetails() {
         return new ReturnViewVO("root", "admin");
     }
+
+    /**
+     * 正则表达式路径匹配 name:a,version:1.0.0,ext:.aaaa
+     * <p>
+     * /validated/a-1.0.0.aaaa
+     *
+     * @param name    名字
+     * @param version 版本号
+     * @param ext     额外参数
+     */
+    @GetMapping("/{name:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{ext:\\.[a-z]+}")
+    public void handle(@PathVariable String name, @PathVariable String version, @PathVariable String ext) {
+        log.info("name:{},version:{},ext:{}", name, version, ext);
+    }
+
+    /**
+     * 限定参数相当于限定 myParam 值为 myValue
+     * <p>
+     * params: 可写 = , != 表达式对值做限定
+     * headers: myHeader
+     *
+     * @param petId id
+     */
+    @ApiOperation("参数校验问题")
+    @GetMapping(path = "/pets/{petId}", headers = "test", params = {"myParam=myValue", "username"})
+    public void findPet(@PathVariable String petId, String myHeader, String username) {
+        log.info("petId={},myHeader={}", petId, myHeader);
+    }
+
+
+    /**
+     * 矩阵变量：官网 demo 不行
+     *
+     * @param id       id
+     * @param username 名称
+     * @param tables   列表
+     * @return 返回值
+     */
+    @ApiOperation("矩阵变量")
+    @GetMapping("/variable/{id}/{tables}")
+    public ApiResult<Map<String, String>> matrixVariable(@PathVariable String id, @PathVariable List<String> tables, @MatrixVariable String username) {
+        Map<String, String> response = new HashedMap<>();
+        response.put("ids", id);
+        response.put("username", username);
+        response.put("tables", tables.toString());
+        return new ApiResult<>(response);
+    }
+
 }

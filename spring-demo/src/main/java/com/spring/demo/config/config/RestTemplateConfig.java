@@ -113,33 +113,28 @@ public class RestTemplateConfig {
 
     @Bean
     public HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() {
-        try {
-            HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
-            //开始设置连接池
-            PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
-                    = new PoolingHttpClientConnectionManager();
-            //最大连接数
-            poolingHttpClientConnectionManager.setMaxTotal(100);
-            //同路由并发数
-            poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
-            httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
+        //开始设置连接池
+        PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
+                = new PoolingHttpClientConnectionManager();
+        //最大连接数
+        poolingHttpClientConnectionManager.setMaxTotal(100);
+        //同路由并发数
+        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
+        httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
 
-            HttpClient httpClient = httpClientBuilder.build();
-            // httpClient连接配置
-            HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
-                    = new HttpComponentsClientHttpRequestFactory(httpClient);
-            //连接超时
-            clientHttpRequestFactory.setConnectTimeout(30 * 1000);
-            //数据读取超时时间
-            clientHttpRequestFactory.setReadTimeout(60 * 1000);
-            //连接不够用的等待时间
-            clientHttpRequestFactory.setConnectionRequestTimeout(30 * 1000);
-            return clientHttpRequestFactory;
-        } catch (Exception e) {
-            log.error("初始化clientHttpRequestFactory出错", e);
-        }
-        return null;
+        HttpClient httpClient = httpClientBuilder.build();
+        // httpClient连接配置
+        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
+                = new HttpComponentsClientHttpRequestFactory(httpClient);
+        //连接超时
+        clientHttpRequestFactory.setConnectTimeout(30 * 1000);
+        //数据读取超时时间
+        clientHttpRequestFactory.setReadTimeout(60 * 1000);
+        //连接不够用的等待时间
+        clientHttpRequestFactory.setConnectionRequestTimeout(30 * 1000);
+        return clientHttpRequestFactory;
     }
 
 
