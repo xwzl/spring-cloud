@@ -63,11 +63,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <springboot.version>2.2.1.RELEASE</springboot.version>
+        <springboot.version>2.2.2.RELEASE</springboot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
-        <spring-cloud.version>Hoxton.M3</spring-cloud.version>
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
@@ -177,7 +177,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.0.RELEASE</version>
+                <version>${springboot.version}</version>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
