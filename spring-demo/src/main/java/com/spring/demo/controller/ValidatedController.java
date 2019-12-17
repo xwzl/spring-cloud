@@ -7,6 +7,7 @@ import com.spring.demo.model.dos.User;
 import com.spring.demo.model.vos.ApiResult;
 import com.spring.demo.model.vos.ReturnViewVO;
 import com.spring.demo.model.vos.TakeValidatedVO;
+import com.spring.demo.model.vos.TitleVO;
 import com.spring.demo.view.Validated.BasketBallValidated;
 import com.spring.demo.view.Validated.GameValidated;
 import com.spring.demo.view.Visible.BasketBallView;
@@ -191,4 +192,39 @@ public class ValidatedController {
         return new ApiResult<>(response);
     }
 
+
+    /**
+     * 测试视图简单分组
+     *
+     * @return 返回值
+     */
+    @ApiOperation("测试视图简单分组")
+    @GetMapping("simple")
+    @JsonView(TitleVO.Simple.class)
+    public TitleVO simpleView() {
+        return new TitleVO("simple", "details");
+    }
+
+    /**
+     * 测试视图详细分组
+     *
+     * @return 返回值
+     */
+    @ApiOperation("测试视图详细分组")
+    @GetMapping("details")
+    @JsonView(TitleVO.Details.class)
+    public TitleVO detailsView() {
+        return new TitleVO("simple", "details");
+    }
+
+    /**
+     * 保存吗？
+     *
+     * @param titleVO 好
+     * @return 1
+     */
+    @GetMapping("saveTile")
+    public TitleVO saveTile(TitleVO titleVO) {
+        return titleVO;
+    }
 }
