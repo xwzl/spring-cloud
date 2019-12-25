@@ -1,0 +1,10 @@
+spring:
+  redis:
+    port: 6379
+    timeout: 10000 #连接时间
+    host: 47.105.218.58
+    database: 0
+    password:
+    redisson:
+      # 配置单点模式
+      config: classpath:redisson-single-dev.yml

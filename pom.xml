@@ -25,6 +25,7 @@
         <module>spring-starter-demo</module>
         <module>spring-websocket</module>
         <module>spring-flux</module>
+        <module>spring-redis</module>
     </modules>
 
     <name>spring-cloud</name>
