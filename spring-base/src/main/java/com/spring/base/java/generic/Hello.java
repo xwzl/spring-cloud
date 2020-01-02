@@ -1,8 +1,7 @@
 package com.spring.base.java.generic;
 
+import cn.hutool.core.lang.UUID;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.HashMap;
 
 /**
  * 测试类
@@ -18,13 +17,15 @@ class Hello<E, K> {
     }
 
     public static void main(String[] args) {
-        Hello.consume("12", new HashMap<String, String>() {
-            {
-                put("11", "11");
-            }
-        }, (s, hashMap) -> {
-            hashMap.put(s, s);
-            return hashMap;
-        });
+        //Hello.consume("12", new HashMap<String, String>() {
+        //    {
+        //        put("11", "11");
+        //    }
+        //}, (s, hashMap) -> {
+        //    hashMap.put(s, s);
+        //    return hashMap;
+        //});
+        UUID uuid = UUID.randomUUID(true);
+        System.out.println(uuid.toString().substring(0, 30));
     }
 }
