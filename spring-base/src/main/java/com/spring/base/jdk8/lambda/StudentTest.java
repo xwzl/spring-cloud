@@ -1,5 +1,6 @@
 package com.spring.base.jdk8.lambda;
 
+import com.alibaba.fastjson.JSONObject;
 import com.spring.base.jdk8.lambda.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -152,6 +153,13 @@ public class StudentTest {
     @Test
     public void compareLambda() {
         students.stream().sorted(Comparator.comparing(Student::getAge).reversed()).forEach(System.out::println);
+    }
+
+    @Test
+    public void testJson() {
+        Student student = new Student(1L, "1", 1, "1");
+        Student student1 = JSONObject.parseObject(JSONObject.toJSONString(student), Student.class);
+        System.out.println(student1);
     }
 
 }

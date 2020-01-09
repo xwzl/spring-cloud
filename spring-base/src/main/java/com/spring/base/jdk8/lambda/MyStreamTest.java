@@ -122,4 +122,13 @@ public class MyStreamTest {
         System.out.println(collect.getCount());
         System.out.println(collect);
     }
+
+    @Test
+    public void city() {
+        int pageSize = 10;
+        long total = 10;
+        for (int pageNum = 1; pageNum < 10; pageNum++) {
+            System.out.println((pageNum - 1) * pageSize + 1 + "," + pageNum * pageSize);
+        }
+    }
 }

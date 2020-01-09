@@ -4,11 +4,11 @@ spring:
     #    url: jdbc:mysql://47.105.218.58:3306/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     url: jdbc:mysql://47.105.218.58:3306/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
     username: root
-    password: 158262751
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
-    port: 6379
+    port: 15826
     timeout: 10000ms #连接时间
     host: 47.105.218.58
 #    database:
@@ -26,7 +26,7 @@ spring:
 
 # redisson lock
 redisson:
-  address: redis://47.105.218.58:6379
+  address: redis://47.105.218.58:15826
 #  password:
 #  master-name: mymaster
 #  password: xxxx
