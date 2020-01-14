@@ -1,6 +1,6 @@
 spring:
   redis:
-    port: 6379
+    port: 15826
     timeout: 10000 #连接时间
     host: 47.105.218.58
     database: 0
