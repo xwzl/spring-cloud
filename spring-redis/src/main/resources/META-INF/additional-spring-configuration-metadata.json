@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "logging.logstash.host",
+      "type": "java.lang.String",
+      "description": "Description for logging.logstash.host."
+  }
+] }

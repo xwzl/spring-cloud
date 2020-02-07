@@ -44,7 +44,9 @@ logging:
   level:
     com.spring.demo.mapper: debug
     io.swagger.models.parameters.AbstractSerializableParameter: error
-
+  config: classpath:logback-spring.xml
+  logstash:
+    host: 192.168.20.130:5000
 # httpClient 连接池配置
 http:
   maxTotal: 100

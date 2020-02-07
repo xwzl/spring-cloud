@@ -6,6 +6,8 @@ server:
 spring:
   #  jackson:
   #    time-zone: GMT+8
+  application:
+    name: demo
   profiles:
 #    include: hikari,druid
     include: hikari

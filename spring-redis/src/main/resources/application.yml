@@ -1,4 +1,8 @@
 spring:
+  application:
+    name: redis
+#  profiles:
+#    active: local
   redis:
     port: 15826
     timeout: 10000 #连接时间
@@ -8,3 +12,7 @@ spring:
     redisson:
       # 配置单点模式
       config: classpath:redisson-single-dev.yml
+logging:
+  config: classpath:logback-spring.xml
+  logstash:
+    host: 192.168.20.130:5000
