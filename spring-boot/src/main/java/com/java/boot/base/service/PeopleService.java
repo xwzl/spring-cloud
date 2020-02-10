@@ -1,5 +1,6 @@
 package com.java.boot.base.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.java.boot.base.model.People;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author xwz
  * @since 2019-04-22
  */
-public interface PeopleService extends BaseService<People> {
+public interface PeopleService extends IService<People> {
 
     List<People> getALl();
 

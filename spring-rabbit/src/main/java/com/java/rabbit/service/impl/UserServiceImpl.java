@@ -1,5 +1,6 @@
 package com.java.rabbit.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.java.rabbit.model.User;
 import com.java.rabbit.mapper.UserMapper;
 import com.java.rabbit.service.UserService;
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-16
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 }

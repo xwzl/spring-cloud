@@ -1,7 +1,7 @@
 package com.java.rabbit.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.java.rabbit.model.User;
-import com.java.rabbit.service.BaseService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.java.rabbit.service.BaseService;
  * @author xuweizhi
  * @since 2019-07-16
  */
-public interface UserService extends BaseService<User> {
+public interface UserService extends IService<User> {
 
 }

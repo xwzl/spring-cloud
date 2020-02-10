@@ -1,5 +1,6 @@
 package com.java.boot.base.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.java.boot.system.annotation.DataSource;
 import com.java.boot.base.model.People;
 import com.java.boot.base.mapper.PeopleMapper;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,13 +28,10 @@ import java.util.List;
 @Service
 @CacheConfig(cacheNames = "user")
 
-public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> implements PeopleService {
+public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> implements PeopleService {
 
-    private final PeopleMapper peopleMapper;
-
-    public PeopleServiceImpl(PeopleMapper peopleMapper) {
-        this.peopleMapper = peopleMapper;
-    }
+    @Resource
+    private PeopleMapper peopleMapper;
 
     @Override
     public List<People> getALl() {
@@ -44,7 +43,6 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
      *
      * @param people 入参
      */
-    @Override
     @Transactional
     @CacheEvict(key = "'people'+#people.UId", beforeInvocation = false)
     public void delete(@NotNull People people) {
@@ -61,7 +59,6 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
      * 只有满足condition的请求才可以进行缓存，如果不满足条件，则跟方法没有@Cacheable注解的方法一样
      * 如下面只有id < 3才进行缓存
      */
-    @Override
     @CachePut(condition = "#result != 'null'", key = "'user'+#user.UId")
     @DataSource
     public People update(@NotNull People user) {
@@ -87,7 +84,6 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
      * <p>
      * {@link People#getCreateTime()} 解决 LocalDateTime 序列化出错问题
      */
-    @Override
     @Cacheable(key = "'user'+#id", condition = "#result != null", sync = true)
     //@Cacheable(value = "findById", keyGenerator = "keyGenerator",sync = true)
     public People findById(Integer id) {
@@ -96,12 +92,10 @@ public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> imp
         return mapperUser;
     }
 
-    @Override
     public List<People> findAll() {
         return null;
     }
 
-    @Override
     @CachePut(key = "'user'+#result.UId")
     @ServiceStatistics
     public People insert(People user) {
