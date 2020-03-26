@@ -1,13 +1,17 @@
 package com.spring.base.spring;
 
 import com.spring.base.spring.model.Book;
+import com.spring.base.spring.model.ModifyClass;
 import com.spring.base.spring.model.NaturalBooks;
 import com.spring.base.spring.model.TreeBookNaturalBook;
+import com.spring.common.model.utils.BeanUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.Enumeration;
 
@@ -66,4 +70,19 @@ public class ReflectTest {
         Assert.isAssignable(superClazz, this.getClass());
     }
 
+    /**
+     * 权限修饰符测试
+     *
+     */
+    @Test
+    public void modifyTest() throws NoSuchMethodException {
+        Class<ModifyClass> clazz = ModifyClass.class;
+        // 为了代码不报黄
+        Class<?>[] parameterTypes = new Class<?>[]{};
+        Constructor<ModifyClass> ctor = clazz.getDeclaredConstructor(parameterTypes);
+        log.info(BeanUtils.objToString(Modifier.isPublic(ctor.getModifiers())));
+        log.info(BeanUtils.objToString(Modifier.isPublic(ctor.getDeclaringClass().getModifiers())));
+        ctor.setAccessible(true);
+        log.info(BeanUtils.objToString(ctor.isAccessible()));
+    }
 }
