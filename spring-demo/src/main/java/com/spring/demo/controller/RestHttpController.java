@@ -112,4 +112,18 @@ public class RestHttpController {
         System.out.println(gson.toJson(body));
     }
 
+    @GetMapping("/rangLetter1")
+    @ApiOperation("环信接口调用测试")
+    public Object rangLetterTest1() {
+        String url = "http://api.yonyoucloud.com/apis/dst/ncov/wholeworld";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "apicode");
+        headers.add("Content-Type", "application/json");
+        headers.add("apicode", "74e8d37398904d75b8d80a9bfcbffe6b");
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        ResponseEntity<Object> exchange = restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
+        Object body = exchange.getBody();
+        return body;
+    }
+
 }

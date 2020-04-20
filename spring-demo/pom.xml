@@ -86,7 +86,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
-            <version>2.0.0-beta6</version>
+            <version>2.1.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>3.11.3</version>
+            <version>3.11.6</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
