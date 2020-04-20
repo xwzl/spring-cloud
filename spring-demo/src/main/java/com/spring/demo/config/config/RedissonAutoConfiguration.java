@@ -10,12 +10,13 @@ import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.redisson.config.SentinelServersConfig;
 import org.redisson.config.SingleServerConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Resource;
 
 /**
  * SpringBoot自动装配类
@@ -28,8 +29,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(RedissonProperties.class)
 public class RedissonAutoConfiguration {
 
-    @Autowired
-    private RedissonProperties redssionProperties;
+    @Resource
+    private RedissonProperties redissonProperties;
 
     /**
      * 哨兵模式自动装配
@@ -38,14 +39,14 @@ public class RedissonAutoConfiguration {
     @ConditionalOnProperty(name = "redisson.master-name")
     RedissonClient redissonSentinel() {
         Config config = new Config();
-        SentinelServersConfig serverConfig = config.useSentinelServers().addSentinelAddress(redssionProperties.getSentinelAddresses())
-                .setMasterName(redssionProperties.getMasterName())
-                .setTimeout(redssionProperties.getTimeout())
-                .setMasterConnectionPoolSize(redssionProperties.getMasterConnectionPoolSize())
-                .setSlaveConnectionPoolSize(redssionProperties.getSlaveConnectionPoolSize());
+        SentinelServersConfig serverConfig = config.useSentinelServers().addSentinelAddress(redissonProperties.getSentinelAddresses())
+                .setMasterName(redissonProperties.getMasterName())
+                .setTimeout(redissonProperties.getTimeout())
+                .setMasterConnectionPoolSize(redissonProperties.getMasterConnectionPoolSize())
+                .setSlaveConnectionPoolSize(redissonProperties.getSlaveConnectionPoolSize());
 
-        if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
-            serverConfig.setPassword(redssionProperties.getPassword());
+        if (StringUtils.isNotBlank(redissonProperties.getPassword())) {
+            serverConfig.setPassword(redissonProperties.getPassword());
         }
         return Redisson.create(config);
     }
@@ -58,13 +59,13 @@ public class RedissonAutoConfiguration {
     RedissonClient redissonSingle() {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
-                .setAddress(redssionProperties.getAddress())
-                .setTimeout(redssionProperties.getTimeout())
-                .setConnectionPoolSize(redssionProperties.getConnectionPoolSize())
-                .setConnectionMinimumIdleSize(redssionProperties.getConnectionMinimumIdleSize());
+                .setAddress(redissonProperties.getAddress())
+                .setTimeout(redissonProperties.getTimeout())
+                .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
+                .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
 
-        if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
-            serverConfig.setPassword(redssionProperties.getPassword());
+        if (StringUtils.isNotBlank(redissonProperties.getPassword())) {
+            serverConfig.setPassword(redissonProperties.getPassword());
         }
 
         return Redisson.create(config);
