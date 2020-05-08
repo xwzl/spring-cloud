@@ -4,10 +4,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -24,10 +20,10 @@ import java.util.List;
  */
 @Document(collection = "ex_cat")
 //创建联合索引
-@CompoundIndexes({
-        //联合索引 name 索引名称 、def 索引字段、number 升序、createTime 降序
-        @CompoundIndex(name = "compound_index", def = "{'number': 1, 'createTime': -1}")
-})
+//@CompoundIndexes({
+//        //联合索引 name 索引名称 、def 索引字段、number 升序、createTime 降序
+//        @CompoundIndex(name = "compound_index", def = "{'number': 1, 'createTime': -1}")
+//})
 public class Cat implements Serializable {
 
     /**
@@ -39,7 +35,7 @@ public class Cat implements Serializable {
     /**
      * 创建单字段索引（默认ASCENDING 升序、DESCENDING 降序）
      */
-    @Indexed(direction = IndexDirection.DESCENDING)
+    //@Indexed(direction = IndexDirection.DESCENDING)
     private Long number;
 
     /**

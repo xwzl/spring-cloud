@@ -108,7 +108,6 @@ public class MongoController {
      */
     @GetMapping(value = "/find")
     public List<Cat> find(Model model) {
-        //查询小于当前时间的数据，并按时间倒序排列
         Sort sort = Sort.by(Sort.Direction.DESC, "createTime");
         List<Cat> findTestList = mongoTemplate.find(Query.query(Criteria.where("createTime").lt(new Date())).with(sort), Cat.class);
         model.addAttribute("findTestList", findTestList);

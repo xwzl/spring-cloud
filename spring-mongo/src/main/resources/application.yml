@@ -1,5 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://47.105.218.58/local
+      uri: mongodb://192.192.192.64:27017/test
 
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
