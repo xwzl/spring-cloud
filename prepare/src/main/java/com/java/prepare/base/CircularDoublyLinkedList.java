@@ -1,5 +1,7 @@
 package com.java.prepare.base;
 
+import org.junit.Test;
+
 /**
  * 循环双链表
  *
@@ -45,7 +47,7 @@ public class CircularDoublyLinkedList {
             t = create(h, i);
             for (int j = 0; j < n; j++) {
                 t = t.next;
-                System.out.print(t.data);
+                System.out.print(String.format("%4d", t.data) );
             }
             System.out.println();
         }
@@ -68,7 +70,23 @@ public class CircularDoublyLinkedList {
 
     public static void main(String[] args) {
         CircularDoublyLinkedList c = new CircularDoublyLinkedList();
-        c.init(1111111111);
+        c.init(10);
+    }
+
+    @Test
+    public void test() {
+        int n = 10;
+        for (int i = 0; i < n; i++) {
+            int temp = i + 1;
+            for (int j = 0; j < n; j++) {
+                if (temp == (n + 1)) {
+                    temp = 1;
+                }
+                System.out.print(temp);
+                temp++;
+            }
+            System.out.println();
+        }
     }
 
 
