@@ -23,13 +23,14 @@ public class LocalDO {
     @Id
     private ObjectId id;
 
+    private String locationName;
+
     /**
      * Latitude and longitude
-     *
+     * <p>
      * Latitude: 经度 -> y
-     *
+     * <p>
      * longitude: 维度 -> x
-     *
      */
     @GeoSpatialIndexed(useGeneratedName = true, type = GeoSpatialIndexType.GEO_2DSPHERE)
     private GeoJsonPoint location;
