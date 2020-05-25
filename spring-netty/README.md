@@ -345,7 +345,7 @@ ChannelFuture添加一个监听器，如果客户端连接服务端失败，调�
 ```java
 @Slf4j
 public class HeartbeatHandler extends ChannelInboundHandlerAdapter {
-    @Autowired
+    @Resource
     private NettyClient nettyClient;
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
@@ -403,7 +403,7 @@ public class ServerIdleStateHandler extends IdleStateHandler {
 ```java
 @RestController
 public class ConsumerController {
-    @Autowired
+    @Resource
     private NettyClient nettyClient;
 
     @GetMapping("/send")

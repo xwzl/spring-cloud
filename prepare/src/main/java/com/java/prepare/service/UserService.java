@@ -7,9 +7,7 @@ import com.spring.common.model.common.ApiResult;
 import java.util.List;
 
 /**
- * <p>
  *  服务类
- * </p>
  *
  * @author xuweizhi
  * @since 2020-05-25

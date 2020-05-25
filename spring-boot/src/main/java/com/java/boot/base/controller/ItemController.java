@@ -1,14 +1,14 @@
 package com.java.boot.base.controller;
 
-import com.java.boot.base.repository.ItemRepository;
 import com.java.boot.base.entity.Item;
+import com.java.boot.base.repository.ItemRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
-import org.elasticsearch.search.aggregations.metrics.avg.InternalAvg;
+import org.elasticsearch.search.aggregations.metrics.InternalAvg;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.jetbrains.annotations.Contract;
@@ -16,10 +16,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
-import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.*;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +38,12 @@ import java.util.List;
 @Api
 public class ItemController {
 
-    private final ElasticsearchTemplate template;
+    private final ElasticsearchRestTemplate template;
 
     private final ItemRepository itemRepository;
 
     @Contract(pure = true)
-    public ItemController(ElasticsearchTemplate template, ItemRepository itemRepository) {
+    public ItemController(ElasticsearchRestTemplate template, ItemRepository itemRepository) {
         this.template = template;
         this.itemRepository = itemRepository;
     }
@@ -55,12 +54,12 @@ public class ItemController {
      */
     @GetMapping("creatItemIndex")
     public void createItemIndex() {
-        template.createIndex(Item.class);
+        template.indexOps(Item.class);
     }
 
-    @GetMapping("deleteItmeIndex")
+    @GetMapping("deleteItemIndex")
     public void deleteItemIndex() {
-        template.deleteIndex(Item.class);
+        template.indexOps(Item.class).delete();
     }
 
     @ApiOperation(value = "新增条目索引", notes = "测试")
@@ -175,7 +174,6 @@ public class ItemController {
     @NotNull
     private List<Item> getItems(NativeSearchQueryBuilder builder) {
         Page<Item> page = this.itemRepository.search(builder.build());
-
         List<Item> itemList = new ArrayList<>();
 
         for (Item item : page) {

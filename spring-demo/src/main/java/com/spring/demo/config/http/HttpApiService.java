@@ -10,9 +10,9 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,10 +23,10 @@ import java.util.Map;
 @Component
 public class HttpApiService {
 
-    @Autowired
+    @Resource
     private CloseableHttpClient httpClient;
 
-    @Autowired
+    @Resource
     private RequestConfig config;
 
     /**

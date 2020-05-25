@@ -3,10 +3,10 @@ package com.spring.netty.controller;
 import com.spring.netty.client.NettyClient;
 import com.spring.netty.protocol.protobuf.MessageBase;
 import com.spring.netty.server.NettyServer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
@@ -17,10 +17,10 @@ import java.util.UUID;
 @RestController
 public class ConsumerController {
 
-    @Autowired
+    @Resource
     private NettyClient nettyClient;
 
-    @Autowired
+    @Resource
     private NettyServer nettyServer;
 
     @GetMapping("/send")

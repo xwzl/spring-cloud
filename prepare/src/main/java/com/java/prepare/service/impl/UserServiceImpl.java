@@ -14,9 +14,7 @@ import java.util.stream.Stream;
 import static java.lang.Math.random;
 
 /**
- * <p>
  * 服务实现类
- * </p>
  *
  * @author xuweizhi
  * @since 2020-05-25
@@ -29,10 +27,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<String> names = Stream.of("Jack", "Lucy", "Tom", "Jay", "MrsLi", "Jerry").collect(Collectors.toList());
         List<String> address = Stream.of("北京市", "成都市", "广州市", "南京市", "西南市", "香港特别行政区").collect(Collectors.toList());
         List<User> userList =
-            Stream
-                .generate(() -> new User().setAge((int)(random() * 100))
-                    .setUserName(names.get((int)(Math.random() * 5))).setAddress(address.get((int)(Math.random() * 5))))
-                .limit(5).collect(Collectors.toList());
+                Stream
+                        .generate(() -> new User().setAge((int) (random() * 100))
+                                .setUserName(names.get((int) (Math.random() * 5))).setAddress(address.get((int) (Math.random() * 5))))
+                        .limit(5).collect(Collectors.toList());
         return new ApiResult<>(this.saveBatch(userList) ? "成功" : "失败");
     }
 

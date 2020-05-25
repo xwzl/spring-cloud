@@ -4,11 +4,11 @@ import com.java.rabbit.message.config.ProducerProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**
@@ -23,10 +23,10 @@ public class RabbitMqController {
 
     private Logger log = LoggerFactory.getLogger(RabbitMqController.class);
 
-    @Autowired
+    @Resource
     private AmqpTemplate amqpTemplate;
 
-    @Autowired
+    @Resource
     private ProducerProcessor catProducer;
 
     @GetMapping("/death")

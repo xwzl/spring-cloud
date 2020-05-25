@@ -5,10 +5,11 @@ import com.spring.starter.model.ConditionalSample;
 import com.spring.starter.model.YoungerModel;
 import com.spring.starter.properties.ApplePhoneProperties;
 import com.spring.starter.properties.DemoBaseConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author xuweizhi
@@ -21,16 +22,16 @@ public class DemoController {
     //@Autowired
     //private ConditionalSample conditionalSample;
 
-    @Autowired
+    @Resource
     private DemoBaseConfig demoBaseConfig;
 
-    @Autowired
+    @Resource
     private ConditionalSample conditionalSample;
 
-    @Autowired
+    @Resource
     private DefineConfig defineConfig;
 
-    @Autowired
+    @Resource
     private YoungerModel youngerModel;
 
     @GetMapping

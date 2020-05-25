@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: company
+    active: home
 
 mybatis-plus:
   configuration:
@@ -32,7 +32,7 @@ spring:
 spring:
   profiles: home
   datasource:
-    url: jdbc:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.208.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
@@ -40,5 +40,5 @@ spring:
   redis:
     port: 6379
     timeout: 10000ms #连接时间
-    host: 172.16.142.128
+    host: 192.168.208.128
 

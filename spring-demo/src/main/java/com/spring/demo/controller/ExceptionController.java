@@ -1,19 +1,19 @@
 package com.spring.demo.controller;
 
+import com.spring.common.model.exception.ServiceException;
 import com.spring.demo.annotation.AopSample;
 import com.spring.demo.config.http.HttpApiService;
-import com.spring.common.model.exception.ServiceException;
 import com.spring.demo.model.vos.ValidatedVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -31,10 +31,10 @@ import java.util.Optional;
 @Api(tags = "异常处理和验证测试")
 public class ExceptionController {
 
-    @Autowired
+    @Resource
     private HttpApiService httpApiService;
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
 
     @GetMapping

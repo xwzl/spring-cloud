@@ -3,6 +3,7 @@ package com.spring.common.model.common;
 import com.spring.common.model.exception.ServiceException;
 import com.spring.common.model.utils.ServiceCodeEnum;
 import lombok.Data;
+import lombok.ToString;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 2019-08-21
  */
 @Data
+@ToString
 public class ApiResult<T> {
 
     private Integer code;

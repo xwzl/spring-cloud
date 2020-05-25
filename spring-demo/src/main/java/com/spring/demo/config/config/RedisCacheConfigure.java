@@ -12,7 +12,6 @@ import com.spring.demo.config.redis.LockKeyGenerator;
 import com.spring.demo.config.redis.PrefixSerializer;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +23,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.*;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.time.Duration;
 
@@ -36,7 +36,7 @@ import java.time.Duration;
 @Configuration
 public class RedisCacheConfigure extends CachingConfigurerSupport {
 
-    @Autowired
+    @Resource
     private PrefixSerializer prefixSerializer;
 
     @Bean

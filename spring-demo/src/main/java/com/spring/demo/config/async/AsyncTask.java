@@ -3,11 +3,11 @@ package com.spring.demo.config.async;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.service.ComputerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -21,7 +21,7 @@ import java.util.concurrent.Future;
 @Slf4j
 public class AsyncTask {
 
-    @Autowired
+    @Resource
     private ComputerService computerService;
 
     @Async

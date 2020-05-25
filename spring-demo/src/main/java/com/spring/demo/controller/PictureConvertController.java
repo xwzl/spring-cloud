@@ -2,8 +2,8 @@ package com.spring.demo.controller;
 
 import com.baidu.aip.ocr.AipOcr;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.demo.config.config.BeanConfig;
 import com.spring.common.model.common.ApiResult;
+import com.spring.demo.config.config.BeanConfig;
 import com.spring.demo.model.vos.PictureResultVO;
 import com.spring.demo.untils.PictureUtils;
 import com.spring.demo.untils.QrCodeUtils;
@@ -11,7 +11,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -37,7 +37,7 @@ import java.util.Map;
 @RequestMapping("picture")
 public class PictureConvertController {
 
-    @Autowired
+    @Resource
     private AipOcr aipOcr;
 
     /**

@@ -5,12 +5,13 @@ import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @author xuweizhi
@@ -108,8 +109,8 @@ public class HttpProperties {
     @Component
     public class IdleConnectionEvictor extends Thread {
 
-        @Autowired
-        private HttpClientConnectionManager connMgr;
+        @Resource
+    private HttpClientConnectionManager connMgr;
 
         private volatile boolean shutdown;
 

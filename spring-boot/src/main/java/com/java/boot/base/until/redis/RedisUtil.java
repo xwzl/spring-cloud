@@ -1,18 +1,19 @@
 package com.java.boot.base.until.redis;
 
 import com.java.boot.system.property.RedisProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import javax.annotation.Resource;
+
 @EnableConfigurationProperties({RedisProperties.class})
 @Component
 public class RedisUtil {
 
-    @Autowired
+    @Resource
     private RedisProperties redisProperties;
 
     public void read() {

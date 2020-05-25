@@ -7,19 +7,19 @@ public class MyShiroRealm /*extends AuthorizingRealm */ {
     /* *//**
      * 描述：userService对象
      *//*
-    @Autowired
+    @Resource
     private UserService userService;
 
     *//**
      * 描述：roleService对象
      *//*
-    @Autowired
+    @Resource
     private RoleService roleService;
 
     *//**
      * 描述：permissionService对象
      *//*
-    @Autowired
+    @Resource
     private PermissionService permissionService;
 
     *//**

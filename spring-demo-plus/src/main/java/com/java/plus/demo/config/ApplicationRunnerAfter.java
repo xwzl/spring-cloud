@@ -1,11 +1,12 @@
 package com.java.plus.demo.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * SpringBoot 完成后打印 swagger 文档地址
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationRunnerAfter implements ApplicationRunner {
 
-    @Autowired
+    @Resource
     private IpConfiguration ipConfiguration;
 
     @Override

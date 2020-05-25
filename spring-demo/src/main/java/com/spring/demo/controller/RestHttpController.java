@@ -5,7 +5,6 @@ import com.spring.demo.model.vos.DataVO;
 import com.spring.demo.untils.ContextHolderUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "mock 测试接口模板")
 public class RestHttpController {
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
 
     /**

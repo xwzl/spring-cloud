@@ -2,7 +2,6 @@ package com.spring.mongo.controller;
 
 import com.spring.mongo.model.Cat;
 import com.spring.mongo.model.Dog;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 public class MongoController {
 
-    @Autowired
+    @Resource
     private MongoTemplate mongoTemplate;
 
     @GetMapping(value = "/")
