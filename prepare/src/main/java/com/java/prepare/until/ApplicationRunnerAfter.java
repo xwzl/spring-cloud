@@ -1,11 +1,13 @@
-package com.spring.demo.config;
+package com.java.prepare.until;
 
-import com.spring.common.model.utils.IpConfiguration;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.spring.common.model.utils.IpConfiguration;
+
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
 
@@ -25,7 +27,9 @@ public class ApplicationRunnerAfter implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("Swagger github : http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
-        log.info("Swagger github boot-strap: http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort() + "/doc.html");
+        log.info("Swagger github : http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort()
+            + "/swagger-ui.html");
+        log.info("Swagger github boot-strap: http://" + ipConfiguration.getHostAddress() + ":"
+            + ipConfiguration.getPort() + "/doc.html");
     }
 }

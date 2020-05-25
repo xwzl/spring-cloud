@@ -10,7 +10,7 @@ import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.excel.ComputerModel;
 import com.spring.demo.model.excel.DemoModel;
 import com.spring.demo.model.excel.MultiLineHeadExcelModel;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.untils.ListCopy;
 import io.swagger.annotations.Api;

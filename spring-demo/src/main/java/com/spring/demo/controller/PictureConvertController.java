@@ -3,7 +3,7 @@ package com.spring.demo.controller;
 import com.baidu.aip.ocr.AipOcr;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.spring.demo.config.config.BeanConfig;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.model.vos.PictureResultVO;
 import com.spring.demo.untils.PictureUtils;
 import com.spring.demo.untils.QrCodeUtils;

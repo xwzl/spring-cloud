@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.spring.demo.annotation.CacheLock;
 import com.spring.demo.config.redis.CacheKeyGenerator;
 import com.spring.demo.config.redis.RedisLockHelper;
-import com.spring.demo.exception.ServiceException;
+import com.spring.common.model.exception.ServiceException;
 import com.spring.demo.untils.ContextHolderUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

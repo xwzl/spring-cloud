@@ -1,7 +1,7 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.mapper.EmpMapper;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.model.vos.EmpVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

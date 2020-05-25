@@ -2,7 +2,7 @@ package com.spring.demo.controller;
 
 import com.spring.demo.annotation.AopSample;
 import com.spring.demo.config.http.HttpApiService;
-import com.spring.demo.exception.ServiceException;
+import com.spring.common.model.exception.ServiceException;
 import com.spring.demo.model.vos.ValidatedVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

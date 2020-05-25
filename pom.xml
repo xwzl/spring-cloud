@@ -65,11 +65,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <springboot.version>2.2.6.RELEASE</springboot.version>
+        <springboot.version>2.3.0.RELEASE</springboot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
-        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
@@ -92,8 +92,9 @@
         <docker.image.prefix>spring-cloud</docker.image.prefix>
         <http-client.version>4.5.9</http-client.version>
         <google-zxing.version>3.4.0</google-zxing.version>
-        <redssion.version>3.11.3</redssion.version>
+        <redssion.version>3.13.0</redssion.version>
         <skipTests>true</skipTests>
+        <redssion.version>3.11.3</redssion.version>
     </properties>
     <dependencies>
         <dependency>
@@ -129,7 +130,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.0.6</version>
+            <version>5.3.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

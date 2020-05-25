@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: company
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.java.prepare.model
+  mapper-locations: classpath:com/java/prepare/mapper/*.xml
+
+#logging:
+#  level:
+#    com.java.prepare: debug
+---
+spring:
+  profiles: company
+  datasource:
+    url: jdbc:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    port: 6379
+    timeout: 10000ms #连接时间
+    host: 172.16.142.128
+    database: 0
+    password:
+
+---
+spring:
+  profiles: home
+  datasource:
+    url: jdbc:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    port: 6379
+    timeout: 10000ms #连接时间
+    host: 172.16.142.128
+

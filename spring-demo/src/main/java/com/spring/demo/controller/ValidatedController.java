@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.spring.demo.annotation.DateTime;
 import com.spring.demo.config.config.RestTemplateConfig;
 import com.spring.demo.model.dos.User;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.model.vos.ReturnViewVO;
 import com.spring.demo.model.vos.TakeValidatedVO;
 import com.spring.demo.model.vos.TitleVO;

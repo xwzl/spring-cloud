@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public Response handleServiceException(ServiceException e) {
         log.error(e.getMessage(), e);
-        return Response.failed(e.getError());
+        return Response.failed(e.getMessage());
     }
 
     /**

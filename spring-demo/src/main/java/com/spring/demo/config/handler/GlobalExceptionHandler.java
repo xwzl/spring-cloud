@@ -1,8 +1,8 @@
 package com.spring.demo.config.handler;
 
-import com.spring.demo.exception.ApiException;
-import com.spring.demo.exception.ServiceException;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.exception.ApiException;
+import com.spring.common.model.exception.ServiceException;
+import com.spring.common.model.common.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;

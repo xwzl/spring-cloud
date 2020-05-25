@@ -4,7 +4,7 @@ import com.spring.demo.config.async.AsyncService;
 import com.spring.demo.config.async.AsyncTask;
 import com.spring.demo.config.async.http.QueueListener;
 import com.spring.demo.model.dos.Computer;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

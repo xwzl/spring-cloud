@@ -3,7 +3,7 @@ package com.spring.demo.controller;
 
 import com.spring.demo.config.factory.RedSessionFactory;
 import com.spring.demo.model.dos.People;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.service.PeopleService;
 import com.spring.demo.untils.RedissLockUtil;
 import io.swagger.annotations.Api;

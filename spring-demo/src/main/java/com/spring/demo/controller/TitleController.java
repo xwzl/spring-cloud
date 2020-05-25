@@ -4,7 +4,7 @@ package com.spring.demo.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.spring.demo.config.http.HttpApiService;
 import com.spring.demo.model.Title;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.service.TitleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

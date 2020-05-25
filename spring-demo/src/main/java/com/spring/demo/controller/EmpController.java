@@ -8,7 +8,7 @@ import com.spring.demo.mapper.ComputerMapper;
 import com.spring.demo.mapper.EmpMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
-import com.spring.demo.model.vos.ApiResult;
+import com.spring.common.model.common.ApiResult;
 import com.spring.demo.model.vos.DateVO;
 import com.spring.demo.model.vos.EmpVO;
 import com.spring.demo.service.ComputerService;

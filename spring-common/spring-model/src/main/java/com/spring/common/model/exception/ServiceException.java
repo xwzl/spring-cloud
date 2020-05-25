@@ -1,37 +1,58 @@
 package com.spring.common.model.exception;
 
-import com.spring.common.model.common.ErrorInfo;
+import com.spring.common.model.utils.ServiceCodeEnum;
+import lombok.Getter;
 
 /**
- * 业务异常
- *
  * @author xuweizhi
- * @since 2019/11/29
+ * @since 2019-08-21
  */
+@Getter
 public class ServiceException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
 
-    /**
-     * 错误信息
-     */
-    private ErrorInfo error;
+    private Integer code = ServiceCodeEnum.FAIL.getCode();
 
-    public ServiceException(ErrorInfo error) {
-        super(error.getMsg());
-        this.error = error;
+    public ServiceException() {
+        super();
     }
 
-    public ServiceException(ErrorInfo error, Throwable cause) {
-        super(error.getMsg(), cause);
-        this.error = error;
+    public ServiceException(String message) {
+
+        super(message);
     }
 
-    /**
-     * 获取错误信息
-     *
-     * @return ErrorInfo
-     */
-    public ErrorInfo getError() {
-        return error;
+    public ServiceException(String message, Throwable cause) {
+        super(message, cause);
     }
+
+    public ServiceException(Throwable cause) {
+        super(cause);
+    }
+
+    public ServiceException(Integer code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public ServiceException(Integer code, String message, Throwable cause) {
+        super(message, cause);
+        this.code = code;
+    }
+
+    public ServiceException(Integer code, Throwable cause) {
+        super(cause);
+        this.code = code;
+    }
+
+    public ServiceException(ServiceCodeEnum hs) {
+        super(hs.getMessage());
+        this.code = hs.getCode();
+    }
+
+    public ServiceException(ServiceCodeEnum hs, Throwable e) {
+        super(hs.getMessage(), e);
+        this.code = hs.getCode();
+    }
+
+
 }
