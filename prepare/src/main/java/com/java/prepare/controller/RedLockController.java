@@ -44,9 +44,9 @@ public class RedLockController {
      * ArrayBlockingQueue: maxSize+array.size 最大数量，超出抛异常
      * LinkedBlockingQueue： 无界队列，最大线程数失效
      */
-    private final ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 20, 0,
-            TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new ThreadFactoryBuilder().setNameFormat("Red Session %d").build(),
-            new ThreadPoolExecutor.AbortPolicy());
+    private final ThreadPoolExecutor executor =
+        new ThreadPoolExecutor(10, 20, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
+            new ThreadFactoryBuilder().setNameFormat("Red Session %d").build(), new ThreadPoolExecutor.AbortPolicy());
 
     @GetMapping("lock")
     public ApiResult<String> lock() {
@@ -60,7 +60,6 @@ public class RedLockController {
                 log.info(result.toString());
             } catch (InterruptedException | ExecutionException e) {
                 log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
-                //throw new ServiceException(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
             }
         });
         RAtomicLong atomicLong = redissonClient.getAtomicLong(RED_SESSION_NUM);
@@ -72,20 +71,24 @@ public class RedLockController {
         RLock lock = redissonClient.getLock(RED_SESSION_LOCK);
 
         boolean result = false;
+        // 堆栈内的变量并不影响共享变量的值，共享变量值更新也不会同步到方法栈内的值
+        //int temp = RedLockController.stock;
+        //log.info("获取锁前的库存值{}", temp);
         try {
             // 尝试加锁,如果被其他线程加锁则等待100s,如果加锁成功10s后自动解锁
-            result = lock.tryLock(30, 10, TimeUnit.SECONDS);
+            result = lock.tryLock(100, 10, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
-            //e.printStackTrace();
             log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
         }
         RAtomicLong atomicLong = redissonClient.getAtomicLong(RED_SESSION_NUM);
         if (result) {
+            //log.info("获取锁后的库存值{}", temp);
+            //log.info("获取锁后静态变量的值{}", RedLockController.stock);
             try {
                 if (stock > 0) {
                     ThreadLocalRandom random = ThreadLocalRandom.current();
                     int i = random.nextInt(10);
-                    Thread.sleep(200);
+                    Thread.sleep(1000);
                     if (stock < i && stock > 0) {
                         throw new ServiceException(ServiceCodeEnum.FAIL.getCode(), "库存不足,请调整数量后重新购买");
                     }

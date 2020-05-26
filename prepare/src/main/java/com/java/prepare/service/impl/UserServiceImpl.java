@@ -6,6 +6,7 @@ import com.java.prepare.model.User;
 import com.java.prepare.service.UserService;
 import com.spring.common.model.common.ApiResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ import static java.lang.Math.random;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public ApiResult<String> initData() {
         List<String> names = Stream.of("Jack", "Lucy", "Tom", "Jay", "MrsLi", "Jerry").collect(Collectors.toList());
         List<String> address = Stream.of("北京市", "成都市", "广州市", "南京市", "西南市", "香港特别行政区").collect(Collectors.toList());
