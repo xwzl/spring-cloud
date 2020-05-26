@@ -1,4 +1,4 @@
-package com.java.prepare.until.base;
+package com.java.prepare.until.base.linear;
 
 import cn.hutool.core.thread.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;

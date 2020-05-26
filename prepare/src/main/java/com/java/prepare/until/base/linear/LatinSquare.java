@@ -1,4 +1,4 @@
-package com.java.prepare.until.base;
+package com.java.prepare.until.base.linear;
 
 /**
  * 拉丁方针

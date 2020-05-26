@@ -1,4 +1,4 @@
-package com.java.prepare.until.base;
+package com.java.prepare.until.base.linear;
 
 import lombok.extern.slf4j.Slf4j;
 
