@@ -1,6 +1,6 @@
 package com.spring.demo.config;
 
-import com.spring.common.model.utils.IpConfiguration;
+import com.spring.starter.config.IpConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

@@ -3,6 +3,16 @@ spring:
     active: company
 
 mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+      capital-mode: true
+      # 全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-field: flag
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -16,11 +26,13 @@ mybatis-plus:
 spring:
   profiles: company
   datasource:
-    url: jdbc:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:p6spy:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
   # https://github.com/redisson/redisson/wiki
   redis:
     port: 6379
@@ -31,11 +43,13 @@ spring:
 spring:
   profiles: home
   datasource:
-    url: jdbc:mysql://192.168.208.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://192.168.208.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:p6spy:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
   redis:
     port: 6379
     timeout: 10000ms #连接时间

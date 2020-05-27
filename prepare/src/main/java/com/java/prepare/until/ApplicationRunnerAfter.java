@@ -1,11 +1,11 @@
 package com.java.prepare.until;
 
+import com.spring.starter.config.IpConfiguration;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.spring.common.model.utils.IpConfiguration;
 
 import lombok.extern.slf4j.Slf4j;
 

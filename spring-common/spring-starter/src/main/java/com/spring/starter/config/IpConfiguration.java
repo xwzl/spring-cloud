@@ -1,8 +1,9 @@
-package com.spring.common.model.utils;
+package com.spring.starter.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,7 +15,8 @@ import java.util.Arrays;
  * @author xuweizhi
  * @since 2019-09-25
  */
-@Component
+@Configuration
+//@ConditionalOnClass(name = "com.java.test.qq")
 public class IpConfiguration implements ApplicationListener<WebServerInitializedEvent> {
 
     private int serverPort;

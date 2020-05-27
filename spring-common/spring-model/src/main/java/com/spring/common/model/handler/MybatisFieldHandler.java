@@ -1,19 +1,17 @@
-package com.spring.demo.config.handler;
+package com.spring.common.model.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 /**
- * 自动注入
+ * MySQL 注入公共字段
  *
  * @author xuweizhi
  * @since 2019-08-07
  */
-@Component
-public class MyMetaObjectHandler implements MetaObjectHandler {
+public class MybatisFieldHandler implements MetaObjectHandler {
 
     /**
      * 这边是 Java 对象

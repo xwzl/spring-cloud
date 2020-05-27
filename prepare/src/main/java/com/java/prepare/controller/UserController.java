@@ -3,12 +3,11 @@ package com.java.prepare.controller;
 import com.java.prepare.model.User;
 import com.java.prepare.service.UserService;
 import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.prepare.vos.ClassScheduleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,17 +35,36 @@ public class UserController {
         return userService.initData();
     }
 
+    /**
+     * 搜索用户
+     */
     @GetMapping("search")
     @ApiOperation("单个参数测试")
     public ApiResult<List<User>> search(String keyWord){
         return userService.search(keyWord);
     }
 
+    /**
+     * 搜索用户
+     */
     @GetMapping("searchUser")
-    @ApiOperation("单个参数测试")
+    @ApiOperation("对象参数测试")
     public ApiResult<List<User>> searchUser(User user){
         return userService.searchUser(user);
     }
 
+    /**
+     * 选择课程
+     */
+    @PostMapping("selectClass")
+    @ApiOperation("选择")
+    public ApiResult<String> selectClass(@RequestBody @Validated ClassScheduleVO scheduleVO){
+        return userService.selectClass(scheduleVO);
+    }
 
+    ///**
+    // * 添加课程
+    // */
+    //@PostMapping("")
+    //public ApiResult<String>
 }

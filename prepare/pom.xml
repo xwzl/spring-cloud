@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
@@ -24,6 +29,11 @@
         <dependency>
             <groupId>com.spring</groupId>
             <artifactId>spring-model</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spring</groupId>
+            <artifactId>spring-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

@@ -32,13 +32,6 @@
     <name>spring-cloud</name>
     <description>This is spring-cloud learn demo !</description>
 
-    <!--    <parent>-->
-    <!--        <groupId>org.springframework.boot</groupId>-->
-    <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--        <version>2.1.7.RELEASE</version>-->
-    <!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-    <!--    </parent>-->
-
     <repositories>
         <repository>
             <id>central</id>
@@ -64,15 +57,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>14</java.version>
         <springboot.version>2.3.0.RELEASE</springboot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
         <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.compilerVersion>14</maven.compiler.compilerVersion>
         <swagge.version>2.9.2</swagge.version>
         <swagger-ui.version>2.8.2</swagger-ui.version>
         <swagger-ui-boot.version>1.9.6</swagger-ui-boot.version>
@@ -80,7 +73,7 @@
         <netty.version>4.1.41.Final</netty.version>
         <protobuf.version>3.9.1</protobuf.version>
         <gson.version>2.8.6</gson.version>
-        <mybatis-plus.version>3.3.1</mybatis-plus.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <mysql.version>8.0.18</mysql.version>
         <druid.version>1.1.20</druid.version>
         <jackson.version>2.9.9</jackson.version>
@@ -97,11 +90,6 @@
         <redssion.version>3.11.3</redssion.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>7.0.0.Alpha2</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -162,6 +150,24 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
+        </dependency>
+        <!--
+            https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes
+
+            Validation Starter no longer included in web starters
+
+            As of #19550, Web and WebFlux starters do not depend on the validation starter by default anymore.
+            If your application is using validation features, you’ll need to manually add back a dependency on
+            spring-boot-starter-validation in your build file.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

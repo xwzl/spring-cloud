@@ -8,44 +8,35 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
  *
- * </p>
  *
  * @author xuweizhi
- * @since 2020-05-25
+ * @since 2020-05-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("user")
-public class User extends BaseDO<Long> {
+@TableName("class_schedule")
+public class ClassSchedule  extends BaseDO<Long> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户名
+     * 课程名称
      */
-    @TableField("user_name")
-    private String userName;
+    @TableField("schedule_name")
+    private String scheduleName;
 
     /**
-     * 年龄
+     * 老师
      */
-    @TableField("age")
-    private Integer age;
+    @TableField("teacher")
+    private String teacher;
 
     /**
-     * 身份证
+     * 课程安排
      */
-    @TableField("id_card")
-    private String idCard;
-
-    /**
-     * 地址
-     */
-    @TableField("address")
-    private String address;
-
+    @TableField("arrangement")
+    private String arrangement;
 
 }
