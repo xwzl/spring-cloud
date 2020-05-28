@@ -1,7 +1,7 @@
 package com.java.prepare.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.spring.common.model.interceptor.BaseDO;
+import com.spring.common.model.model.dos.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

@@ -1,4 +1,4 @@
-package com.spring.common.model.interceptor;
+package com.spring.common.model.model.dos;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

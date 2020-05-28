@@ -7,7 +7,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   profiles:
-    active: company
+    active: home
 
 mybatis-plus:
   global-config:
@@ -29,6 +29,9 @@ mybatis-plus:
 #logging:
 #  level:
 #    com.java.prepare: debug
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
 ---
 spring:
   profiles: company
@@ -45,13 +48,16 @@ spring:
     port: 6379
     timeout: 10000ms #连接时间
     host: 172.16.142.128
-
+  data:
+    mongodb:
+      #     uri: mongodb://192.192.192.64:27017,192.192.192.64:27018,192.192.192.64:27019/test?replicaSet=mongorepl0&readPreference=secondaryPreferred&appname=${spring.application.name}&ssl=false&w=majority&readConcern=majority
+      uri: mongodb://172.16.142.128:27017/test
 ---
 spring:
   profiles: home
   datasource:
 #    url: jdbc:mysql://192.168.208.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
-    url: jdbc:p6spy:mysql://172.16.142.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:p6spy:mysql://192.168.208.128:3306/prepare?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
@@ -61,4 +67,7 @@ spring:
     port: 6379
     timeout: 10000ms #连接时间
     host: 192.168.208.128
-
+  data:
+    mongodb:
+#     uri: mongodb://192.192.192.64:27017,192.192.192.64:27018,192.192.192.64:27019/test?replicaSet=mongorepl0&readPreference=secondaryPreferred&appname=${spring.application.name}&ssl=false&w=majority&readConcern=majority
+     uri: mongodb://192.168.208.128:27017/test
