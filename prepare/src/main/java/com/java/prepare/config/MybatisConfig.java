@@ -1,10 +1,8 @@
 package com.java.prepare.config;
 
-import org.mybatis.spring.annotation.MapperScan;
+import com.spring.common.model.handler.MybatisFieldHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.spring.common.model.handler.MybatisFieldHandler;
 
 /**
  * Mybatis 配置
@@ -13,7 +11,6 @@ import com.spring.common.model.handler.MybatisFieldHandler;
  * @since 2020/05/27 14:16
  */
 @Configuration
-@MapperScan("com.java.prepare.mapper")
 public class MybatisConfig {
 
     /**

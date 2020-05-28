@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

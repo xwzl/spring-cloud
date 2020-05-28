@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;   //优先级队列元素类
+package com.java.prepare.until.structure.queue;   //优先级队列元素类
 
 /**
  * 设计顺序优先级队列分为两个类：

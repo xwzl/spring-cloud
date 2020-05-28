@@ -8,9 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
- *
- * </p>
+ * 学生表
  *
  * @author xuweizhi
  * @since 2020-05-25
@@ -18,8 +16,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("user")
-public class User extends BaseDO<Long> {
+@TableName("student")
+public class Student extends BaseDO<Long> {
 
     private static final long serialVersionUID = 1L;
 
@@ -46,6 +44,5 @@ public class User extends BaseDO<Long> {
      */
     @TableField("address")
     private String address;
-
 
 }

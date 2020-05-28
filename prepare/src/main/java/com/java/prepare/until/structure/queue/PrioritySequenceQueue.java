@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;//优先级队列
+package com.java.prepare.until.structure.queue;//优先级队列
 
 /**
  * 优先级队列

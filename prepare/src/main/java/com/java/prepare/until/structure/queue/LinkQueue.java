@@ -1,48 +1,40 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 /**
- * 循环队列
+ * 链表队列
  *
  * @author xuweizhi
  * @since 2020/05/27 23:35
  */
-public class CircleSequenceQueue implements Queue {
-    //默认队列的长度
-    static final int defaultSize = 10;
-    //队头
-    int front;
-    //队尾
-    int rear;
-    //统计元素个数的计数器
-    int count;
-    //队的最大长度
-    int maxSize;
-    //队列
-    Object[] queue;
+public class LinkQueue implements Queue {
 
-    public CircleSequenceQueue() {
-        init(defaultSize);
+    Node front; //队头
+    Node rear;  //队尾
+    int count; //计数器
+
+    public LinkQueue() {
+        init();
     }
 
-    public CircleSequenceQueue(int size) {
-        init(size);
-    }
-
-    public void init(int size) {
-        maxSize = size;
-        front = rear = 0;
+    public void init() {
+        front = rear = null;
         count = 0;
-        queue = new Object[size];
     }
 
     @Override
     public void append(Object obj) throws Exception {
         // TODO Auto-generated method stub
-        if (count > 0 && front == rear) {
-            throw new Exception("队列已满！");
+        Node node = new Node(obj, null);
+        //如果当前队列不为空。
+        if (rear != null) {
+            rear.next = node; //队尾结点指向新结点
         }
-        queue[rear] = obj;
-        rear = (rear + 1) % maxSize;
+        rear = node; //设置队尾结点为新结点
+
+        //说明要插入的结点是队列的第一个结点
+        if (front == null) {
+            front = node;
+        }
         count++;
     }
 
@@ -50,19 +42,19 @@ public class CircleSequenceQueue implements Queue {
     public Object delete() throws Exception {
         // TODO Auto-generated method stub
         if (isEmpty()) {
-            throw new Exception("队列为空！");
+            throw new Exception("队列已空！");
         }
-        Object obj = queue[front];
-        front = (front + 1) % maxSize;
+        Node node = front;
+        front = front.next;
         count--;
-        return obj;
+        return node.getElement();
     }
 
     @Override
     public Object getFront() throws Exception {
         // TODO Auto-generated method stub
         if (!isEmpty()) {
-            return queue[front];
+            return front.getElement();
         } else {
             return null;
         }
@@ -75,22 +67,18 @@ public class CircleSequenceQueue implements Queue {
     }
 
     public static void main(String[] args) throws Exception {
-        CircleSequenceQueue queue = new CircleSequenceQueue();
+        LinkQueue queue = new LinkQueue();
         queue.append("a");
         queue.append("b");
         queue.append("c");
         queue.append("d");
         queue.append("e");
         queue.append("f");
-
         queue.delete();
         queue.delete();
-
         queue.append("g");
-
         while (!queue.isEmpty()) {
             System.out.println(queue.delete());
         }
     }
-
 }

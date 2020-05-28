@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 /**
  * 编写一个判断一个字符串是否是回文的算法。

@@ -1,8 +1,6 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 import cn.hutool.core.util.NumberUtil;
-import com.java.prepare.until.java.single.DoubleCheckLock;
-import com.spring.common.model.utils.StringUtils;
 import jodd.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

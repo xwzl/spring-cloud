@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.linear;
+package com.java.prepare.until.structure.linear;
 
 import org.junit.Test;
 

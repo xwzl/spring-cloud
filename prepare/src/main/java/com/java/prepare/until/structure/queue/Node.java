@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 /**
  * 链式队列其实就是特殊的单链表，只不过它只能尾进头出而已。

@@ -1,6 +1,7 @@
 package com.java.prepare.controller;
 
-import com.java.prepare.model.User;
+import com.java.prepare.model.ClassSchedule;
+import com.java.prepare.model.Student;
 import com.java.prepare.service.UserService;
 import com.spring.common.model.common.ApiResult;
 import com.spring.common.model.prepare.vos.ClassScheduleVO;
@@ -40,7 +41,7 @@ public class UserController {
      */
     @GetMapping("search")
     @ApiOperation("单个参数测试")
-    public ApiResult<List<User>> search(String keyWord){
+    public ApiResult<List<Student>> search(String keyWord){
         return userService.search(keyWord);
     }
 
@@ -49,8 +50,8 @@ public class UserController {
      */
     @GetMapping("searchUser")
     @ApiOperation("对象参数测试")
-    public ApiResult<List<User>> searchUser(User user){
-        return userService.searchUser(user);
+    public ApiResult<List<Student>> searchUser(Student student){
+        return userService.searchUser(student);
     }
 
     /**
@@ -62,9 +63,14 @@ public class UserController {
         return userService.selectClass(scheduleVO);
     }
 
-    ///**
-    // * 添加课程
-    // */
-    //@PostMapping("")
-    //public ApiResult<String>
+
+    /**
+     * 添加课程
+     */
+    @ApiOperation("添加课程")
+    @PostMapping("addClass")
+    public ApiResult<String> addClass(@Validated @RequestBody ClassSchedule classSchedule){
+        return userService.addClass(classSchedule);
+    }
+
 }

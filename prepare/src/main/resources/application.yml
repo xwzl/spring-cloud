@@ -1,12 +1,19 @@
 spring:
+  #  支持（content-type=application/json）请求中格式为 yyyy-MM-dd HH:mm:ss的字符串，后台用@RequestBody接收，
+  #  及返回值date转为yyyy-MM-dd HH:mm:ss格式string；
+  #  不支持（content-type=application/json）请求中yyyy-MM-dd等类型的字符串转为date；
+  #  不支持java8日期api;
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   profiles:
     active: company
 
 mybatis-plus:
   global-config:
     db-config:
-      id-type: assign_id
-      capital-mode: true
+#      id-type: assign_id
+#      capital-mode: true
       # 全局逻辑删除字段值 3.3.0开始支持，详情看下面。
       logic-delete-field: flag
       # 逻辑已删除值(默认为 1)

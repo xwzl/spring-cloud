@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 /**
  * 表达式不合法异常

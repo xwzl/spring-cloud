@@ -1,7 +1,7 @@
 package com.java.prepare.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.java.prepare.model.User;
+import com.java.prepare.model.Student;
 import com.java.prepare.provider.UserProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -14,12 +14,12 @@ import java.util.List;
  * @author xuweizhi
  * @since 2020-05-25
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<Student> {
 
     @SelectProvider(type = UserProvider.class, method = "search")
-    List<User> search(@Param("keyWord") String keyWord);
+    List<Student> search(@Param("keyWord") String keyWord);
 
 
     @SelectProvider(type = UserProvider.class, method = "searchUser")
-    List<User> searchUser(@Param("user") User user);
+    List<Student> searchUser(@Param("user") Student student);
 }

@@ -1,6 +1,6 @@
 package com.java.prepare.provider;
 
-import com.java.prepare.model.User;
+import com.java.prepare.model.Student;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -28,11 +28,11 @@ public class UserProvider {
     /**
      * 模糊查询
      *
-     * @param user
+     * @param student
      *            关键字
      * @return sql
      */
-    public String searchUser(@Param("user") User user) {
+    public String searchUser(@Param("user") Student student) {
         SQL sql = new SQL();
         sql.SELECT("user_name", "address", "age", "id");
         sql.FROM("user");

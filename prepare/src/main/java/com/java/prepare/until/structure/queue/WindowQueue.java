@@ -1,4 +1,4 @@
-package com.java.prepare.until.base.queue;
+package com.java.prepare.until.structure.queue;
 
 /**
  * 使用顺序循环队列和多线程实现一个排队买票的例子。而且，我们只允许这个队伍中同时排队的只有10个人，那就需要用到队列了。

@@ -1,5 +1,6 @@
 package com.java.prepare;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -13,6 +14,7 @@ import java.lang.reflect.Method;
  */
 @EnableSwagger2
 @SpringBootApplication
+@MapperScan("com.java.prepare.mapper")
 public class PrepareApplication {
 
     public static void main(String[] args) {
