@@ -79,17 +79,25 @@ public class Recursive {
         }
     }
 
+    /**
+     * 数组二分查找
+     *
+     * @param data
+     *            数组
+     * @param target
+     *            目标数字
+     */
     public void binarySearchArray(int[] data, int target) {
         int length = data.length;
         int start = 0;
         while (true) {
             int temp = (length + start) / 2;
             if (target > data[temp]) {
-                start = temp;
+                start = temp + 1;
                 continue;
             }
             if (target < data[temp]) {
-                length = temp;
+                length = temp - 1;
                 continue;
             }
             if (target == data[temp]) {
@@ -99,6 +107,60 @@ public class Recursive {
             log.info("{} 不在 data 中", target, temp);
             break;
         }
+    }
+
+    /**
+     * 递归二分朝招
+     *
+     * @param data
+     * @param start
+     * @param end
+     * @param target
+     * @return
+     */
+    public int recursiveFind(int[] data, int start, int end, int target) {
+        int mid = (start + end) / 2;
+        if (data[mid] > target) {
+            return recursiveFind(data, start, mid - 1, target);
+        } else if (data[mid] < target) {
+            return recursiveFind(data, mid + 1, end, target);
+        } else if (data[mid] == target) {
+            return mid;
+        }
+        return -1;
+    }
+
+    /**
+     * x 柱子 n : 从上往下顺序，1......n
+     *
+     * 目标，从 x -> z 且过程中 x y z 不能出现最顶层数字大于下层数字的情况，打印转移路径情况
+     *
+     * @param n
+     *            目标数
+     * @param x
+     *            x 轴
+     * @param y
+     *            y 轴 借助轴
+     * @param z
+     *            z 轴
+     */
+    public void hambota(int n, String x, String y, String z) {
+        // 最后一个盘子实现罗盘
+        if (n == 1) {
+            log.info("{} --> {}", x, z);
+        } else {
+            // 将 n-1 个盘子从 x 借助 z 到 y 上
+            hambota(n - 1, x, z, y);
+            // 将 n 个盘子从 x 移动 z,因为 z 已经是最后一个盘子了，因此可以直接移动到 z
+            log.info("{} --> {}", x, z);
+            // 将 n-1 个盘子从 y 借助 x 到 z 上
+            hambota(n - 1, y, x, z);
+        }
+    }
+
+    @Test
+    public void tss(){
+        hambota(10, "x", "y", "z");
 
     }
 
@@ -133,12 +195,9 @@ public class Recursive {
 
     @Test
     public void binaryArray() {
-        int[] data = {1, 11, 42, 44, 45, 56, 77, 88, 90};
+        int[] data = {1, 2};
         binarySearchArray(data, 1);
-        binarySearchArray(data, 11);
-        binarySearchArray(data, 42);
-        binarySearchArray(data, 44);
-        binarySearchArray(data, 45);
-        binarySearchArray(data, 56);
+        int i = recursiveFind(data, 0, data.length - 1, 2);
+        log.info(i + "");
     }
 }
