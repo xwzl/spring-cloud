@@ -1,4 +1,4 @@
-package com.java.prepare.until;
+package com.java.prepare.until.mongo;
 
 import com.spring.common.model.common.PageVO;
 import org.springframework.data.mongodb.core.MongoTemplate;

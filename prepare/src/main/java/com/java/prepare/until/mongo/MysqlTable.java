@@ -1,4 +1,4 @@
-package com.java.prepare.until;
+package com.java.prepare.until.mongo;
 
 public interface MysqlTable {
     int COMPLAINT = 1;

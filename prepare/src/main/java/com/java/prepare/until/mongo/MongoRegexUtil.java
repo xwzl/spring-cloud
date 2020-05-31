@@ -1,4 +1,4 @@
-package com.java.prepare.until;
+package com.java.prepare.until.mongo;
 
 import org.apache.commons.lang3.StringUtils;
 
