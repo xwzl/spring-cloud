@@ -53,7 +53,7 @@ public class Huffman {
         sort(nodeList);
 
         // xwz
-        cache = new HashMap<String, String>(nodeList.size());
+        cache = new HashMap<>(nodeList.size());
 
         // 4.取出权值最小的两个节点，生成一个新的父节点
         // 5.删除权值最小的两个节点，将父节点存放到列表中
@@ -149,7 +149,6 @@ public class Huffman {
                     nodeList.set(i, nodeList.get(j));
                     nodeList.set(j, temp);
                 }
-
             }
         }
 
@@ -304,7 +303,7 @@ public class Huffman {
         Huffman huff = new Huffman();// 创建哈弗曼对象
         // 读取本地文件（自己写的方法，不想写可以自己随便定一个字符串）
         //String data = readFile();
-        String data = "Are you ok ? I'm ok, you don't care of me";
+        String data = "ABBCCCDDDDEEEEE";
         huff.creatHfmTree(data);// 构造树
         huff.output(); // 显示字符的哈夫曼编码
         // 将目标字符串利用生成好的哈夫曼编码生成对应的二进制编码

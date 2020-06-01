@@ -8,7 +8,7 @@ public class HuffmanCode {
     public static void main(String[] args) {
         // TODO 自动生成的方法存根
 
-        String content = "i like like like java do you like a java";
+        String content = "ABBCCCDDDDEEEEE";
         byte[] contentBytes = content.getBytes();
 
         byte[] huffmanCodeBytes = huffmanZip(contentBytes);

@@ -138,22 +138,22 @@ public class HuffmanTree {
     /**
      * 打印编码压缩效率
      *
-     * @param map_times
+     * @param mapTimes
      * @param str
      */
-    public static void printCompressionRate(HashMap<Character, Integer> map_times, HashMap<Character, String> map_code, String str) {
-        double num_befor = 0;
-        double num_after = 0;
+    public static void printCompressionRate(HashMap<Character, Integer> mapTimes, HashMap<Character, String> mapCode, String str) {
+        double numBefore = 0;
+        double numAfter = 0;
         double times;
         String code = null;
-        for (Character key : map_times.keySet()) {
-            times = map_times.get(key);
-            code = map_code.get(key);
-            num_after += times * (code.length());
+        for (Character key : mapTimes.keySet()) {
+            times = mapTimes.get(key);
+            code = mapCode.get(key);
+            numAfter += times * (code.length());
         }
-        num_befor = 8 * num;
+        numBefore = 8 * num;
         System.out.println("==================================================================");
-        System.out.println("编码压缩效率:" + num_befor / num_after);
+        System.out.println("编码压缩效率:" + numBefore / numAfter);
     }
 
     /**
@@ -165,7 +165,7 @@ public class HuffmanTree {
         /*需要编码的字符串*/
         //private static String str = "dcbaddcdddcddcab";
         //下面这个例子待定，因为不确定是否需要把空格也算上
-        String str = "i am a student i study iot subject in guangzhou university i like the subject and will work hard and do my best to achieve a high score in final examination";
+        String str = "ABBCCCDDDDEEEEE";
         statisticsTimes(str, mapTimes);    //统计每个字符出现的次数
         buildHuffmanTree(mapTimes, list);  //构建哈夫曼树
         buildHuffmanCode(list.get(0));      //遍历哈夫曼树并且进行编码
