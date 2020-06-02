@@ -8,6 +8,8 @@ package com.java.prepare.until.structure.graph;
  * <p>
  * 大话数据结构
  *
+ * 普利姆算法适用于稠密图，prim 适用于稀疏图
+ *
  * @author xuweizhi
  * @since 2020/06/02 17:05
  */
@@ -38,7 +40,7 @@ public class Kruskal {
         // 定义边集数组
         int size = g.vertexList.size();
         Edge[] edges = intEdges();
-        // 定义一数组来判断边鱼边是否形成环路
+        // 定义一数组来判断边是否形成环路
         int[] parent = new int[size];
         for (i = 0; i < size; i++) parent[i] = 0;
         for (i = 0; i < size; i++) {
@@ -53,6 +55,11 @@ public class Kruskal {
         }
     }
 
+    /**
+     * 按权有小到大排序的边集数组
+     *
+     * @return 按权有小到大排序的边集数组
+     */
     private Edge[] intEdges() {
         Edge[] edges = new Edge[15];
         edges[0] = new Edge(4, 7, 7);
