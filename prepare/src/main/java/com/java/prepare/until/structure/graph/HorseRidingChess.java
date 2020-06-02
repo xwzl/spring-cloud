@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * 马踏期盼问题的棋盘为 8*8 的方格棋盘，现将马放在任意指定的方格中，按照马走棋的规则将马进行移动。
+ * 马踏棋盘问题的棋盘为 8*8 的方格棋盘，现将马放在任意指定的方格中，按照马走棋的规则将马进行移动。
  * <p>
  * 要求每个方格只能进入一次，最终使得马走遍棋盘 64 个方格
  * <p>
@@ -43,8 +43,8 @@ public class HorseRidingChess {
         X = 8;
         Y = 8;
         //马的起始位置,从1开始
-        int row = 2;
-        int column = 1;
+        int row = 4;
+        int column = 5;
         //创建棋盘
         int[][] chessBoard = new int[X][Y];
         //初始值为false;
@@ -107,7 +107,8 @@ public class HorseRidingChess {
      *
      * @param ps
      */
-    public static void sort(ArrayList<Point> ps) {
+    public static void
+    sort(ArrayList<Point> ps) {
         ps.sort(
                 (o1, o2) -> {
                     //获取到o1的下一步的所有位置个数
@@ -127,6 +128,15 @@ public class HorseRidingChess {
 
     /**
      * 骑士周游算法
+     * <p>
+     * 其实马踏棋盘的问题很早就有人提出，且早在1823年，J.C.Warnsdorff就提出了一个有名的算法。在每个结点对其子结点进行选取时，优先选择‘出口’最小
+     * 的进行搜索，‘出口’的意思是在这些子结点中它们的可行子结点的个数，也就是‘孙子’结点越少的越优先跳，为什么要这样选取，这是一种局部调整最优的做
+     * 法，如果优先选择出口多的子结点，那出口少的子结点就会越来越多，很可能出现‘死’结点（顾名思义就是没有出口又没有跳过的结点），这样对下面的搜索
+     * 纯粹是徒劳，这样会浪费很多无用的时间，反过来如果每次都优先选择出口少的结点跳，那出口少的结点就会越来越少，这样跳成功的机会就更大一些。 [4]
+     * 这种算法称为为贪心算法，也叫贪婪算法或启发式算法，它对整个求解过程的局部做最优调整，它只适用于求较优解或者部分解，而不能求最优解。这样的调
+     * 整方法叫贪心策略，至于什么问题需要什么样的贪心策略是不确定的，具体问题具体分析。实验可以证明马遍历问题在运用到了上面的贪心策略之后求解速率
+     * 有非常明显的提高，如果只要求出一个解甚至不用回溯就可以完成，因为在这个算法提出的时候世界上还没有计算机，这种方法完全可以用手工求出解来，其
+     * 效率可想而知。 [4]
      *
      * @param chessboard 棋盘
      * @param row        马的当前行 从0开始
@@ -136,7 +146,7 @@ public class HorseRidingChess {
     public static void traversalChessBoard(int[][] chessboard, int row, int column, int step) {
         //获取当前位置
         chessboard[row][column] = step;
-        //标记当前位置为已访问
+        //标记当前位置为已访问,1-64
         visited[row * X + column] = true;
         //获取当前位置可以走的下一个位置的集合
         ArrayList<Point> ps = next(new Point(column, row));
