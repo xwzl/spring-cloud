@@ -1,12 +1,12 @@
-package com.spring.demo.untils;
+package com.spring.common.model.utils;
 
 import com.baidu.aip.ocr.AipOcr;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.demo.model.picture.GeneralPicture;
-import com.spring.demo.model.picture.GeneralPicturePosition;
-import com.spring.demo.model.picture.WordsResult;
-import com.spring.demo.model.vos.PictureResultVO;
+import com.spring.common.model.model.picture.GeneralPicture;
+import com.spring.common.model.model.picture.GeneralPicturePosition;
+import com.spring.common.model.model.picture.WordsResult;
+import com.spring.common.model.model.vos.PictureResultVO;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;

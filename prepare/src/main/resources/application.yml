@@ -7,7 +7,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   profiles:
-    active: home
+    active: company
 
 mybatis-plus:
   global-config:
@@ -26,6 +26,13 @@ mybatis-plus:
   type-aliases-package: com.java.prepare.model
   mapper-locations: classpath:com/java/prepare/mapper/*.xml
 
+# 百度图片识别
+baidu:
+  picture:
+    client:
+      appId: 17742567
+      appKey: eXsrrHSvWhGGbG6SCpKr5vvB
+      secretKey: PoNAGHge3G7Cc5Er2wVz3Uk3rIAIhBte
 #logging:
 #  level:
 #    com.java.prepare: debug
@@ -51,7 +58,7 @@ spring:
   data:
     mongodb:
       #     uri: mongodb://192.192.192.64:27017,192.192.192.64:27018,192.192.192.64:27019/test?replicaSet=mongorepl0&readPreference=secondaryPreferred&appname=${spring.application.name}&ssl=false&w=majority&readConcern=majority
-      uri: mongodb://172.16.142.128:27017/test
+      uri: mongodb://192.192.192.62:27017/mb-test
 ---
 spring:
   profiles: home

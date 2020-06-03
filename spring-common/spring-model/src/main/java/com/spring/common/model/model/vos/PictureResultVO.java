@@ -1,4 +1,4 @@
-package com.spring.demo.model.vos;
+package com.spring.common.model.model.vos;
 
 import lombok.Data;
 import lombok.ToString;

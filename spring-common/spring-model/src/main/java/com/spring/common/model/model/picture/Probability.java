@@ -1,4 +1,4 @@
-package com.spring.demo.model.picture;
+package com.spring.common.model.model.picture;
 
 import lombok.Data;
 import lombok.ToString;

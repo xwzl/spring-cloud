@@ -1,4 +1,4 @@
-package com.spring.demo.config.config;
+package com.java.prepare.config;
 
 import com.baidu.aip.ocr.AipOcr;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConfigurationProperties(prefix = "baidu.picture.client")
-public class PictureRecognitionConfig {
+public class BaiduConfig {
 
     /**
      * app id

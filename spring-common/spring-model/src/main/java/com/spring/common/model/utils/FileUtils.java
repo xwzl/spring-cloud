@@ -1,4 +1,4 @@
-package com.spring.demo.untils;
+package com.spring.common.model.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,17 +1,15 @@
-package com.spring.demo.controller;
+package com.java.prepare.controller;
 
 import com.baidu.aip.ocr.AipOcr;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.spring.common.model.common.ApiResult;
-import com.spring.demo.config.config.BeanConfig;
-import com.spring.demo.model.vos.PictureResultVO;
-import com.spring.demo.untils.PictureUtils;
-import com.spring.demo.untils.QrCodeUtils;
+import com.spring.common.model.model.vos.PictureResultVO;
+import com.spring.common.model.utils.PictureUtils;
+import com.spring.common.model.utils.QrCodeUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Date;
-import java.util.Map;
 
 /**
  * http://ai.baidu.com/docs#/OCR-Java-SDK/top
@@ -35,7 +31,7 @@ import java.util.Map;
 @Api(tags = "图片文字转换")
 @RestController
 @RequestMapping("picture")
-public class PictureConvertController {
+public class PictureController {
 
     @Resource
     private AipOcr aipOcr;
@@ -134,11 +130,14 @@ public class PictureConvertController {
         }
     }
 
+    /**
+     * 获取
+     */
     @GetMapping
     public void printDate() {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanConfig.class);
-        Map<String, Date> map = applicationContext.getBeansOfType(Date.class);
-        System.out.println(map);
+        //AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanConfig.class);
+        //Map<String, Date> map = applicationContext.getBeansOfType(Date.class);
+        //System.out.println(map);
     }
 
 }

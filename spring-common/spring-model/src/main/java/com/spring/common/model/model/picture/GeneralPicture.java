@@ -1,4 +1,4 @@
-package com.spring.demo.model.picture;
+package com.spring.common.model.model.picture;
 
 import lombok.Data;
 import lombok.ToString;
@@ -6,21 +6,23 @@ import lombok.ToString;
 import java.util.List;
 
 /**
- * 通用识别对象(包含位置)
+ * 通用识别对象
  *
  * @author xuweizhi
  * @since 2019/09/20 17:16
  */
 @Data
 @ToString
-public class GeneralPicturePosition {
-
+public class GeneralPicture {
 
     /**
      * 唯一的log id，用于问题定位
      */
     private String log_id;
 
+    /**
+     * 语言
+     */
     private String language;
 
     /**
@@ -37,6 +39,7 @@ public class GeneralPicturePosition {
      * 定位和识别结果数组
      */
     private List<WordsResult> words_result;
+
     /**
      * 识别结果数，表示words_result的元素个数
      */

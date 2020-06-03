@@ -43,7 +43,7 @@ public class Kruskal {
         // 定义一数组来判断边是否形成环路
         int[] parent = new int[size];
         for (i = 0; i < size; i++) parent[i] = 0;
-        for (i = 0; i < size; i++) {
+        for (i = 0; i < edges.length; i++) {
             n = find(parent, edges[i].begin);
             m = find(parent, edges[i].end);
             // 假如 n 与 m 不等，说明此边没有与现有生成树形成环路
