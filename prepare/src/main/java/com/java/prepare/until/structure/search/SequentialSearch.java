@@ -1,9 +1,7 @@
 package com.java.prepare.until.structure.search;
 
-import org.junit.Test;
-
 /**
- * 顺序查找
+ * 顺序查找：https://blog.csdn.net/smile_from_2015/article/details/72190562?utm_source=gold_browser_extension
  *
  * @author xuweizhi
  * @since 2020/06/04 10:16
@@ -12,6 +10,13 @@ public class SequentialSearch {
     private final static int SIZE = 15;
 
     private final static int[] f = new int[SIZE];
+
+    /**
+     * 全局变量，存放查找的关键字所在的父节点
+     */
+    private static BiTree parentNode = new BiTree();
+
+    private static BiTree newTree = new BiTree();
 
 
     /**
@@ -136,17 +141,6 @@ public class SequentialSearch {
         return -1;
     }
 
-    @Test
-    public void testFibonacci() {
-        int[] a = {0, 1, 16, 24, 35, 47, 59, 62, 73, 88, 99};
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 11; j++) {
-                System.out.println(fibonacciSearch(a, j, a[i]));
-            }
-        }
-
-    }
-
     public static int fibonacciInit(int n) {
         return n <= 1 ? Math.max(0, n) : fibonacciInit(n - 1) + fibonacciInit(n - 2);
     }
@@ -156,4 +150,186 @@ public class SequentialSearch {
             f[i] = fibonacciInit(i);
         }
     }
+
+    /*
+     总之,二叉排序树是以链接的方式存储，保持了链接存储结构在执行插入或删除操作时不用移动元素的优点，
+     只要找到合造的插入和删除位置后，仅需修改链接指针即可。
+     */
+
+    /**
+     * 二叉排序树查找（Binary Sort Tree）
+     * <p>
+     * 递归查找二叉排序树 T 中是否存在 key，f 指向 t 的双亲，其初始调用值为 Null,若查找成功，则
+     * root 指向该数据元素结点，并返回 true;否则 p 指向查找路径上访问的最后一个节点并 返回 false
+     *
+     * @param t      待查询的二叉排序树
+     * @param key    查找关键字
+     * @param parent 指向 t 的双亲，默认初始值为 null
+     * @return 查找成功返回为 true, 并将树结点赋值给全局变量 parentNode,查找失败返回 false
+     */
+    public static boolean searchBST(BiTree t, int key, BiTree parent) {
+        if (t == null || t.data == 0) { //树节点不存在返回
+            parentNode = parent; // 返回父节点
+            return false;
+        } else if (key == t.data) { // 匹配成功
+            parentNode = parent; // 返回父节点，用于插入或者删除
+            return true;
+        } else if (key < t.data) { //关键字小于根节点查找左子树
+            return searchBST(t.lChild, key, t);
+        } else {// 关键字大于根节点查找右子树
+            return searchBST(t.rChild, key, t);
+        }
+    }
+
+    /**
+     * 在二叉树中插入关键字key
+     *
+     * @param bt  二叉排序树
+     * @param key 插入的关键字
+     * @return 插入成功返回true，失败返回false
+     */
+    public static boolean insertBinaryTree(BiTree bt, int key) {
+        BiTree binaryTree;
+        if (!searchBST(bt, key, null)) {
+            binaryTree = new BiTree();
+            binaryTree.data = key;
+            binaryTree.lChild = binaryTree.rChild = null;
+            if (null == parentNode) {// 不存在，证明是父节点，将binaryTree指向bt成为新的根节点
+                bt = binaryTree;
+            } else if (key < parentNode.data) { // 当key小于子根节点，插入为左孩子
+                parentNode.lChild = binaryTree;
+            } else { // 当key大于子根节点，插入为右孩子
+                parentNode.rChild = binaryTree;
+            }
+            preOrderTraverse(bt);
+            return true;
+        } else {
+            System.out.println("该节点已存在");
+        }
+        return false;
+    }
+
+
+    /**
+     * 生成二叉树
+     *
+     * @param key 关键字
+     */
+    public static void generateBinaryTree(int key) {
+        BiTree binaryTree;
+        if (!searchBST(newTree, key, null)) {
+            binaryTree = new BiTree();
+            binaryTree.data = key;
+            binaryTree.lChild = binaryTree.rChild = null;
+            if (null == parentNode) {// 不存在，证明是父节点，将binaryTree指向bt成为新的根节点
+                newTree = binaryTree;
+            } else if (key < parentNode.data) { // 当key小于子根节点，插入为左孩子
+                parentNode.lChild = binaryTree;
+            } else { // 当key大于子根节点，插入为右孩子
+                parentNode.rChild = binaryTree;
+            }
+            preOrderTraverse(newTree);
+        } else {
+            System.out.println("该节点已存在");
+        }
+    }
+
+    /**
+     * 测试生成二叉树
+     */
+    public static void generateBinaryTree() {
+        int[] a = {62, 88, 58, 47, 35, 73, 51, 99, 37, 93};
+        for (int i = 0; i < a.length; i++) {
+            System.out.println("第" + i + "次");
+            generateBinaryTree(a[i]);
+        }
+        insertBinaryTree(newTree, 55);
+        insertBinaryTree(newTree, 55);
+        insertBinaryTree(newTree, 55);
+        deleteBST(newTree, 55);
+        deleteBST(newTree, 55);
+        deleteBST(newTree, 55);
+
+    }
+
+    /**
+     * 中序遍历打印线索二叉树
+     *
+     * @param t 当前结点
+     */
+    static void preOrderTraverse(BiTree t) {
+        if (null == t || t.data == 0) {
+            return;
+        }
+        if (t.lChild != null) {
+            preOrderTraverse(t.lChild); // 中序遍历左子树
+        }
+        if (t.data != 0) {
+            System.out.println("[" + t.data + "]"); // 显示当前节点的数据
+        }
+        if (t.rChild != null) {
+            preOrderTraverse(t.rChild); // 最后遍历右子树
+        }
+    }
+
+    /**
+     * 根据我们对删除结点三种情况的分析：
+     * <ul>
+     *     <li>叶子结点</li>
+     *     <li>仅有左或右子树的结点</li>
+     *     <li>左右子树都有的及诶单</li>
+     * </ul>
+     *
+     * @param t   当前结点
+     * @param key 关键字
+     * @return 返回
+     */
+    public static boolean deleteBST(BiTree t, int key) {
+        if (!searchBST(t, key, null)) { // 若删除的结点不存在
+            return false;
+        } else {
+            if (t.data == key) {
+                return delete(t);
+            } else if (key < t.data) {
+                return deleteBST(t.lChild, key);
+            } else {
+                return deleteBST(t.rChild, key);
+            }
+        }
+    }
+
+    /**
+     * 从二叉树排序中删除结点 p ,并重接它的左或右子树
+     *
+     * @param t 当前结点
+     * @return 返回值
+     */
+    private static boolean delete(BiTree t) {
+        BiTree q, s;
+        if (null == t.rChild) {
+            t = t.lChild; // 右子树为空则只需重接左子树
+        } else if (null == t.lChild) {
+            t = t.rChild; //// 左子树为空则只需重接右子树
+        } else {
+            q = t;
+            s = t.lChild;
+            // 转左，然后向右到尽头(找到待删结点前驱)
+            while (null != s.rChild) {
+                q = s;
+                s = s.rChild;
+            }
+            t.data = s.data;// s指向被删除结点的直接前驱
+            if (q != t) {//
+                q.rChild = s.lChild;// 重接q的右子树
+            } else {// q.data == bt.data，则说明s.rchild == null
+                q.lChild = s.lChild; // 重接q的左子树
+            }
+        }
+        return true;
+    }
+
+
+
+
+
 }
