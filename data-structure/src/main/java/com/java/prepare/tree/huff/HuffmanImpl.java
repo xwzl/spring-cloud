@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -149,7 +152,7 @@ public class HuffmanImpl implements Huffman {
         }
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
+    public static void main(String[] args) {
         HuffmanImpl huffman = new HuffmanImpl();
         String data = "17:55:42.802 [main] INFO com.java.prepare.until.structure.tree.huff.HuffmanImpl - data:E,code:11,level:4,num:5";
         huffman.createHuffmanTree(data);
@@ -157,6 +160,17 @@ public class HuffmanImpl implements Huffman {
         String hufCode = huffman.stringToHuf(data);
         log.info("编码：" + hufCode);
         log.info("解码：" + huffman.hufToString(hufCode));
+        efficiencyConvert(data, hufCode);
+
+    }
+
+    private static void efficiencyConvert(String data, String hufCode) {
+        double sum = 0;
+        for (char c : data.toCharArray()) {
+            sum += String.valueOf(c).getBytes(StandardCharsets.UTF_8).length * 8;
+        }
+        double length = hufCode.length();
+        System.out.println("编码效率提高：" + sum / length);
     }
 
     private boolean target = false;
