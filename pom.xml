@@ -16,17 +16,15 @@
         <module>spring-base</module>
         <module>spring-boot</module>
         <module>spring-demo</module>
-        <module>spring-demo-plus</module>
+        <module>spring-complex</module>
         <module>spring-elastic</module>
-        <module>spring-generator</module>
         <module>spring-mongo</module>
-        <module>spring-netty</module>
         <module>spring-rabbit</module>
-        <module>spring-starter-demo</module>
         <module>spring-websocket</module>
         <module>spring-flux</module>
         <module>spring-redis</module>
         <module>prepare</module>
+        <module>data-structure</module>
     </modules>
 
     <name>spring-cloud</name>
@@ -44,7 +42,7 @@
             </releases>
             <!-- 是否开启快照版构件下载 -->
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
         <repository>
@@ -130,7 +128,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
