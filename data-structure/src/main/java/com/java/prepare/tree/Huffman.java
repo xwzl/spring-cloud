@@ -1,4 +1,4 @@
-package com.java.prepare;
+package com.java.prepare.tree;
 
 /**
  * huff man
