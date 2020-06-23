@@ -3,6 +3,7 @@ package com.java.prepare;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.lang.reflect.Field;
@@ -19,7 +20,10 @@ public class PrepareApplication {
 
     public static void main(String[] args) {
         disableAccessWarnings();
-        SpringApplication.run(PrepareApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(PrepareApplication.class, args);
+        //ConfigurableListableBeanFactory beanFactory = run.getBeanFactory();
+        //BeanDefinition mysql = beanFactory.getBeanDefinition("mysqlController");
+        //System.out.println("");
     }
 
     /**
