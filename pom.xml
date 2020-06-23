@@ -10,6 +10,7 @@
 
     <modules>
         <module>spring-common</module>
+        <module>spring-microsoft</module>
         <module>spring-admin</module>
         <module>dynamic-datasource</module>
         <module>mybatis-plus</module>
@@ -23,7 +24,7 @@
         <module>spring-websocket</module>
         <module>spring-flux</module>
         <module>spring-redis</module>
-        <module>prepare</module>
+        <module>spring-prepare</module>
         <module>data-structure</module>
     </modules>
 
