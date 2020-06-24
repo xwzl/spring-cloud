@@ -18,7 +18,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019-08-25
  */
-@Document(collection = "ex_cat")
+@Document(collection = "ex_cat",collation = "zh")
 //创建联合索引
 //@CompoundIndexes({
 //        //联合索引 name 索引名称 、def 索引字段、number 升序、createTime 降序

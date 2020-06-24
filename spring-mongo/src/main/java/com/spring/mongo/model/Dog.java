@@ -2,6 +2,7 @@ package com.spring.mongo.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ public class Dog implements Serializable {
     /**
      * 如果实体类没有为任何字段创建索引将不会自动创建集合
      */
-    //@Indexed
+    @Indexed
     private Long parameter1;
 
     public Dog() {
