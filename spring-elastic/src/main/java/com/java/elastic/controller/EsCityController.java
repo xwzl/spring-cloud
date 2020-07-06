@@ -1,14 +1,12 @@
 package com.java.elastic.controller;
 
 import com.java.elastic.entity.EsCityEntity;
-import com.java.elastic.param.EsSearchParam;
 import com.java.elastic.service.EsCityService;
 import com.spring.common.model.common.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.models.properties.LongProperty;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -95,9 +93,9 @@ public class EsCityController {
      * @param param 请求参数
      * @return Response<Page < EsCityEntity>>
      */
-    @PostMapping("/search")
-    @ApiOperation(value = "搜索分页查询", notes = "搜索分页查询")
-    public Response<Page<EsCityEntity>> search(@RequestBody @Valid EsSearchParam param) {
-        return Response.success(cityService.searchCities(param));
-    }
+    //@PostMapping("/search")
+    //@ApiOperation(value = "搜索分页查询", notes = "搜索分页查询")
+    //public Response<Page<EsCityEntity>> search(@RequestBody @Valid EsSearchParam param) {
+    //    return Response.success(cityService.searchCities(param));
+    //}
 }

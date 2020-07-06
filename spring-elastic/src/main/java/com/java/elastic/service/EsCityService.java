@@ -1,8 +1,6 @@
 package com.java.elastic.service;
 
 import com.java.elastic.entity.EsCityEntity;
-import com.java.elastic.param.EsSearchParam;
-import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 
@@ -51,5 +49,5 @@ public interface EsCityService {
      * @param searchParam 搜索参数
      * @return Page<EsCityEntity>
      */
-    Page<EsCityEntity> searchCities(EsSearchParam searchParam);
+    //Page<EsCityEntity> searchCities(EsSearchParam searchParam);
 }

@@ -75,9 +75,9 @@
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <mysql.version>8.0.18</mysql.version>
         <druid.version>1.1.20</druid.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.11.0</jackson.version>
         <jannotation.version>17.0.0</jannotation.version>
-        <fastJson.version>1.2.60</fastJson.version>
+        <fastJson.version>1.2.59</fastJson.version>
         <common-lang.version>3.9</common-lang.version>
         <hutool.version>1.2.59</hutool.version>
         <junit.version>4.13-beta-3</junit.version>

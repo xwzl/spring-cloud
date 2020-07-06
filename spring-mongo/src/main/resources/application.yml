@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://192.192.192.64:27017/test
+      uri: mongodb://192.192.192.61:27017,192.192.192.61:27018,192.192.192.61:27019/test?replicaSet=mongorepl0&readPreference=secondaryPreferred&ssl=false&w=majority&readConcern=majority
 
 logging:
   level:

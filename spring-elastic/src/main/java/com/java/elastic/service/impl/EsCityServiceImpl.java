@@ -2,23 +2,12 @@ package com.java.elastic.service.impl;
 
 import com.google.common.collect.Lists;
 import com.java.elastic.entity.EsCityEntity;
-import com.java.elastic.param.EsSearchParam;
 import com.java.elastic.repository.EsCityRepository;
 import com.java.elastic.service.EsCityService;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
-import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * ES城市 Service 实现类
@@ -98,23 +87,23 @@ public class EsCityServiceImpl implements EsCityService {
      * @param searchParam 搜索参数
      * @return Page<EsCityEntity>
      */
-    @Override
-    public Page<EsCityEntity> searchCities(EsSearchParam searchParam) {
-        String searchContent = searchParam.getSearchContent();
-        // 分页参数（传入页码 - 1）
-        Pageable pageable = PageRequest.of(searchParam.getPageNumber() - 1, searchParam.getPageSize());
-        // 权重查询
-        List<FunctionScoreQueryBuilder.FilterFunctionBuilder> filterFunctionBuilders = new ArrayList<>();
-        filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                QueryBuilders.matchQuery("cityName", searchContent), ScoreFunctionBuilders.weightFactorFunction(3)));
-        filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(
-                QueryBuilders.matchQuery("description", searchContent), ScoreFunctionBuilders.weightFactorFunction(2)));
-        FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
-        filterFunctionBuilders.toArray(builders);
-        FunctionScoreQueryBuilder builder = QueryBuilders.functionScoreQuery(builders).scoreMode(FunctionScoreQuery.ScoreMode.SUM).setMinScore(2);
-        // 创建搜索 DSL 查询
-        SearchQuery searchQuery = new NativeSearchQueryBuilder().withPageable(pageable).withQuery(builder).build();
-        log.info("\n searchCity(): searchContent [{}] \n DSL  = \n {}", searchContent, searchQuery.getQuery().toString());
-        return cityRepository.search(searchQuery);
-    }
+    //@Override
+    //public Page<EsCityEntity> searchCities(EsSearchParam searchParam) {
+    //    String searchContent = searchParam.getSearchContent();
+    //    // 分页参数（传入页码 - 1）
+    //    Pageable pageable = PageRequest.of(searchParam.getPageNumber() - 1, searchParam.getPageSize());
+    //    // 权重查询
+    //    List<FunctionScoreQueryBuilder.FilterFunctionBuilder> filterFunctionBuilders = new ArrayList<>();
+    //    filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+    //            QueryBuilders.matchQuery("cityName", searchContent), ScoreFunctionBuilders.weightFactorFunction(3)));
+    //    filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+    //            QueryBuilders.matchQuery("description", searchContent), ScoreFunctionBuilders.weightFactorFunction(2)));
+    //    FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
+    //    filterFunctionBuilders.toArray(builders);
+    //    FunctionScoreQueryBuilder builder = QueryBuilders.functionScoreQuery(builders).scoreMode(FunctionScoreQuery.ScoreMode.SUM).setMinScore(2);
+    //    // 创建搜索 DSL 查询
+    //    SearchQuery searchQuery = new NativeSearchQueryBuilder().withPageable(pageable).withQuery(builder).build();
+    //    log.info("\n searchCity(): searchContent [{}] \n DSL  = \n {}", searchContent, searchQuery.getQuery().toString());
+    //    return cityRepository.search(searchQuery);
+    //}
 }

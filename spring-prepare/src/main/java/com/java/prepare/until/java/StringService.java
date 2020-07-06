@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class StringService extends DefaultServiceImpl<String> {
 
+
 }

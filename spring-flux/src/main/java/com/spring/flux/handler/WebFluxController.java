@@ -10,6 +10,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/annotated")
-public class WebFluxAnnotatedController {
+public class WebFluxController {
 
     @Resource
     private UserRepository userRepository;
@@ -43,6 +46,12 @@ public class WebFluxAnnotatedController {
         printlnThread("获取HTTP请求");
         //使用lambda表达式
         return Flux.fromStream(userRepository.getUsers().entrySet().stream().map(Map.Entry::getValue));
+    }
+
+    @GetMapping("all")
+    public Mono<List<UserVO>> all() {
+        Collection<UserVO> values = userRepository.getUsers().values();
+        return Mono.just(new ArrayList<>(values));
     }
 
     /**
