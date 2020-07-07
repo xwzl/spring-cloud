@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.spring.common.model.model.dos.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -14,6 +15,7 @@ import lombok.experimental.Accessors;
  * @since 2020-05-25
  */
 @Data
+@ToString
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("student")
