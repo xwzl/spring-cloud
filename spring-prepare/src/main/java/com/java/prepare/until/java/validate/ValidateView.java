@@ -168,6 +168,8 @@ public class ValidateView {
 
 class ValidateNotAtomic {
     // volatile 不保证变量原子性
+    // volatile 其实际行为是对主内中的变量进行加锁，对应 jdk 中的原子操作 lock 和 unlock
+    //
     public static volatile int COUNTER = 0;
     public static AtomicInteger atomicInteger = new AtomicInteger();
 

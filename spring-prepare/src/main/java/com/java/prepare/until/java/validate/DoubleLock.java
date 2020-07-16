@@ -37,7 +37,7 @@ public class DoubleLock {
 
     public static void main(String[] args) throws InterruptedException {
         List<Thread> list = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(new Thread(DoubleLock::getInstance));
         }
 

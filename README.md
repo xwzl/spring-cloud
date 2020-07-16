@@ -66,3 +66,13 @@
         </resources>
     </build>
 ```
+
+# 打印汇编信息
+
+下载后放入对应的 jre 文件下
+
+链接: https://pan.baidu.com/s/1Nmd-AXzVC0fICNqGEHePFw 提取码: kbk5
+
+```
+-XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
+```
