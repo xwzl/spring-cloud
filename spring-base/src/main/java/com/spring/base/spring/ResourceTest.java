@@ -44,15 +44,15 @@ public class ResourceTest {
     @Test
     public void resourceTest() {
         //if (this.clazz != null) {
-        //    log.info(this.clazz.getResource(this.path).toString());
+            log.info(this.clazz.getResource(this.path).toString());
         //} else if (this.classLoader != null) {
-        //    log.info(this.classLoader.getResource(this.path).toString());
+            log.info(this.classLoader.getResource(this.path).toString());
         //} else {
-        //    log.info(ClassLoader.getSystemResource(this.path).toString());
+            log.info(ClassLoader.getSystemResource(this.path).toString());
         //}
-        //log.info(this.clazz.getResource(this.path).toString());
+        log.info(this.clazz.getResource(this.path).toString());
         log.info(this.classLoader.getResource(this.path).toString());
-        //log.info(ClassLoader.getSystemResource(this.path).toString());
+        log.info(ClassLoader.getSystemResource(this.path).toString());
 
     }
 

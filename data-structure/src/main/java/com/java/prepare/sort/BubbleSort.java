@@ -12,12 +12,72 @@ import java.util.Arrays;
  */
 public class BubbleSort {
 
+    public static void main(String[] args) {
+        int[] a = {5, 6, 1, 8, 6, 5, 9, 2, 3};
+        bubbleSort(a);
+        System.out.println(Arrays.toString(a));
+    }
+
+    /**
+     * 传统的赋值交换，我们采用申明中间变量的方法进行复制
+     *
+     * @param a
+     * @param i
+     * @param j
+     */
+    private static void swap01(int[] a, int i, int j) {
+        int tmpt = a[j];
+        a[j] = a[i];
+        a[i] = tmpt;
+    }
+
+
+    //a[i] ^= a[j]; 等同于a[i] = a[i]^a[j],少写点  只写8位
+    //假定此时是6,1;第一步：a[i]=0000 0110 ，a[j] = 0000 0001;
+
+    /**
+     * 计算后
+     * 0000 0110
+     * 0000 0001  ^
+     * -------------
+     * a[i]        0000 0111
+     * <p>
+     * 第二步：
+     * 0000 0001
+     * 0000 0111   ^
+     * ----------------
+     * a[j]        0000 0110
+     * <p>
+     * 第三步：
+     * 0000 0111
+     * 0000 0110      ^
+     * -------------
+     * a[i]        0000 0001
+     */
+    private static void swap(int[] a, int i, int j) {
+        a[i] ^= a[j];
+        a[j] ^= a[i];
+        a[i] ^= a[j];
+    }
+
+
+    private static void bubbleSort(int[] a) {
+        int length = a.length;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
+                if (a[j + 1] < a[j])
+                    //swap(a,j+1,j);
+                    swap01(a, j + 1, j);
+            }
+        }
+    }
+
     /**
      * 冒泡
      */
     @Test
     public void test() {
-        int[] arr = new int[]{9, 8, 5, 3, 1, 7};
+        int[] arr = new int[]{9, -8, 45, 3, -1, 7};
         //外层循环控制循环次数
         //第一次循环比较需要比较五次,然后选出最大值 9,排在末尾
         //第二次循环只需要比较四次,选出第二大的值 8,排在倒数第二的位置
@@ -28,9 +88,9 @@ public class BubbleSort {
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 //如果前一个数大于后一个数,则交换位置
                 if (arr[j] > arr[j + 1]) {
-                    arr[j] = arr[j] ^ arr[j + 1];
-                    arr[j + 1] = arr[j] ^ arr[j + 1];
-                    arr[j] = arr[j] ^ arr[j + 1];
+                    arr[j] ^= arr[j + 1];
+                    arr[j + 1] ^= arr[j ];
+                    arr[j] ^= arr[j + 1];
                 }
             }
         }
