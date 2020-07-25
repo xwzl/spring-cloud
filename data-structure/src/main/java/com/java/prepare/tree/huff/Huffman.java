@@ -303,7 +303,7 @@ public class Huffman {
         Huffman huff = new Huffman();// 创建哈弗曼对象
         // 读取本地文件（自己写的方法，不想写可以自己随便定一个字符串）
         //String data = readFile();
-        String data = "ABBCCCDDDDEEEEE";
+        String data = "hello world";
         huff.creatHfmTree(data);// 构造树
         huff.output(); // 显示字符的哈夫曼编码
         // 将目标字符串利用生成好的哈夫曼编码生成对应的二进制编码

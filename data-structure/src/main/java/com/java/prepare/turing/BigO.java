@@ -1,6 +1,7 @@
 package com.java.prepare.turing;
 
 public class BigO {
+
 	public static void main(String[] args) {
 		int a = 1;		//1次 O(1)
 		for(int i = 0 ;i < 3;i++){//这里会运行几次？4次 在第4次的时候结束 跳出 i=3 (0 1 2 3)
