@@ -1,6 +1,5 @@
 package com.java.prepare.turing.tree;
 
-import com.java.prepare.turing.tree.LinkedBinaryTree.BinaryNode;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -190,7 +189,7 @@ public class HuffmanTree<E> extends AbstractBinaryTree<E> implements BinaryTree<
         }
     }
 
-    static class HuffmanNode<E> extends BinaryNode<E> implements Comparable<HuffmanNode<Integer>> {
+    public static class HuffmanNode<E> extends BinaryNode<E> implements Comparable<HuffmanNode<Integer>> {
 
         /**
          * 权值

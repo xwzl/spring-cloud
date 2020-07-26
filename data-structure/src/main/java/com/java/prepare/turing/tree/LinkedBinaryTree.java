@@ -10,27 +10,6 @@ import java.util.NoSuchElementException;
  */
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> implements BinaryTree<E> {
 
-    static class BinaryNode<E> implements Node<E> {
-        E data;
-        BinaryNode<E> left;
-        BinaryNode<E> right;
-
-        public BinaryNode(E data) {
-            this.data = data;
-        }
-
-        public BinaryNode(E data, BinaryNode<E> left, BinaryNode<E> right) {
-            this.data = data;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return data.toString();
-        }
-    }
-
     public LinkedBinaryTree() {
     }
 

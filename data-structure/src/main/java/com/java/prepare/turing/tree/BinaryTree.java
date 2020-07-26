@@ -73,4 +73,10 @@ public interface BinaryTree<E> {
      */
     int size();
 
+    /**
+     * 中序遍历,提供给外部使用的api
+     *
+     * @return 遍历的数据
+     */
+    String toInorderTraversalString();
 }

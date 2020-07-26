@@ -1,31 +1,36 @@
 package com.java.prepare.turing.tree;
 
-import com.java.prepare.turing.tree.LinkedBinaryTree.BinaryNode;
-
+import javax.el.MethodNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
  * @author xuweizhi
  * @since 2020/07/25 13:36
  */
-public abstract class AbstractBinaryTree<E> implements BinaryTree<E> {
+public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E> {
 
     protected int size;
 
-    protected Node<E> root;
+    protected BinaryNode<E> root;
+
+    List<BinaryNode<E>> str = new ArrayList<>();
 
     @Override
-    public Node<E> getRoot() {
+    public BinaryNode<E> getRoot() {
         return root;
     }
 
-    public abstract Node<E> addChild(Node<E> parent, E data, boolean left);
+    public Node<E> addChild(Node<E> parent, E data, boolean left) {
+        throw new MethodNotFoundException("二叉排序排序外的接口必须实现");
+    }
 
-    public Node<E> getLeft(Node<E> parent) {
+    public BinaryNode<E> getLeft(Node<E> parent) {
         return parent == null ? null : ((BinaryNode<E>) parent).left;
     }
 
-    public Node<E> getRight(Node<E> parent) {
+    public BinaryNode<E> getRight(Node<E> parent) {
         return parent == null ? null : ((BinaryNode<E>) parent).right;
     }
 
@@ -56,6 +61,35 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E> {
         return size == 0;
     }
 
+    @Override
+    public BinaryNode<E> findMin(BinaryNode<E> root) {
+        if (root == null) {
+            return null;
+        } else if (root.left == null) {
+            /*如果该节点没有左右子节点，那么该节点就是最小的节点，返回*/
+            return root;
+        }
+        /*如果该节点存在左子节点，那么继续向左递归查找*/
+        return findMin(root.left);
+    }
+
+    @Override
+    public BinaryNode<E> findMax(BinaryNode<E> root) {
+        if (root == null) {
+            return null;
+            /*如果该节点没有右子节点，那么该节点就是最大的节点，返回*/
+        } else if (root.right == null) {
+            return root;
+        }
+        /*如果该节点存在右子节点，那么继续向右递归查找*/
+        return findMax(root.right);
+    }
+
+    @Override
+    public void remove(E e) {
+        throw new MethodNotFoundException("仅二叉排序树实现");
+    }
+
     /**
      * 返回节点数
      *
@@ -64,4 +98,74 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E> {
     public int size() {
         return size;
     }
+
+    @Override
+    public String toInorderTraversalString() {
+        //如果是空树,直接返回空
+        if (isEmpty()) {
+            return null;
+        }
+        //从根节点开始递归
+        inorderTraversal(getRoot());
+        //获取遍历结果
+        String s = str.toString();
+        str.clear();
+        return s;
+    }
+
+
+    @Override
+    public boolean contains(E e) {
+        throw new NoSuchElementException("仅二叉排序树实现");
+    }
+
+    @Override
+    public void insert(E e) {
+        throw new NoSuchElementException("仅二叉排序树实现");
+    }
+
+
+    /**
+     * 中序遍历 内部使用的递归遍历方法,借用了栈的结构
+     *
+     * @param root 节点,从根节点开始
+     */
+    private void inorderTraversal(BinaryNode<E> root) {
+        BinaryNode<E> left = getLeft(root);
+        if (left != null) {
+            //如果左子节点不为null,则继续递归遍历该左子节点
+            inorderTraversal(left);
+        }
+        //添加数据节点
+        str.add(root);
+        //获取节点的右子节点
+        BinaryNode<E> right = getRight(root);
+        if (right != null) {
+            //如果右子节点不为null,则继续递归遍历该右子节点
+            inorderTraversal(right);
+        }
+    }
+
+    public static class BinaryNode<E> implements Node<E> {
+        public E data;
+        public BinaryNode<E> left;
+        public BinaryNode<E> right;
+
+        public BinaryNode(E data) {
+            this.data = data;
+        }
+
+        public BinaryNode(E data, BinaryNode<E> left, BinaryNode<E> right) {
+            this.data = data;
+            this.left = left;
+            this.right = right;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
+        }
+    }
+
+
 }

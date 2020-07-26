@@ -1,7 +1,9 @@
-package com.java.prepare.turing.tree;
+package com.java.prepare.turing.tree.test;
 
 
-import com.java.prepare.turing.tree.LinkedBinaryTree.BinaryNode;
+import com.java.prepare.turing.tree.AbstractBinaryTree.BinaryNode;
+import com.java.prepare.turing.tree.LinkedQueue;
+import com.java.prepare.turing.tree.Node;
 import org.junit.Test;
 
 /**
@@ -15,7 +17,7 @@ public class LinkedQueueTest {
     @Test
     public void append() {
         LinkedQueue<Node> queue = new LinkedQueue<>();
-        queue.append(new BinaryNode<>("a"));
+        queue.append(new BinaryNode("a"));
         queue.append(new BinaryNode<>("b"));
         queue.append(new BinaryNode<>("c"));
         System.out.println(queue.getFirst());

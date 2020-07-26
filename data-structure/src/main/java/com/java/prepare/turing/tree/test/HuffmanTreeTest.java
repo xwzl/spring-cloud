@@ -1,6 +1,7 @@
-package com.java.prepare.turing.tree;
+package com.java.prepare.turing.tree.test;
 
 
+import com.java.prepare.turing.tree.HuffmanTree;
 import com.java.prepare.turing.tree.HuffmanTree.HuffmanNode;
 import org.junit.Test;
 

@@ -1,7 +1,10 @@
-package com.java.prepare.turing.tree;
+package com.java.prepare.turing.tree.test;
 
 
-import com.java.prepare.turing.tree.LinkedBinaryTree.BinaryNode;
+import com.java.prepare.turing.tree.AbstractBinaryTree.BinaryNode;
+import com.java.prepare.turing.tree.LinkedBinaryTree;
+import com.java.prepare.turing.tree.LinkedQueue;
+import com.java.prepare.turing.tree.Node;
 import org.junit.Before;
 import org.junit.Test;
 

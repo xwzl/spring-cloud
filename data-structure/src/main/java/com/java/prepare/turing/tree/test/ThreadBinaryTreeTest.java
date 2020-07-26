@@ -1,5 +1,6 @@
-package com.java.prepare.turing.tree;
+package com.java.prepare.turing.tree.test;
 
+import com.java.prepare.turing.tree.ThreadBinaryTree;
 import com.java.prepare.turing.tree.ThreadBinaryTree.ThreadNode;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class ThreadBinaryTreeTest {
     public void init() {
         ThreadNode<String> r = tree.getRoot();
         ThreadNode<String> a = tree.addChild(r, "a", true);
-         ThreadNode<String> b = tree.addChild(r, "b", false);
+        ThreadNode<String> b = tree.addChild(r, "b", false);
         ThreadNode<String> c = tree.addChild(a, "c", true);
         ThreadNode<String> d = tree.addChild(a, "d", false);
         ThreadNode<String> e = tree.addChild(b, "e", true);
@@ -39,6 +40,11 @@ public class ThreadBinaryTreeTest {
         //线索化之后进行遍历,效率更高
         tree.inThreadList((ThreadNode<String>) tree.getRoot());
         //g   c   h   a   i   d   r   e   b   j   f
+    }
+
+    @Test
+    public void test3(){
+        System.out.println(tree.toInorderTraversalString());
     }
 
 }

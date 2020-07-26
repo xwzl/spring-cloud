@@ -1,7 +1,5 @@
 package com.java.prepare.turing.tree;
 
-import com.java.prepare.turing.tree.LinkedBinaryTree.BinaryNode;
-
 /**
  * Thread 线索二叉树
  * <p>
@@ -146,8 +144,7 @@ public class ThreadBinaryTree<E> extends AbstractBinaryTree<E> implements Binary
         }
     }
 
-
-    static class ThreadNode<E> extends BinaryNode<E> implements Node<E> {
+    public static class ThreadNode<E> extends BinaryNode<E> implements Node<E> {
 
         /**
          * false：指向左子节点、true：前驱线索
