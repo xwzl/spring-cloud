@@ -1,9 +1,7 @@
 package com.java.prepare.turing.tree;
 
 import javax.el.MethodNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author xuweizhi
@@ -15,7 +13,16 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E
 
     protected BinaryNode<E> root;
 
+    private Comparator<? super E> cmp;
+
     List<BinaryNode<E>> str = new ArrayList<>();
+
+    public AbstractBinaryTree() {
+    }
+
+    public AbstractBinaryTree(Comparator<? super E> cmp) {
+        this.cmp = cmp;
+    }
 
     @Override
     public BinaryNode<E> getRoot() {
@@ -85,6 +92,7 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E
         return findMax(root.right);
     }
 
+
     @Override
     public void remove(E e) {
         throw new MethodNotFoundException("仅二叉排序树实现");
@@ -113,17 +121,10 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E
         return s;
     }
 
-
-    @Override
-    public boolean contains(E e) {
-        throw new NoSuchElementException("仅二叉排序树实现");
-    }
-
     @Override
     public void insert(E e) {
         throw new NoSuchElementException("仅二叉排序树实现");
     }
-
 
     /**
      * 中序遍历 内部使用的递归遍历方法,借用了栈的结构
@@ -146,6 +147,46 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E
         }
     }
 
+
+
+    @Override
+    public boolean contains(E e) {
+        checkNullData(e);
+        return contains(e, getRoot());
+    }
+
+    private boolean contains(E e, BinaryNode<E> root) {
+        if (root == null) {
+            return false;
+        }
+        int compare = compare(e, root.data);
+        if (compare < 0) {
+            /*如果小于0，则说明e<root.date 继续查询左子树*/
+            return contains(e, getLeft(root));
+        } else if (compare > 0) {
+            /*如果大于0，则说明e>root.date 继续查询右子树*/
+            return contains(e, getRight(root));
+        } else {
+            /*如果等于0，则说明e=root.date 即查询成功*/
+            return true;
+        }
+    }
+
+    /**
+     * 对元素进行比较大小的方法,如果传递了自定义比较器,则使用自定义比较器,否则则需要数据类型实现Comparable接口
+     *
+     * @param e1 被比较的第一个对象
+     * @param e2 被比较的第二个对象
+     * @return 0 相等 ;小于0 e1 < e2 ;大于0 e1 > e2
+     */
+    protected int compare(E e1, E e2) {
+        if (cmp == null) {
+            // 这里还可以细化
+            return (int) e1 - (int) e2;
+        }
+        return Objects.requireNonNull(cmp).compare(e1, e2);
+    }
+
     public static class BinaryNode<E> implements Node<E> {
         public E data;
         public BinaryNode<E> left;
@@ -165,6 +206,8 @@ public abstract class AbstractBinaryTree<E> implements BinaryTree<E>, SortTree<E
         public String toString() {
             return data.toString();
         }
+
+
     }
 
 

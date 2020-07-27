@@ -1,8 +1,5 @@
 package com.java.prepare.turing.tree;
 
-import java.util.Comparator;
-import java.util.Objects;
-
 /**
  * <h2>二叉排序树</h2>
  * <h3>类架构</h3>
@@ -64,18 +61,6 @@ import java.util.Objects;
  */
 public class SortBinaryTree<E> extends AbstractBinaryTree<E> implements BinaryTree<E> {
 
-    /**
-     * 自定义比较器
-     */
-    private Comparator<? super E> cmp;
-
-    public SortBinaryTree() {
-    }
-
-    public SortBinaryTree(Comparator<? super E> cmp) {
-        this.cmp = cmp;
-    }
-
     @Override
     public SortNode<E> getRoot() {
         return (SortNode<E>) super.getRoot();
@@ -95,35 +80,6 @@ public class SortBinaryTree<E> extends AbstractBinaryTree<E> implements BinaryTr
     public void checkNodeType(Node<E> parent) {
         if (!(parent instanceof SortNode)) {
             throw new ClassCastException("该节点不属于二叉排序树节点");
-        }
-    }
-
-    /**
-     * 外部插叙 api
-     *
-     * @param e 关键字
-     * @return true 有值
-     */
-    @Override
-    public boolean contains(E e) {
-        checkNullData(e);
-        return contains(e, getRoot());
-    }
-
-    private boolean contains(E e, SortNode<E> root) {
-        if (root == null) {
-            return false;
-        }
-        int compare = compare(e, root.data);
-        if (compare < 0) {
-            /*如果小于0，则说明e<root.date 继续查询左子树*/
-            return contains(e, getLeft(root));
-        } else if (compare > 0) {
-            /*如果大于0，则说明e>root.date 继续查询右子树*/
-            return contains(e, getRight(root));
-        } else {
-            /*如果等于0，则说明e=root.date 即查询成功*/
-            return true;
         }
     }
 
@@ -244,22 +200,6 @@ public class SortBinaryTree<E> extends AbstractBinaryTree<E> implements BinaryTr
         }
         //递归调用,注意此时是往左查找
         return findAndDeleteMin(getLeft(root), root);
-    }
-
-
-    /**
-     * 对元素进行比较大小的方法,如果传递了自定义比较器,则使用自定义比较器,否则则需要数据类型实现Comparable接口
-     *
-     * @param e1 被比较的第一个对象
-     * @param e2 被比较的第二个对象
-     * @return 0 相等 ;小于0 e1 < e2 ;大于0 e1 > e2
-     */
-    private int compare(E e1, E e2) {
-        if (cmp == null) {
-            // 这里还可以细化
-            return (int) e1 - (int) e2;
-        }
-        return Objects.requireNonNull(cmp).compare(e1, e2);
     }
 
     public static class SortNode<E> extends BinaryNode<E> {
