@@ -81,6 +81,7 @@ public class BinaryTree<T> {
                     reorderTraversal(tree.getRChildTree(), level + 1, mode);
                     visit(tree.getData(), level);
                 }
+                default -> throw new IllegalStateException("Unexpected value: " + mode);
             }
         }
     }
