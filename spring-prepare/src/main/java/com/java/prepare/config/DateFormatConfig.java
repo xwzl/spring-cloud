@@ -1,20 +1,6 @@
 package com.java.prepare.config;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-
+import cn.hutool.core.date.DateUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,9 +12,20 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
-
-import cn.hutool.core.date.DateUtil;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * 时间处理
@@ -122,7 +119,7 @@ public class DateFormatConfig {
             new LocalTimeDeserializer(DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT)));
 
         // Date序列化和反序列化
-        javaTimeModule.addSerializer(Date.class, new JsonSerializer<>() {
+        javaTimeModule.addSerializer(Date.class, new JsonSerializer<Date>() {
             @Override
             public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
                 throws IOException {
@@ -134,7 +131,7 @@ public class DateFormatConfig {
                 jsonGenerator.writeString(formattedDate);
             }
         });
-        javaTimeModule.addDeserializer(Date.class, new JsonDeserializer<>() {
+        javaTimeModule.addDeserializer(Date.class, new JsonDeserializer<Date>() {
             @Override
             public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
                 throws IOException, JsonProcessingException {

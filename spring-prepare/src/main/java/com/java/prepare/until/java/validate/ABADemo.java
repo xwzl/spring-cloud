@@ -18,8 +18,10 @@ public class ABADemo {
     public static void main(String[] args) {
         System.out.println("--------------------以下是ABA问题的产生 ---------------------");
         new Thread(()->{
-            atomicReference.compareAndExchange(1, 10);
-            atomicReference.compareAndExchange(10, 1);
+            //atomicReference.compareAndExchange(1, 10);
+            atomicReference.compareAndSet(1, 10);
+            //atomicReference.compareAndExchange(10, 1);
+            atomicReference.compareAndSet(10, 1);
         },"t1").start();
         new Thread(()->{
             try {
@@ -27,7 +29,8 @@ public class ABADemo {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(atomicReference.compareAndExchange(1, 101)+":"+atomicReference.get());
+            //System.out.println(atomicReference.compareAndExchange(1, 101)+":"+atomicReference.get());
+            System.out.println(atomicReference.compareAndSet(1, 101)+":"+atomicReference.get());
         },"t2").start();
 
         System.out.println("--------------------以下是ABA问题的解决方案 ---------------------");

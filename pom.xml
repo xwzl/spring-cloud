@@ -10,7 +10,6 @@
 
     <modules>
         <module>spring-common</module>
-        <module>spring-microsoft</module>
         <module>spring-admin</module>
         <module>dynamic-datasource</module>
         <module>mybatis-plus</module>
