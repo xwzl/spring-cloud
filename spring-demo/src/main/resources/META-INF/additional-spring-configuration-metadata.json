@@ -74,6 +74,11 @@
       "name": "baidu.picture.client.secretKey",
       "type": "java.lang.String",
       "description": "Description for baidu.picture.client.secretKey."
+    },
+    {
+      "name": "ip.company",
+      "type": "java.lang.String",
+      "description": "Description for ip.company."
     }
   ]
 }

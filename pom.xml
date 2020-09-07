@@ -63,7 +63,7 @@
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.compilerVersion>14</maven.compiler.compilerVersion>
-        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
