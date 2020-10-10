@@ -3,6 +3,8 @@ package com.java.prepare.turing;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Thinking
  *
@@ -11,6 +13,28 @@ import org.junit.Test;
  */
 @Slf4j
 public class Thinking {
+
+    private AtomicInteger atomicInteger = new AtomicInteger();
+
+    @Test
+    public void testAtomicInteger() throws InterruptedException {
+
+        for (int i = 0; i < 1000; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    for (; ; ) {
+                        int i1 = atomicInteger.get();
+                        int i2 = atomicInteger.compareAndExchange(i1, i1 + 1);
+                        if (i1 == i2) {
+                            break;
+                        }
+                    }
+
+                }
+            }).start();
+        }
+        System.out.println(atomicInteger);
+    }
 
 
     @Test

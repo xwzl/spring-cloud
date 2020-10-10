@@ -5,18 +5,18 @@
 
     <parent>
         <groupId>com.spring</groupId>
-        <artifactId>spring-cloud</artifactId>
+        <artifactId>spring-common</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>spring-common</artifactId>
+    <artifactId>spring-component</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-starter</module>
-        <module>spring-model</module>
-        <module>spring-component</module>
+        <module>component-json</module>
+        <module>component-redis</module>
+        <module>component-api-version</module>
     </modules>
 
     <name>spring-common</name>
