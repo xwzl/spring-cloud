@@ -83,7 +83,7 @@
         <fastJson.version>1.2.59</fastJson.version>
         <common-lang.version>3.9</common-lang.version>
         <hutool.version>1.2.59</hutool.version>
-        <junit.version>4.13-beta-3</junit.version>
+        <junit.version>4.13.1</junit.version>
         <docker.image.prefix>spring-cloud</docker.image.prefix>
         <http-client.version>4.5.9</http-client.version>
         <google-zxing.version>3.4.0</google-zxing.version>
