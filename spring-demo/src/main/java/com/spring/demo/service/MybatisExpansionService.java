@@ -10,4 +10,5 @@ import com.spring.demo.model.dos.MybatisExpansion;
  */
 public interface MybatisExpansionService extends BaseService<MybatisExpansion> {
 
+    void mybatisDemo();
 }

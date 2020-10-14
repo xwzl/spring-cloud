@@ -48,4 +48,9 @@ public class MybatisExpansionController {
         mybatisExpansionService.removeById(mybatisExpansion);
     }
 
+    @GetMapping("mybatisDemo")
+    @ApiOperation("操作")
+    public void mybatisDemo(){
+        mybatisExpansionService.mybatisDemo();
+    }
 }

@@ -63,11 +63,11 @@
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.compilerVersion>14</maven.compiler.compilerVersion>
-        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
-        <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <swagge.version>2.9.2</swagge.version>
         <swagger-ui.version>2.8.2</swagger-ui.version>
         <swagger-ui-boot.version>1.9.6</swagger-ui-boot.version>
@@ -90,7 +90,7 @@
         <redssion.version>3.13.0</redssion.version>
         <skipTests>true</skipTests>
         <redssion.version>3.11.3</redssion.version>
-        <spring-alibaba-cloud.version>2.2.1.RELEASE</spring-alibaba-cloud.version>
+        <spring-alibaba-cloud.version>2.2.3.RELEASE</spring-alibaba-cloud.version>
     </properties>
     <dependencies>
         <dependency>
@@ -209,7 +209,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>2.3.3.RELEASE</version>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
