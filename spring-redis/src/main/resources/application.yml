@@ -4,15 +4,15 @@ spring:
 #  profiles:
 #    active: local
   redis:
-    port: 15826
+    port: 6379
     timeout: 10000 #连接时间
-    host: 47.105.218.58
+    host: 192.168.208.128
     database: 0
     password:
     redisson:
       # 配置单点模式
       config: classpath:redisson-single-dev.yml
-logging:
-  config: classpath:logback-spring.xml
-  logstash:
-    host: 192.168.20.130:5000
+#logging:
+#  config: classpath:logbacks-spring.xml
+#  logstash:
+#    host: 192.168.20.130:5000

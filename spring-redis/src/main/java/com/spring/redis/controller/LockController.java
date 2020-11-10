@@ -5,10 +5,18 @@ import com.spring.redis.annotation.CacheParam;
 import com.spring.redis.until.redisson.LockUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -22,6 +30,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class LockController {
 
     static final String KEY = "LOCK_KEY";
+
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+
+
+    @ApiOperation("新增 redis key")
+    @PostMapping("addRedisKey")
+    public void addRedisKey() {
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+
+
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() * 51, Runtime.getRuntime().availableProcessors() * 10000,
+                0, TimeUnit.MINUTES, new ArrayBlockingQueue<>(100));
+        for (int j = 0; j < 10000; j++) {
+            threadPool.execute(() -> {
+                Random random = new Random();
+                int nameSpace = random.nextInt(1000000);
+                String keyPrefix = "redis:" + nameSpace + ":";
+                for (int i = 0; i < 1000; i++) {
+                    String key = keyPrefix + i;
+                    operations.set(key, random.nextInt(1000000) + "");
+                }
+            });
+        }
+
+    }
 
     @GetMapping("/test")
     @ApiOperation("锁测试")
