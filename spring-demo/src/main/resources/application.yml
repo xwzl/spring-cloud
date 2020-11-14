@@ -8,11 +8,12 @@ spring:
   #    time-zone: GMT+8
   application:
     name: demo
-  profiles:
-#    include: hikari,druid
-    include: hikari
+  #  config:
+  #    import: classpath:application-hikari.yml
   aop:
     proxy-target-class: true
+  profiles:
+    include: hikari
 #  redis:
 #    port: 6379
 #    timeout: 10000ms #连接时间

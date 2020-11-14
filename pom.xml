@@ -14,7 +14,6 @@
         <module>dynamic-datasource</module>
         <module>mybatis-plus</module>
         <module>spring-base</module>
-        <module>spring-boot</module>
         <module>spring-demo</module>
         <module>spring-complex</module>
         <module>spring-elastic</module>
@@ -63,11 +62,11 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <maven.compiler.compilerVersion>15</maven.compiler.compilerVersion>
-        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.4.0</spring-boot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
-        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <swagge.version>2.9.2</swagge.version>
         <swagger-ui.version>2.8.2</swagger-ui.version>
         <swagger-ui-boot.version>1.9.6</swagger-ui-boot.version>
