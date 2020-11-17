@@ -2,9 +2,6 @@ package com.spring.component.api.version;
 
 import java.util.regex.Pattern;
 
-/**
- * @author xuweizhi
- */
 public class VersionContent {
 
     public static final String VERSION_HEADER_KEY = "apiVersion";

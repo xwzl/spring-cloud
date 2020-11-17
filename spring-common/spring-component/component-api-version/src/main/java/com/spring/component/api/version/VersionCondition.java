@@ -6,9 +6,6 @@ import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @author xuweizhi
- */
 public class VersionCondition implements RequestCondition<VersionCondition> {
 
     private String version;
@@ -16,7 +13,7 @@ public class VersionCondition implements RequestCondition<VersionCondition> {
     public VersionCondition(String version) {
         if (!VersionContent.isVersionWellFormed(version)) {
             throw new RuntimeException(
-                    "version string " + version + " not matches pattern " + VersionContent.patternStr);
+                "version string " + version + " not matches pattern " + VersionContent.patternStr);
         }
         this.version = version;
     }

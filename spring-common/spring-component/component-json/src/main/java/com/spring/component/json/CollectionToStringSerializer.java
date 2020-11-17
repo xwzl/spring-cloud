@@ -8,9 +8,6 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import java.io.IOException;
 import java.util.Collection;
 
-/**
- * @author xuweizhi
- */
 public class CollectionToStringSerializer extends StdSerializer<Collection<? extends Object>> {
 
     public CollectionToStringSerializer() {
@@ -19,7 +16,7 @@ public class CollectionToStringSerializer extends StdSerializer<Collection<? ext
 
     @Override
     public void serialize(Collection<? extends Object> value, JsonGenerator gen, SerializerProvider provider)
-        throws IOException {
+            throws IOException {
         // List<String> list = value.stream().collect(ArrayList::new, (a, b) -> a.add(b.toString()), ArrayList::addAll);
         gen.writeStartArray();
         for (Object o : value) {

@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author xuweizhi
- */
 public class ToLongCollectionDeserializer extends StdDeserializer<Collection<Long>> {
     public ToLongCollectionDeserializer() {
         super(TypeFactory.defaultInstance().constructCollectionLikeType(Collection.class, Long.class));
@@ -28,20 +25,19 @@ public class ToLongCollectionDeserializer extends StdDeserializer<Collection<Lon
     @Override
     public Collection<Long> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         if (p.getCurrentTokenId() == JsonTokenId.ID_STRING) {
-            return JSON.fromJson(p.getText(), new TypeReference<List<Long>>() {
-            });
+            return JSON.fromJson(p.getText(), new TypeReference<List<Long>>() {});
         } else if (p.isExpectedStartArrayToken()) {
             ArrayNode an = deserializeArray(p, ctxt, ctxt.getNodeFactory());
             Collection<Long> col = new ArrayList<>();
             an.forEach(a -> col.add(a.asLong()));
             return col;
         } else {
-            return (Collection<Long>) ctxt.handleUnexpectedToken(Collection.class, p);
+            return (Collection<Long>)ctxt.handleUnexpectedToken(Collection.class, p);
         }
     }
 
     private ArrayNode deserializeArray(JsonParser p, DeserializationContext ctxt, final JsonNodeFactory nodeFactory)
-            throws IOException {
+        throws IOException {
         ArrayNode node = nodeFactory.arrayNode();
         while (true) {
             JsonToken t = p.nextToken();
@@ -66,7 +62,7 @@ public class ToLongCollectionDeserializer extends StdDeserializer<Collection<Lon
     }
 
     private JsonNode fromInt(JsonParser p, DeserializationContext ctxt, JsonNodeFactory nodeFactory)
-            throws IOException {
+        throws IOException {
         JsonParser.NumberType nt;
         int feats = ctxt.getDeserializationFeatures();
         if ((feats & F_MASK_INT_COERCIONS) != 0) {

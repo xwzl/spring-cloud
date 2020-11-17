@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.dftc.microservice.health.common.component.region.RegionConfigurationProperties,\
+  com.dftc.microservice.health.common.component.region.RegionConfiguration

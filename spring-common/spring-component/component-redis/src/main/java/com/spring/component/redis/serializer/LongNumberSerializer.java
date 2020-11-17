@@ -1,13 +1,10 @@
 package com.spring.component.redis.serializer;
 
+import org.springframework.data.redis.serializer.RedisSerializer;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import org.springframework.data.redis.serializer.RedisSerializer;
-
-/**
- * @author xuweizhi
- */
 public class LongNumberSerializer implements RedisSerializer<Long> {
 
     private Charset charset;

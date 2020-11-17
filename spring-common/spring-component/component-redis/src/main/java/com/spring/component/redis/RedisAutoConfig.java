@@ -1,15 +1,11 @@
 package com.spring.component.redis;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 
-import lombok.extern.slf4j.Slf4j;
-
-/**
- * @author xuweizhi
- */
 @Slf4j
 @Configuration
 @ConditionalOnClass(name = {"org.springframework.data.redis.core.RedisTemplate",

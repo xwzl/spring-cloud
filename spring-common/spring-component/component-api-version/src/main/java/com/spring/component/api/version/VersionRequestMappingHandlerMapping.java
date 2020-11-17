@@ -8,16 +8,13 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import java.lang.reflect.Method;
 
-/**
- * @author xuweizhi
- */
 @Slf4j
 public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
     @Override
     protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
         VersionedController versionedController =
-                AnnotationUtils.findAnnotation(handlerType, VersionedController.class);
+            AnnotationUtils.findAnnotation(handlerType, VersionedController.class);
         RequestCondition<?> condition = createCondition(versionedController);
         if (condition != null && log.isDebugEnabled()) {
             log.debug("created versioned condition for class：" + handlerType.getName());
