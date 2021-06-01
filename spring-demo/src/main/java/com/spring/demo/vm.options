@@ -14,10 +14,8 @@
 --add-opens java.base/java.nio.charset=ALL-UNNAMED
 --add-opens java.base/java.nio.charset.spi=ALL-UNNAMED
 --add-opens java.base/java.nio.file=ALL-UNNAMED
---add-opens java.base/java.nio.file.attribure=ALL-UNNAMED
 --add-opens java.base/java.nio.file.spi=ALL-UNNAMED
 --add-opens java.base/java.security=ALL-UNNAMED
---add-opens java.base/java.security.acl=ALL-UNNAMED
 --add-opens java.base/java.security.cert=ALL-UNNAMED
 --add-opens java.base/java.security.interfaces=ALL-UNNAMED
 --add-opens java.base/java.security.spec=ALL-UNNAMED
@@ -31,7 +29,6 @@
 --add-opens java.base/java.util=ALL-UNNAMED
 --add-opens java.base/java.util.concurrent=ALL-UNNAMED
 --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED
---add-opens java.base/java.util.cocurrent.locks=ALL-UNNAMED
 --add-opens java.base/java.util.function=ALL-UNNAMED
 --add-opens java.base/java.util.jar=ALL-UNNAMED
 --add-opens java.base/java.util.regex=ALL-UNNAMED
