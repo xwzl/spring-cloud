@@ -1,7 +1,6 @@
 package com.spring.demo.controller;
 
 import com.spring.common.model.common.ApiResult;
-import com.spring.demo.listener.event.AnnotationEvent;
 import com.spring.demo.listener.event.OrderSuccessEvent;
 import io.swagger.annotations.Api;
 import org.springframework.context.ApplicationContext;
@@ -31,9 +30,22 @@ public class SpringEventController {
      * @return 结果
      */
     @GetMapping("order")
-    public ApiResult<String> order(){
+    public ApiResult<String> order() {
         applicationContext.publishEvent(new OrderSuccessEvent(this));
         return new ApiResult<>("下单成功");
+    }
+
+    @GetMapping("syncEvent")
+    public ApiResult<String> syncEvent() {
+        applicationContext.publishEvent(new SyncEvent("Rock you!"));
+        return new ApiResult<>("同步调用");
+    }
+
+    @GetMapping("asyncEvent")
+    public ApiResult<String> asyncEvent() {
+        applicationContext.publishEvent(new AsyncEvent("Rock you a!"));
+        System.out.println("异步调用");
+        return new ApiResult<>("同步调用");
     }
 
 
