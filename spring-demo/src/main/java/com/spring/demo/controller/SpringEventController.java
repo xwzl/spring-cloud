@@ -1,7 +1,10 @@
 package com.spring.demo.controller;
 
 import com.spring.common.model.common.ApiResult;
+import com.spring.demo.listener.event.AnnotationEvent;
+import com.spring.demo.listener.event.AsyncEvent;
 import com.spring.demo.listener.event.OrderSuccessEvent;
+import com.spring.demo.listener.event.SyncEvent;
 import io.swagger.annotations.Api;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
