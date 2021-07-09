@@ -5,7 +5,6 @@ import com.spring.demo.model.dos.Author;
 import com.spring.demo.model.dos.Book;
 import com.spring.demo.model.dos.Shop;
 import org.apache.ibatis.annotations.*;
-import org.mapstruct.Mapper;
 
 import java.util.List;
 

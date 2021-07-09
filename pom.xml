@@ -61,7 +61,7 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <maven.compiler.compilerVersion>16</maven.compiler.compilerVersion>
-        <spring-boot.version>2.5.1</spring-boot.version>
+        <spring-boot.version>2.5.2</spring-boot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
@@ -123,7 +123,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.6.6</version>
+            <version>5.7.3</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
