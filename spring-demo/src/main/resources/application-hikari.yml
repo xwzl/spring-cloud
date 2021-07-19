@@ -42,13 +42,17 @@ mybatis-plus:
   type-aliases-package: com.spring.demo.model
   mapper-locations: classpath:com/spring/demo/mapper/*.xml
 
+
+
 logging:
   level:
     com.spring.demo.mapper: debug
     io.swagger.models.parameters.AbstractSerializableParameter: error
 #  config: classpath:logback-springs.xml
-#  logstash:
-#    host: 192.168.20.130:5000
+# 需要资源过多，暂时注释掉
+#  logstash.host: localhost:4560
+#spring.cloud.zookeeper.discovery.root: test
+
 # httpClient 连接池配置
 http:
   maxTotal: 100
