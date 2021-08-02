@@ -21,7 +21,7 @@
         <module>component-api-version</module>
     </modules>
 
-    <name>spring-common</name>
+    <name>spring-component</name>
 
     <build>
         <plugins>
