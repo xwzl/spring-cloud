@@ -15,6 +15,7 @@
         <module>mybatis-plus</module>
         <module>spring-base</module>
         <module>spring-demo</module>
+        <module>spring-cache</module>
         <module>spring-complex</module>
         <module>spring-elastic</module>
         <module>spring-mongo</module>
@@ -61,7 +62,7 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <maven.compiler.compilerVersion>16</maven.compiler.compilerVersion>
-        <spring-boot.version>2.5.2</spring-boot.version>
+        <spring-boot.version>2.5.3</spring-boot.version>
         <!--版本有问题，无法安装 jar-->
         <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
         <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
@@ -207,7 +208,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.2</version>
+                <version>${spring-boot.version}</version>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
