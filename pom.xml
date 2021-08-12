@@ -89,7 +89,7 @@
         <redssion.version>3.15.5</redssion.version>
         <skipTests>true</skipTests>
         <redssion.version>3.11.3</redssion.version>
-``        <hutool.version>5.7.7</hutool.version>
+        <hutool.version>5.7.7</hutool.version>
         <spring-alibaba-cloud.version>2021.1</spring-alibaba-cloud.version>
     </properties>
     <dependencies>
