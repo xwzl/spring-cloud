@@ -1,7 +1,6 @@
 package com.spring.demo.config.async;
 
 import lombok.Data;
-import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
@@ -57,7 +56,7 @@ public abstract class DefaultThreadPoolConfiguration {
         程序遭到拒绝将抛出运行时RejectedExecutionException。
         而在一些场景下，若需要在关闭线程池时等待当前调度任务完成后才开始关闭，可以通过简单的配置，进行优雅的停机策略配置。关键就
         是通过setWaitForTasksToCompleteOnShutdown(true) 和setAwaitTerminationSeconds方法。*/
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        // executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 等待所有任务都完成再继续销毁其他的Bean
         executor.setWaitForTasksToCompleteOnShutdown(true);
         // 线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁，以确保应用最后能够被关闭，而不是阻塞住
