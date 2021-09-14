@@ -2,7 +2,7 @@ package com.spring.redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
  * 启动类
@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author xuweizhi
  * @since 2019/12/21 11:07
  */
-@EnableSwagger2
+@EnableSwagger2WebMvc
 @SpringBootApplication
 public class RedisApplication {
 

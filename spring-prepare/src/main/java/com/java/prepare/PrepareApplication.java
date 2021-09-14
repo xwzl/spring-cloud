@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  * @author xuweizhi
  * @since 2020/05/15 22:39
  */
-@EnableSwagger2
+@EnableSwagger2WebMvc
 @SpringBootApplication
 @MapperScan("com.java.prepare.mapper")
 public class PrepareApplication {

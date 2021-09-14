@@ -32,6 +32,16 @@
 
     <repositories>
         <repository>
+            <id>rdc-releases</id>
+            <name>Spring Milestones</name>
+            <url>https://packages.aliyun.com/maven/repository/2137326-release-eZkkAF/</url>
+        </repository>
+        <repository>
+            <id>rdc-snapshot</id>
+            <name>Spring Milestones</name>
+            <url>https://packages.aliyun.com/maven/repository/2137326-snapshot-RSLD12</url>
+        </repository>
+        <repository>
             <id>central</id>
             <name>阿里云 maven1</name>
             <url>https://maven.aliyun.com/repository/central</url>
@@ -97,34 +107,10 @@
         <maven.compiler.target>16</maven.compiler.target>
         <maven.compiler.compilerVersion>16</maven.compiler.compilerVersion>
         <spring-boot.version>2.5.4</spring-boot.version>
-        <!--版本有问题，无法安装 jar-->
-        <!--        <spring-cloud.version>Hoxton.M3</spring-cloud.version>-->
-        <!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
         <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <swagge.version>2.9.2</swagge.version>
-        <swagger-ui.version>2.8.2</swagger-ui.version>
-        <swagger-ui-boot.version>1.9.6</swagger-ui-boot.version>
-        <reflections.version>0.9.12</reflections.version>
-        <netty.version>4.1.41.Final</netty.version>
-        <protobuf.version>3.9.1</protobuf.version>
-        <gson.version>2.8.6</gson.version>
-        <mybatis-plus.version>3.3.2</mybatis-plus.version>
-        <mysql.version>8.0.18</mysql.version>
-        <druid.version>1.1.20</druid.version>
-        <jackson.version>2.11.0</jackson.version>
-        <jannotation.version>21.0.1</jannotation.version>
-        <fastJson.version>1.2.59</fastJson.version>
-        <common-lang.version>3.9</common-lang.version>
-        <hutool.version>1.2.59</hutool.version>
-        <junit.version>4.13-beta-3</junit.version>
         <docker.image.prefix>spring-cloud</docker.image.prefix>
-        <http-client.version>4.5.9</http-client.version>
-        <google-zxing.version>3.4.0</google-zxing.version>
-        <redssion.version>3.15.5</redssion.version>
-        <skipTests>true</skipTests>
-        <redssion.version>3.11.3</redssion.version>
-        <hutool.version>5.7.7</hutool.version>
         <spring-alibaba-cloud.version>2021.1</spring-alibaba-cloud.version>
+        <skipTests>true</skipTests>
     </properties>
     <dependencies>
         <dependency>
@@ -148,18 +134,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-            <!--引入的模块必须重新引入-->
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -169,27 +151,22 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.1.1-jre</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>${jannotation.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
         </dependency>
         <!--
             https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes
@@ -215,6 +192,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.common.cloud</groupId>
+                <artifactId>spring-common-dependencies</artifactId>
+                <version>1.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
@@ -237,6 +221,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <plugins>

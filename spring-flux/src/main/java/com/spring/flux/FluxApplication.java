@@ -2,7 +2,7 @@ package com.spring.flux;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 
 /**
  * Flux 启动类
@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author xuweizhi
  * @since 2019/12/03 17:11
  */
-@EnableSwagger2
+@EnableSwagger2WebFlux
 @SpringBootApplication
 public class FluxApplication {
 
