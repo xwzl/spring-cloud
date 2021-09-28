@@ -21,6 +21,7 @@
         <module>spring-mongo</module>
         <module>spring-rabbit</module>
         <module>spring-websocket</module>
+        <module>spring-framework</module>
         <module>spring-flux</module>
         <module>spring-redis</module>
         <module>spring-prepare</module>
