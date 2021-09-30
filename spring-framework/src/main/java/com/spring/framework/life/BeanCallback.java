@@ -1,11 +1,13 @@
 package com.spring.framework.life;
 
-import com.spring.framework.life.imports.CustomizeImportSelector1;
-import com.spring.framework.life.imports.CustomizeImportSelector2;
-import com.spring.framework.life.imports.CustomizeImportSelector3;
+import com.spring.framework.life.annotations.EnableAutoImportSelector;
+import com.spring.framework.model.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +26,10 @@ import javax.annotation.PreDestroy;
  * @author xuweizhi
  * @since 2020/12/15 16:03
  */
-@Component
-@Import({CustomizeImportSelector1.class, CustomizeImportSelector2.class, CustomizeImportSelector3.class})
+@Slf4j
+@Configuration
+@EnableAutoImportSelector
+@ComponentScan(basePackages = {"com.spring.framework.life"})
 public class BeanCallback {
 
     /**
@@ -38,16 +42,16 @@ public class BeanCallback {
 
         @PostConstruct
         public void postConstruct() {
-            System.out.println("BeanCallbackA bean创建回调");
+            log.info("BeanCallbackA bean创建回调");
         }
 
         @PreDestroy
         public void preDestroy() {
-            System.out.println("BeanCallbackA bean销毁回调");
+            log.info("BeanCallbackA bean销毁回调");
         }
 
         public BeanCallbackA() {
-            System.out.println("BeanCallbackA 构造器");
+            log.info("BeanCallbackA 构造器");
         }
 
     }
@@ -63,29 +67,38 @@ public class BeanCallback {
 
         @PostConstruct
         public void postConstruct() {
-            System.out.println("BeanCallbackB bean创建回调");
+            log.info("BeanCallbackB bean创建回调");
         }
 
         @PreDestroy
         public void preDestroy() {
-            System.out.println("BeanCallbackB bean销毁回调");
+            log.info("BeanCallbackB bean销毁回调");
         }
 
         public BeanCallbackB() {
-            System.out.println("BeanCallbackB 构造器");
+            log.info("BeanCallbackB 构造器");
         }
     }
 
+    @Bean
+    public Student student() {
+        return new Student();
+    }
+
     public static void main(String[] args) {
-        System.out.println("---创建容器---");
+
+        log.info("---创建容器---");
+
         //新建容器，将会实例化单例的bean，触发bean创建回调
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanCallback.class);
-        System.out.println("---获取bean实例---");
+        log.info("---获取bean实例---");
         //获取bean实例，将会实例化原型的bean，触发bean创建回调
-        System.out.println(applicationContext.getBean("beanCallbackA", BeanCallbackA.class));
-        System.out.println(applicationContext.getBean("beanCallbackB", BeanCallbackB.class));
+        log.info(applicationContext.getBean("beanCallbackA", BeanCallbackA.class) + "");
+        log.info(applicationContext.getBean("beanCallbackB", BeanCallbackB.class) + "");
         //关闭容器，将会销毁bean，触发单例bean的销毁回调
-        System.out.println("---容器关闭---");
+        log.info("---容器关闭---");
         applicationContext.close();
+
+        log.info("---懒加载---");
     }
 }

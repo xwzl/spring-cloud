@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SuppressWarnings("all")
-public class CustomizeServiceImpl1 implements CustomizeService1 {
+public class CustomizeServiceImpl2 implements CustomizeService1 {
 
-    public CustomizeServiceImpl1() {
+    public CustomizeServiceImpl2() {
         log.info("construct : " + this.getClass().getSimpleName());
     }
 
