@@ -1,10 +1,10 @@
 package com.spring.framework.life;
 
 import com.spring.framework.life.annotations.EnableAutoImportSelector;
+import com.spring.framework.life.context.SpringApplicationContext;
 import com.spring.framework.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -64,7 +64,6 @@ public class BeanCallback {
     @Component("beanCallbackB")
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public static class BeanCallbackB {
-
         @PostConstruct
         public void postConstruct() {
             log.info("BeanCallbackB bean创建回调");
@@ -85,12 +84,20 @@ public class BeanCallback {
         return new Student();
     }
 
+    @SuppressWarnings("all")
     public static void main(String[] args) {
-
         log.info("---创建容器---");
+        // System.setProperty("config", "config");
+        // System.setProperty("spring.profiles.active", "dev");
+
+        // 必备属性，如果注释掉这两个属性，那么启动报错
+        System.setProperty("aa", "aaa");
+        System.setProperty("bb", "bbb");
+        System.out.println("spring-${config}-dev.xml");
 
         //新建容器，将会实例化单例的bean，触发bean创建回调
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanCallback.class);
+        SpringApplicationContext applicationContext = new SpringApplicationContext(BeanCallback.class);
+
         log.info("---获取bean实例---");
         //获取bean实例，将会实例化原型的bean，触发bean创建回调
         log.info(applicationContext.getBean("beanCallbackA", BeanCallbackA.class) + "");
