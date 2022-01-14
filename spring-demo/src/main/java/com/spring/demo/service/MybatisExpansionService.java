@@ -1,5 +1,6 @@
 package com.spring.demo.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.spring.demo.model.dos.MybatisExpansion;
 
 /**
@@ -8,7 +9,7 @@ import com.spring.demo.model.dos.MybatisExpansion;
  * @author xuweizhi
  * @since 2019-08-07
  */
-public interface MybatisExpansionService extends BaseService<MybatisExpansion> {
+public interface MybatisExpansionService extends IService<MybatisExpansion> {
 
     void mybatisDemo();
 }

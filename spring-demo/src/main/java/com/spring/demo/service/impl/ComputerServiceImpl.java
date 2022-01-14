@@ -1,7 +1,8 @@
 package com.spring.demo.service.impl;
 
-import com.spring.demo.model.dos.Computer;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.spring.demo.mapper.ComputerMapper;
+import com.spring.demo.model.dos.Computer;
 import com.spring.demo.service.ComputerService;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-08-05
  */
 @Service
-public class ComputerServiceImpl extends BaseServiceImpl<ComputerMapper, Computer> implements ComputerService {
+public class ComputerServiceImpl extends ServiceImpl<ComputerMapper, Computer> implements ComputerService {
 
 }

@@ -1,5 +1,6 @@
 package com.spring.demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.spring.demo.mapper.EmpMapper;
 import com.spring.demo.model.dos.Emp;
 import com.spring.demo.service.EmpService;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2019-08-01
  */
 @Service
-public class EmpServiceImpl extends BaseServiceImpl<EmpMapper, Emp> implements EmpService {
+public class EmpServiceImpl extends ServiceImpl<EmpMapper, Emp> implements EmpService {
 
     @Override
     public void delete(Emp emp) {

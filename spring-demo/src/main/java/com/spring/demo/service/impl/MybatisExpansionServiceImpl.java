@@ -1,5 +1,6 @@
 package com.spring.demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.spring.demo.mapper.BookMapper;
 import com.spring.demo.model.dos.Book;
 import com.spring.demo.model.dos.MybatisExpansion;
@@ -17,7 +18,7 @@ import java.util.List;
  * @since 2019-08-07
  */
 @Service
-public class MybatisExpansionServiceImpl extends BaseServiceImpl<MybatisExpansionMapper, MybatisExpansion> implements MybatisExpansionService {
+public class MybatisExpansionServiceImpl extends ServiceImpl<MybatisExpansionMapper, MybatisExpansion> implements MybatisExpansionService {
 
     @Resource
     private BookMapper bookMapper;

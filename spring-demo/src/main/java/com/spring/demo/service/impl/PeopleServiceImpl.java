@@ -1,5 +1,6 @@
 package com.spring.demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.spring.demo.mapper.PeopleMapper;
 import com.spring.demo.model.dos.People;
 import com.spring.demo.service.PeopleService;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @Service
 @CacheConfig(cacheNames = "user")
-public class PeopleServiceImpl extends BaseServiceImpl<PeopleMapper, People> implements PeopleService {
+public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> implements PeopleService {
 
     private final PeopleMapper peopleMapper;
 
