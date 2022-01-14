@@ -17,10 +17,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmpServiceImpl extends ServiceImpl<EmpMapper, Emp> implements EmpService {
 
-    @Override
-    public void delete(Emp emp) {
-        if (Math.random() > 0.3d) {
-            throw new RuntimeException("这是一个异常信息;");
-        }
-    }
 }

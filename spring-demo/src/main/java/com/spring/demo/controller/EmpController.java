@@ -107,7 +107,7 @@ public class EmpController {
     @DeleteMapping
     @ApiOperation("全局异常处理拦截")
     public void delete() {
-        empService.delete(new Emp());
+        // empService.delete(new Emp());
     }
 
     @GetMapping("/conditionalList")
