@@ -4,8 +4,10 @@ import com.spring.common.model.utils.GsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -21,8 +23,8 @@ import java.util.Objects;
  * @since 2019-11-29
  */
 @Slf4j
-// @Aspect
-// @Component
+@Aspect
+@Component
 public class AppLogAspect {
     /**
      * 定义切入点
@@ -62,7 +64,7 @@ public class AppLogAspect {
         }
         log.info("IP: {}", ip);
         log.info("Class Method: {}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        log.info("Args: {}", GsonUtils.toJson(joinPoint.getArgs()));
+        // log.info("Args: {}", GsonUtils.toJson(joinPoint.getArgs()));
     }
 
     /**

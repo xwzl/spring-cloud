@@ -21,16 +21,6 @@ public class RestClientConfig extends AbstractElasticsearchConfiguration {
                 .connectedTo("127.0.0.1:9200", "127.0.0.1:9201", "127.0.0.1:9202")
                 .withBasicAuth("elastic", "elastic")
                 .build()).rest();
-        // HttpHost http = new HttpHost("127.0.0.1", 9200, "http");
-        //
-        // RestHighLevelClient client = new RestHighLevelClient(
-        //         RestClient.builder(
-        //                 http,
-        //                 new HttpHost("127.0.0.1", 9201, "http"),
-        //                 new HttpHost("127.0.0.1", 9202, "http")));
-        // // RestClient.builder(
-        // //         new HttpHost("192.168.21.133", 9200, "http")));
-        // return client;
     }
 
 }

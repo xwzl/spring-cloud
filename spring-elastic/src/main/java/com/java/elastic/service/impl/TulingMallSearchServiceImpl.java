@@ -6,15 +6,10 @@ import com.java.elastic.entity.EsProduct;
 import com.java.elastic.service.TulingMallSearchService;
 import com.java.elastic.vo.RequestParam;
 import com.java.elastic.vo.ResponseResult;
-import org.apache.http.HttpHost;
-import org.apache.http.client.AuthCache;
-import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Node;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.NestedQueryBuilder;
@@ -39,7 +34,6 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,13 +54,6 @@ public class TulingMallSearchServiceImpl implements TulingMallSearchService {
         try {
             //1、构建检索对象-封装请求相关参数信息
             SearchRequest searchRequest = startBuildRequestParam(param);
-
-            RestClient lowLevelClient = client.getLowLevelClient();
-            AuthCache authCache = new BasicAuthCache();
-
-            HttpHost http1 = new HttpHost("127.0.0.1", 9201, "http");
-            List<Node> http = Arrays.asList(http1).stream().map(Node::new).collect(Collectors.toList());
-            lowLevelClient.setNodes(http);
 
             //2、进行检索操作
             SearchResponse response = this.client.search(searchRequest, RequestOptions.DEFAULT);
