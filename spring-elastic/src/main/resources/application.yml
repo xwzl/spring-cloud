@@ -6,13 +6,10 @@ server:
 spring:
   application:
     name: elasticsearch
-  datasource:
-    #    url: jdbc:mysql://47.105.218.58:3306/qq?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    url: jdbc:mysql://localhost:3306/nacos?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: root
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  elasticsearch:
+    username: elastic
+    password: elastic
+    uris: http://localhost:9200
   output:
     ansi:
       enabled: always

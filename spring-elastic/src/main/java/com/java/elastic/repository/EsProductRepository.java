@@ -7,10 +7,10 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 /**
  * 商品ES操作类
- *
  * @author xuweizhi
  */
 public interface EsProductRepository extends ElasticsearchRepository<EsProduct, Long> {
+
     /**
      * 搜索查询
      *

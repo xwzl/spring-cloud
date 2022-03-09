@@ -9,17 +9,17 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * 搜索中的商品信息
+ * @author 62424
  */
 @Data
 @Document(indexName = "product_db")
 public class EsProduct implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -6523847270618921467L;
+    private static final long serialVersionUID = -1L;
 
     @Id
     private Long id;
@@ -36,23 +36,31 @@ public class EsProduct implements Serializable {
     private String name;
     @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String subTitle;
-
     @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String keywords;
 
+    /**
+     * 非促销时的当前价格
+     */
     private BigDecimal price;
 
-    private Integer sale;
+    /**
+     * 促销价格
+     */
+    private BigDecimal promotionPrice;
 
+    /**
+     * 市场价
+     */
+    private BigDecimal originalPrice;
+
+    private Integer sale;
     private Integer newStatus;
 
     private Integer recommandStatus;
     private Integer stock;
     private Integer promotionType;
     private Integer sort;
-
-    @Field(type = FieldType.Nested)
-    private List<EsProductAttributeValue> attrValueList;
 
 
 }
