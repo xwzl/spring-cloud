@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * @since 2019/07/16 15:46
  */
 @Data
-@Document(indexName = "item", shards = 1, replicas = 0)
+@Document(indexName = "item",createIndex = false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {

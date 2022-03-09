@@ -4,7 +4,7 @@ package com.spring.demo.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.spring.demo.config.http.HttpApiService;
 import com.spring.demo.model.Title;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.service.TitleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,16 +37,16 @@ public class TitleController {
 
     @GetMapping
     @ApiOperation("获取 c 语言网 VIP 课程")
-    public ApiResult<List<Title>> list(String title) {
+    public ResultVO<List<Title>> list(String title) {
         List<Title> list = titleService.list(new QueryWrapper<Title>()
                 .lambda().like(Title::getTitle, title));
-        return new ApiResult<>(list);
+        return new ResultVO<>(list);
     }
 
     @GetMapping("lists")
     @ApiOperation("查询")
-    public ApiResult<List<Title>> lists(@RequestParam("ids") List<String> ids) {
-        return new ApiResult<>(titleService.listByIds(ids));
+    public ResultVO<List<Title>> lists(@RequestParam("ids") List<String> ids) {
+        return new ResultVO<>(titleService.listByIds(ids));
     }
 
     /*@PostMapping

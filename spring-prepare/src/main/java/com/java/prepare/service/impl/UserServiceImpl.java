@@ -9,7 +9,7 @@ import com.java.prepare.model.ClassSchedule;
 import com.java.prepare.model.Student;
 import com.java.prepare.model.UserClassRelation;
 import com.java.prepare.service.UserService;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.prepare.vos.ClassScheduleVO;
 import com.spring.common.model.utils.Assert;
 import com.spring.common.model.utils.ServiceCodeEnum;
@@ -40,7 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Student> implements
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ApiResult<String> initData() {
+    public ResultVO<String> initData() {
         List<String> names = Stream.of("Jack", "Lucy", "Tom", "Jay", "MrsLi", "Jerry").collect(Collectors.toList());
         List<String> address = Stream.of("北京市", "成都市", "广州市", "南京市", "西南市", "香港特别行政区").collect(Collectors.toList());
         List<Student> studentList =
@@ -48,22 +48,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Student> implements
                 .generate(() -> new Student().setAge((int)(random() * 100))
                     .setUserName(names.get((int)(Math.random() * 5))).setAddress(address.get((int)(Math.random() * 5))))
                 .limit(5).collect(Collectors.toList());
-        return new ApiResult<>(this.saveBatch(studentList) ? "成功" : "失败");
+        return new ResultVO<>(this.saveBatch(studentList) ? "成功" : "失败");
     }
 
     @Override
-    public ApiResult<List<Student>> search(String keyWord) {
-        return new ApiResult<>(this.baseMapper.search(keyWord));
+    public ResultVO<List<Student>> search(String keyWord) {
+        return new ResultVO<>(this.baseMapper.search(keyWord));
     }
 
     @Override
-    public ApiResult<List<Student>> searchUser(Student student) {
-        return new ApiResult<>(this.baseMapper.searchUser(student));
+    public ResultVO<List<Student>> searchUser(Student student) {
+        return new ResultVO<>(this.baseMapper.searchUser(student));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ApiResult<String> selectClass(ClassScheduleVO scheduleVO) {
+    public ResultVO<String> selectClass(ClassScheduleVO scheduleVO) {
         Student student = this.baseMapper.selectOne(
             Wrappers.<Student>query().lambda().select(Student::getId).eq(Student::getUserName, scheduleVO.getUserName()));
         ClassSchedule classSchedule = classScheduleMapper.selectOne(Wrappers.<ClassSchedule>query().lambda()
@@ -72,12 +72,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, Student> implements
         Assert.isNull(classSchedule, "找不到可用的课程信息");
         int insert = userClassRelationMapper
             .insert(new UserClassRelation().setClassId(classSchedule.getId()).setUserId(student.getId()));
-        return insert == 0 ? new ApiResult<>(ServiceCodeEnum.FAIL.getCode(), "服务器压力过大，请重试") : new ApiResult<>();
+        return insert == 0 ? new ResultVO<>(ServiceCodeEnum.FAIL.getCode(), "服务器压力过大，请重试") : new ResultVO<>();
     }
 
     @Override
-    public ApiResult<String> addClass(ClassSchedule classSchedule) {
+    public ResultVO<String> addClass(ClassSchedule classSchedule) {
         classScheduleMapper.insert(classSchedule);
-        return new ApiResult<>();
+        return new ResultVO<>();
     }
 }

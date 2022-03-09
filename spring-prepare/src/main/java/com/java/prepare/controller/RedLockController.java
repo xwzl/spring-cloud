@@ -1,7 +1,7 @@
 package com.java.prepare.controller;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.exception.ServiceException;
 import com.spring.common.model.utils.ServiceCodeEnum;
 import io.swagger.annotations.ApiOperation;
@@ -49,14 +49,14 @@ public class RedLockController {
             new ThreadFactoryBuilder().setNameFormat("Red Session %d").build(), new ThreadPoolExecutor.AbortPolicy());
 
     @GetMapping("lock")
-    public ApiResult<String> lock() {
-        List<Future<ApiResult<String>>> temp = new ArrayList<>();
+    public ResultVO<String> lock() {
+        List<Future<ResultVO<String>>> temp = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             temp.add(executor.submit(this::buySomethings));
         }
         temp.forEach(future -> {
             try {
-                ApiResult<String> result = future.get();
+                ResultVO<String> result = future.get();
                 log.info(result.toString());
             } catch (InterruptedException | ExecutionException e) {
                 log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
@@ -64,10 +64,10 @@ public class RedLockController {
         });
         RAtomicLong atomicLong = redissonClient.getAtomicLong(RED_SESSION_NUM);
         atomicLong.set(0);
-        return new ApiResult<>("下单成功");
+        return new ResultVO<>("下单成功");
     }
 
-    private ApiResult<String> buySomethings() {
+    private ResultVO<String> buySomethings() {
         RLock lock = redissonClient.getLock(RED_SESSION_LOCK);
 
         boolean result = false;
@@ -95,7 +95,7 @@ public class RedLockController {
                     long l = atomicLong.incrementAndGet();
                     stock -= i;
                     log.info("计数：{};扣除{}件库存成功,剩余库存：{}", l, i, stock);
-                    return new ApiResult<>("下单成功");
+                    return new ResultVO<>("下单成功");
                 }
             } catch (InterruptedException e) {
                 log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
@@ -103,9 +103,9 @@ public class RedLockController {
                 // 释放锁
                 lock.unlock();
             }
-            return new ApiResult(ServiceCodeEnum.FAIL.getCode(), "库存不足,请调整数量后重新购买");
+            return new ResultVO(ServiceCodeEnum.FAIL.getCode(), "库存不足,请调整数量后重新购买");
         }
-        return new ApiResult(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
+        return new ResultVO(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
     }
 
 }

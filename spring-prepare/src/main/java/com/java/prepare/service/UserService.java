@@ -3,7 +3,7 @@ package com.java.prepare.service;
 import com.java.prepare.model.ClassSchedule;
 import com.java.prepare.model.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.prepare.vos.ClassScheduleVO;
 
 import java.util.List;
@@ -16,13 +16,13 @@ import java.util.List;
  */
 public interface UserService extends IService<Student> {
 
-    ApiResult<String> initData();
+    ResultVO<String> initData();
 
-    ApiResult<List<Student>> search(String keyWord);
+    ResultVO<List<Student>> search(String keyWord);
 
-    ApiResult<List<Student>> searchUser(Student student);
+    ResultVO<List<Student>> searchUser(Student student);
 
-    ApiResult<String> selectClass(ClassScheduleVO scheduleVO);
+    ResultVO<String> selectClass(ClassScheduleVO scheduleVO);
 
-    ApiResult<String> addClass(ClassSchedule classSchedule);
+    ResultVO<String> addClass(ClassSchedule classSchedule);
 }

@@ -10,7 +10,7 @@ import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.excel.ComputerModel;
 import com.spring.demo.model.excel.DemoModel;
 import com.spring.demo.model.excel.MultiLineHeadExcelModel;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.untils.ListCopy;
 import io.swagger.annotations.Api;
@@ -130,7 +130,7 @@ public class ExcelController {
      */
     @PostMapping("upload")
     @ApiOperation("excel 文件上传测试")
-    public ApiResult<String> upload(@RequestParam(value = "file") MultipartFile file) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+    public ResultVO<String> upload(@RequestParam(value = "file") MultipartFile file) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         ComputerListener listener = new ComputerListener();
         // 获取 excel 解析对象
         ExcelReader excelReader = EasyExcel.read(file.getInputStream(), ComputerModel.class, listener).build();
@@ -145,7 +145,7 @@ public class ExcelController {
         List<Computer> list = modelToComputer.copyList(data, Computer.class);
         computerService.saveBatch(list);
 
-        return new ApiResult<>();
+        return new ResultVO<>();
     }
 
 }

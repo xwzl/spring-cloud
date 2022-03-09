@@ -3,7 +3,7 @@ package com.java.prepare.controller;
 import com.java.prepare.model.ClassSchedule;
 import com.java.prepare.model.Student;
 import com.java.prepare.service.UserService;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.prepare.vos.ClassScheduleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +32,7 @@ public class UserController {
      */
     @PostMapping("initData")
     @ApiOperation("初始化数据")
-    public ApiResult<String> initData() {
+    public ResultVO<String> initData() {
         return userService.initData();
     }
 
@@ -41,7 +41,7 @@ public class UserController {
      */
     @GetMapping("search")
     @ApiOperation("单个参数测试")
-    public ApiResult<List<Student>> search(String keyWord){
+    public ResultVO<List<Student>> search(String keyWord){
         return userService.search(keyWord);
     }
 
@@ -50,7 +50,7 @@ public class UserController {
      */
     @GetMapping("searchUser")
     @ApiOperation("对象参数测试")
-    public ApiResult<List<Student>> searchUser(Student student){
+    public ResultVO<List<Student>> searchUser(Student student){
         return userService.searchUser(student);
     }
 
@@ -59,7 +59,7 @@ public class UserController {
      */
     @PostMapping("selectClass")
     @ApiOperation("选择")
-    public ApiResult<String> selectClass(@RequestBody @Validated ClassScheduleVO scheduleVO){
+    public ResultVO<String> selectClass(@RequestBody @Validated ClassScheduleVO scheduleVO){
         return userService.selectClass(scheduleVO);
     }
 
@@ -69,7 +69,7 @@ public class UserController {
      */
     @ApiOperation("添加课程")
     @PostMapping("addClass")
-    public ApiResult<String> addClass(@Validated @RequestBody ClassSchedule classSchedule){
+    public ResultVO<String> addClass(@Validated @RequestBody ClassSchedule classSchedule){
         return userService.addClass(classSchedule);
     }
 

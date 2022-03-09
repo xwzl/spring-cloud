@@ -8,7 +8,7 @@ import com.spring.demo.mapper.ComputerMapper;
 import com.spring.demo.mapper.EmpMapper;
 import com.spring.demo.model.dos.Computer;
 import com.spring.demo.model.dos.Emp;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.model.vos.DateVO;
 import com.spring.demo.model.vos.EmpVO;
 import com.spring.demo.service.ComputerService;
@@ -79,14 +79,14 @@ public class EmpController {
      */
     @GetMapping("/list")
     @ApiOperation("redis key 中的 ： 相当于一层文件")
-    public ApiResult<List<Computer>> list() {
+    public ResultVO<List<Computer>> list() {
         List<Computer> list = (List<Computer>) opsForValue.get("fuck_you");
         if (list == null) {
             list = computerService.list();
             //opsForValue.set("fuck_you", list, 100, TimeUnit.SECONDS);
             opsForValue.set("fuck:you:god", list);
         }
-        return new ApiResult<>(list);
+        return new ResultVO<>(list);
     }
 
     /**

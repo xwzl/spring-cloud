@@ -2,7 +2,7 @@ package com.java.prepare.controller;
 
 import com.baidu.aip.ocr.AipOcr;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.model.vos.PictureResultVO;
 import com.spring.common.model.utils.PictureUtils;
 import com.spring.common.model.utils.QrCodeUtils;
@@ -45,9 +45,9 @@ public class PictureController {
      */
     @PostMapping("basicGeneral")
     @ApiOperation("简单通用图片文字提取")
-    public ApiResult<PictureResultVO> basicGeneral(@Param("file") MultipartFile file) throws IOException {
+    public ResultVO<PictureResultVO> basicGeneral(@Param("file") MultipartFile file) throws IOException {
         PictureResultVO pictureResultVO = PictureUtils.basicGeneral(aipOcr, file.getBytes());
-        return new ApiResult<>(pictureResultVO);
+        return new ResultVO<>(pictureResultVO);
     }
 
     /**
@@ -59,9 +59,9 @@ public class PictureController {
      */
     @PostMapping("general")
     @ApiOperation("通用文字识别（含位置信息版）")
-    public ApiResult<PictureResultVO> general(@NotNull @Param("file") MultipartFile file) throws IOException {
+    public ResultVO<PictureResultVO> general(@NotNull @Param("file") MultipartFile file) throws IOException {
         PictureResultVO pictureResultVO = PictureUtils.general(aipOcr, file.getBytes());
-        return new ApiResult<>(pictureResultVO);
+        return new ResultVO<>(pictureResultVO);
     }
 
     /**
@@ -73,9 +73,9 @@ public class PictureController {
      */
     @PostMapping("basicAccurateGeneral")
     @ApiOperation("精准文字识别")
-    public ApiResult<PictureResultVO> basicAccurateGeneral(@NotNull @Param("file") MultipartFile file) throws IOException {
+    public ResultVO<PictureResultVO> basicAccurateGeneral(@NotNull @Param("file") MultipartFile file) throws IOException {
         PictureResultVO pictureResultVO = PictureUtils.basicAccurateGeneral(aipOcr, file.getBytes());
-        return new ApiResult<>(pictureResultVO);
+        return new ResultVO<>(pictureResultVO);
     }
 
     /**
@@ -87,9 +87,9 @@ public class PictureController {
      */
     @PostMapping("accurateGeneral")
     @ApiOperation("通用文字识别（含位置高精度版）")
-    public ApiResult<PictureResultVO> accurateGeneral(@NotNull @Param("file") MultipartFile file) throws IOException {
+    public ResultVO<PictureResultVO> accurateGeneral(@NotNull @Param("file") MultipartFile file) throws IOException {
         PictureResultVO pictureResultVO = PictureUtils.accurateGeneral(aipOcr, file.getBytes());
-        return new ApiResult<>(pictureResultVO);
+        return new ResultVO<>(pictureResultVO);
     }
 
     /**

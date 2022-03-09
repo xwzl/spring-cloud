@@ -2,7 +2,7 @@ package com.spring.demo.config.handler;
 
 import com.spring.common.model.exception.ApiException;
 import com.spring.common.model.exception.ServiceException;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
@@ -33,9 +33,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiResult<?> handlerException(Throwable e) {
+    public ResultVO<?> handlerException(Throwable e) {
         log.error(ExceptionUtils.getStackTrace(e));
-        return new ApiResult(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+        return new ResultVO(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
@@ -49,24 +49,24 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ServiceException.class)
-    public ApiResult<?> handleServiceException(ServiceException e) {
+    public ResultVO<?> handleServiceException(ServiceException e) {
         log.error("meet ServiceException: " + e.getCode() + " " + e.getMessage(), e);
-        return new ApiResult(e);
+        return new ResultVO(e);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ApiResult<?> illegalArgumentException(IllegalArgumentException e) {
+    public ResultVO<?> illegalArgumentException(IllegalArgumentException e) {
         log.error("meet ServiceException: " + e.getMessage());
-        return new ApiResult<>(-1, e.getMessage());
+        return new ResultVO<>(-1, e.getMessage());
     }
 
     /**
      * 方法参数校验
      */
     @ExceptionHandler(BindException.class)
-    public ApiResult<?> handleMethodArgumentNotValidException(BindException e) {
+    public ResultVO<?> handleMethodArgumentNotValidException(BindException e) {
         log.error(e.getMessage(), e);
-        return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
+        return new ResultVO<>(HttpStatus.BAD_REQUEST.value(), e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     /**
@@ -82,9 +82,9 @@ public class GlobalExceptionHandler {
      * Collections.EMPTY_MAP和Collections.EMPTY_SET同理。
      */
     @ExceptionHandler(ValidationException.class)
-    public ApiResult<?> handleValidationException(ValidationException e) {
+    public ResultVO<?> handleValidationException(ValidationException e) {
         log.error(e.getMessage(), e);
-        return new ApiResult<>(HttpStatus.BAD_REQUEST.value(), appendException(new ArrayList<>(), e.getMessage()).toString());
+        return new ResultVO<>(HttpStatus.BAD_REQUEST.value(), appendException(new ArrayList<>(), e.getMessage()).toString());
     }
 
     //@ExceptionHandler(NoHandlerFoundException.class)

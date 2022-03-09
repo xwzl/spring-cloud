@@ -106,7 +106,7 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
         <maven.compiler.compilerVersion>16</maven.compiler.compilerVersion>
-        <spring-boot.version>2.6.2</spring-boot.version>
+        <spring-boot.version>2.6.4</spring-boot.version>
         <spring-cloud.version>2020.0.5</spring-cloud.version>
         <docker.image.prefix>spring-cloud</docker.image.prefix>
         <spring-alibaba-cloud.version>2.2.7.RELEASE</spring-alibaba-cloud.version>

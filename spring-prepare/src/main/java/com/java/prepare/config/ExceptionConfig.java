@@ -1,7 +1,7 @@
 package com.java.prepare.config;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -32,9 +32,9 @@ public class ExceptionConfig {
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult<String> serviceException(Exception e) {
+    public ResultVO<String> serviceException(Exception e) {
         log.error(ExceptionUtils.getStackTrace(e));
-        return new ApiResult<>(500, "服务器内部异常");
+        return new ResultVO<>(500, "服务器内部异常");
     }
 
     /**
@@ -46,15 +46,15 @@ public class ExceptionConfig {
      */
     @ExceptionHandler({ServiceException.class})
     @ResponseStatus(HttpStatus.OK)
-    public ApiResult<String> serviceException(ServiceException e) {
+    public ResultVO<String> serviceException(ServiceException e) {
         log.error(ExceptionUtil.getMessage(e));
-        return new ApiResult<>(e.getCode(), e.getMessage());
+        return new ResultVO<>(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ApiResult<?> handleValidationException(MethodArgumentNotValidException e) {
+    public ResultVO<?> handleValidationException(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);
-        return new ApiResult<>(HttpStatus.BAD_REQUEST.value(),
+        return new ResultVO<>(HttpStatus.BAD_REQUEST.value(),
            Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());
     }
 

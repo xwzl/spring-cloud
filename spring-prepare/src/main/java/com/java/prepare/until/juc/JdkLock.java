@@ -10,7 +10,7 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.exception.ServiceException;
 import com.spring.common.model.utils.ServiceCodeEnum;
 
@@ -35,13 +35,13 @@ public class JdkLock {
             new ThreadFactoryBuilder().setNameFormat("Red Session %d").build(), new ThreadPoolExecutor.AbortPolicy());
         JdkLock jdkLock = new JdkLock();
 
-        List<Future<ApiResult<String>>> temp = new ArrayList<>();
+        List<Future<ResultVO<String>>> temp = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             temp.add(executor.submit(jdkLock::jdkTryLock));
         }
         temp.forEach(future -> {
             try {
-                ApiResult<String> result = future.get();
+                ResultVO<String> result = future.get();
                 log.info(result.toString());
             } catch (InterruptedException | ExecutionException e) {
                 log.error("获取锁失败，当前线程执行的任务将被丢弃");
@@ -50,7 +50,7 @@ public class JdkLock {
         executor.shutdown();
     }
 
-    private ApiResult<String> jdkLock() {
+    private ResultVO<String> jdkLock() {
         synchronized (lockObj) {
             try {
                 if (stock > 0) {
@@ -62,7 +62,7 @@ public class JdkLock {
                     }
                     stock -= i;
                     log.info("计数：{};扣除{}件库存成功,剩余库存：{}", atomicInteger.incrementAndGet(), i, stock);
-                    return new ApiResult<>("下单成功");
+                    return new ResultVO<>("下单成功");
                 }
             } catch (InterruptedException e) {
                 log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
@@ -70,10 +70,10 @@ public class JdkLock {
 
         }
         log.info("获取锁失败,请稍后重试");
-        return new ApiResult(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
+        return new ResultVO(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
     }
 
-    private ApiResult<String> jdkReenLock() {
+    private ResultVO<String> jdkReenLock() {
         boolean b = false;
         try {
             // 10 钟内尝试获取锁，如果失败则抛出中断异常
@@ -93,7 +93,7 @@ public class JdkLock {
                     }
                     stock -= i;
                     log.info("计数：{};扣除{}件库存成功,剩余库存：{}", atomicInteger.incrementAndGet(), i, stock);
-                    return new ApiResult<>("下单成功");
+                    return new ResultVO<>("下单成功");
                 }
             } catch (InterruptedException e) {
                 log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
@@ -103,10 +103,10 @@ public class JdkLock {
 
         }
         log.info("获取锁失败,请稍后重试");
-        return new ApiResult(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
+        return new ResultVO(ServiceCodeEnum.FAIL.getCode(), "服务器正在忙碌中，请稍后再试");
     }
 
-    private ApiResult<String> jdkTryLock() {
+    private ResultVO<String> jdkTryLock() {
         int index = 0;
         // 自旋锁
         for (;;) {
@@ -124,7 +124,7 @@ public class JdkLock {
                         }
                         stock -= i;
                         log.info("计数：{};扣除{}件库存成功,剩余库存：{}", atomicInteger.incrementAndGet(), i, stock);
-                        return new ApiResult<>("下单成功");
+                        return new ResultVO<>("下单成功");
                     }
                 } catch (InterruptedException e) {
                     log.error(ExceptionUtils.getStackTrace(e) + "线程中断");
@@ -135,7 +135,7 @@ public class JdkLock {
             }
             log.info("获取锁失败,请重试{}次", index);
             if (++index > 20) {
-                return new ApiResult(ServiceCodeEnum.FAIL.getCode(), "下单成功");
+                return new ResultVO(ServiceCodeEnum.FAIL.getCode(), "下单成功");
             }
             try {
                 Thread.sleep(900);

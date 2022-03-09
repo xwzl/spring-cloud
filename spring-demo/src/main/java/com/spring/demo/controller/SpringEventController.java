@@ -1,6 +1,6 @@
 package com.spring.demo.controller;
 
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.listener.event.AnnotationEvent;
 import com.spring.demo.listener.event.AsyncEvent;
 import com.spring.demo.listener.event.OrderSuccessEvent;
@@ -33,22 +33,22 @@ public class SpringEventController {
      * @return 结果
      */
     @GetMapping("order")
-    public ApiResult<String> order() {
+    public ResultVO<String> order() {
         applicationContext.publishEvent(new OrderSuccessEvent(this));
-        return new ApiResult<>("下单成功");
+        return new ResultVO<>("下单成功");
     }
 
     @GetMapping("syncEvent")
-    public ApiResult<String> syncEvent() {
+    public ResultVO<String> syncEvent() {
         applicationContext.publishEvent(new SyncEvent("Rock you!"));
-        return new ApiResult<>("同步调用");
+        return new ResultVO<>("同步调用");
     }
 
     @GetMapping("asyncEvent")
-    public ApiResult<String> asyncEvent() {
+    public ResultVO<String> asyncEvent() {
         applicationContext.publishEvent(new AsyncEvent("Rock you a!"));
         System.out.println("异步调用");
-        return new ApiResult<>("同步调用");
+        return new ResultVO<>("同步调用");
     }
 
 
@@ -56,8 +56,8 @@ public class SpringEventController {
      * 注解事件通知
      */
     @GetMapping("annotationEvent")
-    public ApiResult<String> annotationEvent(){
+    public ResultVO<String> annotationEvent(){
         applicationContext.publishEvent(new AnnotationEvent(this,"Spring Annotation 通知"));
-        return new ApiResult<>("下单成功");
+        return new ResultVO<>("下单成功");
     }
 }

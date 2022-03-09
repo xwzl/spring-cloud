@@ -1,7 +1,7 @@
 package com.spring.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.model.vos.ReturnViewVO;
 import com.spring.demo.annotation.DateTime;
 import com.spring.demo.config.config.RestTemplateConfig;
@@ -184,12 +184,12 @@ public class ValidatedController {
      */
     @ApiOperation("矩阵变量")
     @GetMapping("/variable/{id}/{tables}")
-    public ApiResult<Map<String, String>> matrixVariable(@PathVariable String id, @PathVariable List<String> tables, @MatrixVariable String username) {
+    public ResultVO<Map<String, String>> matrixVariable(@PathVariable String id, @PathVariable List<String> tables, @MatrixVariable String username) {
         Map<String, String> response = new HashedMap<>();
         response.put("ids", id);
         response.put("username", username);
         response.put("tables", tables.toString());
-        return new ApiResult<>(response);
+        return new ResultVO<>(response);
     }
 
 

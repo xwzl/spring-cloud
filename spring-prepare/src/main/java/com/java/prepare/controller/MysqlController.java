@@ -11,7 +11,7 @@ import com.java.prepare.model.vos.BaseTagVO;
 import com.java.prepare.until.mongo.MongoPageUtil;
 import com.java.prepare.until.mongo.MongoRegexUtil;
 import com.java.prepare.until.mongo.MysqlTable;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.common.model.common.PageVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,9 +53,9 @@ public class MysqlController {
      */
     @GetMapping("contentTagList")
     @ApiOperation("获取标签列表")
-    public ApiResult<PageVO<BaseTagVO>> contentTagList(@RequestParam(value = "keyWords", required = false) String keywords,
-                                                       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                       @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+    public ResultVO<PageVO<BaseTagVO>> contentTagList(@RequestParam(value = "keyWords", required = false) String keywords,
+                                                      @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                      @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         Criteria criteria1 = Criteria.where("isDelete").is(0);
 
         // Criteria criteria = QueryHelper.criteria();
@@ -71,11 +71,11 @@ public class MysqlController {
         pageVO.setPageSize(pageSize);
         pageVO.setList(new ArrayList<>());
         if (CollectionUtils.isEmpty(result.getList())) {
-            return new ApiResult<>(pageVO);
+            return new ResultVO<>(pageVO);
         }
         List<BaseTagVO> list = getBaseTagVOS(result.getList());
         pageVO.setList(list);
-        return new ApiResult<>(pageVO);
+        return new ResultVO<>(pageVO);
     }
 
     private List<BaseTagVO> getBaseTagVOS(List<MongoTag> result1) {
@@ -95,7 +95,7 @@ public class MysqlController {
     }
 
     @PostMapping("migrateTag")
-    public ApiResult<String> migrateTag() {
+    public ResultVO<String> migrateTag() {
         // 父级标签
         List<TagDO> tagDOS = tagMapper.parentSelect();
         tagDOS.forEach(tagDO -> {

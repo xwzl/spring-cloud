@@ -1,7 +1,7 @@
 package com.spring.demo.controller;
 
 import com.spring.demo.mapper.EmpMapper;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.model.vos.EmpVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,8 +33,8 @@ public class MysqlController {
      */
     @GetMapping("inner")
     @ApiOperation(value = "内连接", notes = "默认连接方式")
-    public ApiResult<List<EmpVO>> inner() {
-        return new ApiResult<>(empMapper.inner());
+    public ResultVO<List<EmpVO>> inner() {
+        return new ResultVO<>(empMapper.inner());
     }
 
     /**
@@ -44,8 +44,8 @@ public class MysqlController {
      */
     @GetMapping("innerOn")
     @ApiOperation(value = "内连接 on", notes = "on")
-    public ApiResult<List<EmpVO>> innerOn() {
-        return new ApiResult<>(empMapper.innerOn());
+    public ResultVO<List<EmpVO>> innerOn() {
+        return new ResultVO<>(empMapper.innerOn());
     }
 
     /**
@@ -55,8 +55,8 @@ public class MysqlController {
      */
     @GetMapping("innerWhere")
     @ApiOperation(value = "内连接 where", notes = "where")
-    public ApiResult<List<EmpVO>> innerWhere() {
-        return new ApiResult<>(empMapper.innerWhere());
+    public ResultVO<List<EmpVO>> innerWhere() {
+        return new ResultVO<>(empMapper.innerWhere());
     }
 
     /**
@@ -67,8 +67,8 @@ public class MysqlController {
      */
     @GetMapping("leftOn")
     @ApiOperation(value = "左连接 on", notes = "on")
-    public ApiResult<List<EmpVO>> leftOn(String id) {
-        return new ApiResult<>(empMapper.leftOn(id));
+    public ResultVO<List<EmpVO>> leftOn(String id) {
+        return new ResultVO<>(empMapper.leftOn(id));
     }
 
     /**
@@ -79,8 +79,8 @@ public class MysqlController {
      */
     @GetMapping("leftWhere")
     @ApiOperation(value = "左连接 where", notes = "where")
-    public ApiResult<List<EmpVO>> leftWhere(String id) {
-        return new ApiResult<>(empMapper.leftWhere(id));
+    public ResultVO<List<EmpVO>> leftWhere(String id) {
+        return new ResultVO<>(empMapper.leftWhere(id));
     }
 
     /**
@@ -90,8 +90,8 @@ public class MysqlController {
      */
     @GetMapping("joinSelf")
     @ApiOperation(value = "自连接")
-    public ApiResult<List<EmpVO>> joinSelf() {
-        return new ApiResult<>(empMapper.joinSelf());
+    public ResultVO<List<EmpVO>> joinSelf() {
+        return new ResultVO<>(empMapper.joinSelf());
     }
 
     /**
@@ -101,8 +101,8 @@ public class MysqlController {
      */
     @GetMapping("ifNull")
     @ApiOperation(value = " IFNULL 判断")
-    public ApiResult<String> ifNull(String id) {
-        return new ApiResult<>(empMapper.ifNull(id));
+    public ResultVO<String> ifNull(String id) {
+        return new ResultVO<>(empMapper.ifNull(id));
     }
 
     /**
@@ -112,7 +112,7 @@ public class MysqlController {
      */
     @GetMapping("isNull")
     @ApiOperation(value = "if 条件判断")
-    public ApiResult<Boolean> isNull(String id) {
-        return new ApiResult<>(empMapper.isNull(id));
+    public ResultVO<Boolean> isNull(String id) {
+        return new ResultVO<>(empMapper.isNull(id));
     }
 }

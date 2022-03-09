@@ -4,7 +4,7 @@ import com.spring.demo.config.async.AsyncService;
 import com.spring.demo.config.async.AsyncTask;
 import com.spring.demo.config.async.http.QueueListener;
 import com.spring.demo.model.dos.Computer;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -130,7 +130,7 @@ public class AsyncController {
 
     @GetMapping("/customer2")
     @ApiOperation("异步调用，自定义测试2")
-    public ApiResult<List<Computer>> customer2() throws InterruptedException, ExecutionException {
+    public ResultVO<List<Computer>> customer2() throws InterruptedException, ExecutionException {
         Future<List<Computer>> listFuture = asyncTask.customer11();
         Future<List<Computer>> listFuture1 = asyncTask.customer22();
         Future<List<Computer>> listFuture2 = asyncTask.customer33();
@@ -141,7 +141,7 @@ public class AsyncController {
         log.info("");
         List<Computer> computers2 = listFuture2.get();
         log.info("");
-        return new ApiResult<>(Arrays.asList(computers.get(0), computers1.get(0), computers2.get(0)));
+        return new ResultVO<>(Arrays.asList(computers.get(0), computers1.get(0), computers2.get(0)));
     }
 
     /**

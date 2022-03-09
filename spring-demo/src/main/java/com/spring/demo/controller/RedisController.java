@@ -3,7 +3,7 @@ package com.spring.demo.controller;
 
 import com.spring.demo.config.factory.RedSessionFactory;
 import com.spring.demo.model.dos.People;
-import com.spring.common.model.common.ApiResult;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.service.PeopleService;
 import com.spring.demo.untils.RedissLockUtil;
 import io.swagger.annotations.Api;
@@ -79,7 +79,7 @@ public class RedisController {
     }
 
     @GetMapping("/string")
-    public ApiResult<Object> addString(String key) {
+    public ResultVO<Object> addString(String key) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         value.set(key, "键值对测试");
         if (value.get(key) != null) {
@@ -108,25 +108,25 @@ public class RedisController {
      */
     @GetMapping("/setIfPresent")
     @ApiOperation("如果存在这个建就修改，不存在就不添加")
-    public ApiResult<String> setNx(String key) {
+    public ResultVO<String> setNx(String key) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         Boolean aBoolean1 = value.setIfPresent(key, key);
         log.info("" + aBoolean1);
         Boolean aBoolean = value.setIfPresent(key, key + "1");
         log.info("" + aBoolean);
         Object andSet = value.getAndSet(key, key + "2");
-        return new ApiResult<>((String) andSet);
+        return new ResultVO<>((String) andSet);
     }
 
     @GetMapping("/redSession")
-    public ApiResult<Long> redSession(String key, Long initValue) {
+    public ResultVO<Long> redSession(String key, Long initValue) {
         long l = redSessionFactory.incrementAndGet(key);
-        return new ApiResult<>(l);
+        return new ResultVO<>(l);
     }
 
     @GetMapping("/redSessionLock")
     @ApiOperation("分布式锁实现")
-    public ApiResult<String> redSessionLock(String key) {
+    public ResultVO<String> redSessionLock(String key) {
         RLock lock = RedissLockUtil.lock(key);
         try {
             Thread.sleep(10000);
@@ -135,32 +135,32 @@ public class RedisController {
         }
         log.info("执行代码");
         lock.unlock();
-        return new ApiResult<>("");
+        return new ResultVO<>("");
     }
 
     @GetMapping("/redSessionLockParallel")
     @ApiOperation("分布式锁实现并行请求")
-    public ApiResult<String> redSessionLock1(String key) {
+    public ResultVO<String> redSessionLock1(String key) {
         RLock lock = RedissLockUtil.lock(key);
         log.info("等待锁的释放");
         lock.unlock();
-        return new ApiResult<>("");
+        return new ResultVO<>("");
     }
 
     @GetMapping("/stringAppend")
     @ApiOperation("验证字符串追加")
-    public ApiResult<Object> stringAppend(String key, String value) {
+    public ResultVO<Object> stringAppend(String key, String value) {
         ValueOperations<String, Object> valueOperate = redisTemplate.opsForValue();
         valueOperate.append(key, value);
-        return new ApiResult<>(valueOperate.get(key));
+        return new ResultVO<>(valueOperate.get(key));
     }
 
     @GetMapping("/hashPut")
     @ApiOperation("hash 操作")
-    public ApiResult<Object> hashPut(String key, String hashKey, String value) {
+    public ResultVO<Object> hashPut(String key, String hashKey, String value) {
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         hash.put(key, hashKey, value);
         hash.getOperations().expire(key, 1000, TimeUnit.SECONDS);
-        return new ApiResult<>(hash.entries(key));
+        return new ResultVO<>(hash.entries(key));
     }
 }
