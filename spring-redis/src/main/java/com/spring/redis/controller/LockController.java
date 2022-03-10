@@ -4,6 +4,7 @@ import com.spring.redis.annotation.CacheLock;
 import com.spring.redis.annotation.CacheParam;
 import com.spring.redis.until.redisson.LockUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -80,6 +81,14 @@ public class LockController {
     @CacheLock(prefix = "book")
     public String lock(@RequestBody @CacheParam(name = "lock") String lock) {
         return lock;
+    }
+
+
+    @GetMapping("subscribe")
+    @ApiModelProperty("subscribe")
+    public String subscribe() {
+        redisTemplate.convertAndSend("string-topic", "你好啊");
+        return "发送成功";
     }
 
 }
