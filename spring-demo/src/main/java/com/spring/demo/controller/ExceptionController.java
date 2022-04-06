@@ -28,7 +28,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("/exception")
-@Api(tags = "异常处理和验证测试")
+//@Api(tags = "异常处理和验证测试")
 public class ExceptionController {
 
     @Resource
@@ -38,7 +38,7 @@ public class ExceptionController {
     private RestTemplate restTemplate;
 
     @GetMapping
-    @ApiOperation("简单测试")
+    //@ApiOperation("简单测试")
     private void message() {
         String str = null;
         for (int i = 0; i < 2; i++) {
@@ -52,7 +52,7 @@ public class ExceptionController {
     }
 
     @GetMapping("/exception")
-    @ApiOperation("调用本地服务")
+    //@ApiOperation("调用本地服务")
     public String test() throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("username", "username");
@@ -66,14 +66,14 @@ public class ExceptionController {
     }
 
     @GetMapping("/restTemplate")
-    @ApiOperation("restTemplate 调用本地服务")
+    //@ApiOperation("restTemplate 调用本地服务")
     public void restTemplate() {
         restTemplate.getForObject("http://127.0.0.1:11111/rest/get/{noticeId}", String.class, "111", "2222");
     }
 
     @AopSample
     @PostMapping
-    @ApiOperation("验证处理")
+    //@ApiOperation("验证处理")
     public void validatedDemo(@Validated @RequestBody ValidatedVO validatedVO, BindingResult result) {
         Optional.ofNullable(result).filter(Errors::hasErrors).ifPresent(bindingResult -> {
             throw new ServiceException(0, Objects.requireNonNull(result.getFieldError()).getDefaultMessage());

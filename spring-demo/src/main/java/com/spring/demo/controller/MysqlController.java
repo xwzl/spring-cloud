@@ -18,7 +18,7 @@ import java.util.List;
  * @author xuweizhi
  * @since 2019/12/05 17:06
  */
-@Api(tags = "mysql 测试类")
+//@Api(tags = "mysql 测试类")
 @RestController
 @RequestMapping("mysql")
 public class MysqlController {
@@ -32,7 +32,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("inner")
-    @ApiOperation(value = "内连接", notes = "默认连接方式")
+    //@ApiOperation(value = "内连接", notes = "默认连接方式")
     public ResultVO<List<EmpVO>> inner() {
         return new ResultVO<>(empMapper.inner());
     }
@@ -43,7 +43,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("innerOn")
-    @ApiOperation(value = "内连接 on", notes = "on")
+    //@ApiOperation(value = "内连接 on", notes = "on")
     public ResultVO<List<EmpVO>> innerOn() {
         return new ResultVO<>(empMapper.innerOn());
     }
@@ -54,7 +54,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("innerWhere")
-    @ApiOperation(value = "内连接 where", notes = "where")
+    //@ApiOperation(value = "内连接 where", notes = "where")
     public ResultVO<List<EmpVO>> innerWhere() {
         return new ResultVO<>(empMapper.innerWhere());
     }
@@ -66,7 +66,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("leftOn")
-    @ApiOperation(value = "左连接 on", notes = "on")
+    //@ApiOperation(value = "左连接 on", notes = "on")
     public ResultVO<List<EmpVO>> leftOn(String id) {
         return new ResultVO<>(empMapper.leftOn(id));
     }
@@ -78,7 +78,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("leftWhere")
-    @ApiOperation(value = "左连接 where", notes = "where")
+    //@ApiOperation(value = "左连接 where", notes = "where")
     public ResultVO<List<EmpVO>> leftWhere(String id) {
         return new ResultVO<>(empMapper.leftWhere(id));
     }
@@ -89,7 +89,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("joinSelf")
-    @ApiOperation(value = "自连接")
+    //@ApiOperation(value = "自连接")
     public ResultVO<List<EmpVO>> joinSelf() {
         return new ResultVO<>(empMapper.joinSelf());
     }
@@ -100,7 +100,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("ifNull")
-    @ApiOperation(value = " IFNULL 判断")
+    //@ApiOperation(value = " IFNULL 判断")
     public ResultVO<String> ifNull(String id) {
         return new ResultVO<>(empMapper.ifNull(id));
     }
@@ -111,7 +111,7 @@ public class MysqlController {
      * @return 结果集
      */
     @GetMapping("isNull")
-    @ApiOperation(value = "if 条件判断")
+    //@ApiOperation(value = "if 条件判断")
     public ResultVO<Boolean> isNull(String id) {
         return new ResultVO<>(empMapper.isNull(id));
     }

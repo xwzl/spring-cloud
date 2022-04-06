@@ -2,7 +2,7 @@
 --add-opens java.base/java.lang=ALL-UNNAMED
 --add-opens java.base/java.lang.annotation=ALL-UNNAMED
 --add-opens java.base/java.lang.constant=ALL-UNNAMED
---add-opens java.base/java.lang.invoke=ALL-UNNAMED
+--add-opens java.base/java.lang.invoke=ALL-UNNAMEDS
 --add-opens java.base/java.lang.module=ALL-UNNAMED
 --add-opens java.base/java.lang.ref=ALL-UNNAMED
 --add-opens java.base/java.lang.reflect=ALL-UNNAMED

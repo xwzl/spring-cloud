@@ -26,7 +26,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/title")
-@Api(tags = "C 语言编程网 vip 课程")
+//@Api(tags = "C 语言编程网 vip 课程")
 public class TitleController {
 
     @Resource
@@ -36,7 +36,7 @@ public class TitleController {
     private HttpApiService httpApiService;
 
     @GetMapping
-    @ApiOperation("获取 c 语言网 VIP 课程")
+    //@ApiOperation("获取 c 语言网 VIP 课程")
     public ResultVO<List<Title>> list(String title) {
         List<Title> list = titleService.list(new QueryWrapper<Title>()
                 .lambda().like(Title::getTitle, title));
@@ -44,13 +44,13 @@ public class TitleController {
     }
 
     @GetMapping("lists")
-    @ApiOperation("查询")
+    //@ApiOperation("查询")
     public ResultVO<List<Title>> lists(@RequestParam("ids") List<String> ids) {
         return new ResultVO<>(titleService.listByIds(ids));
     }
 
     /*@PostMapping
-    @ApiOperation("爬取 C 语言 VIP 课程")
+    //@ApiOperation("爬取 C 语言 VIP 课程")
     public void save(@Validated @NotEmpty(message = "不能为空") @RequestBody Integer i) {
         String urlBase = "http://c.biancheng.net/view/%d.html";
         int end = i + 500;

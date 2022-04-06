@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/noCommit")
-@Api(tags = "重复提交测试")
+//@Api(tags = "重复提交测试")
 public class NoRepeatCommitController {
 
     @RequestMapping
     @CacheLock(prefix = "books")
-    @ApiOperation("防重复提交测试")
+    //@ApiOperation("防重复提交测试")
     public String query(@CacheParam(name = "token") @RequestParam String token) {
         return "success - " + token;
     }

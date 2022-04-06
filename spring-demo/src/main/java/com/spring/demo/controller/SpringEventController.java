@@ -21,7 +21,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/spring")
-@Api(tags = "Spring 事件监听机制")
+//@Api(tags = "Spring 事件监听机制")
 public class SpringEventController {
 
     @Resource

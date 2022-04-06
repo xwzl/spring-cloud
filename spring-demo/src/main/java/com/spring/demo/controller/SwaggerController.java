@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/demo/role")
-@Api(tags = "Swagger2 注解示例")
+//@Api(tags = "Swagger2 注解示例")
 @Slf4j
 public class SwaggerController {
 
@@ -33,7 +33,7 @@ public class SwaggerController {
     }
 
     /**
-     * _@ApiOperation："用在请求的方法上，说明方法的作用"
+     * _//@ApiOperation："用在请求的方法上，说明方法的作用"
      * value="说明方法的作用"
      * notes="方法的备注说明"
      * <p>
@@ -58,7 +58,7 @@ public class SwaggerController {
      * response：抛出异常的类
      */
     @GetMapping
-    @ApiOperation(value = "用户注册", notes = "手机号、密码都是必输项，年龄随边填，但必须是数字", response = Role.class)
+    //@ApiOperation(value = "用户注册", notes = "手机号、密码都是必输项，年龄随边填，但必须是数字", response = Role.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "mobile", value = "手机号", required = true, paramType = "form"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "form"),

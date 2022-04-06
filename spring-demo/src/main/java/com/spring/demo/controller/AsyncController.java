@@ -1,12 +1,10 @@
 package com.spring.demo.controller;
 
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.config.async.AsyncService;
 import com.spring.demo.config.async.AsyncTask;
 import com.spring.demo.config.async.http.QueueListener;
 import com.spring.demo.model.dos.Computer;
-import com.spring.common.model.common.ResultVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +25,7 @@ import java.util.concurrent.Future;
 @Slf4j
 @RestController
 @RequestMapping("/async")
-@Api(tags = "异步调用接口测试")
+//@Api(tags = "异步调用接口测试")
 public class AsyncController {
 
     /**
@@ -54,7 +52,7 @@ public class AsyncController {
      * 异步调用接口无返回值测试
      */
     @GetMapping("/noResponse")
-    @ApiOperation("异步调用接口无返回值测试,异步请求")
+    //@ApiOperation("异步调用接口无返回值测试,异步请求")
     public void test1() throws InterruptedException {
         long start = System.currentTimeMillis();
         asyncTask.task1();
@@ -69,7 +67,7 @@ public class AsyncController {
      * 如何知道什么时候执行完毕和执行的结果呢？采用Future来做
      */
     @GetMapping("/responseWithSpringFrame")
-    @ApiOperation("异步调用")
+    //@ApiOperation("异步调用")
     public String test2() throws InterruptedException {
         long start = System.currentTimeMillis();
         Future<String> task4 = asyncTask.task4();
@@ -93,7 +91,7 @@ public class AsyncController {
      * <p>
      * 异步调用，使用自带的线程池来执行异步任务
      */
-    @ApiOperation("异步调用，自己配置的线程池")
+    //@ApiOperation("异步调用，自己配置的线程池")
     @GetMapping("/responseWithCustomerThreadPool")
     public Integer test3() throws Exception {
         long start = System.currentTimeMillis();
@@ -112,7 +110,7 @@ public class AsyncController {
      * 经过测试多个异步任务调度并发执行，取最长的时间进行阻塞......
      */
     @GetMapping("/customer1")
-    @ApiOperation("异步调用时间测试")
+    //@ApiOperation("异步调用时间测试")
     public void customer1() throws InterruptedException, ExecutionException {
 
         Future<List<Computer>> listFuture = asyncTask.customer1();
@@ -129,7 +127,7 @@ public class AsyncController {
     }
 
     @GetMapping("/customer2")
-    @ApiOperation("异步调用，自定义测试2")
+    // //@ApiOperation("异步调用，自定义测试2")
     public ResultVO<List<Computer>> customer2() throws InterruptedException, ExecutionException {
         Future<List<Computer>> listFuture = asyncTask.customer11();
         Future<List<Computer>> listFuture1 = asyncTask.customer22();

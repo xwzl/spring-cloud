@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-@Api(tags = "redis 缓存测试，注解版本")
+//@Api(tags = "redis 缓存测试，注解版本")
 public class RedisController {
 
     @Resource
@@ -43,7 +43,7 @@ public class RedisController {
     @Resource
     private RedSessionFactory redSessionFactory;
 
-    @ApiOperation(value = "Master 插入值", notes = "hello接口")
+    //@ApiOperation(value = "Master 插入值", notes = "hello接口")
     @GetMapping("/insertUser")
     public People insertUser() {
         People user = new People(null, "山东", "仁和春天", LocalDateTime.now(), "158262751", "158262751", 2, "王柳");
@@ -51,7 +51,7 @@ public class RedisController {
     }
 
     @GetMapping("/update")
-    @ApiOperation(value = "update", notes = "更新")
+    //@ApiOperation(value = "update", notes = "更新")
     public People update(String name, Integer id) {
         People byId = peopleService.getById(id);
         byId.setUsername(name);
@@ -59,13 +59,13 @@ public class RedisController {
     }
 
     @GetMapping("/getUser")
-    @ApiOperation(value = "getUser", notes = "获取")
+    //@ApiOperation(value = "getUser", notes = "获取")
     public People getUser(Integer id) {
         return peopleService.findById(id);
     }
 
     @GetMapping("/delete")
-    @ApiOperation(value = "delete", notes = "hello接口")
+    //@ApiOperation(value = "delete", notes = "hello接口")
     public void delete(Integer id) {
         People user = new People();
         user.setUId(id);
@@ -73,7 +73,7 @@ public class RedisController {
     }
 
     @GetMapping("/getPlus")
-    @ApiOperation(value = "getPlus", notes = "hello接口")
+    //@ApiOperation(value = "getPlus", notes = "hello接口")
     public People getPlus(Integer id) {
         return peopleService.getById(id);
     }
@@ -107,7 +107,7 @@ public class RedisController {
      * setIfPresent:如果 key 对应的值存在，则设置值，并返回 true
      */
     @GetMapping("/setIfPresent")
-    @ApiOperation("如果存在这个建就修改，不存在就不添加")
+    //@ApiOperation("如果存在这个建就修改，不存在就不添加")
     public ResultVO<String> setNx(String key) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         Boolean aBoolean1 = value.setIfPresent(key, key);
@@ -125,7 +125,7 @@ public class RedisController {
     }
 
     @GetMapping("/redSessionLock")
-    @ApiOperation("分布式锁实现")
+    //@ApiOperation("分布式锁实现")
     public ResultVO<String> redSessionLock(String key) {
         RLock lock = RedissLockUtil.lock(key);
         try {
@@ -139,7 +139,7 @@ public class RedisController {
     }
 
     @GetMapping("/redSessionLockParallel")
-    @ApiOperation("分布式锁实现并行请求")
+    //@ApiOperation("分布式锁实现并行请求")
     public ResultVO<String> redSessionLock1(String key) {
         RLock lock = RedissLockUtil.lock(key);
         log.info("等待锁的释放");
@@ -148,7 +148,7 @@ public class RedisController {
     }
 
     @GetMapping("/stringAppend")
-    @ApiOperation("验证字符串追加")
+    //@ApiOperation("验证字符串追加")
     public ResultVO<Object> stringAppend(String key, String value) {
         ValueOperations<String, Object> valueOperate = redisTemplate.opsForValue();
         valueOperate.append(key, value);
@@ -156,7 +156,7 @@ public class RedisController {
     }
 
     @GetMapping("/hashPut")
-    @ApiOperation("hash 操作")
+    //@ApiOperation("hash 操作")
     public ResultVO<Object> hashPut(String key, String hashKey, String value) {
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         hash.put(key, hashKey, value);

@@ -22,7 +22,7 @@ import javax.validation.constraints.NotBlank;
 @Slf4j
 @RestController
 @RequestMapping("/work")
-@Api(tags = "工作测试代码")
+//@Api(tags = "工作测试代码")
 @Validated
 public class WorkController {
 
@@ -33,7 +33,7 @@ public class WorkController {
      * @param work  work
      */
     @GetMapping("/validated")
-    @ApiOperation(value = "validated", tags = "参数校验")
+    //@ApiOperation(value = "validated", tags = "参数校验")
     @ApiImplicitParams({@ApiImplicitParam(value = "hello 不能为空", name = "hello", paramType = "query"),
             @ApiImplicitParam(value = "work 不能为空", name = "work", paramType = "query")})
     public void test(@NotBlank(message = "hello 不能为空") String hello, @NotBlank(message = "work 不能为空") String work) {
