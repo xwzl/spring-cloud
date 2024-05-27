@@ -32,16 +32,6 @@
 
     <repositories>
         <repository>
-            <id>rdc-releases</id>
-            <name>Spring Milestones</name>
-            <url>https://packages.aliyun.com/maven/repository/2137326-release-eZkkAF/</url>
-        </repository>
-        <repository>
-            <id>rdc-snapshot</id>
-            <name>Spring Milestones</name>
-            <url>https://packages.aliyun.com/maven/repository/2137326-snapshot-RSLD12</url>
-        </repository>
-        <repository>
             <id>central</id>
             <name>阿里云 maven1</name>
             <url>https://maven.aliyun.com/repository/central</url>
@@ -196,7 +186,7 @@
             <dependency>
                 <groupId>com.common.cloud</groupId>
                 <artifactId>spring-common-dependencies</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.2-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
