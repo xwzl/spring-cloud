@@ -1,6 +1,7 @@
 package com.spring.demo.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.model.dos.User;
 import com.spring.demo.model.vos.AuthenticationRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * @since:knife4j-springdoc-openapi-demo
@@ -24,8 +28,8 @@ public class Body1Controller {
     @Operation(summary = "我是表单")
     @ApiOperationSupport(order = 10)
     @PostMapping("/user")
-    public ResponseEntity<User> use(User user) {
-        return ResponseEntity.ok(user);
+    public ResultVO<User> use1111( User user) {
+        return null;
     }
 
 
@@ -37,4 +41,17 @@ public class Body1Controller {
         return ResponseEntity.ok(request);
     }
 
+
+    public static void main(String[] args) {
+        Class<Body1Controller> emrNurseRecordControllerClass = Body1Controller.class;
+
+        Method[] methods = emrNurseRecordControllerClass.getMethods();
+        for (Method method : methods) {
+            Parameter[] parameters = method.getParameters();
+            for (Parameter parameter : parameters) {
+                System.out.println(parameter.getName());
+            }
+        }
+
+    }
 }

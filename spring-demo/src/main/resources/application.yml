@@ -90,6 +90,8 @@ springdoc:
       paths-to-match: '/**'   #配置需要匹配的路径,默认为/**
       packages-to-scan: com.spring.demo   #配置要扫描包的路径,一般配置到启动类所在的包名
   default-flat-param-object: false
+#  cache:
+#    disabled: true
 
 # knife4j的增强配置，不需要增强可以不配(建议配置一下)
 knife4j:
@@ -97,6 +99,10 @@ knife4j:
   setting:
     language: zh_cn   #中文
     swagger-model-name: 实体类列表   #重命名SwaggerModel名称,默认
+#    enable-open-api: true
+#    enable-debug: true
+
+
 #  #开启Swagger的Basic认证功能,默认是false
 #  basic:
 #    enable: true
