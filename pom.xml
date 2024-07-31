@@ -17,7 +17,7 @@
         <module>spring-demo</module>
         <module>spring-cache</module>
         <module>spring-complex</module>
-<!--        <module>spring-elastic</module>-->
+        <!--        <module>spring-elastic</module>-->
         <module>spring-mongo</module>
         <module>spring-rabbit</module>
         <module>spring-flux</module>
@@ -92,9 +92,9 @@
         <!--        <maven.compiler.source>1.8</maven.compiler.source>-->
         <!--        <maven.compiler.target>1.8</maven.compiler.target>-->
         <!--        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>-->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
         <spring-boot.version>3.2.4</spring-boot.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <docker.image.prefix>spring-cloud</docker.image.prefix>
@@ -216,6 +216,20 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!--java 反射能够获取方法参数名称-->
+                    <parameters>true</parameters>
+                    <buildDirectory/>
+                    <basedir/>
+                    <mainOutputDirectory/>
+                    <outputDirectory/>
+                    <projectArtifact/>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
