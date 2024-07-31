@@ -85,7 +85,6 @@ public class LockController {
 
 
     @GetMapping("subscribe")
-    @Schema("subscribe")
     public String subscribe() {
         redisTemplate.convertAndSend("string-topic", "你好啊");
         return "发送成功";

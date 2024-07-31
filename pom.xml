@@ -100,7 +100,6 @@
         <docker.image.prefix>spring-cloud</docker.image.prefix>
         <spring-alibaba-cloud.version>2023.0.1.0</spring-alibaba-cloud.version>
         <skipTests>true</skipTests>
-
     </properties>
 
     <dependencies>
@@ -216,18 +215,12 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <!--java 反射能够获取方法参数名称-->
                     <parameters>true</parameters>
-                    <buildDirectory/>
-                    <basedir/>
-                    <mainOutputDirectory/>
-                    <outputDirectory/>
-                    <projectArtifact/>
                 </configuration>
             </plugin>
             <plugin>
