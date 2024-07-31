@@ -1,6 +1,7 @@
 package com.spring.demo.model.dos;
 
 import com.spring.demo.annotation.MyValidated;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "密码不能为空")
+    @Schema(title = "userId",description = "主键id",defaultValue = "1")
     private String password;
 
     //@Size(min = 5, max = 10, message = "年龄必须在 5 到 10 岁之间")

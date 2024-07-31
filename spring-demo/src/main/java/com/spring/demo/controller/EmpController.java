@@ -14,7 +14,8 @@ import com.spring.demo.model.vos.EmpVO;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.service.EmpService;
 import com.spring.demo.untils.pool.ThreadPoolUtils;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -38,7 +39,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @AopSample
 @RestController
 @RequestMapping("/emp")
-//@Api("aop 注解测试，代理整个类或者单个方法")
+@Tag(name = "aop 注解测试，代理整个类或者单个方法")
 public class EmpController {
 
     private final EmpService empService;
@@ -64,7 +65,7 @@ public class EmpController {
     }
 
     @PostMapping("/mvc")
-    //@ApiOperation("时间类格式转换测试")
+    @Operation(summary  ="时间类格式转换测试")
     public void mvc(@Valid DateVO dateVO) {
         dateVO.setValue("我们是一个好孩子!");
         redisTemplate.opsForValue().set("haha11", dateVO);
@@ -77,7 +78,7 @@ public class EmpController {
      * redis 中 key 加 ： 相当于创建一层目录
      */
     @GetMapping("/list")
-    //@ApiOperation("redis key 中的 ： 相当于一层文件")
+    @Operation(summary  ="redis key 中的 ： 相当于一层文件")
     public ResultVO<List<Computer>> list() {
         List<Computer> list = (List<Computer>) opsForValue.get("fuck_you");
         if (list == null) {
@@ -92,25 +93,25 @@ public class EmpController {
      * 巨坑，这个转换器要哪个啥？如果不传参数，必须保证 required 为 false
      */
     @GetMapping("/check")
-    //@ApiOperation("巨坑，这个转换器要哪个啥？如果不传参数，必须保证 required 为 false")
+    @Operation(summary  ="巨坑，这个转换器要哪个啥？如果不传参数，必须保证 required 为 false")
     public LocalDateTime check(@RequestParam(required = false) LocalDateTime localDateTime) {
         return localDateTime;
     }
 
     @GetMapping("getList")
-    //@ApiOperation("那个啥呢？")
+    @Operation(summary  ="那个啥呢？")
     public List<Computer> getList(String empName, String empLevel) {
         return computerMapper.getList(empLevel, empName);
     }
 
     @DeleteMapping
-    //@ApiOperation("全局异常处理拦截")
+    @Operation(summary  ="全局异常处理拦截")
     public void delete() {
         // empService.delete(new Emp());
     }
 
     @GetMapping("/conditionalList")
-    //@ApiOperation("mybatis plus 构造器之条件判断")
+    @Operation(summary  ="mybatis plus 构造器之条件判断")
     public List<Computer> conditionalList(Computer computer) {
         QueryWrapper<Computer> query = new QueryWrapper<>();
         query.eq(StringUtils.isNotEmpty(computer.getAssetType()), "asset_type", computer.getAssetType())
@@ -130,7 +131,7 @@ public class EmpController {
      * @param computer 最坑的一次 bug
      */
     @GetMapping("/list2")
-    //@ApiOperation("mybatis plus 条件构成器器值 or SQL 拼接问题")
+    @Operation(summary  ="mybatis plus 条件构成器器值 or SQL 拼接问题",tags = "xxxxxxx")
     public List<Computer> orSelectBug(Computer computer, String keyWord) {
         QueryWrapper<Computer> query = new QueryWrapper<>();
         query.eq(StringUtils.isNotEmpty(computer.getBrand()), "brand", computer.getBrand());
@@ -139,7 +140,7 @@ public class EmpController {
     }
 
     @GetMapping("/paramProviderReference")
-    //@ApiOperation("provider 对象参数在注入")
+    @Operation(summary  ="provider 对象参数在注入")
     public List<Computer> paramProviderReference(Computer computer) {
         return computerMapper.paramProviderReference(computer);
     }
@@ -148,7 +149,7 @@ public class EmpController {
      * mysql 查询参数字符串拼接
      */
     @GetMapping("sequenceAppend")
-    //@ApiOperation("注解 sql 条件参数拼接")
+    @Operation(summary  ="注解 sql 条件参数拼接")
     public List<Computer> sequenceAppend(String keyWord) {
         return computerMapper.sequenceAppend(keyWord);
     }
@@ -179,7 +180,7 @@ public class EmpController {
     /**
      * 三表查询 一
      */
-    //@ApiOperation("三表查询一")
+    @Operation(summary  ="三表查询一")
     @GetMapping("/threeTableSelect")
     public List<EmpVO> listOne(String company, Integer age) {
         return empMapper.listOne(company, age);
@@ -188,7 +189,7 @@ public class EmpController {
     /**
      * 三表查询二
      */
-    //@ApiOperation("三表查询一")
+    @Operation(summary  ="三表查询一")
     @GetMapping("/threeTableSelectTwo")
     public List<EmpVO> listTwo(String company, Integer age) {
         return empMapper.listTwo(company, age);

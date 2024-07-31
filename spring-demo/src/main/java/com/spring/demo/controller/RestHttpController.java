@@ -3,6 +3,7 @@ package com.spring.demo.controller;
 import com.google.gson.Gson;
 import com.spring.demo.model.vos.DataVO;
 import com.spring.demo.untils.ContextHolderUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpEntity;
@@ -30,7 +31,7 @@ public class RestHttpController {
      * 无参请求
      */
     @GetMapping("/get")
-    //@ApiOperation("无参请求")
+    @Operation(summary  ="无参请求")
     public String noParam() {
         System.out.println("请求成功");
         return "success";
@@ -40,7 +41,7 @@ public class RestHttpController {
      * 单个参数请求
      */
     @GetMapping("/get/param")
-    //@ApiOperation("单个参数请求")
+    @Operation(summary  ="单个参数请求")
     public String param(String param) {
         return param;
     }
@@ -49,7 +50,7 @@ public class RestHttpController {
      * 实体对象
      */
     @GetMapping("/get/pojo")
-    //@ApiOperation("实体对象")
+    @Operation(summary  ="实体对象")
     public DataVO pojo(Integer noticeId, String noticeTitle) {
         return DataVO.builder().noticeId(noticeId).noticeTitle(noticeTitle).build();
     }
@@ -59,7 +60,7 @@ public class RestHttpController {
      * 返回参数实体
      */
     @GetMapping("/get/entity/{noticeId}")
-    //@ApiOperation("返回参数实体")
+    @Operation(summary  ="返回参数实体")
     public DataVO pathEntity(@PathVariable("noticeId") Integer noticeId, String noticeTitle) {
         return DataVO.builder().noticeId(noticeId).noticeTitle(noticeTitle).build();
     }
@@ -68,7 +69,7 @@ public class RestHttpController {
      * post 请求,rest 风格放入 body 中
      */
     @PostMapping("/post/entity")
-    //@ApiOperation("post 请求,rest 风格放入 body 中")
+    @Operation(summary  ="post 请求,rest 风格放入 body 中")
     public DataVO postEntity(@RequestBody DataVO dataVO) {
         return dataVO;
     }
@@ -81,7 +82,7 @@ public class RestHttpController {
     }
 
     @GetMapping("/header")
-    //@ApiOperation("获取 header 信息")
+    @Operation(summary  ="获取 header 信息")
     public String headerEntity() {
         HttpServletRequest request = ContextHolderUtils.getRequest();
         return request.getHeader("test");
@@ -95,7 +96,7 @@ public class RestHttpController {
      * http://docs-im.easemob.com/im/server/basics/recordfiledownload 接口调用
      */
     @GetMapping("/rangLetter")
-    //@ApiOperation("环信接口调用测试")
+    @Operation(summary  ="环信接口调用测试")
     public void rangLetterTest() {
         String url = "http://a1.easemob.com/1106190731040398/tchealth/audio/213H05522QATBNFYAAX400C12186";
         HttpHeaders headers = new HttpHeaders();
@@ -110,7 +111,7 @@ public class RestHttpController {
     }
 
     @GetMapping("/rangLetter1")
-    //@ApiOperation("环信接口调用测试")
+    @Operation(summary  ="环信接口调用测试")
     public Object rangLetterTest1() {
         String url = "http://api.yonyoucloud.com/apis/dst/ncov/wholeworld";
         HttpHeaders headers = new HttpHeaders();

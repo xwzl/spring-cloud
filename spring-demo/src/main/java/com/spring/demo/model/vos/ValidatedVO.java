@@ -1,7 +1,6 @@
 package com.spring.demo.model.vos;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -16,10 +15,10 @@ import lombok.ToString;
  */
 @Data
 @ToString
-@ApiModel("这是一个验证 VO 测试")
+@Schema(description = "这是一个验证 VO 测试")
 public class ValidatedVO {
 
-    @ApiModelProperty("姓名")
+    @Schema(description = "姓名")
     @NotNull(message = "字符串不能为空测试")
     public String username;
 

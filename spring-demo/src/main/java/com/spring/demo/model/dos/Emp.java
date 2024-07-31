@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -18,14 +17,14 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("emp")
-@ApiModel("hyy")
+@Schema(description = "hyy")
 public class Emp {
 
     /**
      * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty(value = "id", required = false)
+    @Schema(description = "id", required = false)
     private Integer id;
 
     /**

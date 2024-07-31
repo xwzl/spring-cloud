@@ -1,7 +1,7 @@
 package com.java.elastic.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import  io.swagger.v3.oas.annotations.media.Schema;
+import   io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.models.properties.LongProperty;
 import io.swagger.models.properties.StringProperty;
 import lombok.Data;
@@ -19,7 +19,7 @@ import java.io.Serializable;
  * @since 2019-11-29
  */
 @Data
-@ApiModel("ES城市")
+@Schema("ES城市")
 @Document(indexName = "city_index")
 public class EsCityEntity implements Serializable {
     /**
@@ -32,14 +32,14 @@ public class EsCityEntity implements Serializable {
      */
     @Id
     @NotNull
-    @ApiModelProperty(value = "城市编号", required = true, dataType = LongProperty.TYPE, example = "0")
+    @Schema(value = "城市编号", required = true, dataType = LongProperty.TYPE, example = "0")
     private Long id;
 
     /**
      * 省份编号
      */
     @NotNull
-    @ApiModelProperty(value = "省份编号", required = true, dataType = LongProperty.TYPE, example = "0")
+    @Schema(value = "省份编号", required = true, dataType = LongProperty.TYPE, example = "0")
     private Long provinceId;
 
     /**
@@ -50,13 +50,13 @@ public class EsCityEntity implements Serializable {
      */
     @NotBlank
 //    @Field(type = FieldType.Keyword)
-    @ApiModelProperty(value = "城市名称", required = true, dataType = StringProperty.TYPE)
+    @Schema(value = "城市名称", required = true, dataType = StringProperty.TYPE)
     private String cityName;
 
     /**
      * 描述
      */
     @NotBlank
-    @ApiModelProperty(value = "描述", dataType = StringProperty.TYPE)
+    @Schema(value = "描述", dataType = StringProperty.TYPE)
     private String description;
 }

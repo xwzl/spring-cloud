@@ -13,8 +13,8 @@ import com.spring.demo.model.excel.MultiLineHeadExcelModel;
 import com.spring.common.model.common.ResultVO;
 import com.spring.demo.service.ComputerService;
 import com.spring.demo.untils.ListCopy;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ import static com.spring.demo.untils.ResponseUtils.excelResponse;
  */
 @RestController
 @RequestMapping("/excel")
-//@Api(tags = "EasyExcel 导入导入导出测试")
+@Tag(name = "EasyExcel 导入导入导出测试")
 public class ExcelController {
 
     private final ComputerService computerService;
@@ -64,7 +64,7 @@ public class ExcelController {
      * 3. 直接写，这里注意，finish的时候会自动关闭OutputStream,当然你外面再关闭流问题不大
      */
     @GetMapping("download")
-    //@ApiOperation("文件下载")
+    @Operation(summary  = "文件下载")
     public void download(HttpServletResponse response) throws IOException {
         excelResponse(response, "办公电脑");
         List<Computer> list = computerService.list();
@@ -82,7 +82,7 @@ public class ExcelController {
      * 多个 sheet 表单下载
      */
     @GetMapping("multipleSheets")
-    //@ApiOperation("多个 shell 表单下载")
+    @Operation(summary  ="多个 shell 表单下载")
     public void multipleSheets(HttpServletResponse response) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         excelResponse(response, "多表格提交");
         List<ComputerModel> list = computerToModel.copyList(computerService.list(), ComputerModel.class);
@@ -98,7 +98,7 @@ public class ExcelController {
      * 多表头下载
      */
     @GetMapping("multipleHead")
-    //@ApiOperation("多表头下载")
+    @Operation(summary  ="多表头下载")
     public void multipleHead(HttpServletResponse response) throws IOException {
         excelResponse(response, "多表头测试");
         write(response.getOutputStream(), MultiLineHeadExcelModel.class).sheet("第一页").doWrite(new ArrayList());
@@ -108,7 +108,7 @@ public class ExcelController {
      * 自定义下载
      */
     @GetMapping("customize")
-    //@ApiOperation("自定义表格格式")
+    @Operation(summary  ="自定义表格格式")
     public void customize(HttpServletResponse response) throws IOException {
         excelResponse(response, "自定义");
         List<DemoModel> data = new ArrayList<>();
@@ -129,7 +129,7 @@ public class ExcelController {
      * EasyExcel.read(file.getInputStream(), ComputerModel.class, computerListener).sheet().doRead();
      */
     @PostMapping("upload")
-    //@ApiOperation("excel 文件上传测试")
+    @Operation(summary  ="excel 文件上传测试")
     public ResultVO<String> upload(@RequestParam(value = "file") MultipartFile file) throws IOException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         ComputerListener listener = new ComputerListener();
         // 获取 excel 解析对象

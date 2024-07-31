@@ -1,13 +1,13 @@
 package com.spring.demo.controller;
 
 
+import com.spring.common.model.common.ResultVO;
 import com.spring.demo.config.factory.RedSessionFactory;
 import com.spring.demo.model.dos.People;
-import com.spring.common.model.common.ResultVO;
 import com.spring.demo.service.PeopleService;
 import com.spring.demo.untils.RedissLockUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.springframework.data.redis.core.HashOperations;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -43,7 +42,7 @@ public class RedisController {
     @Resource
     private RedSessionFactory redSessionFactory;
 
-    //@ApiOperation(value = "Master 插入值", notes = "hello接口")
+    @Operation(summary  = "Master 插入值")
     @GetMapping("/insertUser")
     public People insertUser() {
         People user = new People(null, "山东", "仁和春天", LocalDateTime.now(), "158262751", "158262751", 2, "王柳");
@@ -51,7 +50,7 @@ public class RedisController {
     }
 
     @GetMapping("/update")
-    //@ApiOperation(value = "update", notes = "更新")
+    @Operation(summary  = "update")
     public People update(String name, Integer id) {
         People byId = peopleService.getById(id);
         byId.setUsername(name);
@@ -59,13 +58,13 @@ public class RedisController {
     }
 
     @GetMapping("/getUser")
-    //@ApiOperation(value = "getUser", notes = "获取")
+    @Operation(summary  = "getUser")
     public People getUser(Integer id) {
         return peopleService.findById(id);
     }
 
     @GetMapping("/delete")
-    //@ApiOperation(value = "delete", notes = "hello接口")
+    @Operation(summary  = "delete")
     public void delete(Integer id) {
         People user = new People();
         user.setUId(id);
@@ -73,7 +72,7 @@ public class RedisController {
     }
 
     @GetMapping("/getPlus")
-    //@ApiOperation(value = "getPlus", notes = "hello接口")
+    @Operation(summary  = "getPlus")
     public People getPlus(Integer id) {
         return peopleService.getById(id);
     }
@@ -107,7 +106,7 @@ public class RedisController {
      * setIfPresent:如果 key 对应的值存在，则设置值，并返回 true
      */
     @GetMapping("/setIfPresent")
-    //@ApiOperation("如果存在这个建就修改，不存在就不添加")
+    @Operation(summary  ="如果存在这个建就修改，不存在就不添加")
     public ResultVO<String> setNx(String key) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         Boolean aBoolean1 = value.setIfPresent(key, key);
@@ -125,7 +124,7 @@ public class RedisController {
     }
 
     @GetMapping("/redSessionLock")
-    //@ApiOperation("分布式锁实现")
+    @Operation(summary  ="分布式锁实现")
     public ResultVO<String> redSessionLock(String key) {
         RLock lock = RedissLockUtil.lock(key);
         try {
@@ -139,7 +138,7 @@ public class RedisController {
     }
 
     @GetMapping("/redSessionLockParallel")
-    //@ApiOperation("分布式锁实现并行请求")
+    @Operation(summary  ="分布式锁实现并行请求")
     public ResultVO<String> redSessionLock1(String key) {
         RLock lock = RedissLockUtil.lock(key);
         log.info("等待锁的释放");
@@ -148,7 +147,7 @@ public class RedisController {
     }
 
     @GetMapping("/stringAppend")
-    //@ApiOperation("验证字符串追加")
+    @Operation(summary  ="验证字符串追加")
     public ResultVO<Object> stringAppend(String key, String value) {
         ValueOperations<String, Object> valueOperate = redisTemplate.opsForValue();
         valueOperate.append(key, value);
@@ -156,7 +155,7 @@ public class RedisController {
     }
 
     @GetMapping("/hashPut")
-    //@ApiOperation("hash 操作")
+    @Operation(summary  ="hash 操作")
     public ResultVO<Object> hashPut(String key, String hashKey, String value) {
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         hash.put(key, hashKey, value);

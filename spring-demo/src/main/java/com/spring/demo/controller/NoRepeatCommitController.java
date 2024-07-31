@@ -3,8 +3,7 @@ package com.spring.demo.controller;
 import com.spring.demo.annotation.CacheLock;
 import com.spring.demo.annotation.CacheParam;
 import com.spring.demo.config.config.NoRepeatConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +21,7 @@ public class NoRepeatCommitController {
 
     @RequestMapping
     @CacheLock(prefix = "books")
-    //@ApiOperation("防重复提交测试")
+    @Operation(summary  ="防重复提交测试")
     public String query(@CacheParam(name = "token") @RequestParam String token) {
         return "success - " + token;
     }

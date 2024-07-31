@@ -94,7 +94,7 @@ public class EsCityController {
      * @return Response<Page < EsCityEntity>>
      */
     //@PostMapping("/search")
-    //@ApiOperation(value = "搜索分页查询", notes = "搜索分页查询")
+    @Operation(summary  =value = "搜索分页查询", notes = "搜索分页查询")
     //public Response<Page<EsCityEntity>> search(@RequestBody @Valid EsSearchParam param) {
     //    return Response.success(cityService.searchCities(param));
     //}

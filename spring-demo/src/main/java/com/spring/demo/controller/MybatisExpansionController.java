@@ -3,6 +3,7 @@ package com.spring.demo.controller;
 
 import com.spring.demo.model.dos.MybatisExpansion;
 import com.spring.demo.service.MybatisExpansionService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,25 +30,25 @@ public class MybatisExpansionController {
     }
 
     @PostMapping
-    //@ApiOperation("测试自动填充创建时间，更新时间，逻辑删除数字")
+    @Operation(summary  ="测试自动填充创建时间，更新时间，逻辑删除数字")
     public void createEntity(MybatisExpansion mybatisExpansion) {
         mybatisExpansionService.save(mybatisExpansion);
     }
 
     @PutMapping
-    //@ApiOperation("测试更新自动填充更新字段")
+    @Operation(summary  ="测试更新自动填充更新字段")
     public void updateEntity(MybatisExpansion mybatisExpansion) {
         mybatisExpansionService.saveOrUpdate(mybatisExpansion);
     }
 
     @DeleteMapping
-    //@ApiOperation("逻辑删除")
+    @Operation(summary  ="逻辑删除")
     public void deleteEntity(MybatisExpansion mybatisExpansion) {
         mybatisExpansionService.removeById(mybatisExpansion);
     }
 
     @GetMapping("mybatisDemo")
-    //@ApiOperation("操作")
+    @Operation(summary  ="操作")
     public void mybatisDemo(){
         mybatisExpansionService.mybatisDemo();
     }

@@ -1,17 +1,14 @@
 package com.spring.demo.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.validation.constraints.NotBlank;
 
 /**
  * 用于工作测试代码
@@ -22,7 +19,7 @@ import jakarta.validation.constraints.NotBlank;
 @Slf4j
 @RestController
 @RequestMapping("/work")
-//@Api(tags = "工作测试代码")
+@Tag(name = "工作测试代码")
 @Validated
 public class WorkController {
 
@@ -33,9 +30,8 @@ public class WorkController {
      * @param work  work
      */
     @GetMapping("/validated")
-    //@ApiOperation(value = "validated", tags = "参数校验")
-    @ApiImplicitParams({@ApiImplicitParam(value = "hello 不能为空", name = "hello", paramType = "query"),
-            @ApiImplicitParam(value = "work 不能为空", name = "work", paramType = "query")})
+    @Operation(summary  ="validated", tags = "参数校验")
+//    @Parameters({@Parameter(name = "hello 不能为空"), @Parameter(name = "work 不能为空")})
     public void test(@NotBlank(message = "hello 不能为空") String hello, @NotBlank(message = "work 不能为空") String work) {
         log.info(hello, work);
     }

@@ -1,6 +1,6 @@
 package com.spring.demo.model.vos;
 
-import io.swagger.annotations.ApiModelProperty;
+import   io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
 
@@ -23,21 +23,21 @@ public class DateVO {
     /**
      * java8 yyyy-MM-dd HH:mm:ss
      */
-    @ApiModelProperty("yyyy-MM-dd HH:mm:ss")
+    @Schema(description = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime localDateTime;
 
     /**
      * java8 yyyy-MM-dd
      */
-    @ApiModelProperty("yyyy-MM-dd")
+    @Schema(description = "yyyy-MM-dd")
     private LocalDate localDate;
 
     /**
      * java8 HH:mm:ss
      */
-    //@ApiModelProperty("HH:mm:ss")
+    //@Schema("HH:mm:ss")
     //private LocalTime localTime;
 
-    @ApiModelProperty("常用类型")
+    @Schema(description = "常用类型")
     private Date date;
 }

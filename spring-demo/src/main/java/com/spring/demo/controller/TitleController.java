@@ -6,6 +6,7 @@ import com.spring.common.model.common.ResultVO;
 import com.spring.demo.config.http.HttpApiService;
 import com.spring.demo.model.Title;
 import com.spring.demo.service.TitleService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class TitleController {
     private HttpApiService httpApiService;
 
     @GetMapping
-    //@ApiOperation("获取 c 语言网 VIP 课程")
+    @Operation(summary  ="获取 c 语言网 VIP 课程")
     public ResultVO<List<Title>> list(String title) {
         List<Title> list = titleService.list(new QueryWrapper<Title>()
                 .lambda().like(Title::getTitle, title));
@@ -42,13 +43,13 @@ public class TitleController {
     }
 
     @GetMapping("lists")
-    //@ApiOperation("查询")
+    @Operation(summary  ="查询")
     public ResultVO<List<Title>> lists(@RequestParam("ids") List<String> ids) {
         return new ResultVO<>(titleService.listByIds(ids));
     }
 
     /*@PostMapping
-    //@ApiOperation("爬取 C 语言 VIP 课程")
+    @Operation(summary  ="爬取 C 语言 VIP 课程")
     public void save(@Validated @NotEmpty(message = "不能为空") @RequestBody Integer i) {
         String urlBase = "http://c.biancheng.net/view/%d.html";
         int end = i + 500;

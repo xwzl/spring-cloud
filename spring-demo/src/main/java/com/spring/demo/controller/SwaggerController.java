@@ -3,11 +3,18 @@ package com.spring.demo.controller;
 
 import com.spring.demo.model.dos.Emp;
 import com.spring.demo.model.dos.Role;
+import com.spring.demo.model.vos.UserPlus;
 import com.spring.demo.service.RoleService;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/demo/role")
-//@Api(tags = "Swagger2 注解示例")
+@Tag(name = "Swagger2 注解示例")
 @Slf4j
 public class SwaggerController {
 
@@ -58,17 +65,17 @@ public class SwaggerController {
      * response：抛出异常的类
      */
     @GetMapping
-    //@ApiOperation(value = "用户注册", notes = "手机号、密码都是必输项，年龄随边填，但必须是数字", response = Role.class)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "mobile", value = "手机号", required = true, paramType = "form"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "form"),
-            @ApiImplicitParam(name = "age", value = "年龄", required = true, paramType = "form", dataType = "Integer"),
-    })
+    @Operation(summary  = "用户注册")
+//    @Parameters({
+//            @Parameter(name = "mobile",  required = true),
+//            @Parameter(name = "password", required = true),
+//            @Parameter(name = "age",  required = true),
+//    })
     @ApiResponses({
-            @ApiResponse(code = 400, message = "请求参数没填好"),
-            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+            @ApiResponse(responseCode = "400", description = "请求参数没填好"),
+            @ApiResponse(responseCode = "404", description = "请求路径没有或页面跳转路径不对")
     })
-    public List<Role> getRoleList(@RequestParam() String mobile, String password, String age, Role role) {
+    public List<Role> getRoleList(String mobile, String password, String age, Role role) {
 
         return roleService.list();
     }
@@ -78,5 +85,17 @@ public class SwaggerController {
         log.info(role.toString());
         log.info(emp.toString());
     }
+
+    /**
+     * 用户列表
+     *
+     * @return
+     */
+    @Operation(summary = "用户列表")
+    @GetMapping("/list")
+    public UserPlus list(UserPlus user) {
+        return new UserPlus();
+    }
+
 
 }
