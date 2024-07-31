@@ -36,4 +36,5 @@ public class RedissonProperties {
     private String[] sentinelAddresses;
 
     private String masterName;
+
 }

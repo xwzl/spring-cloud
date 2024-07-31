@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.spring</groupId>
@@ -16,11 +17,9 @@
         <module>spring-demo</module>
         <module>spring-cache</module>
         <module>spring-complex</module>
-        <module>spring-elastic</module>
+<!--        <module>spring-elastic</module>-->
         <module>spring-mongo</module>
         <module>spring-rabbit</module>
-        <module>spring-websocket</module>
-        <module>spring-framework</module>
         <module>spring-flux</module>
         <module>spring-redis</module>
         <module>spring-prepare</module>
@@ -96,10 +95,10 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
-        <spring-boot.version>2.6.4</spring-boot.version>
-        <spring-cloud.version>2020.0.5</spring-cloud.version>
+        <spring-boot.version>3.2.4</spring-boot.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
         <docker.image.prefix>spring-cloud</docker.image.prefix>
-        <spring-alibaba-cloud.version>2.2.7.RELEASE</spring-alibaba-cloud.version>
+        <spring-alibaba-cloud.version>2023.0.1.0</spring-alibaba-cloud.version>
         <skipTests>true</skipTests>
 
     </properties>
@@ -186,7 +185,7 @@
             <dependency>
                 <groupId>com.common.cloud</groupId>
                 <artifactId>spring-common-dependencies</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.3-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

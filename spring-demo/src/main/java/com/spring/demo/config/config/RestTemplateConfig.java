@@ -4,16 +4,10 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.springframework.boot.web.client.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
@@ -38,27 +32,27 @@ public class RestTemplateConfig {
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(clientHttpRequestFactory());
-
-        //restTemplate默认的HttpMessageConverter
-        List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
-        List<HttpMessageConverter<?>> messageConvertersNew = new ArrayList<HttpMessageConverter<?>>();
-
-        for (HttpMessageConverter httpMessageConverter : messageConverters) {
-            //跳过MappingJackson2HttpMessageConverter
-            if (httpMessageConverter instanceof MappingJackson2HttpMessageConverter) {
-                continue;
-            }
-            messageConvertersNew.add(httpMessageConverter);
-        }
-
-        // 添加 fastJson 转换器
-        messageConvertersNew.add(fastJsonHttpMessageConverter());
-        restTemplate.setMessageConverters(messageConvertersNew);
+//        restTemplate.setRequestFactory(clientHttpRequestFactory());
+//
+//        //restTemplate默认的HttpMessageConverter
+//        List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
+//        List<HttpMessageConverter<?>> messageConvertersNew = new ArrayList<HttpMessageConverter<?>>();
+//
+//        for (HttpMessageConverter httpMessageConverter : messageConverters) {
+//            //跳过MappingJackson2HttpMessageConverter
+//            if (httpMessageConverter instanceof MappingJackson2HttpMessageConverter) {
+//                continue;
+//            }
+//            messageConvertersNew.add(httpMessageConverter);
+//        }
+//
+//        // 添加 fastJson 转换器
+//        messageConvertersNew.add(fastJsonHttpMessageConverter());
+//        restTemplate.setMessageConverters(messageConvertersNew);
 
         return restTemplate;
     }
-
+//
     /**
      * Bean 不用 fastJson 转换 SpringMVC 返回对象,JsonView 失效
      */
@@ -81,61 +75,61 @@ public class RestTemplateConfig {
         return fastJsonHttpMessageConverter;
     }
 
-    @Bean
-    public RestTemplateCustomizer restTemplateCustomizer() {
-        return new RestTemplateCustomizer() {
-            @Override
-            public void customize(RestTemplate restTemplate) {
-                HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+//    @Bean
+//    public RestTemplateCustomizer restTemplateCustomizer() {
+//        return new RestTemplateCustomizer() {
+//            @Override
+//            public void customize(RestTemplate restTemplate) {
+//                HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+//
+//                //创建连接管理器
+//                PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
+//                        = new PoolingHttpClientConnectionManager();
+//                poolingHttpClientConnectionManager.setMaxTotal(100);
+//                poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
+//                httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
+//
+//                //创建httpClient
+//                HttpClient httpClient = httpClientBuilder.build();
+//
+//                //创建HttpComponentsClientHttpRequestFactory
+//                HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory
+//                        = new HttpComponentsClientHttpRequestFactory(httpClient);
+//                httpComponentsClientHttpRequestFactory.setConnectTimeout(10 * 1000);
+////                httpComponentsClientHttpRequestFactory.setReadTimeout(60 * 1000);
+//                httpComponentsClientHttpRequestFactory.setConnectionRequestTimeout(20 * 1000);
+//
+//                restTemplate.setRequestFactory(httpComponentsClientHttpRequestFactory);
+//            }
+//        };
+//    }
 
-                //创建连接管理器
-                PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
-                        = new PoolingHttpClientConnectionManager();
-                poolingHttpClientConnectionManager.setMaxTotal(100);
-                poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
-                httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
 
-                //创建httpClient
-                HttpClient httpClient = httpClientBuilder.build();
-
-                //创建HttpComponentsClientHttpRequestFactory
-                HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory
-                        = new HttpComponentsClientHttpRequestFactory(httpClient);
-                httpComponentsClientHttpRequestFactory.setConnectTimeout(10 * 1000);
-                httpComponentsClientHttpRequestFactory.setReadTimeout(60 * 1000);
-                httpComponentsClientHttpRequestFactory.setConnectionRequestTimeout(20 * 1000);
-
-                restTemplate.setRequestFactory(httpComponentsClientHttpRequestFactory);
-            }
-        };
-    }
-
-
-    @Bean
-    public HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() {
-        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-
-        //开始设置连接池
-        PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
-                = new PoolingHttpClientConnectionManager();
-        //最大连接数
-        poolingHttpClientConnectionManager.setMaxTotal(100);
-        //同路由并发数
-        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
-        httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
-
-        HttpClient httpClient = httpClientBuilder.build();
-        // httpClient连接配置
-        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
-                = new HttpComponentsClientHttpRequestFactory(httpClient);
-        //连接超时
-        clientHttpRequestFactory.setConnectTimeout(30 * 1000);
-        //数据读取超时时间
-        clientHttpRequestFactory.setReadTimeout(60 * 1000);
-        //连接不够用的等待时间
-        clientHttpRequestFactory.setConnectionRequestTimeout(30 * 1000);
-        return clientHttpRequestFactory;
-    }
+//    @Bean
+//    public HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() {
+//        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+//
+//        //开始设置连接池
+//        PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
+//                = new PoolingHttpClientConnectionManager();
+//        //最大连接数
+//        poolingHttpClientConnectionManager.setMaxTotal(100);
+//        //同路由并发数
+//        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
+//        httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
+//
+//        HttpClient httpClient = httpClientBuilder.build();
+//        // httpClient连接配置
+//        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
+//                = new HttpComponentsClientHttpRequestFactory(httpClient);
+//        //连接超时
+//        clientHttpRequestFactory.setConnectTimeout(30 * 1000);
+//        //数据读取超时时间
+//        clientHttpRequestFactory.setReadTimeout(60 * 1000);
+//        //连接不够用的等待时间
+//        clientHttpRequestFactory.setConnectionRequestTimeout(30 * 1000);
+//        return clientHttpRequestFactory;
+//    }
 
 
 }

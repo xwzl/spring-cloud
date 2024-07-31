@@ -4,6 +4,7 @@ import com.spring.common.model.Apple;
 import com.spring.starter.model.ConditionalSample;
 import com.spring.starter.model.YoungerModel;
 import com.spring.starter.properties.DocumentMissingClass;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -11,7 +12,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 
 /**
  * 自动注入 BaseProperties 对象

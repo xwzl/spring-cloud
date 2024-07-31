@@ -1,10 +1,10 @@
 package com.spring.demo.config.redis;
 
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PreDestroy;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 

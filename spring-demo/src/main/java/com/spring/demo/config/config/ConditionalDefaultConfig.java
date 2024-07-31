@@ -4,12 +4,12 @@ import com.spring.common.model.Apple;
 import com.spring.demo.config.properties.Document;
 import com.spring.demo.config.properties.DocumentMissingBean;
 import com.spring.starter.properties.DocumentMissingClass;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 
 /**
  * Spring Conditional 条件注解测试

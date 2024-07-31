@@ -8,7 +8,7 @@ import com.spring.demo.view.Visible.GameView;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * 默认分组验证

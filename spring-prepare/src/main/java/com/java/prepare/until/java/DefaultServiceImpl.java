@@ -1,6 +1,6 @@
 package com.java.prepare.until.java;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 

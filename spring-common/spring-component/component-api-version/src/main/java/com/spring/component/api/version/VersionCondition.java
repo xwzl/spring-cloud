@@ -1,10 +1,10 @@
 package com.spring.component.api.version;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class VersionCondition implements RequestCondition<VersionCondition> {
 

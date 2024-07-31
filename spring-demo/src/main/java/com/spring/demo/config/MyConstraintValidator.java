@@ -4,8 +4,8 @@ import com.spring.demo.annotation.MyValidated;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * 专门用于数据校验的接口

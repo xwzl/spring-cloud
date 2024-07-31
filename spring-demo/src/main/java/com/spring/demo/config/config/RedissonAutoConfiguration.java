@@ -4,6 +4,7 @@ import com.spring.demo.config.properties.RedissonProperties;
 import com.spring.demo.config.redis.DistributedLocker;
 import com.spring.demo.config.redis.RedissonDistributedLocker;
 import com.spring.demo.untils.RedissLockUtil;
+import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -15,8 +16,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.Resource;
 
 /**
  * SpringBoot自动装配类

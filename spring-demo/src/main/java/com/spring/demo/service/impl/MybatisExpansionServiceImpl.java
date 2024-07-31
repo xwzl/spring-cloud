@@ -8,7 +8,7 @@ import com.spring.demo.mapper.MybatisExpansionMapper;
 import com.spring.demo.service.MybatisExpansionService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 /**

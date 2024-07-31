@@ -1,15 +1,14 @@
 package com.dftc.microservice.health.common.component.mq.vos;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.dftc.microservice.health.common.component.mq.enums.MessageEnum;
 import com.dftc.microservice.health.common.component.mq.enums.ProducerGroupEnum;
 import com.dftc.microservice.health.common.component.mq.enums.TageEnum;
 import com.dftc.microservice.health.common.component.mq.enums.TopIcEnum;
-
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

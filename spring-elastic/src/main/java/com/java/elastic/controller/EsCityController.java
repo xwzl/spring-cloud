@@ -10,7 +10,7 @@ import io.swagger.models.properties.LongProperty;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.Objects;
 

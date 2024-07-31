@@ -6,7 +6,7 @@ import com.java.plus.demo.view.Visible;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 默认分组验证

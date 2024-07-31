@@ -5,10 +5,10 @@ import com.spring.demo.model.dos.Emp;
 import com.spring.demo.model.dos.Role;
 import com.spring.demo.service.RoleService;
 import io.swagger.annotations.*;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

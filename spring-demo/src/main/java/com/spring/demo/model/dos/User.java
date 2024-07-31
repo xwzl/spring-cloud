@@ -1,11 +1,11 @@
 package com.spring.demo.model.dos;
 
 import com.spring.demo.annotation.MyValidated;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
 

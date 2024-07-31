@@ -1,5 +1,6 @@
 package com.spring.component.redis.lock;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.RedisStringCommands;
@@ -7,7 +8,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.types.Expiration;
 
-import javax.validation.constraints.NotNull;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class RedisLock implements Lock {
     }
 
     public RedisLock(@NotNull String key, @NotNull RedisTemplate<String, String> redisTemplate, long expireTime,
-        TimeUnit timeUnit) {
+                     TimeUnit timeUnit) {
         this.key = Objects.requireNonNull(key);
         this.redisTemplate = Objects.requireNonNull(redisTemplate);
         this.lockExpireTime = timeUnit.toMillis(expireTime);

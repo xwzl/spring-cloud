@@ -1,6 +1,5 @@
 package com.spring.starter.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +15,6 @@ import java.util.Arrays;
  * @since 2019-09-25
  */
 @Configuration
-//@ConditionalOnClass(name = "com.java.test.qq")
 public class IpConfiguration implements ApplicationListener<WebServerInitializedEvent> {
 
     private int serverPort;
