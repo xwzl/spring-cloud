@@ -1,6 +1,12 @@
 package com.spring.demo.config;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,8 +21,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new Trace()).addPathPatterns("/**");
+    }
+
+    @Component
+    public static class Trace implements HandlerInterceptor {
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            response.setHeader("tid", TraceContext.traceId());
+            return true;
+        }
+    }
+
     /**
      * 设置静态资源映射
+     *
      * @param registry
      */
     @Override
