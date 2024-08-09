@@ -5,6 +5,9 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(%X{tl:-}){yellow} %clr(${PID:- }){magenta} %clr([%tid]){faint}  %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <springProperty scope="context" name="logstashHost" source="logging.logstash.host"/>
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <springProperty scope="context" name="profile" source="spring.profiles.active"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -14,6 +17,35 @@
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
     </appender>
+
+
+<!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <destination>127.0.0.1:4560</destination> &lt;!&ndash; Logstash 服务器地址和端口 &ndash;&gt;-->
+<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
+<!--    </appender>-->
+
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <!-- logstash 地址 -->
+        <destination>127.0.0.1:5044</destination>
+        <includeCallerData>true</includeCallerData>
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+        <reconnectionDelay>5 second</reconnectionDelay>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+
+            <!-- 必须为 true 才会追加字段-->
+            <includeContext>true</includeContext>
+            <includeCallerData>true</includeCallerData>
+            <timeZone>UTC</timeZone>
+            <!--这个有错误-->
+            <!--            <timestampPattern>[UNIX_TIMESTAMP_AS_STRING]</timestampPattern>-->
+            <!-- logstash 自动追加字段 -->
+            <customFields>{"profile":"${profile}"}</customFields>
+            <customFields>{"appName":"${appName}"}</customFields>
+        </encoder>
+    </appender>
+
+
 
     <!-- skywalking grpc 日志收集 8.4.0版本开始支持 -->
     <appender name="GRPC-LOG" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
@@ -29,7 +61,9 @@
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="GRPC-LOG" />
+        <appender-ref ref="LOGSTASH" />
     </root>
+
 
     <logger name="com.skywalking.order" level="INFO"/>
 
