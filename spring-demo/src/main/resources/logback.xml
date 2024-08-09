@@ -24,26 +24,26 @@
 <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
 <!--    </appender>-->
 
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <param name="Encoding" value="UTF-8"/>
-        <!-- logstash 地址 -->
-        <destination>127.0.0.1:5044</destination>
-        <includeCallerData>true</includeCallerData>
-        <keepAliveDuration>5 minutes</keepAliveDuration>
-        <reconnectionDelay>5 second</reconnectionDelay>
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+<!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <param name="Encoding" value="UTF-8"/>-->
+<!--        &lt;!&ndash; logstash 地址 &ndash;&gt;-->
+<!--        <destination>1.15.19.68:5044</destination>-->
+<!--        <includeCallerData>true</includeCallerData>-->
+<!--        <keepAliveDuration>5 minutes</keepAliveDuration>-->
+<!--        <reconnectionDelay>5 second</reconnectionDelay>-->
+<!--        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">-->
 
-            <!-- 必须为 true 才会追加字段-->
-            <includeContext>true</includeContext>
-            <includeCallerData>true</includeCallerData>
-            <timeZone>UTC</timeZone>
-            <!--这个有错误-->
-            <!--            <timestampPattern>[UNIX_TIMESTAMP_AS_STRING]</timestampPattern>-->
-            <!-- logstash 自动追加字段 -->
-            <customFields>{"profile":"${profile}"}</customFields>
-            <customFields>{"appName":"${appName}"}</customFields>
-        </encoder>
-    </appender>
+<!--            &lt;!&ndash; 必须为 true 才会追加字段&ndash;&gt;-->
+<!--            <includeContext>true</includeContext>-->
+<!--            <includeCallerData>true</includeCallerData>-->
+<!--            <timeZone>UTC</timeZone>-->
+<!--            &lt;!&ndash;这个有错误&ndash;&gt;-->
+<!--            &lt;!&ndash;            <timestampPattern>[UNIX_TIMESTAMP_AS_STRING]</timestampPattern>&ndash;&gt;-->
+<!--            &lt;!&ndash; logstash 自动追加字段 &ndash;&gt;-->
+<!--            <customFields>{"profile":"${profile}"}</customFields>-->
+<!--            <customFields>{"appName":"${appName}"}</customFields>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
 
 
@@ -61,7 +61,7 @@
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="GRPC-LOG" />
-        <appender-ref ref="LOGSTASH" />
+<!--        <appender-ref ref="LOGSTASH" />-->
     </root>
 
 
