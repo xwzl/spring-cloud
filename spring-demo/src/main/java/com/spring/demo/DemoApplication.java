@@ -1,5 +1,6 @@
 package com.spring.demo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author xuweizhi
  * @since 2019/06/28 13:43
  */
+@Slf4j
 @EnableAsync
 @EnableCaching
 @SpringBootApplication
@@ -17,7 +19,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class DemoApplication {
 
     public static void main(String[] args) {
-//        disableAccessWarnings();
         SpringApplication.run(DemoApplication.class, args);
     }
 
