@@ -111,3 +111,14 @@ knife4j:
 #    # Basic认证密码
 #    password: root
 
+management: #开启SpringBoot Admin的监控
+  endpoints:
+    promethus:
+      enable: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
