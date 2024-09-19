@@ -4,4 +4,6 @@ java -jar xxx-spring-boot.jar
 
 -javaagent:/Users/xuweizhi/Documents/projects/docker-container/skywalking-agent/skywalking-agent.jar
 -Dskywalking.agent.service_name=spring-cloud
--Dskywalking.collector.backend_service=localhost:11800
+-Dskywalking.collector.backend_service=1.15.19.68:11800
+
+-Dskywalking.collector.backend_service=1.15.19.68:11800
