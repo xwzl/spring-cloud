@@ -13,7 +13,7 @@
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-        <springProperty scope="context" name="logstashHost" source="logging.logstash.host"/>
+    <springProperty scope="context" name="logstashHost" source="logging.logstash.host"/>
     <springProperty scope="context" name="profile" source="spring.profiles.active"/>
     <property name="logging.path" value="/Users/xuweizhi/Documents/projects/spring-cloud/logs/"/>
     <conversionRule conversionWord="clientIp" converterClass="com.spring.demo.config.log.ClientIpLogConfig"/>
