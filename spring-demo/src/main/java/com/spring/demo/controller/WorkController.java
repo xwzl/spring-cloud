@@ -2,6 +2,7 @@ package com.spring.demo.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -32,9 +33,11 @@ public class WorkController {
     @GetMapping("/validated")
     @Operation(summary  ="validated", tags = "参数校验")
 //    @Parameters({@Parameter(name = "hello 不能为空"), @Parameter(name = "work 不能为空")})
-    public void test(@NotBlank(message = "hello 不能为空") String hello, @NotBlank(message = "work 不能为空") String work) {
+    public void test(@NotBlank(message = "hello 不能为空") String hello, @NotBlank(message = "work 不能为空") String work,HttpServletRequest request) {
         log.info(hello, work);
     }
+
+
 
     @GetMapping("pathParam/{id}")
     public void pathParam(@PathVariable("id") String id) {
