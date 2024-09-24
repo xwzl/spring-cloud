@@ -8,6 +8,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
 /**
  * SpringBoot 完成后打印 swagger 文档地址
  *
@@ -26,8 +31,33 @@ public class ApplicationRunnerAfter implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("Swagger github : http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
-        log.info("Swagger github boot-strap: http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort() + "/doc.html");
-        ip = ipConfiguration.getHostAddress();
+        ip = getLocalIPv4();
+        // log.info("Swagger github : http://" + ipConfiguration.getHostAddress() + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
+        log.info("Swagger github : http://" + ip + ":" + ipConfiguration.getPort() + "/swagger-ui.html");
+        log.info("Swagger github boot-strap: http://" + ip + ":" + ipConfiguration.getPort() + "/doc.html");
     }
+
+    /**
+     * 获取本机IPv4地址
+     * @return 本机IPv4地址字符串
+     */
+    public static String getLocalIPv4() {
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface networkInterface = interfaces.nextElement();
+                Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress address = addresses.nextElement();
+                    if (!address.isLoopbackAddress() && address instanceof java.net.Inet4Address) {
+                        return address.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
