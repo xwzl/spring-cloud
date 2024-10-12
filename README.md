@@ -80,3 +80,5 @@
 # MysqlQuery.g4 用法
 
 ![](./spring-demo/elk/mysql.png)
+
+mavan 编译报错，注意 maven 使用的java版本
