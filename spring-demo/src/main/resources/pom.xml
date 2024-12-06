@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <version>${revision}</version>
+    <groupId>com.hit</groupId>
+    <artifactId>server-hos-emr-osgi</artifactId>
+    <name>server-hos-emr-osgi</name>
+    <description>server-hos-emr-osgi</description>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>emr-starter</module>
+        <module>emr-integrated</module>
+        <module>emr-project</module>
+    </modules>
+
+    <properties>
+        <revision>1.0.0</revision>
+        <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+
+        <spring-boot.version>3.3.6</spring-boot.version>
+
+        <java.version>17</java.version>
+        <maven.compiler.target>17</maven.compiler.target>
+        <mapstruct.version>1.5.0.Beta1</mapstruct.version>
+
+        <hit-redis.version>1.0.0</hit-redis.version>
+        <hit-common.version>1.0.0</hit-common.version>
+        <hit-common-toolkit.version>1.0.0</hit-common-toolkit.version>
+        <med.version>2.0.24</med.version>
+        <ws.version>1.0.39</ws.version>
+
+        <server-hos-system.version>1.0.0</server-hos-system.version>
+        <classgraph.version>4.8.149</classgraph.version>
+
+        <!--数据库-->
+        <postgresql.version>42.7.4</postgresql.version>
+        <HikariCP.version>5.1.0</HikariCP.version>
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
+        <mybatis-spring.version>3.0.4</mybatis-spring.version>
+        <mybatis-plus-dynamic.version>4.3.1</mybatis-plus-dynamic.version>
+
+        <!--工具相关-->
+        <commons-io.version>2.17.0</commons-io.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-configuration2.version>2.5</commons-configuration2.version>
+        <commons-compress.version>1.26.0</commons-compress.version>
+        <jackson-core.version>2.15.0</jackson-core.version>
+        <swagger.version>2.10.5</swagger.version>
+        <okhttp.version>4.12.0</okhttp.version>
+        <jaxb.version>2.2.11</jaxb.version>
+        <easypoi.version>4.5.0</easypoi.version>
+        <java-jwt.version>3.8.2</java-jwt.version>
+        <joda.time.version>2.9.9</joda.time.version>
+        <fastjson-two.version>2.0.53</fastjson-two.version>
+        <pagehelper-starter.version>1.3.0</pagehelper-starter.version>
+        <pagehelper.version>5.3.1</pagehelper.version>
+        <hutool-all.version>5.8.21</hutool-all.version>
+        <guava.version>32.0.0-android</guava.version>
+        <jsqlparser.version>5.0</jsqlparser.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <reflectasm.version>1.11.7</reflectasm.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <mapstruct.version>1.6.2</mapstruct.version>
+
+        <!---->
+        <spring-boot-starter-security.version>3.3.0</spring-boot-starter-security.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+        <camel.version>4.7.0</camel.version>
+        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <cglib.version>3.3.0</cglib.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hit</groupId>
+                <artifactId>hit-common-redis</artifactId>
+                <version>${hit-redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hit</groupId>
+                <artifactId>hit-common-toolkit</artifactId>
+                <version>${hit-common-toolkit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- jackson json 优化缓存对象序列化 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${HikariCP.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-jsqlparser</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus-dynamic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <!--MyBatis分页插件starter-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <!--				<scope>provided</scope>-->
+            </dependency>
+            <dependency>
+                <groupId>com.esotericsoftware</groupId>
+                <artifactId>reflectasm</artifactId>
+                <version>${reflectasm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <!--MyBatis分页插件-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.afterturn</groupId>
+                <artifactId>easypoi-spring-boot-starter</artifactId>
+                <version>${easypoi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson-two.version}</version>
+            </dependency>
+
+            <!--工具类-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.time.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>${pinyin4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.annotation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- 统一 revision 版本 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
