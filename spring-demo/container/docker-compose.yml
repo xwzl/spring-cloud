@@ -1,0 +1,100 @@
+version: "3"
+services:
+    elasticsearch:
+      container_name: elasticsearch
+      hostname: elasticsearch
+      image: docker.elastic.co/elasticsearch/elasticsearch:${elasticsearch_version}
+      restart: always
+      ports:
+        - 9200:9200
+        - 9300:9300
+      volumes:
+        #      - ./elasticsearch/master/conf/elastic-search.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+        - ./elasticsearch/data:/usr/share/elasticsearch/data
+        - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+        - ./elasticsearch/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
+        - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
+      environment:
+        - ES_JAVA_OPTS
+        - "discovery.type=single-node"
+    kibana:
+      container_name: kibana
+      hostname: kibana
+      image: docker.elastic.co/kibana/kibana:${elasticsearch_version}
+      restart: always
+      ports:
+        - 5601:5601
+      volumes:
+        - ./kibana/conf/kibana.yml:/usr/share/kibana/config/kibana.yml
+      environment:
+        - elasticsearch.hosts=http://elasticsearch:9200
+      depends_on:
+        - elasticsearch
+    logstash:
+      container_name: logstash
+      hostname: logstash
+      image: docker.elastic.co/logstash/logstash:${elasticsearch_version}
+      restart: always
+      volumes:
+        - ./logstash/yml/logstash.yml:/usr/share/logstash/config/logstash.yml
+        - ./logstash/conf/:/usr/share/logstash/pipeline/
+      environment:
+        - TZ=Asia/Shanghai
+#        - xpack.monitoring.elasticsearch.hosts=10.8.0.146:9200
+#        - xpack.monitoring.enabled=true
+#        - xpack.monitoring.elasticsearch.username=elastic
+#        - xpack.monitoring.elasticsearch.password=elastic
+      depends_on:
+        - elasticsearch
+      ports:
+        - 5044:5044
+        - 5045:5045
+    filebeat:
+      container_name: filebeat
+      hostname: filebeat
+      image: docker.elastic.co/beats/filebeat:${elasticsearch_version}
+      restart: always
+      entrypoint: "filebeat -e -strict.perms=false"
+      depends_on:
+        - logstash
+        - kibana
+      # 持久化挂载
+      volumes:
+        - ./filebeat/conf/filebeat.yml:/usr/share/filebeat/filebeat.yml
+        # 映射到容器中[作为数据源]
+        - /Users/xuweizhi/Documents/projects/server-hos-emr-osgi/.idea/logs:/var/log/
+        - ./filebeat/logs:/usr/share/filebeat/logs
+        - ./filebeat/data:/usr/share/filebeat/data
+      # 将指定容器连接到当前连接，可以设置别名，避免ip方式导致的容器重启动态改变的无法连接情况
+    oap:
+      image: apache/skywalking-oap-server
+      container_name: oap
+      #    depends_on:
+      #      - es-master
+      restart: always
+      ports:
+        - 11800:11800
+        - 12800:12800
+      #    volumes:
+      #      - ./apache-skywalking-apm-bin/config:/config
+      environment:
+        SW_CORE_RECORD_DATA_TTL: 15
+        SW_CORE_METRICS_DATA_TTL: 15
+        SW_STORAGE: elasticsearch
+        SW_STORAGE_ES_CLUSTER_NODES: es-master:9200
+        SW_ENABLE_UPDATE_UI_TEMPLATE: true
+        SW_ES_USER: elastic
+        SW_ES_PASSWORD: elastic
+        TZ: Asia/Shanghai
+  #        JAVA_OPTS: "-Xms2048m -Xmx2048m"
+    ui:
+      image: apache/skywalking-ui
+      container_name: ui
+      depends_on:
+        - oap
+      restart: always
+      ports:
+        - 8080:8080
+      environment:
+        SW_OAP_ADDRESS: http://oap:12800
+
